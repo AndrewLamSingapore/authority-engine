@@ -11,11 +11,11 @@ export default function Home() {
       category: 'Early Warning & Risk Analytics',
       description: 'An operational risk detection engine that flags supplier deterioration, inventory depletion, and backlog velocity before conventional red/amber/green KPIs breach thresholds.',
       impacts: [
-        'Surfaced operational risks 24 days before conventional critical threshold[cite: 2].',
-        'Weighted risk scoring: Inventory cover (35%), Supplier performance (25%), Backlog & Trajectory[cite: 2].',
+        'Surfaced operational risks 24 days before conventional critical threshold[cite: 2.',
+        'Weighted risk scoring: Inventory cover (35%), Supplier performance (25%), Backlog & Trajectory[cite: 2.',
         'Built with Python, SQL, and Power BI decomposition trees for instant management drill-down.'
-      ],
-      tech: ['Power BI', 'Python', 'SQL', 'Risk Modeling'],
+      ,
+      tech: ['Power BI', 'Python', 'SQL', 'Risk Modeling',
       link: '/insights/control-tower'
     },
     {
@@ -26,14 +26,14 @@ export default function Home() {
       category: 'Temperature Compliance & Quality Control',
       description: 'Analysed 1,800 operational records across six warehouse zones to surface temperature compliance breaches and processing bottlenecks grounded in frontline cold-chain experience.',
       impacts: [
-        'Automated door-open duration alerts for high-risk temperature zones[cite: 1].',
-        'Optimised peak-shift manpower deployment and preventive maintenance triggers[cite: 1].',
+        'Automated door-open duration alerts for high-risk temperature zones[cite: 1.',
+        'Optimised peak-shift manpower deployment and preventive maintenance triggers[cite: 1.',
         'Integrated diagnostic SQL queries with interactive Power BI executive reporting.'
-      ],
-      tech: ['Power BI', 'SQL', 'Python', 'Logistics Ops'],
+      ,
+      tech: ['Power BI', 'SQL', 'Python', 'Logistics Ops',
       link: '/insights/cold-chain-dashboard'
     }
-  ];
+  ;
 
   return (
     <div className="space-y-20 pb-20">
@@ -49,7 +49,7 @@ export default function Home() {
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-xs font-medium text-slate-300">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>BCG RISE Data Analytics | 20+ Years Supply Chain & Logistics[cite: 1]</span>
+                <span>BCG RISE Data Analytics | 20+ Years Supply Chain & Logistics[cite: 1</span>
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
@@ -57,7 +57,7 @@ export default function Home() {
               </h1>
 
               <p className="text-lg sm:text-xl text-slate-300 leading-relaxed">
-                Bridging two decades of frontline cold-chain, warehousing, and logistics execution with modern Power BI, SQL, and Python analytics to eliminate friction and catch operational risks before standard KPIs fail[cite: 1, 2].
+                Bridging two decades of frontline cold-chain, warehousing, and logistics execution with modern Power BI, SQL, and Python analytics to eliminate friction and catch operational risks before standard KPIs fail[cite: 1, 2.
               </p>
 
               <div className="flex flex-wrap gap-4 pt-2">
@@ -90,11 +90,11 @@ export default function Home() {
 
                 <div className="space-y-4">
                   {[
-                    { title: "Root-Cause Diagnosis", desc: "Tracing recurring warehouse and cold-chain bottlenecks to underlying processes[cite: 1]." },
-                    { title: "Early-Warning Risk Systems", desc: "Flagging inventory and supplier risks before conventional RAG KPIs fail[cite: 1]." },
-                    { title: "Workflow & KPI Optimization", desc: "Eliminating delay, rework, and manpower conflicts in high-volume environments[cite: 1, 2]." },
-                    { title: "Data Integrity & Analytics", desc: "Ensuring clean source data before building decision-ready executive dashboards[cite: 1]." }
-                  ].map((item, idx) => (
+                    { title: "Root-Cause Diagnosis", desc: "Tracing recurring warehouse and cold-chain bottlenecks to underlying processes[cite: 1." },
+                    { title: "Early-Warning Risk Systems", desc: "Flagging inventory and supplier risks before conventional RAG KPIs fail[cite: 1." },
+                    { title: "Workflow & KPI Optimization", desc: "Eliminating delay, rework, and manpower conflicts in high-volume environments[cite: 1, 2." },
+                    { title: "Data Integrity & Analytics", desc: "Ensuring clean source data before building decision-ready executive dashboards[cite: 1." }
+                  .map((item, idx) => (
                     <div key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-slate-800/40 border border-slate-700/50">
                       <CheckCircle2 className="w-5 h-5 text-brand-accent shrink-0 mt-0.5" />
                       <div>
@@ -115,11 +115,11 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {[
-            { label: "Operations Leadership", value: "20+ Yrs", sub: "Cold Chain, Logistics & Freight[cite: 1]" },
-            { label: "Inventory Accuracy", value: "98–99.5%", sub: "Sustained across high-volume SKUs[cite: 1, 2]" },
-            { label: "Early Risk Lead Time", value: "24 Days", sub: "Control Tower warning detection[cite: 2]" },
-            { label: "Bottleneck Reduction", value: "10–20%", sub: "Reduced container waiting times[cite: 1, 2]" },
-          ].map((metric, idx) => (
+            { label: "Operations Leadership", value: "20+ Yrs", sub: "Cold Chain, Logistics & Freight[cite: 1" },
+            { label: "Inventory Accuracy", value: "98–99.5%", sub: "Sustained across high-volume SKUs[cite: 1, 2" },
+            { label: "Early Risk Lead Time", value: "24 Days", sub: "Control Tower warning detection[cite: 2" },
+            { label: "Bottleneck Reduction", value: "10–20%", sub: "Reduced container waiting times[cite: 1, 2" },
+          .map((metric, idx) => (
             <div key={idx} className="bg-brand-slate border border-slate-800 rounded-xl p-5 sm:p-6 text-center hover:border-slate-700 transition-all">
               <div className="text-2xl sm:text-3xl font-extrabold text-brand-accent tracking-tight mb-1">
                 {metric.value}

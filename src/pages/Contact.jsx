@@ -2,22 +2,22 @@ import { useState } from 'react';
 import { MapPin, ExternalLink, Send, ShieldCheck, CheckCircle2, Loader2 } from 'lucide-react';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData = useState({
     name: '',
     email: '',
     company: '',
     inquiryType: 'Operational Leadership Role',
     message: ''
   });
-  const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(null);
+  const [submitted, setSubmitted = useState(false);
+  const [isSubmitting, setIsSubmitting = useState(false);
+  const [error, setError = useState(null);
 
   // Your Formspree Form ID
   const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || 'xeeybkjp';
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name: e.target.value });
   };
 
   const handleSubmit = async (e) => {

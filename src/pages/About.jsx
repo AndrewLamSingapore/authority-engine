@@ -14,46 +14,46 @@ export default function About() {
       period: 'Oct 2024 – Present',
       role: 'Partner and Director, Small Business Operations',
       company: 'Maxwell Excel Service Pte. Ltd.',
-      description: 'Directing workforce allocation, container stuffing/unstuffing logistics, and operational cash flow management for recurring cold-chain clients[cite: 1, 2].',
+      description: 'Directing workforce allocation, container stuffing/unstuffing logistics, and operational cash flow management for recurring cold-chain clients[cite: 1, 2.',
       type: 'Leadership'
     },
     {
       period: 'Jan 2021 – May 2026',
       role: 'Operations Executive',
       company: 'Jurong Cold Store, Singapore',
-      description: 'Managed logistics and production planning across strict temperature-controlled zones where compliance failures cause direct product loss[cite: 1, 2]. Held inventory accuracy high and introduced workflow refinements adopted across teams[cite: 1, 2].',
+      description: 'Managed logistics and production planning across strict temperature-controlled zones where compliance failures cause direct product loss[cite: 1, 2. Held inventory accuracy high and introduced workflow refinements adopted across teams[cite: 1, 2.',
       type: 'Operations'
     },
     {
       period: 'Jan 2012 – Dec 2020',
       role: 'Operations Executive',
       company: 'Grocery Logistics of Singapore',
-      description: 'Directed daily distribution across 9 consecutive years: 20–40 daily deliveries to 30–60 retail outlets, managing 800–2,000 SKUs[cite: 1, 2]. Maintained 98–99.5% inventory accuracy and cut container waiting time by 10–20%[cite: 1, 2].',
+      description: 'Directed daily distribution across 9 consecutive years: 20–40 daily deliveries to 30–60 retail outlets, managing 800–2,000 SKUs[cite: 1, 2. Maintained 98–99.5% inventory accuracy and cut container waiting time by 10–20%[cite: 1, 2.',
       type: 'Operations'
     },
     {
       period: 'Jan 2006 – Dec 2011',
       role: 'Operations Executive',
       company: 'Ferrari Logistics Singapore Pte Ltd',
-      description: 'Coordinated international freight forwarding across 5–10 markets[cite: 1, 2]. Maintained 95–99% on-time shipment performance for high-value consignments up to S$500k[cite: 1, 2].',
+      description: 'Coordinated international freight forwarding across 5–10 markets[cite: 1, 2. Maintained 95–99% on-time shipment performance for high-value consignments up to S$500k[cite: 1, 2.',
       type: 'Logistics'
     }
-  ];
+  ;
 
   const skillCategories = [
     {
       title: 'Operational Excellence & Process',
-      skills: ['Process Improvement', 'Root Cause Analysis', 'Cold Chain Management', 'Inventory Control', 'Workflow Optimization', 'Demand & Capacity Planning']
+      skills: ['Process Improvement', 'Root Cause Analysis', 'Cold Chain Management', 'Inventory Control', 'Workflow Optimization', 'Demand & Capacity Planning'
     },
     {
       title: 'Analytics & Decision Enablers',
-      skills: ['Microsoft Power BI (Assessed)', 'SQL Data Querying', 'Python Analytics', 'KPI Design', 'Early-Warning Indicators', 'Data Cleaning & Validation']
+      skills: ['Microsoft Power BI (Assessed)', 'SQL Data Querying', 'Python Analytics', 'KPI Design', 'Early-Warning Indicators', 'Data Cleaning & Validation'
     },
     {
       title: 'Emerging Tech & Credentials',
-      skills: ['Applied AI Productivity Tools', 'WSQ Certified Drone Platforms', 'Supply Chain Control Towers', 'Stakeholder Communication']
+      skills: ['Applied AI Productivity Tools', 'WSQ Certified Drone Platforms', 'Supply Chain Control Towers', 'Stakeholder Communication'
     }
-  ];
+  ;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
@@ -68,7 +68,7 @@ export default function About() {
           <span className="text-brand-accent">Data-Enabled Improvement.</span>
         </h1>
         <p className="text-slate-300 text-lg leading-relaxed">
-          For most organizations, the hardest problem isn't technology—it's execution. With over 20 years in frontline cold chain, grocery logistics, and freight forwarding, I specialize in finding where work actually breaks down and designing systemic fixes that hold[cite: 1, 2].
+          For most organizations, the hardest problem isn't technology—it's execution. With over 20 years in frontline cold chain, grocery logistics, and freight forwarding, I specialize in finding where work actually breaks down and designing systemic fixes that hold[cite: 1, 2.
         </p>
       </div>
 
@@ -80,7 +80,7 @@ export default function About() {
             <span>Operational Methodology</span>
           </h2>
           <p className="text-slate-300 text-sm leading-relaxed">
-            I study how work actually flows on the warehouse floor, isolate the root cause of friction, redesign the process, and measure the result. I treat Power BI, SQL, and Python as diagnostic tools to make problems visible early—not as standalone tech goals[cite: 2].
+            I study how work actually flows on the warehouse floor, isolate the root cause of friction, redesign the process, and measure the result. I treat Power BI, SQL, and Python as diagnostic tools to make problems visible early—not as standalone tech goals[cite: 2.
           </p>
           <div className="flex flex-wrap gap-3 pt-2">
             <a
@@ -107,15 +107,15 @@ export default function About() {
           <div className="space-y-3 text-xs">
             <div>
               <div className="font-bold text-white">BCG RISE Analytics Programme</div>
-              <div className="text-slate-400">Boston Consulting Group (Expected Oct 2026)[cite: 1, 2]</div>
+              <div className="text-slate-400">Boston Consulting Group (Expected Oct 2026)[cite: 1, 2</div>
             </div>
             <div className="border-t border-slate-800 pt-2">
               <div className="font-bold text-white">BA, Communication & Media</div>
-              <div className="text-slate-400">Monash University[cite: 1, 2]</div>
+              <div className="text-slate-400">Monash University[cite: 1, 2</div>
             </div>
             <div className="border-t border-slate-800 pt-2">
               <div className="font-bold text-white">WSQ Drone Operations</div>
-              <div className="text-slate-400">NTUC LearningHub (2026)[cite: 1, 2]</div>
+              <div className="text-slate-400">NTUC LearningHub (2026)[cite: 1, 2</div>
             </div>
           </div>
         </div>
@@ -157,7 +157,7 @@ export default function About() {
           {careerHistory.map((item, idx) => (
             <div key={idx} className="relative group">
               {/* Timeline Bullet Dot */}
-              <div className="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-brand-slate border-2 border-brand-accent group-hover:scale-125 transition-transform" />
+              <div className="absolute -left-[31px top-1.5 w-3.5 h-3.5 rounded-full bg-brand-slate border-2 border-brand-accent group-hover:scale-125 transition-transform" />
 
               <div className="bg-brand-slate/50 border border-slate-800 rounded-xl p-6 hover:border-slate-700 transition-all">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-2">

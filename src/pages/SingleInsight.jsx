@@ -17,7 +17,7 @@ export default function SingleInsight() {
         'Weighted risk scoring: Inventory cover (35%), Supplier performance trajectory (25%), Backlog velocity (25%), Lead time volatility (15%).',
         'Built using SQL diagnostic views, Python statistical profiling, and interactive Power BI drill-down cards.',
         'Proven lead-time improvement: 24 days early warning prior to order fulfillment failures.'
-      ],
+      ,
       content: `
         ### The Operational Challenge
         Conventional dashboards show when an inventory line has already breached zero or when a shipment is already late. For operations teams, that is a post-mortem, not a control system.
@@ -43,7 +43,7 @@ export default function SingleInsight() {
         'Analyzed 1,800 operational records across six warehouse cold zones.',
         'Isolated door-open duration breaches during peak shift transitions.',
         'Implemented preventive maintenance triggers and adjusted shift loading schedules.'
-      ],
+      ,
       content: `
         ### The Operational Challenge
         Temperature excursions in pharmaceutical and cold-chain logistics often stem not from compressor failures, but from operational habits—such as loading dock doors left open during shift changes.
@@ -57,7 +57,7 @@ export default function SingleInsight() {
     }
   };
 
-  const article = insightData[id] || {
+  const article = insightData[id || {
     title: 'Operational Excellence Insight Article',
     category: 'Article',
     date: '2026',
@@ -65,7 +65,7 @@ export default function SingleInsight() {
     author: 'Lam Teck Sing Andrew',
     icon: BookOpen,
     overview: 'In-depth analysis and execution notes from frontline supply chain operations.',
-    keyTakeaways: ['Root-cause diagnosis over surface fixes', 'Actionable metrics over decorative vanity KPIs'],
+    keyTakeaways: ['Root-cause diagnosis over surface fixes', 'Actionable metrics over decorative vanity KPIs',
     content: 'Detailed content breakdown for this article is being updated.'
   };
 

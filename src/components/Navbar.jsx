@@ -2,14 +2,14 @@ import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen = useState(false)
 
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Insights', path: '/insights' },
     { name: 'Contact', path: '/contact' },
-  ]
+  
 
   const activeStyle = "text-singapore-amber font-semibold"
   const inactiveStyle = "text-slate-300 hover:text-singapore-amber transition-colors duration-150"

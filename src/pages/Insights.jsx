@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 import { Search, Filter, ArrowRight, ShieldAlert, Thermometer, TrendingUp, BookOpen, Clock } from 'lucide-react';
 
 export default function Insights() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory = useState('All');
+  const [searchQuery, setSearchQuery = useState('');
 
   const categories = [
     'All',
     'Case Studies',
     'The Hidden Economics of Business',
     'Building in Public'
-  ];
+  ;
 
   const articles = [
     {
@@ -21,7 +21,7 @@ export default function Insights() {
       date: 'Aug 2026',
       readTime: '6 min read',
       excerpt: 'How a weighted operational risk scoring model flagged supplier deterioration 24 days before conventional critical threshold failures.',
-      tags: ['Power BI', 'Python', 'SQL', 'Early Warning Systems'],
+      tags: ['Power BI', 'Python', 'SQL', 'Early Warning Systems',
       icon: ShieldAlert,
       featured: true
     },
@@ -32,7 +32,7 @@ export default function Insights() {
       date: 'Jul 2026',
       readTime: '5 min read',
       excerpt: 'Analyzing 1,800 operational records across temperature-controlled warehouse zones to eliminate door-open duration breaches and optimize shift loading.',
-      tags: ['Power BI', 'Cold Chain', 'Process Optimization'],
+      tags: ['Power BI', 'Cold Chain', 'Process Optimization',
       icon: Thermometer,
       featured: true
     },
@@ -43,7 +43,7 @@ export default function Insights() {
       date: 'Jul 2026',
       readTime: '8 min read',
       excerpt: 'Most organizations jump to buy new software before fixing broken floor workflows. Here is how root-cause diagnosis saves hundreds of wasted hours.',
-      tags: ['Operations Strategy', 'Root Cause Diagnosis', 'OpEx'],
+      tags: ['Operations Strategy', 'Root Cause Diagnosis', 'OpEx',
       icon: TrendingUp,
       featured: false
     },
@@ -54,11 +54,11 @@ export default function Insights() {
       date: 'Jun 2026',
       readTime: '4 min read',
       excerpt: 'Reflections on combining two decades of cold-chain execution with advanced Power BI, SQL, and Python data modeling.',
-      tags: ['BCG RISE', 'Upskilling', 'Career Journey'],
+      tags: ['BCG RISE', 'Upskilling', 'Career Journey',
       icon: BookOpen,
       featured: false
     }
-  ];
+  ;
 
   const filteredArticles = articles.filter(article => {
     const matchesCategory = selectedCategory === 'All' || article.category === selectedCategory;
@@ -105,7 +105,7 @@ export default function Insights() {
         </div>
 
         {/* Search Bar Input */}
-        <div className="relative min-w-[260px]">
+        <div className="relative min-w-[260px">
           <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
