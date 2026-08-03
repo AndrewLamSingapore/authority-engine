@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset root containers to full screen width */
+html,
+body,
+#root {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 100vh;
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: #080F0E; /* Botanical deep dark background */
+  color: #f1f5f9;
+  overflow-x: hidden;
+}
