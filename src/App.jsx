@@ -1,24 +1,28 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './pages/About'
-import Insights from './pages/Insights'
-import Contact from './pages/Contact'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop'; // <-- LINE 1: ADD THIS IMPORT
 
-export default function App() {
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import About from './pages/About';
+import Insights from './pages/Insights';
+import Contact from './pages/Contact';
+
+function App() {
   return (
     <Router>
-      <div className="w-full min-h-screen bg-botanical text-slate-100 flex flex-col antialiased">
-        <Navbar />
-        <main className="flex-grow w-full">
-          <Routes>
-            <Route path="/" element={<Hero />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/insights" element={<Insights />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
-      </div>
+      <ScrollToTop /> {/* <-- LINE 2: ADD THIS RIGHT HERE */}
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/insights" element={<Insights />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+      <Footer />
     </Router>
-  )
+  );
 }
+
+export default App;
