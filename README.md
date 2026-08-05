@@ -35,14 +35,8 @@ A high-performance, responsive personal branding platform built for **Lam Teck S
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/rabeetahmad904/authority-engine.git](https://github.com/rabeetahmad904/authority-engine.git)
+   git clone https://github.com/AndrewLamSingapore/authority-engine.git
    cd authority-engine
    ---
 
-## 👤 Developer & Engineering
-
-* **Lead Full-Stack Engineer:** Rabeet Ahmad
-* **Services Provided:** Custom Web Application Development, UI/UX Engineering, Deployment & Performance Optimization
-* **Contact & Portfolio:** [GitHub Profile](https://github.com/rabeetahmad904) | [LinkedIn](https://www.linkedin.com/in/rabeet-ahmad-87350b418?utm_source=share_via&utm_content=profile&utm_medium=member_android)
-📄 License
-This repository contains proprietary source code developed for Lam Teck Sing Andrew. All rights reserved
+ developed for Lam Teck Sing Andrew. All rights reserved
