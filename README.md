@@ -39,4 +39,4 @@ A high-performance, responsive personal branding platform built for **Lam Teck S
    cd authority-engine
    ---
 
- developed for Lam Teck Sing Andrew. All rights reserved
+ Copyright © 2026 Andrew Lam. All rights reserved.
