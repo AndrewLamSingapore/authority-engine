@@ -25,18 +25,6 @@ A high-performance, responsive personal branding platform built for **Lam Teck S
 
 ---
 
-## 📦 Getting Started Locally
 
-### Prerequisites
-* **Node.js** (v18.0 or higher)
-* **npm** or **yarn**
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/AndrewLamSingapore/authority-engine.git
-   cd authority-engine
-   ---
 
  Copyright © 2026 Andrew Lam. All rights reserved.
