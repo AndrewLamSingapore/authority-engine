@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { MapPin, ExternalLink, Send, ShieldCheck, CheckCircle2, Loader2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { MapPin, Send, ShieldCheck, CheckCircle2, Loader2 } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -9,12 +9,13 @@ export default function Contact() {
     inquiryType: 'Operational Leadership Role',
     message: ''
   });
+
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
-  // Your Formspree Form ID
   const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || 'xljrreep';
+  const linkedinUrl = "https://www.linkedin.com/in/lam-teck-sing-andrew-79886719?utm_source=share_via&utm_content=profile&utm_medium=member_android";
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -37,104 +38,71 @@ export default function Contact() {
 
       if (response.ok) {
         setSubmitted(true);
+        setFormData({ name: '', email: '', company: '', inquiryType: 'Operational Leadership Role', message: '' });
       } else {
-        const data = await response.json().catch(() => ({}));
-        setError(data.error || 'Failed to send inquiry. Please try again or connect via LinkedIn.');
+        const data = await response.json();
+        setError(data.error || 'Failed to submit form. Please verify Formspree activation.');
       }
     } catch (err) {
-      setError('Network error. Please check your internet connection and try again.');
+      setError('A network error occurred. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
-      
-      {/* 1. HEADER SECTION */}
-      <div className="max-w-3xl space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-xs font-semibold text-brand-accent uppercase tracking-wider">
-          Direct Engagement
-        </div>
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Connect with Andrew
-        </h1>
-        <p className="text-slate-300 text-lg leading-relaxed">
-          Open to discussions on operational excellence leadership, cold-chain and supply chain transformation, or high-impact process analytics consulting.
-        </p>
-      </div>
+    <div className="bg-[#080F0E] text-slate-100 min-h-screen pt-24 pb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          
+          {/* Left Column: Direct Info & LinkedIn */}
+          <div>
+            <span className="text-rose-500 font-semibold tracking-wider text-sm uppercase">Get In Touch</span>
+            <h1 className="text-4xl sm:text-5xl font-bold mt-2 text-white">Direct Executive Inquiry</h1>
+            <p className="text-slate-400 mt-4 leading-relaxed">
+              Open for operational leadership roles, supply chain optimization consultations, and strategic advisory.
+            </p>
 
-      <div className="grid lg:grid-cols-12 gap-10 items-start">
-        
-        {/* 2. LEFT COLUMN: DIRECT CONTACT CARDS */}
-        <div className="lg:col-span-5 space-y-6">
-          <div className="bg-brand-slate border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
-            <h2 className="text-xl font-bold text-white flex items-center gap-2.5">
-              <ShieldCheck className="w-5 h-5 text-brand-accent" />
-              <span>Contact & Channels</span>
-            </h2>
-
-            <div className="space-y-4 text-sm">
-              <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
-                <div className="text-xs font-bold text-brand-gold uppercase tracking-wider">Professional Profile</div>
-                <div className="text-white font-medium">LinkedIn Network</div>
-                <a
-                  href="https://www.linkedin.com/in/lam-teck-sing-andrew-79886719?utm_source=share_via&utm_content=profile&utm_medium=member_android"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs font-semibold text-brand-accent hover:text-blue-400 transition-colors pt-1"
-                >
-                  <span>Connect on LinkedIn</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
+            <div className="mt-8 space-y-4">
+              <div className="flex items-center gap-3 text-slate-300">
+                <MapPin className="text-amber-500 w-5 h-5 shrink-0" />
+                <span>Singapore | Open to Regional Operations</span>
               </div>
-
-              <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
-                <div className="flex items-center gap-2 text-slate-400 text-xs font-semibold uppercase tracking-wider">
-                  <MapPin className="w-4 h-4 text-brand-accent" />
-                  <span>Base Location</span>
-                </div>
-                <div className="text-white font-semibold text-base pt-1">Singapore</div>
-                <div className="text-xs text-slate-400">Available for regional and global remote engagement</div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
-                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Engagement Areas</div>
-                <ul className="space-y-1.5 text-xs text-slate-300">
-                  <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
-                    <span>Supply Chain & Cold-Chain Leadership</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
-                    <span>Process & Workflow Optimization</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
-                    <span>Business Intelligence & Dashboard Architecture</span>
-                  </li>
-                </ul>
+              <div className="flex items-center gap-3 text-slate-300">
+                <ShieldCheck className="text-emerald-500 w-5 h-5 shrink-0" />
+                <span>Verified Executive Profile</span>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* 3. RIGHT COLUMN: EXECUTIVE INQUIRY FORM */}
-        <div className="lg:col-span-7">
-          <div className="bg-brand-slate border border-slate-800 rounded-2xl p-6 sm:p-8">
-            
+            {/* Direct LinkedIn Link with Inline SVG */}
+            <div className="mt-8 pt-8 border-t border-slate-800">
+              <p className="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-3">Professional Network</p>
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-[#0D1816] hover:bg-slate-800 text-white border border-slate-700 px-5 py-3 rounded-lg font-medium text-sm transition-colors"
+              >
+                <svg className="w-5 h-5 text-rose-500 fill-current" viewBox="0 0 24 24">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.72a1.49 1.49 0 1 0 0 2.98 1.49 1.49 0 0 0 0-2.98z"/>
+                </svg>
+                <span>View LinkedIn Profile</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Right Column: Contact Form */}
+          <div className="bg-[#0D1816] border border-slate-800 p-8 rounded-xl">
             {submitted ? (
               <div className="text-center py-12 space-y-4">
-                <div className="w-16 h-16 bg-emerald-500/10 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto text-emerald-400">
-                  <CheckCircle2 className="w-8 h-8" />
-                </div>
-                <h3 className="text-2xl font-bold text-white">Message Received</h3>
-                <p className="text-slate-300 text-sm max-w-md mx-auto leading-relaxed">
-                  Thank you for reaching out. Your inquiry has been logged and sent directly to Andrew.
+                <CheckCircle2 className="w-16 h-16 text-emerald-400 mx-auto" />
+                <h3 className="text-2xl font-bold text-white">Message Sent Successfully</h3>
+                <p className="text-slate-400 text-sm max-w-md mx-auto">
+                  Thank you for your inquiry. Future submissions will route to Andrew's inbox once the Formspree activation link is confirmed.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white rounded-lg border border-slate-700 transition-colors mt-4"
+                  className="mt-4 bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
                 >
                   Send Another Message
                 </button>
@@ -142,109 +110,94 @@ export default function Contact() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <h2 className="text-xl font-bold text-white mb-1">Send an Executive Inquiry</h2>
-                  <p className="text-xs text-slate-400">Fill out the details below to initiate a direct inquiry.</p>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full bg-[#080F0E] border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-500 text-sm"
+                    placeholder="e.g. Sarah Jenkins"
+                  />
                 </div>
 
-                {error && (
-                  <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-xs">
-                    {error}
-                  </div>
-                )}
-
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-medium text-slate-300">Your Full Name *</label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="e.g. Sarah Tan"
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent transition-colors"
-                    />
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-medium text-slate-300">Email Address *</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                      Work Email *
+                    </label>
                     <input
                       type="email"
                       name="email"
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="e.g. sarah@organization.com"
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent transition-colors"
+                      className="w-full bg-[#080F0E] border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-500 text-sm"
+                      placeholder="name@company.com"
                     />
                   </div>
-                </div>
-
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-medium text-slate-300">Company / Organization</label>
+                  <div>
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                      Company
+                    </label>
                     <input
                       type="text"
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
-                      placeholder="e.g. Global Cold Chain Logistics"
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent transition-colors"
+                      className="w-full bg-[#080F0E] border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-500 text-sm"
+                      placeholder="Organization Name"
                     />
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-medium text-slate-300">Inquiry Nature</label>
-                    <select
-                      name="inquiryType"
-                      value={formData.inquiryType}
-                      onChange={handleChange}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-brand-accent transition-colors"
-                    >
-                      <option value="Operational Leadership Role">Operational Leadership Role</option>
-                      <option value="Continuous Improvement Consulting">Continuous Improvement Consulting</option>
-                      <option value="Analytics & BI Dashboard Project">Analytics & BI Dashboard Project</option>
-                      <option value="General Professional Networking">General Professional Networking</option>
-                    </select>
                   </div>
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-xs font-medium text-slate-300">Message / Opportunity Overview *</label>
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                    Inquiry Nature
+                  </label>
+                  <select
+                    name="inquiryType"
+                    value={formData.inquiryType}
+                    onChange={handleChange}
+                    className="w-full bg-[#080F0E] border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-500 text-sm"
+                  >
+                    <option value="Operational Leadership Role">Operational Leadership Role</option>
+                    <option value="Consulting / Advisory">Consulting / Advisory</option>
+                    <option value="General Executive Inquiry">General Executive Inquiry</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                    Message *
+                  </label>
                   <textarea
                     name="message"
                     required
-                    rows={5}
+                    rows="4"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Briefly describe your team's operational context, mandate, or inquiry..."
-                    className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent transition-colors resize-none"
-                  />
+                    className="w-full bg-[#080F0E] border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-500 text-sm"
+                    placeholder="Detail your inquiry or project requirements..."
+                  ></textarea>
                 </div>
+
+                {error && <p className="text-rose-400 text-xs bg-rose-950/50 p-3 rounded border border-rose-900">{error}</p>}
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3.5 bg-brand-accent hover:bg-blue-600 disabled:bg-slate-700 text-white font-semibold text-xs rounded-lg transition-all shadow-lg shadow-blue-900/30 flex items-center justify-center gap-2"
+                  className="w-full bg-rose-600 hover:bg-rose-700 text-white font-medium py-3 rounded-lg flex items-center justify-center gap-2 transition-colors disabled:opacity-50 cursor-pointer"
                 >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Sending Inquiry...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4" />
-                      <span>Submit Inquiry</span>
-                    </>
-                  )}
+                  {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <><Send className="w-4 h-4" /> Send Executive Inquiry</>}
                 </button>
               </form>
             )}
-
           </div>
         </div>
-
       </div>
     </div>
   );

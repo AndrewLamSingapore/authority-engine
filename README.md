@@ -1,16 +1,48 @@
-# React + Vite
+# Andrew Lam — Executive Authority Engine
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance, responsive personal branding platform built for **Lam Teck Sing Andrew**, focusing on **Operations & Supply Chain Leadership**. Engineered with a dark-themed, executive aesthetic (`#080F0E`) and structured for speed, accessibility, and direct client lead capture.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react(https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc(https://oxc.rs)
-- [@vitejs/plugin-react-swc(https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC(https://swc.rs/)
+## 🛠️ Tech Stack & Architecture
 
-## React Compiler
+* **Frontend Framework:** React 18 (Vite)
+* **Routing:** React Router v6
+* **Styling:** Tailwind CSS (Executive Dark Palette)
+* **Icons:** Lucide React & Custom Inline SVGs
+* **Form Handling:** Formspree API Integration
+* **Hosting & CI/CD:** Vercel
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation(https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🚀 Key Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template(https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`(https://typescript-eslint.io) in your project.
+* **Executive Landing Page:** Highlights strategic leadership milestones, core operational competencies, and verified credentials.
+* **Dynamic Insights Engine:** Rendered article routes for strategic leadership content and supply chain case studies.
+* **Direct Inquiry System:** Integrated Formspree contact routing with custom validation and success feedback state.
+* **Cross-Device Optimization:** Mobile viewport locks preventing horizontal overflow and ensuring seamless touch navigation.
+* **Modern SVGs:** Clean, zero-dependency brand graphics and icon integration.
+
+---
+
+## 📦 Getting Started Locally
+
+### Prerequisites
+* **Node.js** (v18.0 or higher)
+* **npm** or **yarn**
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/rabeetahmad904/authority-engine.git](https://github.com/rabeetahmad904/authority-engine.git)
+   cd authority-engine
+   ---
+
+## 👤 Developer & Engineering
+
+* **Lead Full-Stack Engineer:** Rabeet Ahmad
+* **Services Provided:** Custom Web Application Development, UI/UX Engineering, Deployment & Performance Optimization
+* **Contact & Portfolio:** [GitHub Profile](https://github.com/rabeetahmad904) | [LinkedIn](https://www.linkedin.com/in/rabeet-ahmad-87350b418?utm_source=share_via&utm_content=profile&utm_medium=member_android)
+📄 License
+This repository contains proprietary source code developed for Lam Teck Sing Andrew. All rights reserved

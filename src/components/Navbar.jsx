@@ -1,121 +1,122 @@
-import { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+
+const LinkedInIcon = ({ className = "w-5 h-5" }) => (
+  <svg 
+    className={className} 
+    fill="currentColor" 
+    viewBox="0 0 24 24" 
+    aria-hidden="true"
+  >
+    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+  </svg>
+);
 
 export default function Navbar() {
-  const [isOpen, setIsOpen = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Insights', path: '/insights' },
     { name: 'Contact', path: '/contact' },
-  
+  ];
 
-  const activeStyle = "text-singapore-amber font-semibold"
-  const inactiveStyle = "text-slate-300 hover:text-singapore-amber transition-colors duration-150"
+  const linkedinUrl = "https://www.linkedin.com/in/lam-teck-sing-andrew-79886719?utm_source=share_via&utm_content=profile&utm_medium=member_android";
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-botanical/85 border-b border-botanical-border transition-colors duration-200">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#080F0E]/90 backdrop-blur-md border-b border-gray-800 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Executive Brand Emblem / Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 rounded-xl bg-botanical-card border border-singapore-teal/40 flex items-center justify-center font-black text-xl shadow-sm group-hover:scale-105 transition-transform duration-200">
-              <span className="text-singapore-crimson">L</span>
-              <span className="text-singapore-amber">A</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-bold tracking-tight text-lg text-slate-100 leading-tight">
-                Lam Teck Sing Andrew
-              </span>
-              <span className="text-xs text-singapore-teal font-medium tracking-wide uppercase">
-                Operations Executive
-              </span>
-            </div>
+          {/* Brand Identity */}
+          <Link to="/" className="text-xl font-bold tracking-tight text-white hover:text-emerald-400 transition-colors">
+            Andrew Lam
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.name}
-                to={link.path}
-                className={({ isActive }) =>
-                  `text-sm tracking-wide ${isActive ? activeStyle : inactiveStyle}`
-                }
-              >
-                {link.name}
-              </NavLink>
-            ))}
-          </nav>
+          <div className="hidden md:flex items-center space-x-8">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={`transition-colors text-sm font-medium ${
+                    isActive ? 'text-emerald-400 font-semibold' : 'text-gray-300 hover:text-white'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
+            
+            {/* LinkedIn Redirect */}
+            <a
+              href={linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors p-2"
+              aria-label="LinkedIn Profile"
+            >
+              <LinkedInIcon className="w-5 h-5" />
+            </a>
 
-          {/* Desktop Right Action */}
-          <div className="hidden md:flex items-center space-x-4">
+            {/* CTA Button */}
             <Link
               to="/contact"
-              className="px-5 py-2.5 rounded-lg text-sm font-semibold text-white bg-singapore-crimson hover:bg-rose-700 shadow-md hover:shadow-lg transition-all duration-200 active:scale-95"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-md hover:shadow-emerald-900/40"
             >
               Get in Touch
             </Link>
           </div>
 
-          {/* Mobile Toggle Button */}
-          <div className="flex items-center space-x-3 md:hidden">
+          {/* Mobile Actions */}
+          <div className="md:hidden flex items-center space-x-4">
+            <a
+              href={linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors p-1"
+              aria-label="LinkedIn Profile"
+            >
+              <LinkedInIcon className="w-5 h-5" />
+            </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg text-slate-100 hover:bg-botanical-card focus:outline-none transition-colors"
-              aria-label="Toggle navigation menu"
+              className="text-gray-400 hover:text-white focus:outline-none p-2"
+              aria-label="Toggle Menu"
             >
-              {isOpen ? (
-                /* Close Icon */
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                /* Menu Icon */
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
-
         </div>
       </div>
 
-      {/* Mobile Drawer Navigation Menu */}
+      {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="md:hidden border-b border-botanical-border bg-botanical-card transition-colors duration-200">
-          <div className="px-4 pt-3 pb-6 space-y-3">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.name}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={({ isActive }) =>
-                  `block px-3 py-2.5 rounded-md text-base font-medium ${
-                    isActive
-                      ? "bg-botanical " + activeStyle
-                      : inactiveStyle
-                  }`
-                }
-              >
-                {link.name}
-              </NavLink>
-            ))}
-            <div className="pt-2">
-              <Link
-                to="/contact"
-                onClick={() => setIsOpen(false)}
-                className="block w-full text-center px-5 py-3 rounded-lg text-sm font-semibold text-white bg-singapore-crimson hover:bg-rose-700 shadow-md transition-all duration-200"
-              >
-                Get in Touch
-              </Link>
-            </div>
-          </div>
+        <div className="md:hidden bg-[#080F0E] border-b border-gray-800 px-4 pt-2 pb-6 space-y-3">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.path}
+              onClick={() => setIsOpen(false)}
+              className="block text-gray-300 hover:text-white text-base font-medium py-2"
+            >
+              {link.name}
+            </Link>
+          ))}
+          <Link
+            to="/contact"
+            onClick={() => setIsOpen(false)}
+            className="block text-center bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-lg text-base font-semibold transition-all mt-4"
+          >
+            Get in Touch
+          </Link>
         </div>
       )}
-    </header>
-  )
+    </nav>
+  );
 }
