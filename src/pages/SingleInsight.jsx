@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   ArrowLeft, 
@@ -9,6 +9,15 @@ import {
   Thermometer,
   BookOpen
 } from 'lucide-react';
+import { createClient } from '@sanity/client';
+
+// Sanity Client Setup
+const client = createClient({
+  projectId: 'h3pl1rfx' ,
+  dataset: 'production',
+  useCdn: true,
+  apiVersion: '2024-01-01',
+});
 
 const insightData = {
   'control-tower': {
@@ -61,8 +70,68 @@ const insightData = {
 export default function SingleInsight() {
   const { slug, id } = useParams();
   const currentKey = slug || id || 'control-tower';
-  const insight = insightData[currentKey] || insightData['control-tower'];
-  const IconComponent = insight.icon || ShieldAlert;
+
+  const [insight, setInsight] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const query = `*[_type == "post" && slug.current == $slug][0]{
+      _id,
+      title,
+      category,
+      publishedAt,
+      readTime,
+      excerpt,
+      keyTakeaways,
+      content
+    }`;
+
+    client
+      .fetch(query, { slug: currentKey })
+      .then((data) => {
+        if (data) {
+          // Format Sanity payload to component structure
+          const formattedDate = data.publishedAt
+            ? new Date(data.publishedAt).toLocaleDateString('en-US', {
+                month: 'long',
+                year: 'numeric',
+              })
+            : 'Recent';
+
+          setInsight({
+            title: data.title,
+            category: data.category || 'Case Studies',
+            date: formattedDate,
+            readTime: data.readTime || '5 min read',
+            author: 'Lam Teck Sing Andrew',
+            icon: ShieldAlert,
+            overview: data.excerpt || '',
+            keyTakeaways: data.keyTakeaways || [],
+            content: data.content || data.excerpt || '',
+          });
+        } else {
+          // Fallback to static data dictionary
+          setInsight(insightData[currentKey] || insightData['control-tower']);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Sanity single post fetch error:', err);
+        setInsight(insightData[currentKey] || insightData['control-tower']);
+        setLoading(false);
+      });
+  }, [currentKey]);
+
+  if (loading) {
+    return (
+      <div className="bg-[#080F0E] text-white min-h-screen pt-28 pb-20 px-4 flex justify-center items-center">
+        <p className="text-emerald-400 font-medium text-sm">Loading insight...</p>
+      </div>
+    );
+  }
+
+  const activeInsight = insight || insightData['control-tower'];
+  const IconComponent = activeInsight.icon || ShieldAlert;
 
   return (
     <div className="bg-[#080F0E] text-white min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8">
@@ -79,43 +148,45 @@ export default function SingleInsight() {
           <div className="flex flex-wrap items-center gap-3 mb-4 text-xs font-semibold uppercase tracking-wider text-emerald-400">
             <span className="bg-emerald-950/60 border border-emerald-800/50 px-3 py-1 rounded-full flex items-center gap-1.5">
               <IconComponent className="w-3.5 h-3.5" />
-              {insight.category}
+              {activeInsight.category}
             </span>
             <span>•</span>
             <span className="flex items-center gap-1 text-gray-400">
-              <Calendar className="w-3.5 h-3.5" /> {insight.date}
+              <Calendar className="w-3.5 h-3.5" /> {activeInsight.date}
             </span>
             <span>•</span>
             <span className="flex items-center gap-1 text-gray-400">
-              <Clock className="w-3.5 h-3.5" /> {insight.readTime}
+              <Clock className="w-3.5 h-3.5" /> {activeInsight.readTime}
             </span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight mb-4">
-            {insight.title}
+            {activeInsight.title}
           </h1>
 
           <p className="text-gray-400 text-lg leading-relaxed">
-            {insight.overview}
+            {activeInsight.overview}
           </p>
         </header>
 
-        <div className="bg-[#0D1816] border border-emerald-900/40 rounded-xl p-6 sm:p-8 mb-10">
-          <h2 className="text-lg font-semibold text-emerald-400 mb-4 flex items-center gap-2">
-            <CheckCircle2 className="w-5 h-5" /> Key Takeaways
-          </h2>
-          <ul className="space-y-3">
-            {insight.keyTakeaways.map((takeaway, idx) => (
-              <li key={idx} className="flex items-start text-gray-300 text-sm leading-relaxed">
-                <span className="text-emerald-500 mr-2 font-bold">•</span>
-                <span>{takeaway}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {activeInsight.keyTakeaways && activeInsight.keyTakeaways.length > 0 && (
+          <div className="bg-[#0D1816] border border-emerald-900/40 rounded-xl p-6 sm:p-8 mb-10">
+            <h2 className="text-lg font-semibold text-emerald-400 mb-4 flex items-center gap-2">
+              <CheckCircle2 className="w-5 h-5" /> Key Takeaways
+            </h2>
+            <ul className="space-y-3">
+              {activeInsight.keyTakeaways.map((takeaway, idx) => (
+                <li key={idx} className="flex items-start text-gray-300 text-sm leading-relaxed">
+                  <span className="text-emerald-500 mr-2 font-bold">•</span>
+                  <span>{takeaway}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed space-y-6">
-          {insight.content.split('\n\n').map((paragraph, index) => (
+          {activeInsight.content.split('\n\n').map((paragraph, index) => (
             <p key={index} className="text-base sm:text-lg text-gray-300">
               {paragraph}
             </p>

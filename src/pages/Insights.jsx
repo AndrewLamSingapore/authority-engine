@@ -1,129 +1,166 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Filter, ArrowRight, ShieldAlert, Thermometer, TrendingUp, BookOpen, Clock } from 'lucide-react';
+import { Search, ArrowRight, Clock } from 'lucide-react';
+import { createClient } from '@sanity/client';
+
+// Sanity Client Setup
+const client = createClient({
+  projectId: 'h3pl1rfx' ,
+  dataset: 'production',
+  useCdn: true,
+  apiVersion: '2024-01-01',
+});
+
+// Existing / Default Static Articles (Optional Fallback Content)
+const defaultArticles = [
+  {
+    _id: 'default-1',
+    title: 'The Hidden Cost of Inefficient Warehouse Logistics',
+    slug: 'hidden-cost-warehouse-logistics',
+    category: 'The Hidden Economics of Business',
+    publishedAt: '2024-05-15',
+    readTime: '5 min read',
+    excerpt: 'Analyzing real-world bottlenecks in order fulfillment and how small process changes yield major margins.'
+  },
+  {
+    _id: 'default-2',
+    title: 'Building Authority Engine from Ground Up',
+    slug: 'building-authority-engine',
+    category: 'Building in Public',
+    publishedAt: '2024-06-01',
+    readTime: '4 min read',
+    excerpt: 'A technical and operational breakdown of constructing a headless personal brand platform.'
+  }
+];
 
 export default function Insights() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const categories = [
     'All',
     'Case Studies',
     'The Hidden Economics of Business',
-    'Building in Public'
+    'Building in Public',
   ];
 
-  const articles = [
-    {
-      id: 'control-tower',
-      title: 'Supply Chain Control Tower: Early-Warning Operational Analytics',
-      category: 'Case Studies',
-      date: 'Aug 2026',
-      readTime: '6 min read',
-      excerpt: 'How real-time monitoring and threshold analytics reduce container bottleneck times and thermal risk in cold-chain logistics.'
-    },
-    {
-      id: 'hidden-economics',
-      title: 'The Unseen Costs of Micro-Delays in Warehouse Operations',
-      category: 'The Hidden Economics of Business',
-      date: 'Jul 2026',
-      readTime: '5 min read',
-      excerpt: 'Analyzing how cumulative 5-minute floor delays compound into significant annual revenue leaks and labor overruns.'
-    },
-    {
-      id: 'sop-automation',
-      title: 'Building Standardized Workflows in High-Turnover Logistics Environments',
-      category: 'Building in Public',
-      date: 'Jun 2026',
-      readTime: '4 min read',
-      excerpt: 'Practical approaches to crafting digital SOPs that ensure operational compliance and rapid staff onboarding.'
-    }
-  ];
+  useEffect(() => {
+    const query = `*[_type == "post"] | order(publishedAt desc){
+      _id,
+      title,
+      "slug": slug.current,
+      category,
+      publishedAt,
+      readTime,
+      excerpt
+    }`;
 
-  const filteredArticles = articles.filter(article => {
-    const matchesCategory = selectedCategory === 'All' || article.category === selectedCategory;
-    const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          article.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+    client
+      .fetch(query)
+      .then((sanityData) => {
+        // Combines Sanity articles with default articles (removes default if empty)
+        const combined = [...(sanityData || []), ...defaultArticles];
+        setArticles(combined);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Sanity fetch error:', err);
+        setArticles(defaultArticles);
+        setLoading(false);
+      });
+  }, []);
+
+  const filteredArticles = articles.filter((article) => {
+    const matchesCategory =
+      selectedCategory === 'All' || article.category === selectedCategory;
+    const matchesSearch =
+      article.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      article.excerpt?.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
   return (
-    <div className="bg-[#080F0E] text-slate-100 min-h-screen pt-24 pb-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="max-w-3xl mb-12">
-          <span className="text-amber-500 font-semibold tracking-wider text-sm uppercase">Thought Leadership</span>
-          <h1 className="text-4xl sm:text-5xl font-bold mt-2 text-white">Insights & Frameworks</h1>
-          <p className="text-slate-400 mt-4 text-lg">
-            Operational breakdowns, logistics analytics, and continuous improvement methodologies written from the warehouse floor.
-          </p>
+    <div className="min-h-screen bg-[#0d1117] text-white px-6 py-12 max-w-7xl mx-auto">
+      {/* Header */}
+      <div className="mb-10">
+        <span className="text-amber-500 font-semibold tracking-wider text-sm uppercase">
+          Thought Leadership
+        </span>
+        <h1 className="text-4xl md:text-5xl font-bold mt-2 mb-4">
+          Insights & Frameworks
+        </h1>
+        <p className="text-gray-400 max-w-2xl">
+          Operational breakdowns, logistics analytics, and continuous improvement methodologies written from the warehouse floor.
+        </p>
+      </div>
+
+      {/* Controls: Categories & Search */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+        <div className="flex flex-wrap gap-2">
+          {categories.map((cat) => (
+            <button
+              key={cat} // Unique key for category buttons
+              onClick={() => setSelectedCategory(cat)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                selectedCategory === cat
+                  ? 'bg-rose-600 text-white'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
 
-        {/* Controls */}
-        <div className="flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center mb-12">
-          {/* Category Filters */}
-          <div className="flex flex-wrap gap-2">
-            {categories.map((cat, idx) => (
-              <button
-                key={idx}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  selectedCategory === cat
-                    ? 'bg-rose-600 text-white'
-                    : 'bg-[#0D1816] text-slate-400 border border-slate-800 hover:text-white'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* Search Input */}
-          <div className="relative min-w-[260px]">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
-            <input
-              type="text"
-              placeholder="Search insights..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#0D1816] border border-slate-800 rounded-lg pl-9 pr-4 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-rose-500"
-            />
-          </div>
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Search insights..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-9 pr-4 py-2 bg-gray-900 border border-gray-800 rounded-lg text-sm text-white focus:outline-none focus:border-rose-500 w-full md:w-64"
+          />
         </div>
+      </div>
 
-        {/* Article Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredArticles.map((article) => (
-            <div key={article.id} className="bg-[#0D1816] border border-slate-800 rounded-xl p-6 flex flex-col justify-between hover:border-emerald-800/60 transition-colors">
+      {/* Articles Grid */}
+      {loading ? (
+        <div className="text-gray-400">Loading articles...</div>
+      ) : (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredArticles.map((article, index) => (
+            <div
+              key={article._id || article.slug || index} // Unique key for cards
+              className="bg-gray-900/60 border border-gray-800 rounded-xl p-6 flex flex-col justify-between hover:border-gray-700 transition-all"
+            >
               <div>
-                <div className="flex items-center justify-between text-xs text-slate-500 mb-3">
-                  <span className="text-amber-500 font-medium">{article.category}</span>
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    <span>{article.readTime}</span>
-                  </div>
+                <div className="flex items-center justify-between text-xs text-gray-400 mb-4">
+                  <span className="flex items-center gap-1">
+                    <Clock className="w-3.5 h-3.5" />
+                    {article.readTime || '3 min read'}
+                  </span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3 hover:text-rose-400 transition-colors">
+                <h3 className="text-xl font-bold mb-3 text-white hover:text-rose-400 transition-colors">
                   {article.title}
                 </h3>
-                <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                <p className="text-gray-400 text-sm mb-6 line-clamp-3">
                   {article.excerpt}
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between">
-                <span className="text-xs text-slate-500">{article.date}</span>
-                <Link
-                  to={`/insights/${article.id}`}
-                  className="inline-flex items-center gap-1 text-sm font-medium text-rose-500 hover:text-rose-400 transition-colors"
-                >
-                  Read Article <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
+              <Link
+                to={`/insights/${article.slug}`}
+                className="inline-flex items-center gap-2 text-rose-500 text-sm font-semibold hover:gap-3 transition-all"
+              >
+                Read Article <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           ))}
         </div>
-      </div>
+      )}
     </div>
   );
 }
