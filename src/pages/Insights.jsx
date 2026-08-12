@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 import { Search, ArrowRight, Clock } from 'lucide-react';
 import { createClient } from '@sanity/client';
 
-// Sanity Client Setup
 const client = createClient({
   projectId: 'h3pl1rfx',
   dataset: 'production',
-  useCdn: true,
+  useCdn: false, // Set to false to bypass CDN caching
   apiVersion: '2024-01-01',
 });
 
