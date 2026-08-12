@@ -11,46 +11,6 @@ const client = createClient({
   apiVersion: '2024-01-01',
 });
 
-// Default Static Articles (Only used if Sanity returns no documents)
-const defaultArticles = [
-  {
-    _id: 'default-1',
-    title: 'Scaling Our Enterprise Architecture',
-    slug: 'scaling-our-enterprise-architecture',
-    category: 'Case Studies',
-    publishedAt: '2026-08-01',
-    readTime: '6 min read',
-    excerpt: 'An in-depth look at how modern enterprise systems decouple monolithic backends into resilient, microservices-driven architectures.'
-  },
-  {
-    _id: 'default-2',
-    title: 'Supply Chain Control Tower',
-    slug: 'supply-chain-control-tower',
-    category: 'Case Studies',
-    publishedAt: '2026-08-02',
-    readTime: '5 min read',
-    excerpt: 'How end-to-end visibility and real-time data integration transform global supply chain decision-making.'
-  },
-  {
-    _id: 'default-3',
-    title: 'The Hidden Cost of Inefficient Warehouse Logistics',
-    slug: 'the-hidden-cost-of-inefficient-warehouse-logistics',
-    category: 'The Hidden Economics of Business',
-    publishedAt: '2026-08-03',
-    readTime: '7 min read',
-    excerpt: 'Uncovering operational friction, labor downtime, and inventory inaccuracies that erode warehouse profitability.'
-  },
-  {
-    _id: 'default-4',
-    title: 'Building Authority Engine from Ground Up',
-    slug: 'building-authority-engine-from-ground-up',
-    category: 'Building in Public',
-    publishedAt: '2026-08-04',
-    readTime: '5 min read',
-    excerpt: 'The engineering decisions, tech stack choices, and performance optimization behind the Authority Engine platform.'
-  }
-];
-
 export default function Insights() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
@@ -78,17 +38,13 @@ export default function Insights() {
     client
       .fetch(query)
       .then((sanityData) => {
-        // Render Sanity CMS data if available; fallback to default list only if CMS is empty
-        if (sanityData && sanityData.length > 0) {
-          setArticles(sanityData);
-        } else {
-          setArticles(defaultArticles);
-        }
+        // Strictly set Sanity CMS data; no hardcoded fallbacks or array merging
+        setArticles(sanityData || []);
         setLoading(false);
       })
       .catch((err) => {
         console.error('Sanity fetch error:', err);
-        setArticles(defaultArticles);
+        setArticles([]);
         setLoading(false);
       });
   }, []);
@@ -150,6 +106,8 @@ export default function Insights() {
       {/* Articles Grid */}
       {loading ? (
         <div className="text-gray-400">Loading articles...</div>
+      ) : filteredArticles.length === 0 ? (
+        <div className="text-gray-400 py-8">No articles found.</div>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredArticles.map((article, index) => (
