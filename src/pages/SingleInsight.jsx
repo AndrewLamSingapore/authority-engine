@@ -6,70 +6,87 @@ import {
   Calendar, 
   CheckCircle2, 
   ShieldAlert, 
-  Thermometer,
-  BookOpen
+  BookOpen,
+  Cpu,
+  Truck
 } from 'lucide-react';
 import { createClient } from '@sanity/client';
 
 // Sanity Client Setup
 const client = createClient({
-  projectId: 'h3pl1rfx' ,
+  projectId: 'h3pl1rfx',
   dataset: 'production',
   useCdn: true,
   apiVersion: '2024-01-01',
 });
 
+// Fallback Dictionary mapped strictly to actual URL Slugs
 const insightData = {
-  'control-tower': {
-    title: 'Supply Chain Control Tower: Early-Warning Operational Analytics',
+  'scaling-our-enterprise-architecture': {
+    title: 'Scaling Our Enterprise Architecture',
     category: 'Case Studies',
     date: 'August 2026',
     readTime: '6 min read',
     author: 'Lam Teck Sing Andrew',
-    icon: ShieldAlert,
-    overview: 'In high-volume supply chains, relying solely on standard Red/Amber/Green (RAG) threshold alerts leaves operational leaders blind to compounded risks.',
+    icon: Cpu,
+    overview: 'An in-depth look at how modern enterprise systems decouple monolithic backends into resilient, microservices-driven architectures.',
     keyTakeaways: [
-      'Weighted risk scoring: Inventory cover (35%), Supplier performance trajectory (25%), Backlog velocity (20%).',
-      'Built using SQL diagnostic views, Python statistical profiling, and interactive Power BI drill-down cards.',
-      'Proven lead-time improvement: 24 days early warning prior to order fulfillment failures.'
+      'Decoupled monolithic domains into independent microservice APIs.',
+      'Implemented asynchronous messaging patterns to handle heavy traffic spikes.',
+      'Established strict governance over database strategies and logging.'
     ],
-    content: `Standard supply chain dashboards often fail because they trigger alerts only after critical thresholds are breached. To shift from reactive firefighting to predictive intervention, we designed a multi-echelon control tower architecture that evaluates lead-time variance, supplier reliability, and order backlog trends in real time.\n\nBy aggregating telemetry across warehouse management systems (WMS) and ERP databases, the system generates automated risk scores prior to inventory stockouts.`
+    content: `Modern enterprise applications demand high availability, fault tolerance, and clear domain boundaries. As organizations scale, traditional monolithic systems often present bottlenecks in deployment speed and developer productivity.\n\nDecoupling core business domains into microservices or modular architectures allows engineering teams to ship updates independently. By adopting clear API boundaries and asynchronous messaging patterns, systems maintain stability even under heavy traffic spikes.\n\nTransitioning to an enterprise-grade setup requires strict governance over API design, database strategy, and distributed logging. Building modular components ensures long-term maintainability while keeping operational costs manageable.`
   },
-  'hidden-economics': {
-    title: 'The Hidden Economics of Cold-Chain Operations',
-    category: 'Analysis',
-    date: 'July 2026',
-    readTime: '8 min read',
+  'supply-chain-control-tower': {
+    title: 'Supply Chain Control Tower',
+    category: 'Case Studies',
+    date: 'August 2026',
+    readTime: '5 min read',
     author: 'Lam Teck Sing Andrew',
-    icon: Thermometer,
-    overview: 'Cold-chain management is often treated purely as a temperature compliance function, but micro-fluctuations directly impact gross margins.',
+    icon: ShieldAlert,
+    overview: 'How end-to-end visibility and real-time data integration transform global supply chain decision-making.',
     keyTakeaways: [
-      'Temperature drift analytics to reduce perishable write-offs by up to 18%.',
-      'Integration of IoT sensor streams with real-time route optimization.',
-      'Dynamic thermal staging for high-density cold storage hubs.'
+      'Weighted risk scoring: Inventory cover (35%), Supplier trajectory (25%), Backlog velocity (20%).',
+      'Integration of WMS and ERP telemetry into interactive drill-down cards.',
+      'Proven 24-day early warning window prior to order fulfillment bottlenecks.'
     ],
-    content: `Maintaining temperature integrity requires balancing energy expenditure with strict storage thresholds. Slight temperature deviations during loading transitions can dramatically reduce product shelf life without triggering immediate quality control rejections.\n\nImplementing predictive thermal monitoring enables automated airflow adjustments and proactive staging before product integrity is compromised.`
+    content: `A Supply Chain Control Tower serves as a centralized hub that integrates real-time data across global supplier networks, fulfillment centers, and transportation channels.\n\nWith predictive analytics and automated event management, organizations can detect disruptions before they escalate into costly delays. Real-time telemetry enables operations teams to proactively reroute shipments and adjust inventory allocations.\n\nImplementing a control tower unifies fragmented legacy systems into a single source of truth, empowering leaders to optimize logistics efficiency and drastically reduce turnaround times.`
   },
-  'sop-automation': {
-    title: 'Building Standardized Workflows in High-Turnover Logistics Environments',
+  'the-hidden-cost-of-inefficient-warehouse-logistics': {
+    title: 'The Hidden Cost of Inefficient Warehouse Logistics',
+    category: 'The Hidden Economics of Business',
+    date: 'August 2026',
+    readTime: '7 min read',
+    author: 'Lam Teck Sing Andrew',
+    icon: Truck,
+    overview: 'Uncovering operational friction, labor downtime, and inventory inaccuracies that erode warehouse profitability.',
+    keyTakeaways: [
+      'Identification of operational drag: extra picker walking distance and delayed replenishment.',
+      'Automated bin location tagging to prevent misplaced inventory.',
+      'Throughput recovery through optimized picking route automation.'
+    ],
+    content: `Warehouse inefficiencies rarely present themselves as sudden failures; instead, they manifest as subtle operational drag—extra walking distance for pickers, delayed stock replenishment, and inventory misallocations.\n\nWithout automated inventory tracking and optimized picking routes, operating costs quickly compound. Labor hours spent manually locating misplaced stock directly erode margin on fulfilled orders.\n\nModernizing warehouse management systems with automated routing, smart bin location tagging, and real-time inventory synchronization recovers lost capacity and significantly increases throughput.`
+  },
+  'building-authority-engine-from-ground-up': {
+    title: 'Building Authority Engine from Ground Up',
     category: 'Building in Public',
-    date: 'June 2026',
-    readTime: '4 min read',
+    date: 'August 2026',
+    readTime: '5 min read',
     author: 'Lam Teck Sing Andrew',
     icon: BookOpen,
-    overview: 'High warehouse staff turnover creates operational variability. Standardized digital SOPs eliminate tribal knowledge dependencies.',
+    overview: 'The engineering decisions, tech stack choices, and performance optimization behind the Authority Engine platform.',
     keyTakeaways: [
-      'Interactive visual SOP micro-modules embedded directly into scanning hardware.',
-      'Onboarding acceleration: Reduced frontline staff ramp-up time by 35%.',
-      'Cross-shift auditing checklists to maintain uniform execution across multi-zone facilities.'
+      'Pairing React frontend with Sanity Headless CMS for rapid content updates.',
+      'Optimized GROQ queries and static edge deployment for fast page loads.',
+      'Modular component architecture designed for scalable feature expansion.'
     ],
-    content: `In rapid-throughput distribution hubs, operational consistency often degrades during shift handovers or seasonal staffing surges. Relying on static binder documentation fails to enforce operational standards on the active warehouse floor.\n\nBy converting paper procedures into step-by-step digital workflows integrated into handheld terminals, staff execute tasks with uniform precision. Automated compliance checkpoints prevent order progression until safety and handling verification steps are confirmed.`
+    content: `Authority Engine was designed to deliver high-performance dynamic content management without compromising speed or user experience.\n\nBy pairing a responsive frontend with Sanity’s headless CMS, the platform achieves seamless content delivery, robust SEO optimization, and instant live updates.\n\nBuilding from the ground up required careful consideration of schema design, API caching, and modular UI components to ensure the system scales smoothly alongside growing business requirements.`
   }
 };
 
 export default function SingleInsight() {
   const { slug, id } = useParams();
-  const currentKey = slug || id || 'control-tower';
+  const currentKey = slug || id || 'scaling-our-enterprise-architecture';
 
   const [insight, setInsight] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -83,20 +100,35 @@ export default function SingleInsight() {
       readTime,
       excerpt,
       keyTakeaways,
-      content
+      content,
+      body
     }`;
 
     client
       .fetch(query, { slug: currentKey })
       .then((data) => {
-        if (data) {
-          // Format Sanity payload to component structure
+        if (data && data.title) {
           const formattedDate = data.publishedAt
             ? new Date(data.publishedAt).toLocaleDateString('en-US', {
                 month: 'long',
                 year: 'numeric',
               })
             : 'Recent';
+
+          // Process content (handles plain text string, array of strings, or PortableText blocks)
+          let extractedContent = '';
+          if (typeof data.content === 'string') {
+            extractedContent = data.content;
+          } else if (typeof data.body === 'string') {
+            extractedContent = data.body;
+          } else if (Array.isArray(data.body)) {
+            extractedContent = data.body
+              .map((block) => block.children?.map((child) => child.text).join('') || '')
+              .filter(Boolean)
+              .join('\n\n');
+          } else {
+            extractedContent = data.excerpt || '';
+          }
 
           setInsight({
             title: data.title,
@@ -107,17 +139,17 @@ export default function SingleInsight() {
             icon: ShieldAlert,
             overview: data.excerpt || '',
             keyTakeaways: data.keyTakeaways || [],
-            content: data.content || data.excerpt || '',
+            content: extractedContent,
           });
         } else {
-          // Fallback to static data dictionary
-          setInsight(insightData[currentKey] || insightData['control-tower']);
+          // Fallback to exact static dictionary entry or default fallback matching the key
+          setInsight(insightData[currentKey] || insightData['scaling-our-enterprise-architecture']);
         }
         setLoading(false);
       })
       .catch((err) => {
         console.error('Sanity single post fetch error:', err);
-        setInsight(insightData[currentKey] || insightData['control-tower']);
+        setInsight(insightData[currentKey] || insightData['scaling-our-enterprise-architecture']);
         setLoading(false);
       });
   }, [currentKey]);
@@ -130,7 +162,7 @@ export default function SingleInsight() {
     );
   }
 
-  const activeInsight = insight || insightData['control-tower'];
+  const activeInsight = insight || insightData['scaling-our-enterprise-architecture'];
   const IconComponent = activeInsight.icon || ShieldAlert;
 
   return (

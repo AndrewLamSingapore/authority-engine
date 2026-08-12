@@ -5,31 +5,49 @@ import { createClient } from '@sanity/client';
 
 // Sanity Client Setup
 const client = createClient({
-  projectId: 'h3pl1rfx' ,
+  projectId: 'h3pl1rfx',
   dataset: 'production',
   useCdn: true,
   apiVersion: '2024-01-01',
 });
 
-// Existing / Default Static Articles (Optional Fallback Content)
+// Default Static Articles (Only used if Sanity returns no documents)
 const defaultArticles = [
   {
     _id: 'default-1',
-    title: 'The Hidden Cost of Inefficient Warehouse Logistics',
-    slug: 'hidden-cost-warehouse-logistics',
-    category: 'The Hidden Economics of Business',
-    publishedAt: '2024-05-15',
-    readTime: '5 min read',
-    excerpt: 'Analyzing real-world bottlenecks in order fulfillment and how small process changes yield major margins.'
+    title: 'Scaling Our Enterprise Architecture',
+    slug: 'scaling-our-enterprise-architecture',
+    category: 'Case Studies',
+    publishedAt: '2026-08-01',
+    readTime: '6 min read',
+    excerpt: 'An in-depth look at how modern enterprise systems decouple monolithic backends into resilient, microservices-driven architectures.'
   },
   {
     _id: 'default-2',
+    title: 'Supply Chain Control Tower',
+    slug: 'supply-chain-control-tower',
+    category: 'Case Studies',
+    publishedAt: '2026-08-02',
+    readTime: '5 min read',
+    excerpt: 'How end-to-end visibility and real-time data integration transform global supply chain decision-making.'
+  },
+  {
+    _id: 'default-3',
+    title: 'The Hidden Cost of Inefficient Warehouse Logistics',
+    slug: 'the-hidden-cost-of-inefficient-warehouse-logistics',
+    category: 'The Hidden Economics of Business',
+    publishedAt: '2026-08-03',
+    readTime: '7 min read',
+    excerpt: 'Uncovering operational friction, labor downtime, and inventory inaccuracies that erode warehouse profitability.'
+  },
+  {
+    _id: 'default-4',
     title: 'Building Authority Engine from Ground Up',
-    slug: 'building-authority-engine',
+    slug: 'building-authority-engine-from-ground-up',
     category: 'Building in Public',
-    publishedAt: '2024-06-01',
-    readTime: '4 min read',
-    excerpt: 'A technical and operational breakdown of constructing a headless personal brand platform.'
+    publishedAt: '2026-08-04',
+    readTime: '5 min read',
+    excerpt: 'The engineering decisions, tech stack choices, and performance optimization behind the Authority Engine platform.'
   }
 ];
 
@@ -60,9 +78,12 @@ export default function Insights() {
     client
       .fetch(query)
       .then((sanityData) => {
-        // Combines Sanity articles with default articles (removes default if empty)
-        const combined = [...(sanityData || []), ...defaultArticles];
-        setArticles(combined);
+        // Render Sanity CMS data if available; fallback to default list only if CMS is empty
+        if (sanityData && sanityData.length > 0) {
+          setArticles(sanityData);
+        } else {
+          setArticles(defaultArticles);
+        }
         setLoading(false);
       })
       .catch((err) => {
@@ -82,7 +103,7 @@ export default function Insights() {
   });
 
   return (
-    <div className="min-h-screen bg-[#0d1117] text-white px-6 py-12 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-[#0d1117] text-white px-6 py-12 max-w-7xl mx-auto pt-24">
       {/* Header */}
       <div className="mb-10">
         <span className="text-amber-500 font-semibold tracking-wider text-sm uppercase">
@@ -101,7 +122,7 @@ export default function Insights() {
         <div className="flex flex-wrap gap-2">
           {categories.map((cat) => (
             <button
-              key={cat} // Unique key for category buttons
+              key={cat}
               onClick={() => setSelectedCategory(cat)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 selectedCategory === cat
@@ -133,14 +154,14 @@ export default function Insights() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredArticles.map((article, index) => (
             <div
-              key={article._id || article.slug || index} // Unique key for cards
+              key={article._id || article.slug || index}
               className="bg-gray-900/60 border border-gray-800 rounded-xl p-6 flex flex-col justify-between hover:border-gray-700 transition-all"
             >
               <div>
                 <div className="flex items-center justify-between text-xs text-gray-400 mb-4">
                   <span className="flex items-center gap-1">
                     <Clock className="w-3.5 h-3.5" />
-                    {article.readTime || '3 min read'}
+                    {article.readTime || '5 min read'}
                   </span>
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-white hover:text-rose-400 transition-colors">
