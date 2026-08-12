@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity';
+import { defineField, defineType } from 'sanity'
 
 export const post = defineType({
   name: 'post',
@@ -14,12 +14,10 @@ export const post = defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: { source: 'title', maxLength: 96 },
-    }),
-    defineField({
-      name: 'category',
-      title: 'Category',
-      type: 'string',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
     }),
     defineField({
       name: 'publishedAt',
@@ -36,5 +34,10 @@ export const post = defineType({
       title: 'Excerpt',
       type: 'text',
     }),
+    defineField({
+      name: 'content',
+      title: 'Content / Body',
+      type: 'text',
+    }),
   ],
-});
+})
