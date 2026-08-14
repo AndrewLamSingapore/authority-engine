@@ -74,7 +74,7 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Direct LinkedIn Link with Inline SVG */}
+            {/* Direct LinkedIn Link */}
             <div className="mt-8 pt-8 border-t border-slate-800">
               <p className="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-3">Professional Network</p>
               <a
@@ -110,11 +110,12 @@ export default function Contact() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                  <label htmlFor="name" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
                     Full Name *
                   </label>
                   <input
                     type="text"
+                    id="name"
                     name="name"
                     required
                     value={formData.name}
@@ -126,11 +127,12 @@ export default function Contact() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                    <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
                       Work Email *
                     </label>
                     <input
                       type="email"
+                      id="email"
                       name="email"
                       required
                       value={formData.email}
@@ -140,11 +142,12 @@ export default function Contact() {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                    <label htmlFor="company" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
                       Company
                     </label>
                     <input
                       type="text"
+                      id="company"
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
@@ -155,10 +158,11 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                  <label htmlFor="inquiryType" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
                     Inquiry Nature
                   </label>
                   <select
+                    id="inquiryType"
                     name="inquiryType"
                     value={formData.inquiryType}
                     onChange={handleChange}
@@ -171,10 +175,11 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                  <label htmlFor="message" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
                     Message *
                   </label>
                   <textarea
+                    id="message"
                     name="message"
                     required
                     rows="4"
