@@ -65,9 +65,9 @@ export default function Insights() {
           <span className="text-rose-500 font-semibold tracking-wider text-sm uppercase">
             Thought Leadership
           </span>
-          <h1 className="text-4xl sm:text-5xl font-bold mt-2 mb-4 text-emerald-400">
-  Insights & Frameworks (Updated)
-</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold mt-2 mb-4 text-white">
+            Insights & Frameworks
+          </h1>
           <p className="text-slate-400 max-w-2xl leading-relaxed">
             Operational breakdowns, logistics analytics, and continuous improvement methodologies written from the warehouse floor.
           </p>
