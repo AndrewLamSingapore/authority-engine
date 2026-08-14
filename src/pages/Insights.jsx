@@ -57,8 +57,9 @@ export default function Insights() {
   });
 
   return (
-    <div className="bg-[#080F0E] text-white min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="w-full bg-[#080F0E] text-white min-h-screen pt-28 pb-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Header */}
         <div className="mb-10">
           <span className="text-rose-500 font-semibold tracking-wider text-sm uppercase">
@@ -67,7 +68,7 @@ export default function Insights() {
           <h1 className="text-4xl sm:text-5xl font-bold mt-2 mb-4 text-white">
             Insights & Frameworks
           </h1>
-          <p className="text-gray-400 max-w-2xl leading-relaxed">
+          <p className="text-slate-400 max-w-2xl leading-relaxed">
             Operational breakdowns, logistics analytics, and continuous improvement methodologies written from the warehouse floor.
           </p>
         </div>
@@ -79,10 +80,10 @@ export default function Insights() {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                   selectedCategory === cat
-                    ? 'bg-rose-600 text-white font-semibold'
-                    : 'bg-[#0D1816] text-gray-300 border border-emerald-900/40 hover:border-emerald-700/60 hover:text-white'
+                    ? 'bg-rose-600 text-white font-semibold shadow-sm'
+                    : 'bg-[#0D1816] text-slate-300 border border-emerald-900/40 hover:border-emerald-700/60 hover:text-white'
                 }`}
               >
                 {cat}
@@ -91,14 +92,14 @@ export default function Insights() {
           </div>
 
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               type="text"
               placeholder="Search insights..."
               aria-label="Search insights"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9 pr-4 py-2.5 bg-[#0D1816] border border-emerald-900/40 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 w-full md:w-64 transition-colors"
+              className="pl-9 pr-4 py-2.5 bg-[#0D1816] border border-emerald-900/40 rounded-lg text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 w-full md:w-64 transition-colors"
             />
           </div>
         </div>
@@ -109,9 +110,9 @@ export default function Insights() {
             Loading insights...
           </div>
         ) : filteredArticles.length === 0 ? (
-          <div className="bg-[#0D1816] border border-emerald-900/40 rounded-xl p-8 text-center text-gray-400 py-12">
+          <div className="bg-[#0D1816] border border-emerald-900/40 rounded-xl p-8 text-center text-slate-400 py-12">
             <p className="text-lg font-semibold text-white mb-1">No articles found</p>
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-slate-400">
               Try adjusting your category filter or search query.
             </p>
           </div>
@@ -123,7 +124,7 @@ export default function Insights() {
                 className="bg-[#0D1816] border border-emerald-900/40 rounded-xl p-6 flex flex-col justify-between hover:border-emerald-700/60 transition-all duration-200"
               >
                 <div>
-                  <div className="flex items-center justify-between text-xs text-gray-400 mb-4">
+                  <div className="flex items-center justify-between text-xs text-slate-400 mb-4">
                     {article.category ? (
                       <span className="text-emerald-400 font-semibold uppercase text-[10px] tracking-wider bg-emerald-950/60 border border-emerald-800/50 px-2.5 py-0.5 rounded-full">
                         {article.category}
@@ -131,7 +132,7 @@ export default function Insights() {
                     ) : (
                       <div />
                     )}
-                    <span className="flex items-center gap-1 text-gray-400 ml-auto">
+                    <span className="flex items-center gap-1 text-slate-400 ml-auto">
                       <Clock className="w-3.5 h-3.5" />
                       {article.readTime || '5 min read'}
                     </span>
@@ -139,7 +140,7 @@ export default function Insights() {
                   <h3 className="text-xl font-bold mb-3 text-white hover:text-rose-400 transition-colors">
                     {article.title}
                   </h3>
-                  <p className="text-gray-400 text-sm mb-6 line-clamp-3 leading-relaxed">
+                  <p className="text-slate-400 text-sm mb-6 line-clamp-3 leading-relaxed">
                     {article.excerpt}
                   </p>
                 </div>
