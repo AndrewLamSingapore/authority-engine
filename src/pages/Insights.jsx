@@ -75,12 +75,13 @@ export default function Insights() {
 
         {/* Controls: Categories & Search */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
-          <div className="flex flex-wrap gap-2">
+          <div role="group" aria-label="Filter insights by category" className="flex flex-wrap gap-2">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                aria-pressed={selectedCategory === cat}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 ${
                   selectedCategory === cat
                     ? 'bg-rose-600 text-white font-semibold shadow-sm'
                     : 'bg-[#0D1816] text-slate-300 border border-emerald-900/40 hover:border-emerald-700/60 hover:text-white'
@@ -92,70 +93,72 @@ export default function Insights() {
           </div>
 
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" aria-hidden="true" />
             <input
               type="text"
               placeholder="Search insights..."
               aria-label="Search insights"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9 pr-4 py-2.5 bg-[#0D1816] border border-emerald-900/40 rounded-lg text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 w-full md:w-64 transition-colors"
+              className="pl-9 pr-4 py-2.5 bg-[#0D1816] border border-emerald-900/40 rounded-lg text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 w-full md:w-64 transition-colors"
             />
           </div>
         </div>
 
-        {/* Articles Grid */}
-        {loading ? (
-          <div className="text-emerald-400 font-medium text-sm py-12 text-center">
-            Loading insights...
-          </div>
-        ) : filteredArticles.length === 0 ? (
-          <div className="bg-[#0D1816] border border-emerald-900/40 rounded-xl p-8 text-center text-slate-400 py-12">
-            <p className="text-lg font-semibold text-white mb-1">No articles found</p>
-            <p className="text-sm text-slate-400">
-              Try adjusting your category filter or search query.
-            </p>
-          </div>
-        ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredArticles.map((article, index) => (
-              <div
-                key={article._id || article.slug || index}
-                className="bg-[#0D1816] border border-emerald-900/40 rounded-xl p-6 flex flex-col justify-between hover:border-emerald-700/60 transition-all duration-200"
-              >
-                <div>
-                  <div className="flex items-center justify-between text-xs text-slate-400 mb-4">
-                    {article.category ? (
-                      <span className="text-emerald-400 font-semibold uppercase text-[10px] tracking-wider bg-emerald-950/60 border border-emerald-800/50 px-2.5 py-0.5 rounded-full">
-                        {article.category}
-                      </span>
-                    ) : (
-                      <div />
-                    )}
-                    <span className="flex items-center gap-1 text-slate-400 ml-auto">
-                      <Clock className="w-3.5 h-3.5" />
-                      {article.readTime || '5 min read'}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3 text-white hover:text-rose-400 transition-colors">
-                    {article.title}
-                  </h3>
-                  <p className="text-slate-400 text-sm mb-6 line-clamp-3 leading-relaxed">
-                    {article.excerpt}
-                  </p>
-                </div>
-
-                <Link
-                  to={`/insights/${article.slug}`}
-                  aria-label={`Read article: ${article.title}`}
-                  className="inline-flex items-center gap-2 text-rose-500 text-sm font-semibold hover:gap-3 transition-all mt-auto"
+        {/* Articles Dynamic Container with Screen Reader Region */}
+        <div aria-live="polite">
+          {loading ? (
+            <div className="text-emerald-400 font-medium text-sm py-12 text-center">
+              Loading insights...
+            </div>
+          ) : filteredArticles.length === 0 ? (
+            <div className="bg-[#0D1816] border border-emerald-900/40 rounded-xl p-8 text-center text-slate-400 py-12">
+              <p className="text-lg font-semibold text-white mb-1">No articles found</p>
+              <p className="text-sm text-slate-400">
+                Try adjusting your category filter or search query.
+              </p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredArticles.map((article, index) => (
+                <article
+                  key={article._id || article.slug || index}
+                  className="bg-[#0D1816] border border-emerald-900/40 rounded-xl p-6 flex flex-col justify-between hover:border-emerald-700/60 transition-all duration-200"
                 >
-                  Read Article <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            ))}
-          </div>
-        )}
+                  <div>
+                    <div className="flex items-center justify-between text-xs text-slate-400 mb-4">
+                      {article.category ? (
+                        <span className="text-emerald-400 font-semibold uppercase text-[10px] tracking-wider bg-emerald-950/60 border border-emerald-800/50 px-2.5 py-0.5 rounded-full">
+                          {article.category}
+                        </span>
+                      ) : (
+                        <div />
+                      )}
+                      <span className="flex items-center gap-1 text-slate-400 ml-auto">
+                        <Clock className="w-3.5 h-3.5" aria-hidden="true" />
+                        {article.readTime || '5 min read'}
+                      </span>
+                    </div>
+                    <h2 className="text-xl font-bold mb-3 text-white hover:text-rose-400 transition-colors">
+                      {article.title}
+                    </h2>
+                    <p className="text-slate-400 text-sm mb-6 line-clamp-3 leading-relaxed">
+                      {article.excerpt}
+                    </p>
+                  </div>
+
+                  <Link
+                    to={`/insights/${article.slug}`}
+                    aria-label={`Read article: ${article.title}`}
+                    className="inline-flex items-center gap-2 text-rose-500 text-sm font-semibold hover:gap-3 transition-all mt-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 rounded-md py-1"
+                  >
+                    Read Article <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  </Link>
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

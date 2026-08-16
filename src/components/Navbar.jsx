@@ -27,12 +27,15 @@ export default function Navbar() {
   const linkedinUrl = "https://www.linkedin.com/in/lam-teck-sing-andrew-79886719?utm_source=share_via&utm_content=profile&utm_medium=member_android";
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#080F0E]/90 backdrop-blur-md border-b border-gray-800 text-white">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#080F0E]/90 backdrop-blur-md border-b border-gray-800 text-white" aria-label="Main Navigation">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
           {/* Brand Identity */}
-          <Link to="/" className="text-xl font-bold tracking-tight text-white hover:text-emerald-400 transition-colors">
+          <Link 
+            to="/" 
+            className="text-xl font-bold tracking-tight text-white hover:text-emerald-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md px-1 py-0.5"
+          >
             Andrew Lam
           </Link>
 
@@ -44,7 +47,8 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`transition-colors text-sm font-medium ${
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`transition-colors text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md px-2 py-1 ${
                     isActive ? 'text-emerald-400 font-semibold' : 'text-gray-300 hover:text-white'
                   }`}
                 >
@@ -58,8 +62,8 @@ export default function Navbar() {
               href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors p-2"
-              aria-label="LinkedIn Profile"
+              className="text-gray-400 hover:text-white transition-colors p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md"
+              aria-label="Andrew Lam's LinkedIn Profile (opens in new tab)"
             >
               <LinkedInIcon className="w-5 h-5" />
             </a>
@@ -67,7 +71,7 @@ export default function Navbar() {
             {/* CTA Button */}
             <Link
               to="/contact"
-              className="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-md hover:shadow-emerald-900/40"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-md hover:shadow-emerald-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
             >
               Get in Touch
             </Link>
@@ -79,15 +83,17 @@ export default function Navbar() {
               href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors p-1"
-              aria-label="LinkedIn Profile"
+              className="text-gray-400 hover:text-white transition-colors p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md"
+              aria-label="Andrew Lam's LinkedIn Profile (opens in new tab)"
             >
               <LinkedInIcon className="w-5 h-5" />
             </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-400 hover:text-white focus:outline-none p-2"
-              aria-label="Toggle Menu"
+              className="text-gray-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md p-2"
+              aria-label={isOpen ? "Close main menu" : "Open main menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -97,13 +103,13 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="md:hidden bg-[#080F0E] border-b border-gray-800 px-4 pt-2 pb-6 space-y-3">
+        <div id="mobile-menu" className="md:hidden bg-[#080F0E] border-b border-gray-800 px-4 pt-2 pb-6 space-y-3">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.path}
               onClick={() => setIsOpen(false)}
-              className="block text-gray-300 hover:text-white text-base font-medium py-2"
+              className="block text-gray-300 hover:text-white text-base font-medium py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md px-2"
             >
               {link.name}
             </Link>
@@ -111,7 +117,7 @@ export default function Navbar() {
           <Link
             to="/contact"
             onClick={() => setIsOpen(false)}
-            className="block text-center bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-lg text-base font-semibold transition-all mt-4"
+            className="block text-center bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-lg text-base font-semibold transition-all mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
           >
             Get in Touch
           </Link>
