@@ -23,7 +23,9 @@
       ]
     }
   ],
+ 
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/insights/:slug", "destination": "/api/insights?slug=:slug" },
+    { "source": "/((?!api/.*).*)", "destination": "/index.html" }
   ]
 }
