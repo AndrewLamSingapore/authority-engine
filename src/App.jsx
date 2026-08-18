@@ -13,6 +13,7 @@ import About from './pages/About';
 import Insights from './pages/Insights';
 import SingleInsight from './pages/SingleInsight';
 import Contact from './pages/Contact';
+import Demo from './pages/Demo';
 
 function NotFound() {
   return (
@@ -55,6 +56,7 @@ export default function App() {
             <Route path="/insights" element={<><SEO title="Insights & Case Studies" description="Strategic perspectives, industry analysis, and case studies." /><Insights /></>} />
             <Route path="/insights/:slug" element={<SingleInsight />} />
             <Route path="/contact" element={<><SEO title="Contact & Advisory" description="Direct contact channel for executive advisory and consultation." /><Contact /></>} />
+            <Route path="/demo" element={<><SEO title="Interactive Risk Simulator" description="Supply Chain Control Tower interactive multi-factor risk engine simulator." /><Demo /></>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
