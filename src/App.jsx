@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import GatedDemo from './pages/GatedDemo';
 
 // Components
 import Navbar from './components/Navbar';
@@ -58,6 +59,7 @@ export default function App() {
             <Route path="/contact" element={<><SEO title="Contact & Advisory" description="Direct contact channel for executive advisory and consultation." /><Contact /></>} />
             <Route path="/demo" element={<><SEO title="Interactive Risk Simulator" description="Supply Chain Control Tower interactive multi-factor risk engine simulator." /><Demo /></>} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/locked-demo" element={<><SEO title="Gated Content Demo" description="Functional simulation of active lead capture." /><GatedDemo /></>} />
           </Routes>
         </main>
 
