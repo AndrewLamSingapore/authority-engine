@@ -21,7 +21,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
         <div>
           <h3 className="text-lg font-semibold text-white">Andrew Lam</h3>
-          <p className="text-sm mt-1">Operations & Supply Chain Leadership</p>
+          <p className="text-sm mt-1">Operations Excellence · Supply Chain · Business Analytics</p>
         </div>
         
         <div className="flex items-center space-x-6">
