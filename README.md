@@ -1,13 +1,15 @@
 # Andrew Lam — Operations & Analytics Portfolio
 
-A responsive professional portfolio for **Lam Teck Sing Andrew**, focused on **Operations Excellence, Supply Chain and Business Analytics**. It presents verified career evidence, case studies and contact information in one consistent recruiter-facing experience.
+A recruiter-facing professional portfolio for **Lam Teck Sing Andrew**, connecting more than 20 years of supply-chain and warehouse experience with Power BI and business analytics. It separates anonymised operational evidence from AI-assisted synthetic demonstrations so every public claim remains clear and defensible.
+
+**Live site:** https://authority-engine-app.vercel.app
 
 ---
 
 ## 🛠️ Tech Stack & Architecture
 
-* **Frontend Framework:** React 18 (Vite)
-* **Routing:** React Router v6
+* **Frontend Framework:** React 19 (Vite)
+* **Routing:** React Router v7
 * **Styling:** Tailwind CSS (dark professional palette)
 * **Icons:** Lucide React & Custom Inline SVGs
 * **Form Handling:** Formspree API Integration
@@ -17,7 +19,7 @@ A responsive professional portfolio for **Lam Teck Sing Andrew**, focused on **O
 
 ## 🚀 Key Features
 
-* **Recruiter-Focused Landing Page:** Highlights operational experience, verified project evidence and core professional capabilities.
+* **Evidence-Led Landing Page:** Opens with the operational problem, then supports the positioning with verified experience and clearly labelled datasets.
 * **Dynamic Insights Engine:** Rendered article routes for strategic leadership content and supply chain case studies.
 * **Direct Inquiry System:** Integrated Formspree contact routing with custom validation and success feedback state.
 * **Cross-Device Optimization:** Mobile viewport locks preventing horizontal overflow and ensuring seamless touch navigation.
