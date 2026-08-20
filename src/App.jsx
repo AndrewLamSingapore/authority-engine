@@ -52,11 +52,11 @@ export default function App() {
         
         <main id="main-content" className="flex-grow" tabIndex="-1">
           <Routes>
-            <Route path="/" element={<><SEO title="Executive Home" /><Home /></>} />
-            <Route path="/about" element={<><SEO title="About Lam Teck Sing Andrew" description="Professional background and executive profile of Lam Teck Sing Andrew." /><About /></>} />
+            <Route path="/" element={<><SEO title="Operations Excellence & Supply Chain Analytics" description="Lam Teck Sing Andrew combines 20+ years of logistics and warehouse operations experience with Power BI and business analytics." /><Home /></>} />
+            <Route path="/about" element={<><SEO title="About Lam Teck Sing Andrew" description="Operations excellence, supply chain and business analytics profile of Lam Teck Sing Andrew." /><About /></>} />
             <Route path="/insights" element={<><SEO title="Insights & Case Studies" description="Strategic perspectives, industry analysis, and case studies." /><Insights /></>} />
             <Route path="/insights/:slug" element={<SingleInsight />} />
-            <Route path="/contact" element={<><SEO title="Contact & Advisory" description="Direct contact channel for executive advisory and consultation." /><Contact /></>} />
+            <Route path="/contact" element={<><SEO title="Contact Andrew Lam" description="Contact Lam Teck Sing Andrew about operations excellence, process improvement, supply chain analytics and logistics opportunities." /><Contact /></>} />
             <Route path="/demo" element={<><SEO title="Interactive Risk Simulator" description="Supply Chain Control Tower interactive multi-factor risk engine simulator." /><Demo /></>} />
             <Route path="*" element={<NotFound />} />
             <Route path="/locked-demo" element={<><SEO title="Gated Content Demo" description="Functional simulation of active lead capture." /><GatedDemo /></>} />
