@@ -10,7 +10,7 @@ const client = createClient({
 });
 
 async function generateSitemap() {
-  const baseUrl = 'https://authority-engine-sooty.vercel.app';
+  const baseUrl = 'https://authority-engine-app.vercel.app';
   const staticPages = ['', '/about', '/insights', '/contact'];
 
   try {

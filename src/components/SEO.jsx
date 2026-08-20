@@ -7,9 +7,7 @@ export default function SEO({ title, description, image, canonical }) {
   const currentUrl = canonical || `${baseUrl}${location.pathname}`;
   const defaultTitle = 'Andrew Lam | Operations Excellence & Supply Chain Analytics';
   const defaultDescription = 'Operations-first portfolio combining 20+ years of logistics and warehouse experience with Power BI and business analytics.';
-  const defaultImage = image || `https://og-image.vercel.app/${encodeURIComponent(
-    title || 'Andrew Lam | Operations Excellence'
-  )}.png?theme=dark&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fhyper-color-logo.svg`;
+  const defaultImage = `${baseUrl}/og-preview.png`;
 
   const metaTitle = title ? `${title} | Authority Engine` : defaultTitle;
   const metaDescription = description || defaultDescription;

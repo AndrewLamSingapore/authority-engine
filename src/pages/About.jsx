@@ -6,7 +6,7 @@ export default function About() {
   const coreCompetencies = [
     { 
       title: 'Cold-Chain & Thermal Logistics', 
-      desc: 'Enforcing strict compliance protocols for temperature-sensitive cargo, perishable goods, and high-value consignments.' 
+      desc: 'Hands-on experience supporting disciplined temperature control, verification and risk awareness for sensitive goods.'
     },
     { 
       title: 'WMS & Systems Implementation', 
@@ -36,14 +36,17 @@ export default function About() {
             Operations Excellence · Supply Chain · Business Analytics
           </p>
           <p className="mt-6 text-slate-300 text-lg leading-relaxed">
-            Andrew brings more than 20 years of hands-on experience across cold-chain warehousing, grocery distribution, container operations and international freight forwarding in Singapore. He combines that operational depth with business and data analytics to turn real workflows into measurable decisions.
+            Operational problems rarely begin in a dashboard. They begin on the floor—when inventory drifts, manpower is misaligned, delays compound and KPIs reveal failure too late. Andrew brings more than 20 years of hands-on experience across cold-chain warehousing, grocery distribution, container operations and international freight forwarding in Singapore. He combines that operational depth with business and data analytics to turn complex workflows into clearer decisions and earlier action.
+          </p>
+          <p className="mt-5 text-slate-400 leading-relaxed">
+            He has completed the Excel, SQL and Power BI modules in the BCG RISE Business and Data Analytics programme and passed the Power BI assessment. Python and machine-learning capabilities remain in active development. Expected programme completion: 9 October 2026.
           </p>
         </div>
 
         {/* Core Competencies Grid */}
         <div className="mb-20">
           <h2 className="text-2xl font-bold text-white mb-8 border-b border-slate-800 pb-4">
-            Core Professional Capabilities
+            What Andrew brings
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {coreCompetencies.map((comp, idx) => (
@@ -62,9 +65,9 @@ export default function About() {
 
         {/* Operational Philosophy */}
         <div className="bg-[#0D1816] border border-slate-800 rounded-2xl p-8 sm:p-12 mb-20">
-          <h2 className="text-2xl font-bold text-white mb-4">Operational Execution Philosophy</h2>
+          <h2 className="text-2xl font-bold text-white mb-4">Technology matters only when it improves execution.</h2>
           <p className="text-slate-300 leading-relaxed mb-6">
-            High-performing supply chains depend on clear processes, disciplined execution and early visibility of risk. Andrew's approach is to understand how work happens, identify root causes, improve the workflow and measure the result—using analytics to support operations, not as an end in itself.
+            Andrew's approach is direct: understand how work actually happens, identify root causes, improve the workflow and measure the result. Analytics supports operations; it is never the end in itself. Public evidence is labelled clearly as anonymised operational analysis or AI-assisted synthetic demonstration.
           </p>
           <div className="flex flex-wrap gap-4">
             <div className="bg-[#080F0E] border border-slate-700/60 px-4 py-3 rounded-lg flex items-center gap-3">

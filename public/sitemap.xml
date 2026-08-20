@@ -2,47 +2,47 @@
 <urlset xmlns="http://www.sitemap.xml.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://authority-engine-sooty.vercel.app</loc>
+    <loc>https://authority-engine-app.vercel.app</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://authority-engine-sooty.vercel.app/about</loc>
+    <loc>https://authority-engine-app.vercel.app/about</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://authority-engine-sooty.vercel.app/insights</loc>
+    <loc>https://authority-engine-app.vercel.app/insights</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://authority-engine-sooty.vercel.app/contact</loc>
+    <loc>https://authority-engine-app.vercel.app/contact</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://authority-engine-sooty.vercel.app/insights/scaling-our-enterprise-architecture</loc>
-    <lastmod>2026-08-14T10:50:12.000Z</lastmod>
+    <loc>https://authority-engine-app.vercel.app/insights/cold-chain-risk-intelligence-and-performance-analytics</loc>
+    <lastmod>2026-08-17T17:57:15.000Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://authority-engine-sooty.vercel.app/insights/building-authority-engine-from-ground-up</loc>
+    <loc>https://authority-engine-app.vercel.app/insights/building-authority-engine-from-ground-up</loc>
     <lastmod>2026-08-14T10:45:39.000Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://authority-engine-sooty.vercel.app/insights/the-hidden-cost-of-inefficient-warehouse-logistics</loc>
-    <lastmod>2026-08-14T10:47:32.000Z</lastmod>
+    <loc>https://authority-engine-app.vercel.app/insights/the-hidden-cost-of-inefficient-warehouse-logistics</loc>
+    <lastmod>2026-08-17T18:15:10.000Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://authority-engine-sooty.vercel.app/insights/supply-chain-control-tower</loc>
-    <lastmod>2026-08-14T10:49:00.000Z</lastmod>
+    <loc>https://authority-engine-app.vercel.app/insights/supply-chain-control-tower-early-warning-system</loc>
+    <lastmod>2026-08-17T18:09:29.000Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

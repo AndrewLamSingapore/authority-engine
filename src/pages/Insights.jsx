@@ -63,13 +63,13 @@ export default function Insights() {
         {/* Header */}
         <div className="mb-10">
           <span className="text-rose-500 font-semibold tracking-wider text-sm uppercase">
-            Thought Leadership
+            Evidence Before Claims
           </span>
           <h1 className="text-4xl sm:text-5xl font-bold mt-2 mb-4 text-white">
-            Insights & Frameworks
+            See how operational problems are broken down.
           </h1>
           <p className="text-slate-400 max-w-2xl leading-relaxed">
-            Operational breakdowns, logistics analytics, and continuous improvement methodologies written from the warehouse floor.
+            Case studies and practical frameworks connecting frontline logistics experience with analytics, early-warning thinking and management action. Real operational evidence and synthetic demonstrations are identified explicitly.
           </p>
         </div>
 

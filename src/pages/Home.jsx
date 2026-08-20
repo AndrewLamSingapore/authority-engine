@@ -13,15 +13,15 @@ export default function Home() {
   const coreFocus = [
     {
       title: 'Operational Excellence',
-      desc: 'Eliminating bottleneck congestion through standardized operational procedures and real-time floor monitoring.'
+      desc: 'Diagnosing bottlenecks, clarifying workflows and designing practical improvements grounded in frontline operations.'
     },
     {
       title: 'Cold-Chain Integrity',
-      desc: 'Enforcing strict thermal compliance thresholds to safeguard high-value temperature-sensitive cargo.'
+      desc: 'Applying cold-chain operating experience to strengthen compliance, visibility and risk control for temperature-sensitive goods.'
     },
     {
       title: 'Data-Driven Optimization',
-      desc: 'Translating warehouse activity logs into actionable Power BI dashboards to drive continuous improvement.'
+      desc: 'Turning operational records into Power BI reporting, earlier warning signals and clearer management decisions.'
     }
   ];
 
@@ -35,10 +35,10 @@ export default function Home() {
             <span>Operations Excellence · Supply Chain · Analytics</span>
           </div>
           <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight">
-            Turning operational experience into <span className="text-rose-500">measurable decisions</span>.
+            Operational problems cost time, margin and trust—<span className="text-rose-500">before the dashboard turns red</span>.
           </h1>
           <p className="mt-6 text-xl text-slate-400 leading-relaxed max-w-3xl">
-            I combine more than 20 years of hands-on logistics and warehouse experience with Power BI and business analytics to improve execution, visibility and decision-making.
+            I combine more than 20 years of hands-on supply-chain and warehouse experience with Power BI and business analytics to expose risk earlier, improve workflows and turn operational complexity into management action.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
@@ -46,13 +46,13 @@ export default function Home() {
               to="/about"
               className="inline-flex items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
             >
-              View Professional Profile <ArrowRight className="w-4 h-4" />
+              See the Evidence <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               to="/insights"
               className="inline-flex items-center gap-2 bg-[#0D1816] hover:bg-slate-800 text-slate-200 border border-slate-700 px-6 py-3 rounded-lg font-medium transition-colors"
             >
-              View Insights Hub
+              Explore Case Studies
             </Link>
           </div>
         </div>
@@ -76,8 +76,8 @@ export default function Home() {
       {/* Core Focus Areas */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-white">Operational Capabilities</h2>
-          <p className="text-slate-400 mt-4">Practical execution, process improvement and evidence-based management reporting.</p>
+          <h2 className="text-3xl font-bold text-white">Operations first. Analytics with a purpose.</h2>
+          <p className="text-slate-400 mt-4">Practical execution, process improvement and evidence-based management reporting—without inflated claims.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -93,7 +93,7 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-emerald-950/40 via-[#0D1816] to-rose-950/30 border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Looking for operations experience that works with data?</h2>
+          <h2 className="text-3xl font-bold text-white mb-4">Need someone who understands both the floor and the numbers?</h2>
           <p className="text-slate-400 max-w-2xl mx-auto mb-8">
             Let us connect about Operations Excellence, Process Improvement, Supply Chain Analytics, Operations Analysis, or Warehouse and Logistics Operations opportunities in Singapore.
           </p>
