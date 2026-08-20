@@ -10,8 +10,11 @@ export default async function handler(req, res) {
 
   const projectId = 'h3pl1rfx';
   const dataset = 'production';
-  const query = encodeURIComponent(`*[_type == "post" && slug.current == "${slug}"][0]._id`);
-  const sanityUrl = `https://${projectId}.api.sanity.io/v2024-01-01/data/query/${dataset}?query=${query}`;
+  const params = new URLSearchParams({
+    query: '*[_type == "post" && slug.current == $slug][0]._id',
+    '$slug': JSON.stringify(String(slug)),
+  });
+  const sanityUrl = `https://${projectId}.api.sanity.io/v2024-01-01/data/query/${dataset}?${params}`;
 
   try {
     const sanityRes = await fetch(sanityUrl);
@@ -51,7 +54,10 @@ export default async function handler(req, res) {
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
       return res.status(200).send(html);
     }
+
+    return res.status(500).send('Application shell unavailable.');
   } catch (err) {
     console.error('Sanity validation error:', err);
+    return res.status(502).send('Unable to validate the requested insight.');
   }
 }
