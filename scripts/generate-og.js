@@ -17,13 +17,14 @@ ctx.fillRect(0, 0, width, 8);
 
 // Title
 ctx.fillStyle = '#FFFFFF';
-ctx.font = 'bold 56px sans-serif';
-ctx.fillText('Authority Engine', 80, 280);
+ctx.font = 'bold 58px sans-serif';
+ctx.fillText('Andrew Lam', 80, 245);
+ctx.fillText('Operations Excellence × Analytics', 80, 315);
 
 // Subtitle
 ctx.fillStyle = '#10B981';
 ctx.font = '28px sans-serif';
-ctx.fillText('Executive Leadership & Strategic Insights', 80, 340);
+ctx.fillText('20+ years of operations experience. Evidence-led decisions.', 80, 380);
 
 const buffer = canvas.toBuffer('image/png');
 const publicDir = path.resolve('public');
