@@ -10,11 +10,11 @@ export default function About() {
     },
     { 
       title: 'WMS & Systems Implementation', 
-      desc: 'Deploying data-driven workflow architectures, automated scanning routines, and inventory control systems across multi-zone facilities.' 
+      desc: 'Improving inventory control, verification routines and management visibility across operational workflows.'
     },
     { 
       title: 'Logistics Process Optimization', 
-      desc: 'Streamlining floor throughput, eliminating staging bottlenecks, and reducing container unloading turn-around times by 10–20%.' 
+      desc: 'Using root-cause analysis, manpower planning and workflow redesign to reduce avoidable delays and operating conflict.'
     },
     { 
       title: 'Business Intelligence & Analytics', 
@@ -26,24 +26,24 @@ export default function About() {
     <div className="bg-[#080F0E] text-slate-100 min-h-screen pt-28 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Executive Profile Summary */}
+        {/* Professional Profile Summary */}
         <div className="max-w-4xl mb-16">
-          <span className="text-rose-500 font-semibold tracking-wider text-sm uppercase">Executive Profile</span>
+          <span className="text-rose-500 font-semibold tracking-wider text-sm uppercase">Professional Profile</span>
           <h1 className="text-4xl sm:text-5xl font-bold mt-2 text-white leading-tight">
             Lam Teck Sing Andrew
           </h1>
           <p className="text-xl text-emerald-400 font-medium mt-2">
-            Operations & Supply Chain Leadership
+            Operations Excellence · Supply Chain · Business Analytics
           </p>
           <p className="mt-6 text-slate-300 text-lg leading-relaxed">
-            Operations executive specializing in cold-chain logistics, warehouse management optimization, and data-driven supply chain execution. With an established track record across high-volume storage hubs and regional forwarding destinations, Andrew bridges high-level strategic planning with floor-level operational discipline.
+            Andrew brings more than 20 years of hands-on experience across cold-chain warehousing, grocery distribution, container operations and international freight forwarding in Singapore. He combines that operational depth with business and data analytics to turn real workflows into measurable decisions.
           </p>
         </div>
 
         {/* Core Competencies Grid */}
         <div className="mb-20">
           <h2 className="text-2xl font-bold text-white mb-8 border-b border-slate-800 pb-4">
-            Strategic Leadership Capabilities
+            Core Professional Capabilities
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {coreCompetencies.map((comp, idx) => (
@@ -64,7 +64,7 @@ export default function About() {
         <div className="bg-[#0D1816] border border-slate-800 rounded-2xl p-8 sm:p-12 mb-20">
           <h2 className="text-2xl font-bold text-white mb-4">Operational Execution Philosophy</h2>
           <p className="text-slate-300 leading-relaxed mb-6">
-            High-performing supply chains depend on standardized execution and proactive risk visibility. By embedding digital verification points into daily warehouse routines and providing leadership team members with real-time operational telemetry, facilities can safeguard inventory integrity while driving continuous cost efficiency.
+            High-performing supply chains depend on clear processes, disciplined execution and early visibility of risk. Andrew's approach is to understand how work happens, identify root causes, improve the workflow and measure the result—using analytics to support operations, not as an end in itself.
           </p>
           <div className="flex flex-wrap gap-4">
             <div className="bg-[#080F0E] border border-slate-700/60 px-4 py-3 rounded-lg flex items-center gap-3">

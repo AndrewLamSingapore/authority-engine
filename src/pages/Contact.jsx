@@ -6,7 +6,7 @@ export default function Contact() {
     name: '',
     email: '',
     company: '',
-    inquiryType: 'Operational Leadership Role',
+    inquiryType: 'Operations Opportunity',
     message: ''
   });
 
@@ -38,7 +38,7 @@ export default function Contact() {
 
       if (response.ok) {
         setSubmitted(true);
-        setFormData({ name: '', email: '', company: '', inquiryType: 'Operational Leadership Role', message: '' });
+        setFormData({ name: '', email: '', company: '', inquiryType: 'Operations Opportunity', message: '' });
       } else {
         const data = await response.json();
         setError(data.error || 'Failed to submit form. Please verify Formspree activation.');
@@ -58,19 +58,19 @@ export default function Contact() {
           {/* Left Column: Direct Info & LinkedIn */}
           <div>
             <span className="text-rose-500 font-semibold tracking-wider text-sm uppercase">Get In Touch</span>
-            <h1 className="text-4xl sm:text-5xl font-bold mt-2 text-white">Direct Executive Inquiry</h1>
+            <h1 className="text-4xl sm:text-5xl font-bold mt-2 text-white">Discuss an Opportunity</h1>
             <p className="text-slate-400 mt-4 leading-relaxed">
-              Open for operational leadership roles, supply chain optimization consultations, and strategic advisory.
+              Open to Operations Excellence, Process Improvement, Supply Chain Analytics, Operations Analysis, and Warehouse or Logistics Operations opportunities in Singapore.
             </p>
 
             <div className="mt-8 space-y-4">
               <div className="flex items-center gap-3 text-slate-300">
                 <MapPin className="text-amber-500 w-5 h-5 shrink-0" />
-                <span>Singapore | Open to Regional Operations</span>
+                <span>Singapore | Open to on-site, hybrid and remote opportunities</span>
               </div>
               <div className="flex items-center gap-3 text-slate-300">
                 <ShieldCheck className="text-emerald-500 w-5 h-5 shrink-0" />
-                <span>Verified Executive Profile</span>
+                <span>20+ years of operations experience</span>
               </div>
             </div>
 
@@ -168,9 +168,9 @@ export default function Contact() {
                     onChange={handleChange}
                     className="w-full bg-[#080F0E] border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-500 text-sm"
                   >
-                    <option value="Operational Leadership Role">Operational Leadership Role</option>
-                    <option value="Consulting / Advisory">Consulting / Advisory</option>
-                    <option value="General Executive Inquiry">General Executive Inquiry</option>
+                    <option value="Operations Opportunity">Operations Opportunity</option>
+                    <option value="Analytics Opportunity">Analytics Opportunity</option>
+                    <option value="Professional Inquiry">Professional Inquiry</option>
                   </select>
                 </div>
 
@@ -197,7 +197,7 @@ export default function Contact() {
                   disabled={isSubmitting}
                   className="w-full bg-rose-600 hover:bg-rose-700 text-white font-medium py-3 rounded-lg flex items-center justify-center gap-2 transition-colors disabled:opacity-50 cursor-pointer"
                 >
-                  {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <><Send className="w-4 h-4" /> Send Executive Inquiry</>}
+                  {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <><Send className="w-4 h-4" /> Send Inquiry</>}
                 </button>
               </form>
             )}

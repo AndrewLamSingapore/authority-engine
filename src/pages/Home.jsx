@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
   const metrics = [
-    { label: 'Container Unloading Efficiency', value: '10–20%', note: 'Reduction in turn-around time' },
-    { label: 'Cold-Chain Value Handled', value: 'S$500k+', note: 'Per high-risk consignment' },
-    { label: 'SKU Inventory Scale', value: '800–2,000', note: 'Managed across multi-zone facilities' },
-    { label: 'Market Footprint', value: '5–10', note: 'Regional forwarding destinations' }
+    { label: 'Operations Experience', value: '20+ years', note: 'Logistics, warehousing and supply chain' },
+    { label: 'Live Container Jobs', value: '391', note: 'Across seven reporting periods' },
+    { label: 'Recorded Revenue Analysed', value: 'S$75,720', note: 'Anonymised operational dataset' },
+    { label: 'Cold-Chain Records', value: '1,800', note: 'Synthetic risk-intelligence dataset' }
   ];
 
   const coreFocus = [
@@ -32,13 +32,13 @@ export default function Home() {
         <div className="max-w-4xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-800/50 text-emerald-400 text-xs font-medium mb-6">
             <Activity className="w-3.5 h-3.5 text-rose-500" />
-            <span>Operations & Supply Chain Leadership</span>
+            <span>Operations Excellence · Supply Chain · Analytics</span>
           </div>
           <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight">
-            Building Resilient Operations through <span className="text-rose-500">Data & Execution</span>.
+            Turning operational experience into <span className="text-rose-500">measurable decisions</span>.
           </h1>
           <p className="mt-6 text-xl text-slate-400 leading-relaxed max-w-3xl">
-            Executive leadership in cold-chain logistics, warehouse management systems, and workflow optimization across high-volume environments.
+            I combine more than 20 years of hands-on logistics and warehouse experience with Power BI and business analytics to improve execution, visibility and decision-making.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
@@ -46,7 +46,7 @@ export default function Home() {
               to="/about"
               className="inline-flex items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
             >
-              Executive Profile <ArrowRight className="w-4 h-4" />
+              View Professional Profile <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               to="/insights"
@@ -76,8 +76,8 @@ export default function Home() {
       {/* Core Focus Areas */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-white">Strategic Operational Capabilities</h2>
-          <p className="text-slate-400 mt-4">Focused on systemic reliability, floor safety, and measurable throughput.</p>
+          <h2 className="text-3xl font-bold text-white">Operational Capabilities</h2>
+          <p className="text-slate-400 mt-4">Practical execution, process improvement and evidence-based management reporting.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -93,15 +93,15 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-emerald-950/40 via-[#0D1816] to-rose-950/30 border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Ready to optimize operational workflows?</h2>
+          <h2 className="text-3xl font-bold text-white mb-4">Looking for operations experience that works with data?</h2>
           <p className="text-slate-400 max-w-2xl mx-auto mb-8">
-            Let us connect to discuss supply chain resilience, warehouse management systems, or continuous improvement initiatives.
+            Let us connect about Operations Excellence, Process Improvement, Supply Chain Analytics, Operations Analysis, or Warehouse and Logistics Operations opportunities in Singapore.
           </p>
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-8 py-3.5 rounded-lg transition-colors"
           >
-            Initiate Contact <ArrowRight className="w-4 h-4" />
+            Discuss an Opportunity <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </section>

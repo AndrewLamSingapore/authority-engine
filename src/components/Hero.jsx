@@ -16,7 +16,7 @@ export default function Hero() {
             </h1>
 
             <p className="text-lg text-slate-300 leading-relaxed max-w-2xl">
-              Bridging two decades of frontline cold-chain, warehousing, and logistics execution with modern Power BI, SQL, and Python analytics.
+              Bridging two decades of frontline cold-chain, warehousing, and logistics execution with Power BI and business analytics. SQL and Python capabilities are in active development.
             </p>
           </div>
 

@@ -1,6 +1,6 @@
-# Andrew Lam — Executive Authority Engine
+# Andrew Lam — Operations & Analytics Portfolio
 
-A high-performance, responsive personal branding platform built for **Lam Teck Sing Andrew**, focusing on **Operations & Supply Chain Leadership**. Engineered with a dark-themed, executive aesthetic (`#080F0E`) and structured for speed, accessibility, and direct client lead capture.
+A responsive professional portfolio for **Lam Teck Sing Andrew**, focused on **Operations Excellence, Supply Chain and Business Analytics**. It presents verified career evidence, case studies and contact information in one consistent recruiter-facing experience.
 
 ---
 
@@ -8,7 +8,7 @@ A high-performance, responsive personal branding platform built for **Lam Teck S
 
 * **Frontend Framework:** React 18 (Vite)
 * **Routing:** React Router v6
-* **Styling:** Tailwind CSS (Executive Dark Palette)
+* **Styling:** Tailwind CSS (dark professional palette)
 * **Icons:** Lucide React & Custom Inline SVGs
 * **Form Handling:** Formspree API Integration
 * **Hosting & CI/CD:** Vercel
@@ -17,7 +17,7 @@ A high-performance, responsive personal branding platform built for **Lam Teck S
 
 ## 🚀 Key Features
 
-* **Executive Landing Page:** Highlights strategic leadership milestones, core operational competencies, and verified credentials.
+* **Recruiter-Focused Landing Page:** Highlights operational experience, verified project evidence and core professional capabilities.
 * **Dynamic Insights Engine:** Rendered article routes for strategic leadership content and supply chain case studies.
 * **Direct Inquiry System:** Integrated Formspree contact routing with custom validation and success feedback state.
 * **Cross-Device Optimization:** Mobile viewport locks preventing horizontal overflow and ensuring seamless touch navigation.
