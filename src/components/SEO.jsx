@@ -3,13 +3,13 @@ import { useLocation } from 'react-router-dom';
 
 export default function SEO({ title, description, image, canonical }) {
   const location = useLocation();
-  const baseUrl = 'https://authority-engine-sooty.vercel.app';
+  const baseUrl = 'https://authority-engine-app.vercel.app';
   const currentUrl = canonical || `${baseUrl}${location.pathname}`;
-  const defaultTitle = 'Authority Engine | Executive Leadership & Insights';
-  const defaultDescription = 'Authority Engine delivers strategic insights, case studies, and executive perspectives on business economics and leadership.';
-const defaultImage = image || `https://og-image.vercel.app/${encodeURIComponent(
-  title || 'Authority Engine | Executive Insights'
-)}.png?theme=dark&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fhyper-color-logo.svg`;
+  const defaultTitle = 'Andrew Lam | Operations Excellence & Supply Chain Analytics';
+  const defaultDescription = 'Operations-first portfolio combining 20+ years of logistics and warehouse experience with Power BI and business analytics.';
+  const defaultImage = image || `https://og-image.vercel.app/${encodeURIComponent(
+    title || 'Andrew Lam | Operations Excellence'
+  )}.png?theme=dark&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fhyper-color-logo.svg`;
 
   const metaTitle = title ? `${title} | Authority Engine` : defaultTitle;
   const metaDescription = description || defaultDescription;
