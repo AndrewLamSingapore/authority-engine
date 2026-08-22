@@ -2,8 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-  overflow-x: hidden;
-  background-color: #080F0E;
-  color: #f1f5f9;
+:root { color-scheme: dark; }
+html { scroll-behavior: smooth; }
+html, body { overflow-x: hidden; background: #050807; color: #f1f5f9; }
+body { margin: 0; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+::selection { background: rgba(52,211,153,.25); color: white; }
+
+.hero-grid {
+  background-image: linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
 }
+.text-gradient {
+  background: linear-gradient(110deg,#6ee7b7 5%,#f8fafc 47%,#fcd34d 95%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.eyebrow { font-size: 11px; line-height: 1; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: #6ee7b7; }
+.signal-card { background: linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018)); border: 1px solid rgba(255,255,255,.09); box-shadow: 0 35px 100px rgba(0,0,0,.42), inset 0 1px rgba(255,255,255,.05); backdrop-filter: blur(18px); }
+.system-card { display:block; background:rgba(255,255,255,.025); border:1px solid rgba(255,255,255,.075); transition:transform .3s ease,border-color .3s ease,background .3s ease; }
+.system-card:hover { transform:translateY(-6px); border-color:rgba(110,231,183,.32); background:rgba(110,231,183,.045); }
+.premium-button { color:#04100c; background:linear-gradient(110deg,#6ee7b7,#a7f3d0); box-shadow:0 10px 35px rgba(52,211,153,.14); transition:transform .2s ease,box-shadow .2s ease; }
+.premium-button:hover { transform:translateY(-2px); box-shadow:0 14px 42px rgba(52,211,153,.24); }
+.ghost-button { color:#e2e8f0; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.025); transition:transform .2s ease,border-color .2s ease,background .2s ease; }
+.ghost-button:hover { transform:translateY(-2px); border-color:rgba(255,255,255,.24); background:rgba(255,255,255,.055); }
