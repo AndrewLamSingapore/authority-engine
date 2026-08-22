@@ -1,100 +1,13 @@
 import React from 'react';
-import { ArrowRight, ShieldCheck, ChevronRight, BarChart2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import {ArrowRight,Compass,Layers3,LineChart,Workflow} from 'lucide-react';
+import {Link} from 'react-router-dom';
 
-export default function About() {
-  const coreCompetencies = [
-    { 
-      title: 'Cold-Chain & Thermal Logistics', 
-      desc: 'Hands-on experience supporting disciplined temperature control, verification and risk awareness for sensitive goods.'
-    },
-    { 
-      title: 'WMS & Systems Implementation', 
-      desc: 'Improving inventory control, verification routines and management visibility across operational workflows.'
-    },
-    { 
-      title: 'Logistics Process Optimization', 
-      desc: 'Using root-cause analysis, manpower planning and workflow redesign to reduce avoidable delays and operating conflict.'
-    },
-    { 
-      title: 'Business Intelligence & Analytics', 
-      desc: 'Transforming floor execution logs into actionable Power BI dashboards and early-warning operational risk metrics.' 
-    }
-  ];
-
-  return (
-    <div className="bg-[#080F0E] text-slate-100 min-h-screen pt-28 pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Professional Profile Summary */}
-        <div className="max-w-4xl mb-16">
-          <span className="text-rose-500 font-semibold tracking-wider text-sm uppercase">Professional Profile</span>
-          <h1 className="text-4xl sm:text-5xl font-bold mt-2 text-white leading-tight">
-            Lam Teck Sing Andrew
-          </h1>
-          <p className="text-xl text-emerald-400 font-medium mt-2">
-            Operations Excellence · Supply Chain · Business Analytics
-          </p>
-          <p className="mt-6 text-slate-300 text-lg leading-relaxed">
-            Operational problems rarely begin in a dashboard. They begin on the floor—when inventory drifts, manpower is misaligned, delays compound and KPIs reveal failure too late. Andrew brings more than 20 years of hands-on experience across cold-chain warehousing, grocery distribution, container operations and international freight forwarding in Singapore. He combines that operational depth with business and data analytics to turn complex workflows into clearer decisions and earlier action.
-          </p>
-          <p className="mt-5 text-slate-400 leading-relaxed">
-            He has completed the Excel, SQL and Power BI modules in the BCG RISE Business and Data Analytics programme and passed the Power BI assessment. Python and machine-learning capabilities remain in active development. Expected programme completion: 9 October 2026.
-          </p>
-        </div>
-
-        {/* Core Competencies Grid */}
-        <div className="mb-20">
-          <h2 className="text-2xl font-bold text-white mb-8 border-b border-slate-800 pb-4">
-            What Andrew brings
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {coreCompetencies.map((comp, idx) => (
-              <div key={idx} className="bg-[#0D1816] border border-slate-800 p-6 rounded-xl hover:border-emerald-800/50 transition-colors">
-                <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
-                  <ChevronRight className="w-5 h-5 text-rose-500 shrink-0" />
-                  {comp.title}
-                </h3>
-                <p className="text-slate-400 text-sm leading-relaxed pl-7">
-                  {comp.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Operational Philosophy */}
-        <div className="bg-[#0D1816] border border-slate-800 rounded-2xl p-8 sm:p-12 mb-20">
-          <h2 className="text-2xl font-bold text-white mb-4">Technology matters only when it improves execution.</h2>
-          <p className="text-slate-300 leading-relaxed mb-6">
-            Andrew's approach is direct: understand how work actually happens, identify root causes, improve the workflow and measure the result. Analytics supports operations; it is never the end in itself. Public evidence is labelled clearly as anonymised operational analysis or AI-assisted synthetic demonstration.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <div className="bg-[#080F0E] border border-slate-700/60 px-4 py-3 rounded-lg flex items-center gap-3">
-              <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
-              <span className="text-sm font-medium text-slate-200">Thermal Compliance Governance</span>
-            </div>
-            <div className="bg-[#080F0E] border border-slate-700/60 px-4 py-3 rounded-lg flex items-center gap-3">
-              <BarChart2 className="w-5 h-5 text-amber-400 shrink-0" />
-              <span className="text-sm font-medium text-slate-200">Data-Informed Continuous Improvement</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Navigation CTA */}
-        <div className="flex flex-wrap items-center justify-between gap-6 border-t border-slate-800 pt-10">
-          <div>
-            <h3 className="text-xl font-bold text-white">Explore Operational Insights</h3>
-            <p className="text-slate-400 text-sm mt-1">Review tactical case studies and analytical supply chain breakdowns.</p>
-          </div>
-          <Link
-            to="/insights"
-            className="inline-flex items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-          >
-            View Insights Hub <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
+export default function About(){
+ const strengths=[{Icon:Workflow,title:'Operational depth',text:'20+ years across logistics, warehousing, distribution, container operations and supply-chain execution.'},{Icon:LineChart,title:'Analytical leverage',text:'Using data and business intelligence to reveal patterns, bottlenecks and warning signals that conventional reporting can miss.'},{Icon:Layers3,title:'Systems thinking',text:'Connecting people, process, measurements and context instead of treating KPIs as isolated numbers.'},{Icon:Compass,title:'Builder mindset',text:'Turning hypotheses into dashboards, experiments, prototypes and inspectable public evidence.'}];
+ return <div className="bg-[#050807] min-h-screen pt-32 pb-24 text-slate-100"><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div className="max-w-5xl"><div className="eyebrow">The operator behind the systems</div><h1 className="mt-5 text-5xl sm:text-7xl font-black tracking-[-0.055em] leading-[.92] text-white">Experience on the floor.<br/><span className="text-gradient">Intelligence above it.</span></h1><p className="mt-8 max-w-3xl text-xl leading-relaxed text-slate-400">I am Lam Teck Sing Andrew. My foundation is not theory: it is more than two decades of operational work. Today I combine that experience with analytics, data and AI to build better ways of seeing risk, understanding systems and acting earlier.</p></div>
+  <div className="mt-20 grid md:grid-cols-2 gap-4">{strengths.map(({Icon,title,text})=><div key={title} className="system-card rounded-3xl p-8"><Icon className="w-7 h-7 text-emerald-300"/><h2 className="mt-10 text-2xl font-black text-white">{title}</h2><p className="mt-3 text-slate-400 leading-relaxed">{text}</p></div>)}</div>
+  <div className="mt-24 grid lg:grid-cols-[.7fr_1.3fr] gap-10 border-t border-white/[0.08] pt-16"><div><div className="eyebrow">Operating philosophy</div><h2 className="mt-4 text-3xl font-black text-white">Technology earns its place through better decisions.</h2></div><div className="space-y-6 text-lg leading-relaxed text-slate-400"><p>I start with how work actually happens. Then I ask where information arrives too late, where assumptions hide, where signals disagree and where a better model could change an operational decision.</p><p>I separate evidence from demonstration. Anonymised operating data is labelled as such. Synthetic experiments are labelled as synthetic. A prototype is not described as a product, and an inference is not presented as certainty.</p><p>The goal is not more dashboards or more AI. The goal is earlier understanding, better execution and measurable action.</p></div></div>
+  <div className="mt-24 rounded-[2rem] border border-white/[0.08] bg-white/[0.025] p-8 sm:p-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8"><div><div className="eyebrow">Evidence before claims</div><h3 className="mt-3 text-2xl font-black text-white">See the work, not just the biography.</h3></div><Link to="/insights" className="premium-button rounded-full px-6 py-3.5 font-bold inline-flex items-center gap-2">Explore evidence <ArrowRight className="w-4 h-4"/></Link></div>
+ </div></div>
 }
