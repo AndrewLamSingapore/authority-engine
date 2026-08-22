@@ -1,110 +1,28 @@
 import React from 'react';
-import { ArrowRight, Activity, ShieldCheck, BarChart3, Clock, AlertTriangle } from 'lucide-react';
+import { ArrowRight, Activity, Github, Sparkles, Radar, BrainCircuit, Database, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-export default function Home() {
-  const metrics = [
-    { label: 'Operations Experience', value: '20+ years', note: 'Logistics, warehousing and supply chain' },
-    { label: 'Live Container Jobs', value: '391', note: 'Across seven reporting periods' },
-    { label: 'Recorded Revenue Analysed', value: 'S$75,720', note: 'Anonymised operational dataset' },
-    { label: 'Cold-Chain Records', value: '1,800', note: 'Synthetic risk-intelligence dataset' }
-  ];
+const githubUrl='https://github.com/AndrewLamSingapore';
+const linkedinUrl='https://www.linkedin.com/in/lam-teck-sing-andrew-79886719';
 
-  const coreFocus = [
-    {
-      title: 'Operational Excellence',
-      desc: 'Diagnosing bottlenecks, clarifying workflows and designing practical improvements grounded in frontline operations.'
-    },
-    {
-      title: 'Cold-Chain Integrity',
-      desc: 'Applying cold-chain operating experience to strengthen compliance, visibility and risk control for temperature-sensitive goods.'
-    },
-    {
-      title: 'Data-Driven Optimization',
-      desc: 'Turning operational records into Power BI reporting, earlier warning signals and clearer management decisions.'
-    }
-  ];
-
-  return (
-    <div className="bg-[#080F0E] text-slate-100 min-h-screen">
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-800/50 text-emerald-400 text-xs font-medium mb-6">
-            <Activity className="w-3.5 h-3.5 text-rose-500" />
-            <span>Operations Excellence · Supply Chain · Analytics</span>
-          </div>
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight">
-            Operational problems cost time, margin and trust—<span className="text-rose-500">before the dashboard turns red</span>.
-          </h1>
-          <p className="mt-6 text-xl text-slate-400 leading-relaxed max-w-3xl">
-            I combine more than 20 years of hands-on supply-chain and warehouse experience with Power BI and business analytics to expose risk earlier, improve workflows and turn operational complexity into management action.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link
-              to="/about"
-              className="inline-flex items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-            >
-              See the Evidence <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              to="/insights"
-              className="inline-flex items-center gap-2 bg-[#0D1816] hover:bg-slate-800 text-slate-200 border border-slate-700 px-6 py-3 rounded-lg font-medium transition-colors"
-            >
-              Explore Case Studies
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Impact Metrics */}
-      <section className="py-16 bg-[#0B1412] border-y border-slate-800/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {metrics.map((m, idx) => (
-              <div key={idx} className="bg-[#0D1816] p-6 rounded-xl border border-emerald-900/30">
-                <div className="text-3xl sm:text-4xl font-extrabold text-amber-500 mb-2">{m.value}</div>
-                <div className="text-white font-semibold text-base">{m.label}</div>
-                <div className="text-slate-400 text-xs mt-1">{m.note}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Core Focus Areas */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-white">Operations first. Analytics with a purpose.</h2>
-          <p className="text-slate-400 mt-4">Practical execution, process improvement and evidence-based management reporting—without inflated claims.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {coreFocus.map((item, idx) => (
-            <div key={idx} className="bg-[#0D1816] border border-slate-800 p-8 rounded-xl hover:border-rose-900/50 transition-colors">
-              <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-emerald-950/40 via-[#0D1816] to-rose-950/30 border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Need someone who understands both the floor and the numbers?</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto mb-8">
-            Let us connect about Operations Excellence, Process Improvement, Supply Chain Analytics, Operations Analysis, or Warehouse and Logistics Operations opportunities in Singapore.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-8 py-3.5 rounded-lg transition-colors"
-          >
-            Discuss an Opportunity <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
+export default function Home(){
+ const proof=[['20+','Years in operations','Supply chain · warehousing · logistics'],['391','Live jobs analysed','Operational container dataset'],['S$75.7K','Revenue analysed','Anonymised operating evidence'],['1,800','Risk records modelled','Cold-chain intelligence experiment']];
+ const layers=[{Icon:BrainCircuit,n:'01',title:'THINK',text:'Operational judgement, systems thinking and public ideas.',label:'LinkedIn',href:linkedinUrl},{Icon:Radar,n:'02',title:'PROVE',text:'Case studies, evidence, dashboards and decision frameworks.',label:'Explore evidence',to:'/insights'},{Icon:Database,n:'03',title:'BUILD',text:'Code, experiments and working prototypes in public.',label:'GitHub',href:githubUrl}];
+ return <div className="overflow-hidden bg-[#050807] text-slate-100">
+  <section className="relative min-h-[92vh] flex items-center pt-28 pb-20 px-4 sm:px-6 lg:px-8">
+   <div className="absolute inset-0 pointer-events-none"><div className="absolute -top-40 right-[-10%] h-[620px] w-[620px] rounded-full bg-emerald-500/[0.09] blur-[120px]"/><div className="absolute bottom-[-20%] left-[-10%] h-[520px] w-[520px] rounded-full bg-amber-400/[0.06] blur-[130px]"/><div className="hero-grid absolute inset-0 opacity-30"/></div>
+   <div className="relative max-w-7xl mx-auto w-full grid lg:grid-cols-[1.2fr_.8fr] gap-14 items-center">
+    <div><div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-4 py-2 text-xs font-semibold tracking-[.16em] text-emerald-300 uppercase"><Activity className="w-3.5 h-3.5"/> Operations Intelligence Builder</div>
+     <h1 className="mt-7 text-[clamp(3.4rem,8vw,7.4rem)] font-black tracking-[-0.065em] leading-[.86] text-white">FROM<br/>OPERATIONS<br/><span className="text-gradient">TO INTELLIGENCE.</span></h1>
+     <p className="mt-8 max-w-2xl text-lg sm:text-xl leading-relaxed text-slate-400">I combine 20+ years of frontline operations experience with data, analytics and AI to expose risk earlier, sharpen decisions and build systems that turn complexity into action.</p>
+     <div className="mt-9 flex flex-wrap gap-3"><Link to="/insights" className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Explore the evidence <ArrowRight className="w-4 h-4"/></Link><a href={githubUrl} target="_blank" rel="noreferrer" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold"><Github className="w-4 h-4"/> See what I'm building</a></div>
     </div>
-  );
+    <div className="relative lg:pl-8"><div className="signal-card rounded-[2rem] p-7 sm:p-9"><div className="flex items-center justify-between mb-10"><div><div className="text-[11px] tracking-[.2em] uppercase text-slate-500">Operating thesis</div><div className="mt-2 text-xl font-bold text-white">Earlier signals. Better decisions.</div></div><Sparkles className="w-6 h-6 text-amber-300"/></div><div className="space-y-6">{['Observe the real system','Connect weak signals','Test against evidence','Turn insight into action'].map((x,i)=><div key={x} className="flex items-center gap-4"><div className="h-9 w-9 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] flex items-center justify-center text-xs font-bold text-emerald-300">0{i+1}</div><div className="flex-1 border-b border-white/[0.07] pb-4 text-slate-200">{x}</div></div>)}</div><div className="mt-9 rounded-2xl border border-amber-300/15 bg-amber-300/[0.04] p-5"><div className="text-xs uppercase tracking-[.18em] text-amber-300">The question I build around</div><p className="mt-2 text-lg leading-snug text-white">Can we see operational deterioration before the KPI turns red?</p></div></div></div>
+   </div>
+  </section>
+  <section className="border-y border-white/[0.07] bg-white/[0.015]"><div className="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4">{proof.map(m=><div key={m[1]} className="px-6 py-8 lg:py-10 border-b sm:border-b-0 border-white/[0.07] lg:border-r last:border-r-0"><div className="text-3xl font-black text-white">{m[0]}</div><div className="mt-2 text-sm font-semibold text-emerald-300">{m[1]}</div><div className="mt-1 text-xs text-slate-500">{m[2]}</div></div>)}</div></section>
+  <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28"><div className="max-w-3xl"><div className="eyebrow">One connected credibility system</div><h2 className="mt-4 text-4xl sm:text-6xl font-black tracking-[-0.045em] leading-[.95] text-white">Think. Prove. Build.</h2><p className="mt-5 text-lg text-slate-400">Ideas are cheap. Evidence matters. Working systems matter more.</p></div><div className="mt-14 grid md:grid-cols-3 gap-4">{layers.map(({Icon,n,title,text,label,href,to})=>{const inner=<><div className="flex items-start justify-between"><Icon className="w-7 h-7 text-emerald-300"/><span className="text-xs text-slate-600 font-mono">{n}</span></div><h3 className="mt-14 text-3xl font-black text-white">{title}</h3><p className="mt-3 min-h-[72px] text-slate-400 leading-relaxed">{text}</p><div className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-amber-300">{label} <ArrowRight className="w-4 h-4"/></div></>;return to?<Link key={title} to={to} className="system-card rounded-3xl p-7">{inner}</Link>:<a key={title} href={href} target="_blank" rel="noreferrer" className="system-card rounded-3xl p-7">{inner}</a>})}</div></section>
+  <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-28"><div className="rounded-[2.2rem] border border-white/[0.08] bg-gradient-to-br from-emerald-400/[0.08] via-white/[0.025] to-amber-300/[0.05] p-8 sm:p-12 lg:p-16 grid lg:grid-cols-[1fr_auto] gap-10 items-end"><div><div className="eyebrow">Current frontier</div><h2 className="mt-4 text-4xl sm:text-5xl font-black text-white">Open Aqua</h2><p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-400">An open experiment asking whether cheap continuous signals and sensor fusion can predict aquarium risk better than periodic testing alone.</p></div><a href="https://github.com/AndrewLamSingapore/open-aqua" target="_blank" rel="noreferrer" className="ghost-button inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-semibold">View prototype <ExternalLink className="w-4 h-4"/></a></div></section>
+  <section className="px-4 sm:px-6 lg:px-8 pb-28"><div className="max-w-5xl mx-auto text-center"><div className="eyebrow">Operations × Data × AI</div><h2 className="mt-5 text-4xl sm:text-6xl font-black tracking-[-0.05em] text-white">Don't just read the résumé.<br/><span className="text-gradient">Inspect the work.</span></h2><div className="mt-9 flex flex-wrap justify-center gap-3"><Link to="/about" className="premium-button px-6 py-3.5 rounded-full font-semibold inline-flex items-center gap-2">See my story <ArrowRight className="w-4 h-4"/></Link><Link to="/contact" className="ghost-button px-6 py-3.5 rounded-full font-semibold">Start a conversation</Link></div></div></section>
+ </div>
 }
