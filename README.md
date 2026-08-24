@@ -1,10 +1,14 @@
-# Authority Engine
+# Andrew Lam — Operations Intelligence Evidence Hub
+
+> Repository slug: `authority-engine`
 
 ## Operations intelligence, backed by inspectable evidence.
 
 **Live:** https://authority-engine-app.vercel.app
 
-Authority Engine is Andrew Lam's public **PROVE layer**: a recruiter- and decision-maker-facing portfolio connecting more than 20 years of supply-chain and warehouse operations with analytics, data and AI.
+This is Andrew Lam's public **PROVE layer**: a recruiter- and decision-maker-facing portfolio connecting more than 20 years of supply-chain and warehouse operations with analytics, data and AI.
+
+The repository slug is historical; the public identity is deliberately **Andrew Lam — Operations Intelligence** so the work is attributable to a person rather than confused with unrelated businesses using similar names.
 
 The purpose is not to display a technology stack. It is to answer a harder question:
 
@@ -14,7 +18,7 @@ The purpose is not to display a technology stack. It is to answer a harder quest
 
 ## What this system proves
 
-Authority Engine turns operational experience and analytical work into inspectable case studies rather than unsupported capability claims.
+The site turns operational experience and analytical work into inspectable case studies rather than unsupported capability claims.
 
 | Evidence | Scale | What it demonstrates |
 |---|---:|---|
@@ -28,20 +32,18 @@ Anonymised operational evidence and synthetic demonstrations are deliberately la
 
 ## Evidence discipline
 
-This portfolio uses a simple rule:
-
 > **A polished interface does not upgrade the quality of the underlying evidence.**
 
 Evidence is described according to what it actually is: operational, anonymised, synthetic, experimental or implemented.
 
-A useful maturity shorthand used across the wider portfolio:
-
-- **E0** — concept / hypothesis
-- **E1** — synthetic or analytical demonstration
-- **E2** — working prototype
-- **E3** — real-world observations
-- **E4** — repeated validation
-- **E5** — production evidence at meaningful scale
+| Level | Meaning |
+|---|---|
+| **E0** | Concept / hypothesis |
+| **E1** | Synthetic or analytical demonstration |
+| **E2** | Working prototype |
+| **E3** | Real-world observations |
+| **E4** | Repeated validation |
+| **E5** | Production evidence at meaningful scale |
 
 A single project may contain evidence at multiple levels.
 
@@ -53,7 +55,7 @@ A single project may contain evidence at multiple levels.
 
 The recurring problem across operations is not a shortage of KPIs. It is that many KPIs become obvious only after deterioration has already happened.
 
-Authority Engine explores how operating context, data and multiple weak signals can improve management visibility and eventually support earlier intervention.
+This portfolio explores how operating context, data and multiple weak signals can improve management visibility and eventually support earlier intervention.
 
 ---
 
@@ -62,22 +64,27 @@ Authority Engine explores how operating context, data and multiple weak signals 
 - **React 19 + Vite** — frontend application
 - **React Router v7** — routed case studies and insight pages
 - **Tailwind CSS** — responsive presentation system
+- **Sanity** — published insight content
 - **Formspree** — inquiry workflow
 - **Vercel** — hosting and deployment
-- **GitHub Actions / repository checks** — development quality controls where configured
+- **GitHub Actions** — lint + production build quality gate
 
 The technology is supporting infrastructure. The evidence and reasoning are the product.
+
+```bash
+npm ci
+npm run lint
+npm run build
+```
 
 ---
 
 ## Portfolio architecture
 
-Authority Engine is one layer of a larger public system:
-
 | Layer | Purpose | Destination |
 |---|---|---|
 | **THINK** | Ideas and operating perspective | [LinkedIn](https://www.linkedin.com/in/lam-teck-sing-andrew-79886719) |
-| **PROVE** | Evidence, case studies and analytical demonstrations | **Authority Engine** |
+| **PROVE** | Evidence, case studies and analytical demonstrations | **This project** |
 | **BUILD** | Code, products and experiments | [GitHub](https://github.com/AndrewLamSingapore) |
 
 The flagship BUILD project is [Open Aqua](https://github.com/AndrewLamSingapore/open-aqua), an iPhone-first freshwater digital twin and governed sensor-fusion experiment.
@@ -86,13 +93,13 @@ The flagship BUILD project is [Open Aqua](https://github.com/AndrewLamSingapore/
 
 ## Standard for public claims
 
-This repository is intentionally conservative about claims.
-
 - Synthetic data is not presented as operational history.
 - Anonymised operational evidence remains anonymised.
 - A prototype is not described as validated science.
 - A concept is not described as a shipped capability.
 - Technology is not treated as evidence by itself.
+
+See [`SECURITY.md`](SECURITY.md) for the repository's data and security boundaries.
 
 **Operations × Data × AI → earlier signals → better decisions → measurable action.**
 
