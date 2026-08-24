@@ -1,0 +1,20 @@
+# Authority Engine
+
+> Andrew Lam's public proof-of-work system for operations intelligence, supply chain analytics, applied AI and operational experimentation.
+
+Canonical: https://authority-engine-app.vercel.app/
+
+## Core pages
+- / — Operations Intelligence Builder
+- /about — Background, operating philosophy and credibility
+- /insights — Evidence, case studies, experiments and decision frameworks
+- /contact — Professional inquiries
+
+## Principles
+- Evidence is distinguished from demonstration.
+- Synthetic experiments are labelled as synthetic.
+- Prototypes are not presented as production systems.
+- Operational claims should be inspectable and decision-relevant.
+
+## Current frontier
+Open Aqua explores whether continuous low-cost sensing and sensor fusion can reveal aquarium risk earlier than periodic testing alone.
