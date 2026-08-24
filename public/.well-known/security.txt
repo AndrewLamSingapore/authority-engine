@@ -1,0 +1,3 @@
+Contact: mailto:andrew3657@hotmail.com
+Preferred-Languages: en
+Canonical: https://authority-engine-app.vercel.app/.well-known/security.txt
