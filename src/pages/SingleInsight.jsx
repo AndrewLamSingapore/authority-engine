@@ -17,6 +17,36 @@ const client = createClient({
   apiVersion: '2024-01-01',
 });
 
+const controlledArticles = {
+  'the-hidden-cost-of-inefficient-warehouse-logistics': {
+    overview: 'Experience-based operational ranges drawn from anonymised career records. They are not independently audited benchmarks and remain subject to source-led verification.',
+    keyTakeaways: [
+      'Grocery logistics: experience-based ranges of 20–40 daily deliveries and 800–2,000 SKUs',
+      'International freight: experience-based ranges of 15–30 weekly shipments and 95–99% on-time performance',
+      'Maxwell Excel: current container operations are supported by an anonymised 391-job operating dataset',
+    ],
+    content: 'Evidence boundary\n\nThe figures in this article are experience-based operational ranges reconstructed from anonymised career records. They are not independently audited benchmarks. Use them as structured evidence for discussion, not as guaranteed or universally applicable performance claims.\n\nOperational context\n\nHigh-volume distribution requires close coordination of container scheduling, manpower deployment, shipment documentation and stock accuracy. The ranges illustrate the scale and decision environment across grocery distribution, international freight and container operations.\n\nVerification rule\n\nAny range used in a résumé, interview or commercial claim must be supported by the strongest available source record. Where that source is unavailable, the range remains experience-based rather than verified.'
+  },
+  'supply-chain-control-tower-early-warning-system': {
+    overview: 'AI-assisted synthetic demonstration of a weighted-rule early-warning method. The 24-day result comes from an engineered scenario, not a trained predictive model or measured production outcome.',
+    keyTakeaways: [
+      'Synthetic weighting: 35% inventory cover, 25% supplier performance, 20% backlog and 20% trajectory risk',
+      'Scenario lead time: the engineered test surfaced a warning 24 days before its configured threshold breach',
+      'Method demonstration: Python, SQL and Power BI-ready decision reporting',
+    ],
+    content: 'Evidence boundary\n\nThis is an AI-assisted synthetic demonstration. Its inputs and deterioration path were engineered to test an inspectable weighted-rule method. The 24-day warning is a scenario result; it is not a trained or validated predictive model, an employer deployment or a measured production outcome.\n\nMethod\n\nThe demonstration combines four synthetic vectors: inventory cover at 35%, supplier performance at 25%, backlog risk at 20% and trajectory risk at 20%. The rule set is designed to make each contribution inspectable and to show how weak signals can be combined before a conventional red, amber or green threshold changes.\n\nDecision use\n\nPower BI-ready decomposition and drill-through views illustrate how a manager could inspect the score and choose an intervention. Real deployment would require governed source data, back-testing, calibration, monitoring and documented decision ownership.'
+  },
+  'cold-chain-risk-intelligence-and-performance-analytics': {
+    overview: 'AI-assisted synthetic demonstration using 1,800 generated records across six warehouse zones. It illustrates analysis and decision-support design, not employer deployment or measured production impact.',
+    keyTakeaways: [
+      'Synthetic dataset: 1,800 generated records across six warehouse zones',
+      'Illustrated triggers: door-open duration, thermal integrity, processing delay and shift review',
+      'Demonstration stack: SQL, Python and Power BI-ready reporting',
+    ],
+    content: 'Evidence boundary\n\nThis is an AI-assisted synthetic demonstration built from 1,800 generated records across six warehouse zones. The records are not employer data. The alerts, staffing reviews and maintenance triggers illustrate an analytical method; they are not deployed controls or measured production outcomes.\n\nAnalytical method\n\nThe demonstration checks data quality and explores temperature compliance, processing duration and shift-level patterns. It shows how door-open duration, thermal integrity and processing delay could be organised into inspectable management signals.\n\nDeployment boundary\n\nA real cold-chain implementation would require validated sensors and source systems, site-specific thresholds, quality and safety ownership, change control, false-alert monitoring and evidence that interventions improve outcomes without creating new risk.'
+  }
+};
+
 export default function SingleInsight() {
   const { slug, id } = useParams();
   const currentKey = slug || id;
@@ -67,15 +97,17 @@ export default function SingleInsight() {
             extractedContent = data.excerpt || '';
           }
 
+          const controlled = controlledArticles[currentKey];
           setInsight({
             title: data.title,
             category: data.category || 'Case Studies',
             date: formattedDate,
             readTime: data.readTime || '5 min read',
             author: 'Lam Teck Sing Andrew',
-            overview: data.excerpt || '',
-            keyTakeaways: data.keyTakeaways || [],
-            content: extractedContent,
+            overview: controlled?.overview || data.excerpt || '',
+            keyTakeaways: controlled?.keyTakeaways || data.keyTakeaways || [],
+            content: controlled?.content || extractedContent,
+            controlled: Boolean(controlled),
           });
         } else {
           setInsight(null);
@@ -155,6 +187,12 @@ export default function SingleInsight() {
               {insight.overview}
             </p>
           </header>
+
+          {insight.controlled && (
+            <div className="bg-amber-300/[0.06] border border-amber-300/25 rounded-xl p-5 sm:p-6 mb-8 text-sm leading-relaxed text-amber-100">
+              <strong className="text-amber-300">Evidence boundary:</strong> This page uses controlled, disclosure-first copy so synthetic demonstrations and experience-based ranges cannot be mistaken for audited production results.
+            </div>
+          )}
 
           {insight.keyTakeaways && insight.keyTakeaways.length > 0 && (
             <div className="bg-[#0D1816] border border-emerald-900/40 rounded-xl p-6 sm:p-8 mb-10">
