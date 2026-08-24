@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /locked-demo
 
-Sitemap: https://authority-engine-sooty.vercel.app/sitemap.xml
+Sitemap: https://authority-engine-app.vercel.app/sitemap.xml
