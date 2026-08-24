@@ -1,0 +1,8 @@
+/* TEAM */
+Creator: Lam Teck Sing Andrew
+Location: Singapore
+
+/* SITE */
+Name: Authority Engine
+Purpose: Public proof of work across operations intelligence, analytics, AI and experimentation.
+Canonical: https://authority-engine-app.vercel.app/
