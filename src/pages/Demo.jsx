@@ -1,26 +1,18 @@
 import React, { useState } from 'react';
 
 export default function Demo() {
-  // Operational Variables State
-  const [inventoryCover, setInventoryCover] = useState(15); // Days of inventory
-  const [supplierOTIF, setSupplierOTIF] = useState(78);     // On-Time In-Full %
-  const [backlogDays, setBacklogDays] = useState(12);       // Backlog processing queue (days)
-  const [trajectoryVelocity, setTrajectoryVelocity] = useState(65); // Deterioration velocity score (0-100)
+  const [inventoryCover, setInventoryCover] = useState(15);
+  const [supplierOTIF, setSupplierOTIF] = useState(78);
+  const [backlogDays, setBacklogDays] = useState(12);
+  const [trajectoryVelocity, setTrajectoryVelocity] = useState(65);
 
-  // 1. Calculate Individual Vector Risk Scores (Normalized 0 - 100)
-  // Target Inventory Cover = 30 days. Under 10 days = 100% risk.
+  // Synthetic demonstration only. These transforms and weights are illustrative,
+  // not a fitted or validated predictive model.
   const inventoryRiskScore = Math.max(0, Math.min(100, ((30 - inventoryCover) / 30) * 100));
-  
-  // Target Supplier OTIF = 95%. Below 95% increases risk.
   const supplierRiskScore = Math.max(0, Math.min(100, ((95 - supplierOTIF) / 45) * 100));
-  
-  // Target Backlog = < 3 days. Over 15 days = 100% risk.
   const backlogRiskScore = Math.max(0, Math.min(100, (backlogDays / 15) * 100));
-
-  // Trajectory Risk Score directly mapped
   const trajectoryRiskScore = trajectoryVelocity;
 
-  // 2. Compute Weighted Composite Risk Index (35% / 25% / 20% / 20%)
   const compositeRiskIndex = Math.round(
     (inventoryRiskScore * 0.35) +
     (supplierRiskScore * 0.25) +
@@ -28,181 +20,48 @@ export default function Demo() {
     (trajectoryRiskScore * 0.20)
   );
 
-  // Early Warning Threshold Trigger (>= 70%)
-  const isEarlyWarningTriggered = compositeRiskIndex >= 70;
+  const isIllustrativeWarning = compositeRiskIndex >= 70;
+  const status = isIllustrativeWarning ? 'Illustrative warning threshold crossed' : compositeRiskIndex > 45 ? 'Illustrative watch zone' : 'Illustrative lower-risk zone';
+
+  const controls = [
+    {label:'Inventory Cover',weight:'35%',value:inventoryCover,set:setInventoryCover,min:2,max:30,unit:'days',help:'Illustrative inventory-cover input. Lower cover increases the demonstration score.'},
+    {label:'Supplier OTIF',weight:'25%',value:supplierOTIF,set:setSupplierOTIF,min:50,max:100,unit:'%',help:'Illustrative On-Time In-Full input. Lower OTIF increases the demonstration score.'},
+    {label:'Order Backlog',weight:'20%',value:backlogDays,set:setBacklogDays,min:0,max:20,unit:'days',help:'Illustrative queue input. A larger backlog increases the demonstration score.'},
+    {label:'Trajectory Velocity',weight:'20%',value:trajectoryVelocity,set:setTrajectoryVelocity,min:0,max:100,unit:'score',help:'A synthetic deterioration input used to explore how directional change affects a composite score.'}
+  ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-6 md:p-12 font-sans">
-      <div className="max-w-4xl mx-auto space-y-8">
-        
-        {/* Header */}
-        <div className="border-b border-slate-800 pb-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3">
-            Interactive Technical Demo
+    <div className="min-h-screen bg-[#050807] text-slate-100 px-4 sm:px-6 py-28 font-sans">
+      <div className="max-w-5xl mx-auto space-y-8">
+        <header className="border-b border-white/[0.08] pb-8">
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-amber-300/[0.07] border border-amber-300/20 text-amber-300 text-xs font-semibold uppercase tracking-wider">E1 · Synthetic analytical demonstration</div>
+          <h1 className="mt-5 text-4xl md:text-5xl font-black text-white tracking-tight">Multi-Signal Risk Simulator</h1>
+          <p className="text-slate-400 mt-4 max-w-3xl leading-relaxed">Explore how four illustrative operational signals combine under an explicit weighted rule. This is a transparent decision-model demonstration — not a trained forecasting model and not evidence that a failure will occur.</p>
+        </header>
+
+        <div className={`p-6 rounded-2xl border ${isIllustrativeWarning ? 'bg-rose-950/30 border-rose-500/40' : compositeRiskIndex > 45 ? 'bg-amber-950/25 border-amber-500/30' : 'bg-emerald-950/25 border-emerald-500/30'}`}>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-5">
+            <div><div className="text-xs uppercase tracking-[.16em] text-slate-500">Illustrative composite score</div><div className="mt-2 text-5xl font-black text-white">{compositeRiskIndex}<span className="text-xl text-slate-500"> / 100</span></div></div>
+            <div className="text-sm font-semibold text-slate-200">{status}</div>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-            Supply Chain Control Tower Simulator
-          </h1>
-          <p className="text-slate-400 mt-2 text-sm md:text-base">
-            Live multi-factor weighted risk engine calculating early-warning degradation signals before conventional KPI threshold breach.
-          </p>
+          <p className="mt-5 pt-5 border-t border-white/[0.08] text-sm leading-relaxed text-slate-400">The 70-point warning boundary, input transforms and 35/25/20/20 weights are intentionally inspectable assumptions for experimentation. They have not been calibrated against a labelled production outcome dataset.</p>
         </div>
 
-        {/* Live Output Banner */}
-        <div className={`p-6 rounded-xl border transition-all duration-300 ${
-          isEarlyWarningTriggered 
-            ? 'bg-rose-950/40 border-rose-500/50 shadow-lg shadow-rose-950/50' 
-            : compositeRiskIndex > 45 
-            ? 'bg-amber-950/30 border-amber-500/40' 
-            : 'bg-emerald-950/30 border-emerald-500/40'
-        }`}>
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <span className="text-xs uppercase tracking-wider text-slate-400 font-medium">
-                Composite Operational Risk Score
-              </span>
-              <div className="flex items-baseline gap-3 mt-1">
-                <span className={`text-4xl font-extrabold ${
-                  isEarlyWarningTriggered ? 'text-rose-400' : compositeRiskIndex > 45 ? 'text-amber-400' : 'text-emerald-400'
-                }`}>
-                  {compositeRiskIndex}%
-                </span>
-                <span className="text-xs text-slate-400">/ 100% Critical Scale</span>
-              </div>
-            </div>
-
-            {/* Status Badge */}
-            <div>
-              {isEarlyWarningTriggered ? (
-                <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-rose-500/20 border border-rose-500/40 text-rose-300 text-sm font-bold animate-pulse">
-                  <span>⚠️ EARLY WARNING TRIGGERED</span>
-                </div>
-              ) : (
-                <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-semibold">
-                  <span>✅ Operations Within Safe Baseline</span>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Dynamic Early Warning Message */}
-          {isEarlyWarningTriggered && (
-            <div className="mt-4 pt-4 border-t border-rose-500/30 text-rose-200 text-sm leading-relaxed">
-              <strong>24-Day Early-Warning Alert:</strong> Operational metrics indicate significant multi-factor deterioration. System predicts full supply chain failure in 24 days prior to standard Amber/Red KPI breaches.
-            </div>
-          )}
+        <div className="grid md:grid-cols-2 gap-4">
+          {controls.map((c,i)=><div key={c.label} className="p-6 rounded-2xl bg-white/[0.025] border border-white/[0.08] space-y-4">
+            <div className="flex justify-between gap-4 items-center"><label htmlFor={`signal-${i}`} className="text-sm font-bold text-slate-200">{i+1}. {c.label} <span className="text-slate-500">({c.weight})</span></label><span className="text-xs font-mono bg-white/[0.05] px-2.5 py-1 rounded text-emerald-300">{c.value} {c.unit}</span></div>
+            <input id={`signal-${i}`} aria-label={c.label} type="range" min={c.min} max={c.max} value={c.value} onChange={e=>c.set(Number(e.target.value))} className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500" />
+            <p className="text-xs leading-relaxed text-slate-500">{c.help}</p>
+          </div>)}
         </div>
 
-        {/* Control Sliders Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          {/* Vector 1: Inventory Cover (35%) */}
-          <div className="p-5 rounded-xl bg-slate-900 border border-slate-800 space-y-3">
-            <div className="flex justify-between items-center">
-              <label className="text-sm font-semibold text-slate-200">
-                1. Inventory Cover (35% Weight)
-              </label>
-              <span className="text-xs font-mono bg-slate-800 px-2.5 py-1 rounded text-emerald-400">
-                {inventoryCover} Days
-              </span>
-            </div>
-            <input
-              type="range"
-              min="2"
-              max="30"
-              value={inventoryCover}
-              onChange={(e) => setInventoryCover(Number(e.target.value))}
-              className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
-            />
-            <p className="text-xs text-slate-400">
-              Evaluates current inventory trajectory against lead-time demand requirements.
-            </p>
-          </div>
-
-          {/* Vector 2: Supplier Performance (25%) */}
-          <div className="p-5 rounded-xl bg-slate-900 border border-slate-800 space-y-3">
-            <div className="flex justify-between items-center">
-              <label className="text-sm font-semibold text-slate-200">
-                2. Supplier OTIF Rate (25% Weight)
-              </label>
-              <span className="text-xs font-mono bg-slate-800 px-2.5 py-1 rounded text-emerald-400">
-                {supplierOTIF}%
-              </span>
-            </div>
-            <input
-              type="range"
-              min="50"
-              max="100"
-              value={supplierOTIF}
-              onChange={(e) => setSupplierOTIF(Number(e.target.value))}
-              className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
-            />
-            <p className="text-xs text-slate-400">
-              Tracks supplier On-Time In-Full historical performance and delivery variance.
-            </p>
-          </div>
-
-          {/* Vector 3: Backlog Risk (20%) */}
-          <div className="p-5 rounded-xl bg-slate-900 border border-slate-800 space-y-3">
-            <div className="flex justify-between items-center">
-              <label className="text-sm font-semibold text-slate-200">
-                3. Order Backlog Queue (20% Weight)
-              </label>
-              <span className="text-xs font-mono bg-slate-800 px-2.5 py-1 rounded text-emerald-400">
-                {backlogDays} Days Queue
-              </span>
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="20"
-              value={backlogDays}
-              onChange={(e) => setBacklogDays(Number(e.target.value))}
-              className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
-            />
-            <p className="text-xs text-slate-400">
-              Measures order processing queue buildup across key fulfillment hubs.
-            </p>
-          </div>
-
-          {/* Vector 4: Trajectory Risk (20%) */}
-          <div className="p-5 rounded-xl bg-slate-900 border border-slate-800 space-y-3">
-            <div className="flex justify-between items-center">
-              <label className="text-sm font-semibold text-slate-200">
-                4. Trajectory Velocity (20% Weight)
-              </label>
-              <span className="text-xs font-mono bg-slate-800 px-2.5 py-1 rounded text-emerald-400">
-                {trajectoryVelocity} Score
-              </span>
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={trajectoryVelocity}
-              onChange={(e) => setTrajectoryVelocity(Number(e.target.value))}
-              className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
-            />
-            <p className="text-xs text-slate-400">
-              Calculates directional velocity and rate of operational decay over time.
-            </p>
-          </div>
-
-        </div>
-
-        {/* Mathematical Breakdown Box */}
-        <div className="p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 text-xs text-slate-400 space-y-2">
-          <div className="font-semibold text-slate-300 uppercase tracking-wider mb-1">
-            Engine Algorithm Specifications
-          </div>
-          <p>
-            <span className="text-slate-300 font-mono">Composite Index</span> = (Inventory Risk × 0.35) + (Supplier Risk × 0.25) + (Backlog Risk × 0.20) + (Trajectory Velocity × 0.20)
-          </p>
-          <p>
-            Designed by <strong>Andrew Lam Teck Sing</strong> for predictive operations and proactive risk mitigation.
-          </p>
-        </div>
-
+        <section className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.08] text-sm text-slate-400 space-y-4">
+          <div className="text-xs font-bold text-slate-300 uppercase tracking-[.16em]">Model contract</div>
+          <p><span className="text-slate-200 font-mono">Composite</span> = Inventory Risk × 0.35 + Supplier Risk × 0.25 + Backlog Risk × 0.20 + Trajectory × 0.20.</p>
+          <p><strong className="text-slate-300">What it demonstrates:</strong> transparent multi-signal aggregation, sensitivity to changing inputs and an explicit intervention threshold.</p>
+          <p><strong className="text-slate-300">What it does not prove:</strong> predictive accuracy, causal relationships, a fixed lead time to failure, or suitability for production decisions.</p>
+          <p className="text-slate-500">A claim of prediction would require a defined outcome, historical labelled data, calibration, holdout validation, error metrics and monitoring for drift.</p>
+        </section>
       </div>
     </div>
   );
