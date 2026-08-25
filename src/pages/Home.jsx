@@ -5,6 +5,7 @@ import {
   Building2,
   ExternalLink,
   GitBranch,
+  Network,
   ShieldCheck,
   Sparkles,
   Warehouse,
@@ -214,6 +215,34 @@ export default function Home() {
               <p className="mt-3 text-slate-400 leading-relaxed">{text}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section data-reveal className="reveal-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 sm:pb-28">
+        <div className="relative overflow-hidden rounded-[2.2rem] border border-emerald-300/20 bg-gradient-to-br from-emerald-400/[0.11] via-white/[0.025] to-amber-300/[0.07] p-8 sm:p-12 lg:p-16">
+          <div className="absolute -right-20 -top-28 h-72 w-72 rounded-full bg-emerald-400/10 blur-[90px]" aria-hidden="true" />
+          <div className="relative grid lg:grid-cols-[1fr_.9fr] gap-10 lg:gap-16 items-center">
+            <div>
+              <div className="eyebrow">Flagship interactive system · Portal 4.1</div>
+              <h2 className="mt-4 text-4xl sm:text-6xl font-black tracking-[-0.055em] text-white">The Portal</h2>
+              <p className="mt-5 max-w-2xl text-base sm:text-lg leading-relaxed text-slate-300">A living knowledge graph built to connect encounters, evidence, questions and ideas—so useful context compounds instead of disappearing.</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link to="/portal" className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Explore it here <ArrowRight className="w-4 h-4" /></Link>
+                <a href="https://the-portal-ten.vercel.app/" target="_blank" rel="noreferrer" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Open full experience <ExternalLink className="w-4 h-4" /></a>
+              </div>
+            </div>
+            <Link to="/portal" className="group rounded-[1.7rem] border border-white/[0.1] bg-black/25 p-6 sm:p-8 transition-colors hover:border-emerald-300/35">
+              <div className="flex items-center justify-between">
+                <Network className="w-8 h-8 text-emerald-300" />
+                <span className="text-[10px] tracking-[.18em] uppercase text-amber-300">Live constellation</span>
+              </div>
+              <div className="relative mt-8 h-44">
+                <div className="absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-300/40 bg-emerald-300/10 flex items-center justify-center text-xs font-black text-emerald-200">OPERATIONS</div>
+                {[['EVIDENCE','left-0 top-0'],['ANALYTICS','right-0 top-2'],['AI','right-4 bottom-0'],['MEMORY','left-3 bottom-1']].map(([label,pos]) => <div key={label} className={`absolute ${pos} h-14 w-14 rounded-full border border-white/10 bg-white/[0.035] flex items-center justify-center text-[8px] font-bold text-slate-400 group-hover:border-emerald-300/25`}>{label}</div>)}
+              </div>
+              <div className="mt-5 text-sm font-semibold text-emerald-300 inline-flex items-center gap-2">Enter interactive preview <ArrowRight className="w-4 h-4" /></div>
+            </Link>
+          </div>
         </div>
       </section>
 
