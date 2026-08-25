@@ -5,7 +5,7 @@ import SoundControl from './SoundControl';
 
 export default function Navbar(){
  const [open,setOpen]=useState(false); const loc=useLocation();
- const links=[['Home','/'],['About','/about'],['Insights','/insights'],['Contact','/contact']];
+ const links=[['Home','/'],['About','/about'],['The Portal','/portal'],['Insights','/insights'],['Contact','/contact']];
  return <nav className="fixed top-0 inset-x-0 z-50 bg-[#050807]/75 backdrop-blur-xl border-b border-white/[0.07]" aria-label="Main Navigation">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
    <Link to="/" className="group flex items-center gap-3"><div className="w-9 h-9 rounded-xl border border-emerald-300/20 bg-emerald-300/[0.07] flex items-center justify-center text-emerald-300 font-black">A</div><div><div className="text-sm font-extrabold tracking-[.13em] text-white">ANDREW LAM</div><div className="text-[9px] tracking-[.19em] uppercase text-slate-500">Operations Intelligence</div></div></Link>
