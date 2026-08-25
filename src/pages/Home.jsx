@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
-  Activity,
   ArrowRight,
   BarChart3,
   Building2,
@@ -69,28 +68,55 @@ const capabilities = [
 ];
 
 export default function Home() {
+  useEffect(() => {
+    const sections = document.querySelectorAll('[data-reveal]');
+    if (!('IntersectionObserver' in window)) {
+      sections.forEach((section) => section.classList.add('is-visible'));
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -48px' },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="overflow-hidden bg-[#050807] text-slate-100">
-      <section className="relative min-h-[92vh] flex items-center pt-28 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-40 right-[-10%] h-[620px] w-[620px] rounded-full bg-emerald-500/[0.09] blur-[120px]" />
-          <div className="absolute bottom-[-20%] left-[-10%] h-[520px] w-[520px] rounded-full bg-amber-400/[0.06] blur-[130px]" />
-          <div className="hero-grid absolute inset-0 opacity-30" />
+      <section className="relative min-h-[calc(100svh-5rem)] flex items-center pt-28 pb-14 px-4 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="ambient-orb ambient-orb-one absolute -top-40 right-[-10%] h-[620px] w-[620px] rounded-full bg-emerald-500/[0.1] blur-[120px]" />
+          <div className="ambient-orb ambient-orb-two absolute bottom-[-20%] left-[-10%] h-[520px] w-[520px] rounded-full bg-amber-400/[0.065] blur-[130px]" />
+          <div className="hero-grid absolute inset-0 opacity-35" />
+          <div className="signal-beam absolute left-0 right-0 top-[42%] h-px" />
         </div>
-        <div className="relative max-w-7xl mx-auto w-full grid lg:grid-cols-[1.2fr_.8fr] gap-14 items-center">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-4 py-2 text-xs font-semibold tracking-[.16em] text-emerald-300 uppercase">
-              <Activity className="w-3.5 h-3.5" /> Operations Excellence · Supply Chain · Analytics
+        <div className="relative max-w-7xl mx-auto w-full grid lg:grid-cols-[1.08fr_.92fr] gap-10 xl:gap-16 items-center">
+          <div className="hero-enter hero-enter-one">
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-emerald-400/20 bg-emerald-400/[0.07] px-4 py-2 text-[11px] sm:text-xs font-semibold tracking-[.14em] text-emerald-300 uppercase">
+              <span className="signal-wave" aria-hidden="true">
+                <span /><span /><span /><span />
+              </span>
+              Operations Excellence · Supply Chain · Analytics
             </div>
-            <h1 className="mt-7 text-[clamp(3.4rem,8vw,7.2rem)] font-black tracking-[-0.065em] leading-[.87] text-white">
-              REAL OPERATIONS.<br />
-              BETTER DECISIONS.<br />
-              <span className="text-gradient">MEASURABLE ACTION.</span>
+            <h1 className="mt-7 text-[clamp(2.8rem,5.5vw,5.1rem)] font-black tracking-[-0.055em] leading-[.93] text-white">
+              <span className="hero-line"><span>REAL OPERATIONS.</span></span>
+              <span className="hero-line"><span>CLEARER SIGNALS.</span></span>
+              <span className="hero-line"><span className="text-gradient">BETTER DECISIONS.</span></span>
             </h1>
-            <p className="mt-8 max-w-2xl text-lg sm:text-xl leading-relaxed text-slate-400">
-              I combine 20+ years in supply chain, warehousing and logistics with process improvement, Power BI, SQL and business analytics to make operational risk visible and execution stronger.
+            <p className="mt-7 max-w-2xl text-[15px] sm:text-base leading-relaxed text-slate-300/80">
+              I turn 20+ years of supply-chain, warehousing and logistics experience into evidence-led improvement using process discipline, Power BI, SQL and business analytics.
             </p>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/insights" className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
                 Inspect the evidence <ArrowRight className="w-4 h-4" />
               </Link>
@@ -98,38 +124,45 @@ export default function Home() {
                 Start a conversation
               </Link>
             </div>
+            <div className="mt-6 flex items-center gap-3 text-sm text-slate-500">
+              <span className="h-px w-8 bg-emerald-300/40" aria-hidden="true" />
+              Open to Operations Excellence and operational-analytics opportunities
+            </div>
           </div>
-          <div className="relative lg:pl-8">
-            <div className="signal-card rounded-[2rem] p-7 sm:p-9">
-              <div className="flex items-center justify-between mb-10">
+          <div className="relative lg:pl-4 hero-enter hero-enter-two">
+            <div className="signal-card signal-card-live relative overflow-hidden rounded-[2rem] p-7 sm:p-9">
+              <div className="signal-sweep" aria-hidden="true" />
+              <div className="flex items-start justify-between gap-6 mb-8">
                 <div>
-                  <div className="text-[11px] tracking-[.2em] uppercase text-slate-500">Operating method</div>
-                  <div className="mt-2 text-xl font-bold text-white">Evidence before claims.</div>
+                  <div className="text-[10px] tracking-[.22em] uppercase text-emerald-300/70">How I work</div>
+                  <div className="mt-2 text-xl font-bold tracking-tight text-white">Evidence before claims.</div>
                 </div>
-                <Sparkles className="w-6 h-6 text-amber-300" />
+                <div className="method-orbit flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-amber-300/20 bg-amber-300/[0.055]">
+                  <Sparkles className="w-5 h-5 text-amber-300" />
+                </div>
               </div>
-              <div className="space-y-6">
+              <div className="space-y-1">
                 {['Observe how work actually happens', 'Find the constraint or weak signal', 'Test the explanation against evidence', 'Turn insight into owned action'].map((item, index) => (
-                  <div key={item} className="flex items-center gap-4">
-                    <div className="h-9 w-9 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] flex items-center justify-center text-xs font-bold text-emerald-300">0{index + 1}</div>
-                    <div className="flex-1 border-b border-white/[0.07] pb-4 text-slate-200">{item}</div>
+                  <div key={item} className="method-step flex items-center gap-4 rounded-2xl px-3 py-3" style={{ '--step-delay': `${index * 1.2}s` }}>
+                    <div className="method-number h-9 w-9 shrink-0 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] flex items-center justify-center text-xs font-bold text-emerald-300">0{index + 1}</div>
+                    <div className="flex-1 text-sm sm:text-[15px] text-slate-200">{item}</div>
                   </div>
                 ))}
               </div>
-              <div className="mt-9 rounded-2xl border border-amber-300/15 bg-amber-300/[0.04] p-5">
-                <div className="text-xs uppercase tracking-[.18em] text-amber-300">Career direction</div>
-                <p className="mt-2 text-lg leading-snug text-white">Operations Excellence roles where operating depth and analytical leverage improve real decisions.</p>
+              <div className="mt-7 rounded-2xl border border-amber-300/15 bg-amber-300/[0.045] p-5">
+                <div className="text-[10px] uppercase tracking-[.2em] text-amber-300">Operating direction</div>
+                <p className="mt-2 text-[15px] leading-relaxed text-slate-100">Operational depth, strengthened by analytics—focused on decisions people can act on.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="border-y border-white/[0.07] bg-white/[0.015]">
+      <section data-reveal className="reveal-section border-y border-white/[0.07] bg-white/[0.018]">
         <div className="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4">
           {proof.map((metric) => (
-            <div key={metric[1]} className="px-6 py-8 lg:py-10 border-b sm:border-b-0 border-white/[0.07] lg:border-r last:border-r-0">
-              <div className="text-2xl sm:text-3xl font-black text-white">{metric[0]}</div>
+            <div key={metric[1]} className="proof-cell px-6 py-7 lg:py-9 border-b sm:border-b-0 border-white/[0.07] lg:border-r last:border-r-0">
+              <div className="metric-value text-2xl sm:text-3xl font-black text-white">{metric[0]}</div>
               <div className="mt-2 text-sm font-semibold text-emerald-300">{metric[1]}</div>
               <div className="mt-1 text-xs text-slate-500">{metric[2]}</div>
             </div>
@@ -137,11 +170,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28">
+      <section data-reveal className="reveal-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
         <div className="max-w-3xl">
           <div className="eyebrow">Employer-relevant proof first</div>
-          <h2 className="mt-4 text-4xl sm:text-6xl font-black tracking-[-0.045em] leading-[.95] text-white">Do not trust the headline.<br />Inspect the work.</h2>
-          <p className="mt-5 text-lg text-slate-400">Real operating evidence, controlled demonstrations and public builds are kept distinct.</p>
+          <h2 className="mt-4 text-3xl sm:text-5xl font-black tracking-[-0.04em] leading-[.98] text-white">Do not trust the headline.<br />Inspect the work.</h2>
+          <p className="mt-5 text-base text-slate-400">Real operating evidence, controlled demonstrations and public builds are kept distinct.</p>
         </div>
         <div className="mt-14 grid lg:grid-cols-3 gap-4">
           {evidence.map(({ Icon, tag, title, text, label, href, to }) => {
@@ -167,10 +200,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-28">
+      <section data-reveal className="reveal-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 sm:pb-28">
         <div className="max-w-3xl">
           <div className="eyebrow">Strategic operational capabilities</div>
-          <h2 className="mt-4 text-4xl sm:text-6xl font-black tracking-[-0.045em] leading-[.95] text-white">Operating depth, strengthened by data.</h2>
+          <h2 className="mt-4 text-3xl sm:text-5xl font-black tracking-[-0.04em] leading-[.98] text-white">Operating depth, strengthened by data.</h2>
         </div>
         <div className="mt-14 grid md:grid-cols-3 gap-4">
           {capabilities.map(({ Icon, title, text }) => (
@@ -183,12 +216,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-28">
+      <section data-reveal className="reveal-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 sm:pb-28">
         <div className="rounded-[2.2rem] border border-white/[0.08] bg-gradient-to-br from-emerald-400/[0.08] via-white/[0.025] to-amber-300/[0.05] p-8 sm:p-12 lg:p-16 grid lg:grid-cols-[1fr_auto] gap-10 items-end">
           <div>
             <div className="eyebrow">Disciplined innovation evidence</div>
-            <h2 className="mt-4 text-4xl sm:text-5xl font-black text-white">Open Aqua</h2>
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-400">A working digital-twin prototype and governed experiment exploring whether low-cost continuous signals can support more useful aquarium-care decisions. The physical hypothesis is not yet scientifically validated.</p>
+            <h2 className="mt-4 text-3xl sm:text-4xl font-black text-white">Open Aqua</h2>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-400">A working digital-twin prototype and governed experiment exploring whether low-cost continuous signals can support more useful aquarium-care decisions. The physical hypothesis is not yet scientifically validated.</p>
           </div>
           <a href="https://github.com/AndrewLamSingapore/open-aqua" target="_blank" rel="noreferrer" className="ghost-button inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-semibold">
             View prototype <ExternalLink className="w-4 h-4" />
@@ -196,7 +229,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-28">
+      <section data-reveal className="reveal-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 sm:pb-28">
         <div className="rounded-[2.2rem] border border-white/[0.09] bg-white/[0.025] p-8 sm:p-12 lg:p-16 grid lg:grid-cols-[.8fr_1.2fr] gap-10 lg:gap-16 items-center">
           <div className="rounded-[1.7rem] border border-emerald-300/15 bg-emerald-300/[0.045] p-7">
             <Building2 className="w-8 h-8 text-emerald-300" />
@@ -209,8 +242,8 @@ export default function Home() {
           </div>
           <div>
             <div className="eyebrow">Real operating leadership</div>
-            <h2 className="mt-4 text-4xl sm:text-5xl font-black tracking-[-0.04em] text-white">Evidence from the real economy.</h2>
-            <p className="mt-5 text-lg leading-relaxed text-slate-400">As Partner & Director of Maxwell Excel Service Pte. Ltd., I help govern a Singapore container-handling operation covering 20ft and 40ft stuffing and unstuffing work. Its evidence is presented as real operating data—not as an AI demonstration.</p>
+            <h2 className="mt-4 text-3xl sm:text-4xl font-black tracking-[-0.035em] text-white">Evidence from the real economy.</h2>
+            <p className="mt-5 text-base leading-relaxed text-slate-400">As Partner & Director of Maxwell Excel Service Pte. Ltd., I help govern a Singapore container-handling operation covering 20ft and 40ft stuffing and unstuffing work. Its evidence is presented as real operating data—not as an AI demonstration.</p>
             <p className="mt-4 text-sm leading-relaxed text-slate-500">The operating dataset is verified and anonymised. No unverified profit, savings or expansion claim is made.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/maxwell-excel" className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">View operating case <ArrowRight className="w-4 h-4" /></Link>
@@ -220,11 +253,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 sm:px-6 lg:px-8 pb-28">
+      <section data-reveal className="reveal-section px-4 sm:px-6 lg:px-8 pb-24 sm:pb-28">
         <div className="max-w-5xl mx-auto text-center">
           <div className="eyebrow">Operations Excellence · Supply Chain · Analytics</div>
-          <h2 className="mt-5 text-4xl sm:text-6xl font-black tracking-[-0.05em] text-white">The next conversation should begin with <span className="text-gradient">the real problem.</span></h2>
-          <p className="mt-5 text-lg text-slate-400">Career opportunities, operating collaboration and Maxwell service enquiries follow separate paths.</p>
+          <h2 className="mt-5 text-3xl sm:text-5xl font-black tracking-[-0.045em] text-white">The next conversation should begin with <span className="text-gradient">the real problem.</span></h2>
+          <p className="mt-5 text-base text-slate-400">Career opportunities, operating collaboration and Maxwell service enquiries follow separate paths.</p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <Link to="/about" className="ghost-button px-6 py-3.5 rounded-full font-semibold inline-flex items-center gap-2">See my operating story <ArrowRight className="w-4 h-4" /></Link>
             <Link to="/contact" className="premium-button px-6 py-3.5 rounded-full font-semibold">Start a conversation</Link>
