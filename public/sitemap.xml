@@ -17,6 +17,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://authority-engine-app.vercel.app/maxwell-excel</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://authority-engine-app.vercel.app/contact</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

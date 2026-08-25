@@ -19,6 +19,7 @@ ctx.fillRect(0, 0, width, 8);
 ctx.fillStyle = '#FFFFFF';
 ctx.font = 'bold 58px sans-serif';
 ctx.fillText('Andrew Lam', 80, 245);
+ctx.font = 'bold 48px sans-serif';
 ctx.fillText('Operations Excellence × Analytics', 80, 315);
 
 // Subtitle

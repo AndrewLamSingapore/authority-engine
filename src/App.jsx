@@ -10,6 +10,7 @@ const About = lazy(() => import('./pages/About'));
 const Insights = lazy(() => import('./pages/Insights'));
 const SingleInsight = lazy(() => import('./pages/SingleInsight'));
 const Contact = lazy(() => import('./pages/Contact'));
+const MaxwellExcel = lazy(() => import('./pages/MaxwellExcel'));
 const Demo = lazy(() => import('./pages/Demo'));
 const GatedDemo = lazy(() => import('./pages/GatedDemo'));
 
@@ -31,11 +32,12 @@ export default function App() {
         <main id="main-content" className="flex-grow" tabIndex="-1">
           <Suspense fallback={<Loading />}>
             <Routes>
-              <Route path="/" element={<><SEO title="Operations Intelligence Builder" description="Andrew Lam combines 20+ years of frontline operations experience with data, analytics and AI to expose risk earlier and turn complexity into action." /><Home /></>} />
+              <Route path="/" element={<><SEO title="Operations Excellence, Supply Chain & Analytics" description="Andrew Lam combines 20+ years in supply chain, warehousing and logistics with process improvement, Power BI, SQL and business analytics." /><Home /></>} />
               <Route path="/about" element={<><SEO title="About Andrew Lam" description="Operations intelligence profile spanning logistics, warehousing, process improvement, analytics and applied AI." /><About /></>} />
               <Route path="/insights" element={<><SEO title="Evidence, Experiments & Case Studies" description="Inspect operational evidence, decision frameworks, analytics experiments and working systems built by Andrew Lam." /><Insights /></>} />
               <Route path="/insights/:slug" element={<SingleInsight />} />
               <Route path="/contact" element={<><SEO title="Contact Andrew Lam" description="Start a conversation with Andrew Lam about operations excellence, process improvement, supply chain analytics, logistics and operations intelligence opportunities." /><Contact /></>} />
+              <Route path="/maxwell-excel" element={<><SEO title="Maxwell Excel Container Services" description="Job-based stuffing and unstuffing services for 20ft and 40ft containers in Singapore, operated by Maxwell Excel Service Pte. Ltd." /><MaxwellExcel /></>} />
               <Route path="/demo" element={<><SEO title="Interactive Risk Simulator" description="Explore an interactive multi-factor supply chain risk engine demonstration." /><Demo /></>} />
               <Route path="/locked-demo" element={<><SEO title="Gated Content Demo" description="Authority Engine gated-content demonstration." noindex /><GatedDemo /></>} />
               <Route path="*" element={<NotFound />} />

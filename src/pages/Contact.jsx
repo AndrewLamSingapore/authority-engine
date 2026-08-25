@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MapPin, Send, ShieldCheck, CheckCircle2, Loader2, ArrowUpRight } from 'lucide-react';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', company: '', inquiryType: 'Operations Opportunity', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', inquiryType: 'Operations Excellence Opportunity', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
@@ -32,7 +32,7 @@ export default function Contact() {
         throw new Error(message);
       }
       setSubmitted(true);
-      setFormData({ name: '', email: '', company: '', inquiryType: 'Operations Opportunity', message: '' });
+      setFormData({ name: '', email: '', company: '', inquiryType: 'Operations Excellence Opportunity', message: '' });
     } catch (err) {
       setError(err.message || 'A network error occurred. Please try again.');
     } finally {
@@ -72,7 +72,7 @@ export default function Contact() {
                   <div><label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Email *</label><input type="email" id="email" name="email" autoComplete="email" required value={formData.email} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60" placeholder="name@company.com"/></div>
                   <div><label htmlFor="company" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Company</label><input type="text" id="company" name="company" autoComplete="organization" value={formData.company} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60" placeholder="Organisation"/></div>
                 </div>
-                <div><label htmlFor="inquiryType" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Inquiry</label><select id="inquiryType" name="inquiryType" value={formData.inquiryType} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60"><option>Operations Opportunity</option><option>Analytics Opportunity</option><option>Professional Inquiry</option></select></div>
+                <div><label htmlFor="inquiryType" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Inquiry</label><select id="inquiryType" name="inquiryType" value={formData.inquiryType} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60"><option>Operations Excellence Opportunity</option><option>Supply Chain or Analytics Collaboration</option><option>Professional Inquiry</option><option>Maxwell Container Service</option></select></div>
                 <div><label htmlFor="message" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Message *</label><textarea id="message" name="message" required rows="6" maxLength="4000" value={formData.message} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60 resize-y" placeholder="The situation, challenge, opportunity or decision you are working through..."/></div>
                 {error && <div role="alert" className="text-rose-300 text-sm bg-rose-950/30 p-4 rounded-xl border border-rose-900/60">{error}</div>}
                 <button type="submit" disabled={isSubmitting} className="premium-button w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 disabled:opacity-50">{isSubmitting ? <><Loader2 className="w-5 h-5 animate-spin"/> Sending…</> : <><Send className="w-4 h-4"/> Send inquiry</>}</button>

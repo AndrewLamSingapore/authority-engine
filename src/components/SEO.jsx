@@ -6,8 +6,8 @@ export default function SEO({ title, description, image, canonical, noindex = fa
   const baseUrl = 'https://authority-engine-app.vercel.app';
   const cleanPath = location.pathname === '/' ? '' : location.pathname.replace(/\/$/, '');
   const currentUrl = canonical || `${baseUrl}${cleanPath}`;
-  const defaultTitle = 'Andrew Lam | Operations Intelligence';
-  const defaultDescription = 'Andrew Lam combines 20+ years of frontline operations experience with data, analytics and AI to expose risk earlier and turn complexity into action.';
+  const defaultTitle = 'Andrew Lam | Operations Excellence, Supply Chain & Analytics';
+  const defaultDescription = 'Andrew Lam combines 20+ years in supply chain, warehousing and logistics with process improvement, Power BI, SQL and business analytics.';
   const defaultImage = `${baseUrl}/og-preview.png`;
   const metaTitle = title ? `${title} | Andrew Lam` : defaultTitle;
   const metaDescription = description || defaultDescription;

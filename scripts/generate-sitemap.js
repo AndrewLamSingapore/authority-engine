@@ -11,7 +11,7 @@ const client = createClient({
 
 async function generateSitemap() {
   const baseUrl = 'https://authority-engine-app.vercel.app';
-  const staticPages = ['', '/about', '/insights', '/contact'];
+  const staticPages = ['', '/about', '/insights', '/maxwell-excel', '/contact'];
 
   try {
     const query = `*[_type == "post" && defined(slug.current)]{ "slug": slug.current, _updatedAt }`;

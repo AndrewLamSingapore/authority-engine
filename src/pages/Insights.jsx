@@ -4,8 +4,8 @@ import {ArrowRight,Clock,ExternalLink,FlaskConical,Search} from 'lucide-react';
 import {createClient} from '@sanity/client';
 const client=createClient({projectId:'h3pl1rfx',dataset:'production',useCdn:true,apiVersion:'2024-01-01'});
 const flagship=[
+ {title:'Container Operations Evidence',tag:'REAL OPERATING EVIDENCE',text:'Anonymised Maxwell Excel records covering 391 container jobs across seven reporting periods. Dataset figures are factual; no unverified profit, savings or production-impact claim is made.',to:'/maxwell-excel'},
  {title:'Open Aqua',tag:'E2 PRODUCT · E0/E1 PHYSICAL HYPOTHESIS',text:'A working freshwater digital-twin prototype plus a governed experiment asking whether low-cost continuous signals can provide useful earlier warning. The physical hypothesis is not yet scientifically validated.',href:'https://github.com/AndrewLamSingapore/open-aqua'},
- {title:'Container Operations Evidence',tag:'ANONYMISED OPERATING EVIDENCE',text:'Anonymised records covering 391 container jobs, seven reporting periods and S$75,720 in recorded revenue. Dataset figures are factual; no unverified savings or production-impact claim is made.',href:'https://www.linkedin.com/in/lam-teck-sing-andrew-79886719/details/featured/'},
  {title:'Multi-Signal Risk Simulator',tag:'E1 SYNTHETIC DEMONSTRATION',text:'An inspectable weighted-rule environment for exploring how multiple signals can combine. It is not presented as a trained or validated predictive model.',to:'/demo'}
 ];
 const controlledExcerpts={
