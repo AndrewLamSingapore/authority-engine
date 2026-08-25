@@ -103,15 +103,17 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto w-full grid lg:grid-cols-[1.08fr_.92fr] gap-10 xl:gap-16 items-center">
           <div className="hero-enter hero-enter-one">
             <div className="inline-flex items-center gap-2.5 rounded-full border border-emerald-400/20 bg-emerald-400/[0.07] px-4 py-2 text-[11px] sm:text-xs font-semibold tracking-[.14em] text-emerald-300 uppercase">
-              <span className="status-dot h-2 w-2 rounded-full bg-emerald-300" aria-hidden="true" />
+              <span className="signal-wave" aria-hidden="true">
+                <span /><span /><span /><span />
+              </span>
               Operations Excellence · Supply Chain · Analytics
             </div>
-            <h1 className="mt-7 text-[clamp(3.1rem,6.2vw,5.65rem)] font-black tracking-[-0.06em] leading-[.91] text-white">
+            <h1 className="mt-7 text-[clamp(2.8rem,5.5vw,5.1rem)] font-black tracking-[-0.055em] leading-[.93] text-white">
               <span className="hero-line"><span>REAL OPERATIONS.</span></span>
               <span className="hero-line"><span>CLEARER SIGNALS.</span></span>
               <span className="hero-line"><span className="text-gradient">BETTER DECISIONS.</span></span>
             </h1>
-            <p className="mt-7 max-w-2xl text-base sm:text-lg leading-relaxed text-slate-300/80">
+            <p className="mt-7 max-w-2xl text-[15px] sm:text-base leading-relaxed text-slate-300/80">
               I turn 20+ years of supply-chain, warehousing and logistics experience into evidence-led improvement using process discipline, Power BI, SQL and business analytics.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -133,7 +135,7 @@ export default function Home() {
               <div className="flex items-start justify-between gap-6 mb-8">
                 <div>
                   <div className="text-[10px] tracking-[.22em] uppercase text-emerald-300/70">How I work</div>
-                  <div className="mt-2 text-2xl font-bold tracking-tight text-white">Evidence before claims.</div>
+                  <div className="mt-2 text-xl font-bold tracking-tight text-white">Evidence before claims.</div>
                 </div>
                 <div className="method-orbit flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-amber-300/20 bg-amber-300/[0.055]">
                   <Sparkles className="w-5 h-5 text-amber-300" />
@@ -143,13 +145,13 @@ export default function Home() {
                 {['Observe how work actually happens', 'Find the constraint or weak signal', 'Test the explanation against evidence', 'Turn insight into owned action'].map((item, index) => (
                   <div key={item} className="method-step flex items-center gap-4 rounded-2xl px-3 py-3" style={{ '--step-delay': `${index * 1.2}s` }}>
                     <div className="method-number h-9 w-9 shrink-0 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] flex items-center justify-center text-xs font-bold text-emerald-300">0{index + 1}</div>
-                    <div className="flex-1 text-sm sm:text-base text-slate-200">{item}</div>
+                    <div className="flex-1 text-sm sm:text-[15px] text-slate-200">{item}</div>
                   </div>
                 ))}
               </div>
               <div className="mt-7 rounded-2xl border border-amber-300/15 bg-amber-300/[0.045] p-5">
                 <div className="text-[10px] uppercase tracking-[.2em] text-amber-300">Operating direction</div>
-                <p className="mt-2 text-base leading-relaxed text-slate-100">Operational depth, strengthened by analytics—focused on decisions people can act on.</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-slate-100">Operational depth, strengthened by analytics—focused on decisions people can act on.</p>
               </div>
             </div>
           </div>
@@ -171,8 +173,8 @@ export default function Home() {
       <section data-reveal className="reveal-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
         <div className="max-w-3xl">
           <div className="eyebrow">Employer-relevant proof first</div>
-          <h2 className="mt-4 text-4xl sm:text-6xl font-black tracking-[-0.045em] leading-[.95] text-white">Do not trust the headline.<br />Inspect the work.</h2>
-          <p className="mt-5 text-lg text-slate-400">Real operating evidence, controlled demonstrations and public builds are kept distinct.</p>
+          <h2 className="mt-4 text-3xl sm:text-5xl font-black tracking-[-0.04em] leading-[.98] text-white">Do not trust the headline.<br />Inspect the work.</h2>
+          <p className="mt-5 text-base text-slate-400">Real operating evidence, controlled demonstrations and public builds are kept distinct.</p>
         </div>
         <div className="mt-14 grid lg:grid-cols-3 gap-4">
           {evidence.map(({ Icon, tag, title, text, label, href, to }) => {
@@ -201,7 +203,7 @@ export default function Home() {
       <section data-reveal className="reveal-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 sm:pb-28">
         <div className="max-w-3xl">
           <div className="eyebrow">Strategic operational capabilities</div>
-          <h2 className="mt-4 text-4xl sm:text-6xl font-black tracking-[-0.045em] leading-[.95] text-white">Operating depth, strengthened by data.</h2>
+          <h2 className="mt-4 text-3xl sm:text-5xl font-black tracking-[-0.04em] leading-[.98] text-white">Operating depth, strengthened by data.</h2>
         </div>
         <div className="mt-14 grid md:grid-cols-3 gap-4">
           {capabilities.map(({ Icon, title, text }) => (
@@ -218,8 +220,8 @@ export default function Home() {
         <div className="rounded-[2.2rem] border border-white/[0.08] bg-gradient-to-br from-emerald-400/[0.08] via-white/[0.025] to-amber-300/[0.05] p-8 sm:p-12 lg:p-16 grid lg:grid-cols-[1fr_auto] gap-10 items-end">
           <div>
             <div className="eyebrow">Disciplined innovation evidence</div>
-            <h2 className="mt-4 text-4xl sm:text-5xl font-black text-white">Open Aqua</h2>
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-400">A working digital-twin prototype and governed experiment exploring whether low-cost continuous signals can support more useful aquarium-care decisions. The physical hypothesis is not yet scientifically validated.</p>
+            <h2 className="mt-4 text-3xl sm:text-4xl font-black text-white">Open Aqua</h2>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-400">A working digital-twin prototype and governed experiment exploring whether low-cost continuous signals can support more useful aquarium-care decisions. The physical hypothesis is not yet scientifically validated.</p>
           </div>
           <a href="https://github.com/AndrewLamSingapore/open-aqua" target="_blank" rel="noreferrer" className="ghost-button inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-semibold">
             View prototype <ExternalLink className="w-4 h-4" />
@@ -240,8 +242,8 @@ export default function Home() {
           </div>
           <div>
             <div className="eyebrow">Real operating leadership</div>
-            <h2 className="mt-4 text-4xl sm:text-5xl font-black tracking-[-0.04em] text-white">Evidence from the real economy.</h2>
-            <p className="mt-5 text-lg leading-relaxed text-slate-400">As Partner & Director of Maxwell Excel Service Pte. Ltd., I help govern a Singapore container-handling operation covering 20ft and 40ft stuffing and unstuffing work. Its evidence is presented as real operating data—not as an AI demonstration.</p>
+            <h2 className="mt-4 text-3xl sm:text-4xl font-black tracking-[-0.035em] text-white">Evidence from the real economy.</h2>
+            <p className="mt-5 text-base leading-relaxed text-slate-400">As Partner & Director of Maxwell Excel Service Pte. Ltd., I help govern a Singapore container-handling operation covering 20ft and 40ft stuffing and unstuffing work. Its evidence is presented as real operating data—not as an AI demonstration.</p>
             <p className="mt-4 text-sm leading-relaxed text-slate-500">The operating dataset is verified and anonymised. No unverified profit, savings or expansion claim is made.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/maxwell-excel" className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">View operating case <ArrowRight className="w-4 h-4" /></Link>
@@ -254,8 +256,8 @@ export default function Home() {
       <section data-reveal className="reveal-section px-4 sm:px-6 lg:px-8 pb-24 sm:pb-28">
         <div className="max-w-5xl mx-auto text-center">
           <div className="eyebrow">Operations Excellence · Supply Chain · Analytics</div>
-          <h2 className="mt-5 text-4xl sm:text-6xl font-black tracking-[-0.05em] text-white">The next conversation should begin with <span className="text-gradient">the real problem.</span></h2>
-          <p className="mt-5 text-lg text-slate-400">Career opportunities, operating collaboration and Maxwell service enquiries follow separate paths.</p>
+          <h2 className="mt-5 text-3xl sm:text-5xl font-black tracking-[-0.045em] text-white">The next conversation should begin with <span className="text-gradient">the real problem.</span></h2>
+          <p className="mt-5 text-base text-slate-400">Career opportunities, operating collaboration and Maxwell service enquiries follow separate paths.</p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <Link to="/about" className="ghost-button px-6 py-3.5 rounded-full font-semibold inline-flex items-center gap-2">See my operating story <ArrowRight className="w-4 h-4" /></Link>
             <Link to="/contact" className="premium-button px-6 py-3.5 rounded-full font-semibold">Start a conversation</Link>
