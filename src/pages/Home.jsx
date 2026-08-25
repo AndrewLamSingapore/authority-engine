@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 
 const githubUrl = 'https://github.com/AndrewLamSingapore';
 const linkedinEvidenceUrl = 'https://www.linkedin.com/in/lam-teck-sing-andrew-79886719/details/featured/';
+const playWebsiteTheme = () => window.dispatchEvent(new Event('authority-theme:play'));
 
 const proof = [
   ['20+', 'Years in operations', 'Supply chain · warehousing · logistics'],
@@ -117,7 +118,7 @@ export default function Home() {
               I turn 20+ years of supply-chain, warehousing and logistics experience into evidence-led improvement using process discipline, Power BI, SQL and business analytics.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/insights" className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
+              <Link to="/insights" onClick={playWebsiteTheme} className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
                 Inspect the evidence <ArrowRight className="w-4 h-4" />
               </Link>
               <Link to="/contact" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">

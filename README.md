@@ -69,6 +69,10 @@ This portfolio explores how operating context, data and multiple weak signals ca
 - **Vercel** — hosting and deployment
 - **GitHub Actions** — lint + production build quality gate
 
+### Sonic identity
+
+The site includes an original 8.4-second career theme built around a warm operational foundation, rising glass-like notes and a confident resolution. It remains off by default. The persistent header control previews the theme when enabled, and the primary **Inspect the evidence** transition replays it only after the visitor has opted in. Playback is deliberately restrained, fades smoothly, pauses in hidden tabs and never autoplays on an ordinary page load.
+
 The technology is supporting infrastructure. The evidence and reasoning are the product.
 
 ```bash

@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
   "dev": "vite",
-  "build": "node scripts/generate-sitemap.js && node scripts/generate-og.js && vite build",
+  "build": "node scripts/verify-sound.js && node scripts/generate-sitemap.js && node scripts/generate-og.js && vite build",
   "lint": "eslint .",
+  "verify:sound": "node scripts/verify-sound.js",
   "preview": "vite preview"
 }, 
   "dependencies": {
