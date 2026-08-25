@@ -7,6 +7,8 @@ Canonical: https://authority-engine-app.vercel.app/
 ## Core pages
 - / — Operations Excellence, supply chain and analytics authority
 - /about — Background, operating philosophy and credibility
+- /portal — Interactive living knowledge graph
+- /open-aqua — Live interactive freshwater aquarium operating system
 - /insights — Evidence, case studies, experiments and decision frameworks
 - /maxwell-excel — Real operating evidence and Singapore container-service scope
 - /contact — Career, collaboration, professional and Maxwell service inquiries
@@ -19,4 +21,4 @@ Canonical: https://authority-engine-app.vercel.app/
 - Maxwell Excel evidence is real and anonymised; no unverified profit, savings or expansion claim is made.
 
 ## Current frontier
-Open Aqua explores whether continuous low-cost sensing and sensor fusion can reveal aquarium risk earlier than periodic testing alone.
+Open Aqua is a live browser-accessible product for structured aquarium decisions and memory. Its future physical sensing hypothesis remains explicitly unvalidated.
