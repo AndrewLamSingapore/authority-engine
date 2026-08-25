@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 
 const githubUrl = 'https://github.com/AndrewLamSingapore';
 const linkedinEvidenceUrl = 'https://www.linkedin.com/in/lam-teck-sing-andrew-79886719/details/featured/';
+const openAquaUrl = 'https://open-aqua.vercel.app/';
 const playWebsiteTheme = () => window.dispatchEvent(new Event('authority-theme:play'));
 
 const proof = [
@@ -247,15 +248,26 @@ export default function Home() {
       </section>
 
       <section data-reveal className="reveal-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 sm:pb-28">
-        <div className="rounded-[2.2rem] border border-white/[0.08] bg-gradient-to-br from-emerald-400/[0.08] via-white/[0.025] to-amber-300/[0.05] p-8 sm:p-12 lg:p-16 grid lg:grid-cols-[1fr_auto] gap-10 items-end">
-          <div>
-            <div className="eyebrow">Disciplined innovation evidence</div>
-            <h2 className="mt-4 text-3xl sm:text-4xl font-black text-white">Open Aqua</h2>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-400">A working digital-twin prototype and governed experiment exploring whether low-cost continuous signals can support more useful aquarium-care decisions. The physical hypothesis is not yet scientifically validated.</p>
+        <div className="overflow-hidden rounded-[2.2rem] border border-white/[0.08] bg-gradient-to-br from-emerald-400/[0.08] via-white/[0.025] to-amber-300/[0.05] grid lg:grid-cols-[.82fr_1.18fr]">
+          <div className="p-8 sm:p-12 lg:p-14 flex flex-col justify-center">
+            <div>
+              <div className="eyebrow">Live interactive product · Open Aqua 0.5</div>
+              <h2 className="mt-4 text-4xl sm:text-5xl font-black text-white">Open Aqua</h2>
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-300">A freshwater operating system that turns incomplete observations into explainable next actions—and remembers the outcomes without hiding uncertainty.</p>
+              <p className="mt-4 text-sm leading-relaxed text-slate-500">The browser preview is live product evidence. Future physical sensor-fusion claims remain unvalidated hypotheses.</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link to="/open-aqua" className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Explore it here <ArrowRight className="w-4 h-4" /></Link>
+                <a href={openAquaUrl} target="_blank" rel="noreferrer" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Open full experience <ExternalLink className="w-4 h-4" /></a>
+              </div>
+            </div>
           </div>
-          <a href="https://github.com/AndrewLamSingapore/open-aqua" target="_blank" rel="noreferrer" className="ghost-button inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-semibold">
-            View prototype <ExternalLink className="w-4 h-4" />
-          </a>
+          <div className="min-h-[620px] border-t lg:border-t-0 lg:border-l border-white/[0.08] bg-[#f4f8f8]">
+            <div className="h-12 px-5 flex items-center justify-between bg-[#08100e] border-b border-white/[0.08]">
+              <span className="text-[10px] tracking-[.18em] uppercase text-emerald-300">Interactive public preview</span>
+              <span className="text-[10px] text-slate-500">Browser-local data</span>
+            </div>
+            <iframe src={openAquaUrl} title="Open Aqua interactive homepage preview" className="block w-full h-[568px]" loading="lazy" referrerPolicy="strict-origin-when-cross-origin" allow="clipboard-write" />
+          </div>
         </div>
       </section>
 

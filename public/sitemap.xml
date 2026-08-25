@@ -12,6 +12,16 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://authority-engine-app.vercel.app/portal</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://authority-engine-app.vercel.app/open-aqua</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://authority-engine-app.vercel.app/insights</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
