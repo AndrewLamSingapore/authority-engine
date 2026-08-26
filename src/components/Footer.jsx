@@ -16,7 +16,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
         <div>
           <h3 className="text-lg font-semibold text-white">Andrew Lam</h3>
-          <p className="text-sm mt-1">Operations Intelligence · Supply Chain · Analytics · AI</p>
+          <p className="text-sm mt-1">Authority Engine · Operations · Analytics · Applied AI</p>
         </div>
         <div className="flex items-center space-x-6">
           <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors p-2" aria-label="Andrew Lam on LinkedIn">

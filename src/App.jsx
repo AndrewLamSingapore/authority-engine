@@ -34,7 +34,7 @@ export default function App() {
         <main id="main-content" className="flex-grow" tabIndex="-1">
           <Suspense fallback={<Loading />}>
             <Routes>
-              <Route path="/" element={<><SEO title="Operations Excellence, Supply Chain & Analytics" description="Andrew Lam combines 20+ years in supply chain, warehousing and logistics with process improvement, Power BI, SQL and business analytics." /><Home /></>} />
+              <Route path="/" element={<><SEO title="Authority Engine — Operations, Analytics & Applied AI" description="Explore Andrew Lam's public evidence system: 20+ years in operations, strengthened by analytics, applied AI and inspectable experiments." /><Home /></>} />
               <Route path="/about" element={<><SEO title="About Andrew Lam" description="Operations intelligence profile spanning logistics, warehousing, process improvement, analytics and applied AI." /><About /></>} />
               <Route path="/insights" element={<><SEO title="Evidence, Experiments & Case Studies" description="Inspect operational evidence, decision frameworks, analytics experiments and working systems built by Andrew Lam." /><Insights /></>} />
               <Route path="/insights/:slug" element={<SingleInsight />} />
@@ -42,7 +42,7 @@ export default function App() {
               <Route path="/maxwell-excel" element={<><SEO title="Maxwell Excel Container Services" description="Job-based stuffing and unstuffing services for 20ft and 40ft containers in Singapore, operated by Maxwell Excel Service Pte. Ltd." /><MaxwellExcel /></>} />
               <Route path="/demo" element={<><SEO title="Interactive Risk Simulator" description="Explore an interactive multi-factor supply chain risk engine demonstration." /><Demo /></>} />
               <Route path="/portal" element={<><SEO title="The Portal — Living Knowledge Graph" description="Explore Andrew Lam’s interactive living knowledge graph for connected evidence, encounters and applied intelligence." /><Portal /></>} />
-              <Route path="/open-aqua" element={<><SEO title="Open Aqua — Interactive Aquarium Operating System" description="Explore Andrew Lam’s live Open Aqua product: a governed freshwater aquarium operating system for explainable decisions, uncertainty and tank memory." /><OpenAqua /></>} />
+              <Route path="/open-aqua" element={<><SEO title="Open Aqua — Governed Aquarium Exploration" description="Explore Andrew Lam’s Open Aqua 0.6 browser concept for explainable aquarium decisions, uncertainty and tank memory. Physical implementation remains unvalidated." /><OpenAqua /></>} />
               <Route path="/locked-demo" element={<><SEO title="Gated Content Demo" description="Authority Engine gated-content demonstration." noindex /><GatedDemo /></>} />
               <Route path="*" element={<NotFound />} />
             </Routes>

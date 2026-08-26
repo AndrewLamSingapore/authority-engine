@@ -29,16 +29,16 @@ export default function OpenAqua() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <section className="grid lg:grid-cols-[1.05fr_.95fr] gap-10 lg:gap-16 items-center">
           <div>
-            <div className="eyebrow">Live public product · Open Aqua 0.5</div>
+            <div className="eyebrow">Controlled public exploration · Open Aqua 0.6</div>
             <h1 className="mt-5 text-5xl sm:text-7xl font-black tracking-[-0.055em] leading-[.92]">
               Aquarium care,<br /><span className="text-gradient">without the noise.</span>
             </h1>
             <p className="mt-7 max-w-3xl text-lg leading-relaxed text-slate-300">
-              An iPhone-first freshwater operating system that converts imperfect observations into safer, explainable decisions—and remembers what happened next.
+              An iPhone-first browser concept exploring how imperfect observations could become safer, explainable decisions—and how a tank could remember what happened next.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={openAquaUrl} target="_blank" rel="noreferrer" className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
-                Launch Open Aqua <ExternalLink className="w-4 h-4" />
+                Explore Open Aqua <ExternalLink className="w-4 h-4" />
               </a>
               <a href={repositoryUrl} target="_blank" rel="noreferrer" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
                 Inspect the source <ExternalLink className="w-4 h-4" />
@@ -48,8 +48,8 @@ export default function OpenAqua() {
           <div className="signal-card rounded-[2rem] p-7 sm:p-9">
             <div className="flex items-start justify-between gap-6">
               <div>
-                <div className="text-[10px] tracking-[.2em] uppercase text-emerald-300">Product evidence</div>
-                <h2 className="mt-3 text-2xl font-black">A working governed prototype</h2>
+                <div className="text-[10px] tracking-[.2em] uppercase text-emerald-300">Inspectable concept evidence</div>
+                <h2 className="mt-3 text-2xl font-black">A working governed browser prototype</h2>
               </div>
               <Waves className="w-8 h-8 text-emerald-300" />
             </div>
@@ -66,7 +66,7 @@ export default function OpenAqua() {
                 </div>
               ))}
             </div>
-            <p className="mt-6 text-sm leading-relaxed text-slate-500">The software is working product evidence. Any future physical sensor-fusion claim remains a hypothesis until independently validated.</p>
+            <p className="mt-6 text-sm leading-relaxed text-slate-500">The browser concept can be inspected. Physical sensor integration, implementation and market claims remain hypotheses until independently validated.</p>
           </div>
         </section>
 
@@ -82,7 +82,7 @@ export default function OpenAqua() {
           </div>
           <iframe
             src={openAquaUrl}
-            title="Interactive Open Aqua product"
+            title="Interactive Open Aqua browser concept"
             className="block w-full h-[760px] bg-[#f4f8f8]"
             loading="eager"
             referrerPolicy="strict-origin-when-cross-origin"

@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import { MapPin, Send, ShieldCheck, CheckCircle2, Loader2, ArrowUpRight } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', company: '', inquiryType: 'Operations Excellence Opportunity', message: '' });
+  const location = useLocation();
+  const [formData, setFormData] = useState(() => ({
+    name: '',
+    email: '',
+    company: '',
+    inquiryType: location.state?.inquiryType || 'Operations Excellence Opportunity',
+    message: location.state?.message || '',
+  }));
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
