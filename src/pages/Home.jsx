@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import signalVisual from '../assets/authority-signal.webp';
+import velyquaLogo from '../assets/velyqua-logo.svg';
 
 const githubUrl = 'https://github.com/AndrewLamSingapore';
 const linkedinEvidenceUrl = 'https://www.linkedin.com/in/lam-teck-sing-andrew-79886719/details/featured/';
@@ -436,6 +437,11 @@ export default function Home() {
         <div className="overflow-hidden rounded-[2.2rem] border border-white/[0.08] bg-gradient-to-br from-emerald-400/[0.08] via-white/[0.025] to-amber-300/[0.05] grid lg:grid-cols-[.82fr_1.18fr]">
           <div className="p-8 sm:p-12 lg:p-14 flex flex-col justify-center">
             <div>
+              <img
+                src={velyquaLogo}
+                alt="VELYQUA 维澜 logo"
+                className="mb-6 h-20 w-20 rounded-2xl shadow-xl shadow-cyan-950/40 ring-1 ring-cyan-200/20"
+              />
               <div className="eyebrow">Controlled exploration · VELYQUA 维澜</div>
               <h2 className="mt-4 text-4xl sm:text-5xl font-black text-white">VELYQUA <span className="text-emerald-300">维澜</span></h2>
               <p className="mt-3 text-sm font-semibold tracking-wide text-emerald-300">洞察微澜，守护水境。</p>

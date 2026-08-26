@@ -1,6 +1,7 @@
 import React from 'react';
 import { Activity, ArrowRight, Database, ExternalLink, ShieldCheck, Waves } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import velyquaLogo from '../assets/velyqua-logo.svg';
 
 const velyquaUrl = 'https://andrewlamsingapore.github.io/velyqua/';
 const repositoryUrl = 'https://github.com/AndrewLamSingapore/velyqua';
@@ -29,6 +30,11 @@ export default function Velyqua() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <section className="grid lg:grid-cols-[1.05fr_.95fr] gap-10 lg:gap-16 items-center">
           <div>
+            <img
+              src={velyquaLogo}
+              alt="VELYQUA 维澜 logo"
+              className="mb-7 h-24 w-24 rounded-[1.45rem] shadow-2xl shadow-cyan-950/50 ring-1 ring-cyan-200/20 sm:h-28 sm:w-28"
+            />
             <div className="eyebrow">Controlled public exploration · VELYQUA 维澜</div>
             <h1 className="mt-5 text-5xl sm:text-7xl font-black tracking-[-0.055em] leading-[.92]">
               Aquarium care,<br /><span className="text-gradient">without the noise.</span>
