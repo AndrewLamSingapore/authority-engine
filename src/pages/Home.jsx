@@ -466,8 +466,12 @@ export default function Home() {
       <section data-reveal className="reveal-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 sm:pb-28">
         <div className="rounded-[2.2rem] border border-white/[0.09] bg-white/[0.025] p-8 sm:p-12 lg:p-16 grid lg:grid-cols-[.8fr_1.2fr] gap-10 lg:gap-16 items-center">
           <div className="rounded-[1.7rem] border border-emerald-300/15 bg-emerald-300/[0.045] p-7">
-            <Building2 className="w-8 h-8 text-emerald-300" />
-            <div className="mt-12 text-xs font-bold tracking-[.16em] text-amber-300">REAL OPERATING COMPANY</div>
+            <img
+              src="/maxwell-excel-logo.jpeg"
+              alt="Maxwell Excel company logo"
+              className="h-24 w-24 rounded-2xl bg-white object-contain shadow-xl shadow-blue-950/30 ring-1 ring-white/15"
+            />
+            <div className="mt-8 text-xs font-bold tracking-[.16em] text-amber-300">REAL OPERATING COMPANY</div>
             <div className="mt-3 text-3xl font-black text-white">Maxwell Excel Service</div>
             <div className="mt-6 grid grid-cols-2 gap-3 text-sm">
               <div className="rounded-xl border border-white/[0.07] bg-black/20 p-4"><div className="text-2xl font-black text-white">391</div><div className="mt-1 text-slate-500">anonymised job records</div></div>
