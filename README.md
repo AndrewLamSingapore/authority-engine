@@ -91,7 +91,7 @@ npm run build
 | **PROVE** | Evidence, case studies and analytical demonstrations | **This project** |
 | **BUILD** | Code, products and experiments | [GitHub](https://github.com/AndrewLamSingapore) |
 
-The flagship BUILD project is [Open Aqua](https://github.com/AndrewLamSingapore/open-aqua), an iPhone-first freshwater digital twin and governed sensor-fusion experiment.
+The flagship BUILD project is [VELYQUA](https://github.com/AndrewLamSingapore/velyqua), an iPhone-first freshwater digital twin and governed sensor-fusion experiment.
 
 ---
 

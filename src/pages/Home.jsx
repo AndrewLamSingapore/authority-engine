@@ -23,7 +23,7 @@ import signalVisual from '../assets/authority-signal.webp';
 
 const githubUrl = 'https://github.com/AndrewLamSingapore';
 const linkedinEvidenceUrl = 'https://www.linkedin.com/in/lam-teck-sing-andrew-79886719/details/featured/';
-const openAquaUrl = 'https://open-aqua.vercel.app/';
+const velyquaUrl = 'https://andrewlamsingapore.github.io/velyqua/';
 const playWebsiteTheme = () => window.dispatchEvent(new Event('authority-theme:play'));
 
 const audiencePaths = [
@@ -99,10 +99,10 @@ const authoritySignals = [
     Icon: Layers3,
     tag: 'CONTROLLED EXPLORATION',
     title: 'Where machines begin to observe, decide and act.',
-    text: 'Open Aqua 0.6 explores explainable aquarium decisions, memory and future sensor integration. Machine-economy work examines the authority and evidence machines may need before acting.',
+    text: 'VELYQUA 0.6 explores explainable aquarium decisions, memory and future sensor integration. Machine-economy work examines the authority and evidence machines may need before acting.',
     proof: 'Browser concepts are inspectable. Physical implementation and market claims remain unvalidated.',
     action: 'Open the Aqua exploration',
-    to: '/open-aqua',
+    to: '/velyqua',
   },
 ];
 
@@ -436,13 +436,14 @@ export default function Home() {
         <div className="overflow-hidden rounded-[2.2rem] border border-white/[0.08] bg-gradient-to-br from-emerald-400/[0.08] via-white/[0.025] to-amber-300/[0.05] grid lg:grid-cols-[.82fr_1.18fr]">
           <div className="p-8 sm:p-12 lg:p-14 flex flex-col justify-center">
             <div>
-              <div className="eyebrow">Controlled exploration · Open Aqua 0.6</div>
-              <h2 className="mt-4 text-4xl sm:text-5xl font-black text-white">Open Aqua</h2>
+              <div className="eyebrow">Controlled exploration · VELYQUA 维澜</div>
+              <h2 className="mt-4 text-4xl sm:text-5xl font-black text-white">VELYQUA <span className="text-emerald-300">维澜</span></h2>
+              <p className="mt-3 text-sm font-semibold tracking-wide text-emerald-300">洞察微澜，守护水境。</p>
               <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-300">A browser concept exploring how incomplete aquarium observations could become explainable next actions—while preserving uncertainty and tank memory.</p>
               <p className="mt-4 text-sm leading-relaxed text-slate-500">The interactive concept is inspectable. Physical sensor integration, implementation and market claims remain unvalidated.</p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link to="/open-aqua" className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Explore it here <ArrowRight className="w-4 h-4" /></Link>
-                <a href={openAquaUrl} target="_blank" rel="noreferrer" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Open full experience <ExternalLink className="w-4 h-4" /></a>
+                <Link to="/velyqua" className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Explore it here <ArrowRight className="w-4 h-4" /></Link>
+                <a href={velyquaUrl} target="_blank" rel="noreferrer" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Open full experience <ExternalLink className="w-4 h-4" /></a>
               </div>
             </div>
           </div>
@@ -451,7 +452,7 @@ export default function Home() {
               <span className="text-[10px] tracking-[.18em] uppercase text-emerald-300">Interactive browser concept</span>
               <span className="text-[10px] text-slate-500">Browser-local data</span>
             </div>
-            <iframe src={openAquaUrl} title="Open Aqua interactive homepage preview" className="block w-full h-[568px]" loading="lazy" referrerPolicy="strict-origin-when-cross-origin" allow="clipboard-write" />
+            <iframe src={velyquaUrl} title="VELYQUA interactive homepage preview" className="block w-full h-[568px]" loading="lazy" referrerPolicy="strict-origin-when-cross-origin" allow="clipboard-write" />
           </div>
         </div>
       </section>

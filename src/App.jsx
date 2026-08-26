@@ -14,7 +14,7 @@ const MaxwellExcel = lazy(() => import('./pages/MaxwellExcel'));
 const Demo = lazy(() => import('./pages/Demo'));
 const GatedDemo = lazy(() => import('./pages/GatedDemo'));
 const Portal = lazy(() => import('./pages/Portal'));
-const OpenAqua = lazy(() => import('./pages/OpenAqua'));
+const Velyqua = lazy(() => import('./pages/Velyqua'));
 
 function NotFound() {
   return <><SEO title="404 — Page Not Found" description="The requested Authority Engine page could not be located." noindex /><div className="min-h-[65vh] flex flex-col items-center justify-center text-center px-4"><div className="eyebrow">404</div><h1 className="mt-4 text-5xl font-black text-white">Signal lost.</h1><p className="text-slate-400 mt-3 mb-7 max-w-md">The requested route does not exist or has moved.</p><Link to="/" className="premium-button px-6 py-3 rounded-full font-semibold">Return home</Link></div></>;
@@ -42,7 +42,7 @@ export default function App() {
               <Route path="/maxwell-excel" element={<><SEO title="Maxwell Excel Container Services" description="Job-based stuffing and unstuffing services for 20ft and 40ft containers in Singapore, operated by Maxwell Excel Service Pte. Ltd." /><MaxwellExcel /></>} />
               <Route path="/demo" element={<><SEO title="Interactive Risk Simulator" description="Explore an interactive multi-factor supply chain risk engine demonstration." /><Demo /></>} />
               <Route path="/portal" element={<><SEO title="The Portal — Living Knowledge Graph" description="Explore Andrew Lam’s interactive living knowledge graph for connected evidence, encounters and applied intelligence." /><Portal /></>} />
-              <Route path="/open-aqua" element={<><SEO title="Open Aqua — Governed Aquarium Exploration" description="Explore Andrew Lam’s Open Aqua 0.6 browser concept for explainable aquarium decisions, uncertainty and tank memory. Physical implementation remains unvalidated." /><OpenAqua /></>} />
+              <Route path="/velyqua" element={<><SEO title="VELYQUA 维澜 — Governed Aquarium Exploration" description="Explore Andrew Lam’s VELYQUA 维澜 browser concept for explainable aquarium decisions, uncertainty and tank memory. Physical implementation remains unvalidated." /><Velyqua /></>} />
               <Route path="/locked-demo" element={<><SEO title="Gated Content Demo" description="Authority Engine gated-content demonstration." noindex /><GatedDemo /></>} />
               <Route path="*" element={<NotFound />} />
             </Routes>
