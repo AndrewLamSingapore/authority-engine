@@ -23,7 +23,7 @@ import signalVisual from '../assets/authority-signal.webp';
 import velyquaLogo from '../assets/velyqua-logo.svg';
 
 const githubUrl = 'https://github.com/AndrewLamSingapore';
-const linkedinEvidenceUrl = 'https://www.linkedin.com/in/lam-teck-sing-andrew-79886719/details/featured/';
+const containerCaseStudyUrl = '/live-container-operations-case-study.pdf';
 const velyquaUrl = 'https://andrewlamsingapore.github.io/velyqua/';
 const playWebsiteTheme = () => window.dispatchEvent(new Event('authority-theme:play'));
 
@@ -126,8 +126,8 @@ const evidence = [
     tag: 'REAL OPERATING EVIDENCE',
     title: 'Live Container Operations',
     text: 'An anonymised, seven-period operating dataset showing how job volume, service mix and recorded revenue can be inspected without inventing savings or impact claims.',
-    label: 'Inspect featured evidence',
-    href: linkedinEvidenceUrl,
+    label: 'Open case study PDF',
+    href: containerCaseStudyUrl,
   },
   {
     Icon: GitBranch,
