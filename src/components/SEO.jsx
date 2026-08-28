@@ -6,8 +6,8 @@ export default function SEO({ title, description, image, canonical, noindex = fa
   const baseUrl = 'https://authority-engine-app.vercel.app';
   const cleanPath = location.pathname === '/' ? '' : location.pathname.replace(/\/$/, '');
   const currentUrl = canonical || `${baseUrl}${cleanPath}`;
-  const defaultTitle = 'Andrew Lam | Operations Excellence, Supply Chain & Analytics';
-  const defaultDescription = 'Andrew Lam combines 20+ years in supply chain, warehousing and logistics with process improvement, Power BI, SQL and business analytics.';
+  const defaultTitle = 'Andrew Lam | Authority Engine';
+  const defaultDescription = "Andrew Lam's public evidence system for operations leadership, analytics, applied AI and inspectable experiments.";
   const defaultImage = `${baseUrl}/og-preview.png`;
   const metaTitle = title ? `${title} | Andrew Lam` : defaultTitle;
   const metaDescription = description || defaultDescription;
@@ -28,7 +28,7 @@ export default function SEO({ title, description, image, canonical, noindex = fa
     setMeta('meta[name="description"]', 'name', 'description', metaDescription);
     setMeta('meta[name="robots"]', 'name', 'robots', noindex ? 'noindex,nofollow' : 'index,follow,max-image-preview:large');
     setLink('canonical', currentUrl);
-    setMeta('meta[property="og:site_name"]', 'property', 'og:site_name', 'Andrew Lam — Operations Intelligence');
+    setMeta('meta[property="og:site_name"]', 'property', 'og:site_name', 'Andrew Lam — Authority Engine');
     setMeta('meta[property="og:title"]', 'property', 'og:title', metaTitle);
     setMeta('meta[property="og:description"]', 'property', 'og:description', metaDescription);
     setMeta('meta[property="og:url"]', 'property', 'og:url', currentUrl);

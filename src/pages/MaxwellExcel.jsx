@@ -39,6 +39,11 @@ export default function MaxwellExcel() {
         </div>
         <div className="relative max-w-7xl mx-auto grid lg:grid-cols-[1.15fr_.85fr] gap-12 items-center">
           <div>
+            <img
+              src="/maxwell-excel-logo.jpeg"
+              alt="Maxwell Excel company logo"
+              className="mb-8 h-32 w-32 rounded-2xl bg-white object-contain shadow-2xl shadow-blue-950/30 ring-1 ring-white/15 sm:h-36 sm:w-36"
+            />
             <div className="eyebrow">Maxwell Excel Service Pte. Ltd.</div>
             <h1 className="mt-5 text-5xl sm:text-7xl font-black tracking-[-0.06em] leading-[.9] text-white">Container work.<br /><span className="text-gradient">Clearly scoped.</span></h1>
             <p className="mt-7 max-w-2xl text-lg sm:text-xl leading-relaxed text-slate-400">Stuffing and unstuffing services for 20ft and 40ft containers in Singapore, structured around the actual job rather than generic manpower supply.</p>
