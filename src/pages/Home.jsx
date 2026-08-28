@@ -21,6 +21,7 @@ import {
 import { Link } from 'react-router-dom';
 import signalVisual from '../assets/authority-signal.webp';
 import velyquaLogo from '../assets/velyqua-logo.svg';
+import SignalField from '../components/SignalField';
 
 const githubUrl = 'https://github.com/AndrewLamSingapore';
 const containerCaseStudyUrl = '/live-container-operations-case-study.pdf';
@@ -219,22 +220,25 @@ export default function Home() {
 
   return (
     <div className="overflow-hidden bg-[#050807] text-slate-100">
-      <section className="relative min-h-[calc(100svh-5rem)] flex items-center pt-28 pb-14 px-4 sm:px-6 lg:px-8">
+      <section className="authority-hero relative min-h-[calc(100svh-5rem)] flex items-center pt-28 pb-14 px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <SignalField />
           <div className="ambient-orb ambient-orb-one absolute -top-40 right-[-10%] h-[620px] w-[620px] rounded-full bg-emerald-500/[0.1] blur-[120px]" />
           <div className="ambient-orb ambient-orb-two absolute bottom-[-20%] left-[-10%] h-[520px] w-[520px] rounded-full bg-amber-400/[0.065] blur-[130px]" />
           <div className="hero-grid absolute inset-0 opacity-35" />
           <div className="signal-beam absolute left-0 right-0 top-[42%] h-px" />
+          <div className="authority-hero-vignette absolute inset-0" />
+          <div className="authority-scanline absolute inset-x-0 h-28" />
         </div>
         <div className="relative max-w-7xl mx-auto w-full grid lg:grid-cols-[1.08fr_.92fr] gap-10 xl:gap-16 items-center">
-          <div className="hero-enter hero-enter-one">
-            <div className="inline-flex items-center gap-2.5 rounded-full border border-emerald-400/20 bg-emerald-400/[0.07] px-4 py-2 text-[11px] sm:text-xs font-semibold tracking-[.14em] text-emerald-300 uppercase">
+          <div className="authority-hero-copy hero-enter hero-enter-one">
+            <div className="hero-status-badge inline-flex items-center gap-2.5 rounded-full border border-emerald-400/20 bg-emerald-400/[0.07] px-4 py-2 text-[11px] sm:text-xs font-semibold tracking-[.14em] text-emerald-300 uppercase">
               <span className="signal-wave" aria-hidden="true">
                 <span /><span /><span /><span />
               </span>
               Operations Leadership · Analytics · Applied AI
             </div>
-            <h1 className="mt-7 text-[clamp(2.8rem,5.5vw,5.1rem)] font-black tracking-[-0.055em] leading-[.93] text-white">
+            <h1 className="authority-headline mt-7 text-[clamp(2.8rem,5.5vw,5.1rem)] font-black tracking-[-0.055em] leading-[.93] text-white">
               <span className="hero-line"><span>I TURN COMPLEX</span></span>
               <span className="hero-line"><span>OPERATIONS INTO</span></span>
               <span className="hero-line"><span className="text-gradient">DECISIONS THAT MOVE.</span></span>
@@ -243,7 +247,7 @@ export default function Home() {
               I combine 20+ years across supply chain, warehousing, cold chain and logistics with Power BI, SQL, business analytics and applied AI—building resilient operations through data and execution.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/insights" onClick={playWebsiteTheme} className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
+              <Link to="/insights" onClick={playWebsiteTheme} className="signal-cta premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
                 Explore the work <ArrowRight className="w-4 h-4" />
               </Link>
               <Link to="/contact" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
@@ -256,7 +260,9 @@ export default function Home() {
             </div>
           </div>
           <div className="relative lg:pl-4 hero-enter hero-enter-two">
-            <div className="signal-card signal-card-live relative overflow-hidden rounded-[2rem] p-6 sm:p-8">
+            <div className="motion-tilt-shell" data-tilt>
+              <div className="signal-card signal-card-live relative overflow-hidden rounded-[2rem] p-6 sm:p-8">
+                <div className="signal-border-trace" aria-hidden="true" />
               <div className="signal-sweep" aria-hidden="true" />
               <div className="flex items-start justify-between gap-6 mb-6">
                 <div>
@@ -264,6 +270,8 @@ export default function Home() {
                   <div className="mt-2 text-xl font-bold tracking-tight text-white">What brought you here?</div>
                 </div>
                 <div className="method-orbit flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-amber-300/20 bg-amber-300/[0.055]">
+                  <span className="method-orbit-ring method-orbit-ring-one" aria-hidden="true" />
+                  <span className="method-orbit-ring method-orbit-ring-two" aria-hidden="true" />
                   <Sparkles className="w-5 h-5 text-amber-300" />
                 </div>
               </div>
@@ -290,6 +298,7 @@ export default function Home() {
                 <Link to={audience.to} className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-emerald-300 hover:text-emerald-200">
                   {audience.action} <ArrowRight className="w-4 h-4" />
                 </Link>
+              </div>
               </div>
             </div>
           </div>
