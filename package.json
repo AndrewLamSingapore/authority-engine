@@ -6,6 +6,7 @@
   "scripts": {
   "dev": "vite",
   "build": "node scripts/verify-sound.js && node scripts/generate-sitemap.js && node scripts/generate-og.js && vite build",
+  "check:server": "node --check api/health.js && node --check api/insights.js",
   "lint": "eslint .",
   "verify:sound": "node scripts/verify-sound.js",
   "preview": "vite preview"
