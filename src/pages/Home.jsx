@@ -26,6 +26,7 @@ import SignalField from '../components/SignalField';
 const githubUrl = 'https://github.com/AndrewLamSingapore';
 const containerCaseStudyUrl = '/live-container-operations-case-study.pdf';
 const velyquaUrl = 'https://andrewlamsingapore.github.io/velyqua/';
+const gamePlatformUrl = 'https://game-platform-wine-nine.vercel.app/';
 const playWebsiteTheme = () => window.dispatchEvent(new Event('authority-theme:play'));
 
 const audiencePaths = [
@@ -250,6 +251,9 @@ export default function Home() {
               <Link to="/insights" onClick={playWebsiteTheme} className="signal-cta premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
                 Explore the work <ArrowRight className="w-4 h-4" />
               </Link>
+              <a href={gamePlatformUrl} target="_blank" rel="noopener noreferrer" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
+                Play a living world <ExternalLink className="w-4 h-4" />
+              </a>
               <Link to="/contact" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
                 Bring me a problem
               </Link>
