@@ -7,13 +7,13 @@
     "node": "22.x"
   },
   "scripts": {
-  "dev": "vite",
-  "build": "node scripts/verify-sound.js && node scripts/generate-sitemap.js && node scripts/generate-og.js && vite build",
-  "check:server": "node --check api/health.js && node --check api/insights.js",
-  "lint": "eslint .",
-  "verify:sound": "node scripts/verify-sound.js",
-  "preview": "vite preview"
-}, 
+    "dev": "vite",
+    "build": "node scripts/verify-sound.js && node scripts/generate-sitemap.js && node scripts/generate-og.js && vite build",
+    "check:server": "node --check api/health.js && node --check api/insights.js",
+    "lint": "eslint .",
+    "verify:sound": "node scripts/verify-sound.js",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "@sanity/client": "^8.2.0",
     "lucide-react": "^1.33.0",
@@ -36,5 +36,12 @@
     "postcss": "^8.5.26",
     "tailwindcss": "^3.4.19",
     "vite": "^8.2.2"
+  },
+  "deployment_baseline": {
+    "date": "2026-08-30",
+    "scope": "non-velyqua",
+    "system": "authority-engine",
+    "release": "operations-intelligence-evidence-hub",
+    "supersedes": "earlier architecture and deployment checkpoints"
   }
 }
