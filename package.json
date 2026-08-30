@@ -42,6 +42,8 @@
     "scope": "non-velyqua",
     "system": "authority-engine",
     "release": "operations-intelligence-evidence-hub",
-    "supersedes": "earlier architecture and deployment checkpoints"
+    "supersedes": "earlier architecture and deployment checkpoints",
+    "redeploy_generation": 1,
+    "trigger": "verified-pull-request-merge"
   }
 }
