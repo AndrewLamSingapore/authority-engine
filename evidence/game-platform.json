@@ -1,0 +1,30 @@
+{
+  "schema_version": "authority-evidence-v1",
+  "product_id": "GAME-PLATFORM",
+  "product_name": "Game Platform",
+  "role": "BUILD",
+  "evidence_level": "E2",
+  "claim": "Working independently deployed prototype for persistent AI-native role-playing with bounded GM reasoning and server-authoritative game state.",
+  "implemented_evidence": [
+    "independent private GitHub repository",
+    "dedicated Supabase project with campaign isolation and RLS",
+    "dedicated Vercel project",
+    "GM Reasoner with deterministic fallback",
+    "persistent campaign memory, quests, factions and world state",
+    "multiplayer role and invitation architecture",
+    "server-authoritative inventory, equipment, rulesets and deterministic combat",
+    "JWT-protected authority Edge Functions",
+    "Event Bus and Audit Trail records"
+  ],
+  "not_yet_validated": [
+    "narrative quality at scale",
+    "real multiplayer acceptance",
+    "retention",
+    "market demand",
+    "commercial viability",
+    "production reliability at meaningful scale"
+  ],
+  "authority_boundary": "Authority Engine may publish inspectable evidence and evidence level only. It does not approve Game Platform actions, mutate campaign state, change trust, or share runtime/data access with the product.",
+  "product_url": "https://game-platform-wine-nine.vercel.app",
+  "source_repository": "AndrewLamSingapore/game-platform"
+}
