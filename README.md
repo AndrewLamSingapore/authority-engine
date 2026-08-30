@@ -91,7 +91,7 @@ npm run build
 | **PROVE** | Evidence, case studies and analytical demonstrations | **This project** |
 | **BUILD** | Code, products and experiments | [GitHub](https://github.com/AndrewLamSingapore) |
 
-The BUILD layer currently includes [VELYQUA](https://github.com/AndrewLamSingapore/velyqua), an iPhone-first freshwater digital twin and governed sensor-fusion experiment, plus the independently deployed [Game Platform](https://game-platform-wine-nine.vercel.app/), a persistent AI-native role-playing system with bounded GM reasoning and server-authoritative state.\n\nGame Platform is published at **E2 — working prototype**. Its deployed software and authority boundaries are evidenced; multiplayer acceptance, retention, market demand and commercial viability remain unvalidated.
+The BUILD layer includes the independently deployed [Game Platform](https://game-platform-wine-nine.vercel.app/), a persistent AI-native role-playing system with bounded GM reasoning and server-authoritative state. Game Platform is published at **E2 — working prototype**. Its deployed software and authority boundaries are evidenced; multiplayer acceptance, retention, market demand and commercial viability remain unvalidated.
 
 ---
 
