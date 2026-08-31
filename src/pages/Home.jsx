@@ -150,10 +150,10 @@ const evidence = [
   },
   {
     Icon: ShieldEllipsis,
-    tag: 'LOCAL CONTROL LAUNCHER',
+    tag: 'GOVERNED AI · E2 PROTOTYPE',
     title: 'JARVIS Control',
-    text: 'Open the read-only JARVIS Control Surface on the Dell host. Authority Engine presents its boundary; it does not host, proxy or expose JARVIS.',
-    label: 'Open launcher',
+    text: 'Explore a public-safe walkthrough of evidence-grounded reasoning, memory boundaries, human authority and auditability. Private controls stay on the Dell.',
+    label: 'Explore JARVIS',
     to: '/jarvis',
   },
 ];
