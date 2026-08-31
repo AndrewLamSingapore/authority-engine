@@ -13,6 +13,7 @@ import {
   Network,
   Share2,
   ShieldCheck,
+  ShieldEllipsis,
   Sparkles,
   Users,
   Warehouse,
@@ -146,6 +147,14 @@ const evidence = [
     text: 'Operating analyses and AI-assisted synthetic demonstrations with explicit maturity labels, limits and decision relevance.',
     label: 'Explore evidence',
     to: '/insights',
+  },
+  {
+    Icon: ShieldEllipsis,
+    tag: 'LOCAL CONTROL LAUNCHER',
+    title: 'JARVIS Control',
+    text: 'Open the read-only JARVIS Control Surface on the Dell host. Authority Engine presents its boundary; it does not host, proxy or expose JARVIS.',
+    label: 'Open launcher',
+    to: '/jarvis',
   },
 ];
 
@@ -378,7 +387,7 @@ export default function Home() {
           <h2 className="mt-4 text-3xl sm:text-5xl font-black tracking-[-0.04em] leading-[.98] text-white">Do not trust the headline.<br />Inspect the work.</h2>
           <p className="mt-5 text-base text-slate-400">Real operating evidence, controlled demonstrations and public builds are kept distinct.</p>
         </div>
-        <div className="mt-14 grid lg:grid-cols-3 gap-4">
+        <div className="mt-14 grid md:grid-cols-2 xl:grid-cols-4 gap-4">
           {evidence.map(({ Icon, tag, title, text, label, href, to }) => {
             const content = (
               <>

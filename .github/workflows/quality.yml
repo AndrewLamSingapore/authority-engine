@@ -21,4 +21,5 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run check:server
+      - run: npm run check:jarvis
       - run: npm run build
