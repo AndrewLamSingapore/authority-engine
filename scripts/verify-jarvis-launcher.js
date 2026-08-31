@@ -10,6 +10,11 @@ const required = [
   "value: 'No actuation'",
   'Authority Engine records the boundary and opens the address',
   'it never receives JARVIS data or becomes a second control plane',
+  'Public-safe view · E2 working prototype',
+  'no live JARVIS data',
+  "inquiryType: 'JARVIS / Governed AI Conversation'",
+  'A proposal is not permission.',
+  'No public access to the private JARVIS Control Surface',
 ];
 
 for (const contract of required) {

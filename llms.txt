@@ -1,0 +1,27 @@
+# Authority Engine
+
+> Andrew Lam's public proof-of-work system for Operations Excellence, supply chain, warehousing, business analytics and disciplined operational experimentation.
+
+Canonical: https://authority-engine-app.vercel.app/
+
+## Core pages
+- / — Operations Excellence, supply chain and analytics authority
+- /about — Background, operating philosophy and credibility
+- /portal — Interactive living knowledge graph
+- /jarvis — Public-safe governed AI walkthrough; private controls remain local-only
+- /velyqua — Live interactive freshwater aquarium operating system
+- /insights — Evidence, case studies, experiments and decision frameworks
+- /maxwell-excel — Real operating evidence and Singapore container-service scope
+- /contact — Career, collaboration, professional and Maxwell service inquiries
+
+## Principles
+- Evidence is distinguished from demonstration.
+- Synthetic experiments are labelled as synthetic.
+- Prototypes are not presented as production systems.
+- Operational claims should be inspectable and decision-relevant.
+- Maxwell Excel evidence is real and anonymised; no unverified profit, savings or expansion claim is made.
+
+## Current frontier
+JARVIS is an E2 working prototype with a verified local-only, read-only Control Surface. The public walkthrough contains no live runtime data, private memory or actuation.
+
+VELYQUA is a live browser-accessible product for structured aquarium decisions and memory. Its future physical sensing hypothesis remains explicitly unvalidated.
