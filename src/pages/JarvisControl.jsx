@@ -24,6 +24,8 @@ import {
 import SEO from '../components/SEO';
 
 const JARVIS_LOCAL_URL = 'http://127.0.0.1:8000/control';
+const JARVIS_PUBLIC_URL = 'https://lam-public-jarvis.five12345.chatgpt.site';
+const RELATIONSHIP_CONSOLE_URL = 'https://lam-relationship-console.five12345.chatgpt.site';
 const LINKEDIN_URL = 'https://www.linkedin.com/in/lam-teck-sing-andrew-79886719';
 
 const publicViews = [
@@ -350,26 +352,33 @@ export default function JarvisControl() {
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 sm:pb-28">
         <div className="rounded-[2.2rem] border border-white/10 bg-gradient-to-br from-emerald-400/[.075] via-white/[.02] to-amber-300/[.045] p-7 sm:p-10 lg:p-12">
-          <div className="grid lg:grid-cols-[.72fr_1.28fr] gap-10 items-start">
-            <div>
-              <div className="eyebrow">Private operator access</div>
-              <h2 className="mt-4 text-3xl sm:text-4xl font-black tracking-[-0.04em] text-white">The real controls stay on the Dell.</h2>
-              <p className="mt-4 leading-relaxed text-slate-400">Authority Engine records the boundary and opens the address; it never receives JARVIS data or becomes a second control plane.</p>
-              <a href={JARVIS_LOCAL_URL} target="_blank" rel="noopener noreferrer" className="premium-button mt-7 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold">
-                Open JARVIS Control <ArrowUpRight className="w-4 h-4" />
-              </a>
-              <div className="mt-5 font-mono text-[11px] text-slate-600 break-all">{JARVIS_LOCAL_URL}</div>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-3">
-              {states.map(({ Icon, label, value, detail, tone }) => <article key={label} className="rounded-2xl border border-white/[.08] bg-black/15 p-5">
-                <div className="flex items-start justify-between gap-3">
-                  <Icon className={`w-5 h-5 ${tone === 'amber' ? 'text-amber-300' : tone === 'emerald' ? 'text-emerald-300' : 'text-slate-500'}`} />
-                  <span className="text-[9px] font-black tracking-[.14em] uppercase text-slate-600">{label}</span>
-                </div>
-                <h3 className="mt-6 text-lg font-black text-white">{value}</h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-500">{detail}</p>
-              </article>)}
-            </div>
+          <div className="max-w-3xl">
+            <div className="eyebrow">JARVIS launch surfaces</div>
+            <h2 className="mt-4 text-3xl sm:text-4xl font-black tracking-[-0.04em] text-white">One authority layer, three explicit boundaries.</h2>
+            <p className="mt-4 leading-relaxed text-slate-400">Authority Engine launches each surface and states its role. It never proxies private JARVIS data or becomes a second control plane.</p>
+          </div>
+          <div className="mt-9 grid lg:grid-cols-3 gap-4">
+            <a href={JARVIS_PUBLIC_URL} target="_blank" rel="noopener noreferrer" className="system-card group rounded-3xl p-6 sm:p-7">
+              <div className="flex items-center justify-between"><Network className="w-6 h-6 text-emerald-300" /><span className="rounded-full border border-emerald-300/20 px-3 py-1 text-[9px] font-black uppercase tracking-[.13em] text-emerald-300">Public</span></div>
+              <h3 className="mt-10 text-xl font-black text-white">Lam Public JARVIS</h3><p className="mt-3 text-sm leading-relaxed text-slate-400">Public positioning, approved knowledge, evidence and qualified enquiries. No private PRIME access.</p>
+              <div className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-emerald-300">Open public surface <ArrowUpRight className="w-4 h-4" /></div>
+            </a>
+            <a href={RELATIONSHIP_CONSOLE_URL} target="_blank" rel="noopener noreferrer" className="system-card group rounded-3xl p-6 sm:p-7">
+              <div className="flex items-center justify-between"><Radar className="w-6 h-6 text-amber-300" /><span className="rounded-full border border-amber-300/20 px-3 py-1 text-[9px] font-black uppercase tracking-[.13em] text-amber-300">Owner only</span></div>
+              <h3 className="mt-10 text-xl font-black text-white">Relationship Console</h3><p className="mt-3 text-sm leading-relaxed text-slate-400">Review enquiries, qualify relationships, record follow-up notes and monitor conversion signals.</p>
+              <div className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-amber-300">Open owner console <ArrowUpRight className="w-4 h-4" /></div>
+            </a>
+            <a href={JARVIS_LOCAL_URL} target="_blank" rel="noopener noreferrer" className="system-card group rounded-3xl p-6 sm:p-7">
+              <div className="flex items-center justify-between"><HardDrive className="w-6 h-6 text-slate-300" /><span className="rounded-full border border-white/10 px-3 py-1 text-[9px] font-black uppercase tracking-[.13em] text-slate-400">Local only</span></div>
+              <h3 className="mt-10 text-xl font-black text-white">Private JARVIS Control</h3><p className="mt-3 text-sm leading-relaxed text-slate-400">Read-only PRIME operating picture on the Dell. No internet exposure and no actuation.</p>
+              <div className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-slate-300">Open local control <ArrowUpRight className="w-4 h-4" /></div>
+            </a>
+          </div>
+          <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {states.map(({ Icon, label, value, detail, tone }) => <article key={label} className="rounded-2xl border border-white/[.08] bg-black/15 p-5">
+              <div className="flex items-start justify-between gap-3"><Icon className={`w-5 h-5 ${tone === 'amber' ? 'text-amber-300' : tone === 'emerald' ? 'text-emerald-300' : 'text-slate-500'}`} /><span className="text-[9px] font-black tracking-[.14em] uppercase text-slate-600">{label}</span></div>
+              <h3 className="mt-6 text-lg font-black text-white">{value}</h3><p className="mt-2 text-xs leading-relaxed text-slate-500">{detail}</p>
+            </article>)}
           </div>
         </div>
       </section>
