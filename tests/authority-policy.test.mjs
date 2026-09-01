@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { assessPortfolioEvent, candidateId, decideCandidate, draftFromCandidate } from '../api/_authority-policy.js';
 
-const event = (level = 'E2') => ({ version:'1.0',event_id:'game-event-0001',event_type:'game.simulation.completed',source:'game-platform',occurred_at:'2026-09-01T00:00:00.000Z',evidence_level:level,provenance:['scenario:seed-1'],payload:{summary:'bounded deterministic simulation',account_id:'private-account',email:'owner@example.com'} });
+const event = (level = 'E2') => ({ schema_version:'1.0.0',event_id:'game-event-0001',event_type:'game.simulation.completed',source:'game-platform',occurred_at:'2026-09-01T00:00:00.000Z',correlation_id:'scenario-seed-1',evidence_level:level,provenance:['scenario:seed-1'],payload:{summary:'bounded deterministic simulation',account_id:'private-account',email:'owner@example.com'} });
 
 test('valid evidence is redacted and queued', () => {
   const assessment = assessPortfolioEvent(event());
