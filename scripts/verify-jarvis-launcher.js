@@ -8,13 +8,13 @@ const required = [
   "value: 'Unavailable'",
   "value: 'Read-only'",
   "value: 'No actuation'",
-  'Authority Engine records the boundary and opens the address',
-  'it never receives JARVIS data or becomes a second control plane',
   'Public-safe view · E2 working prototype',
   'no live JARVIS data',
   "inquiryType: 'JARVIS / Governed AI Conversation'",
   'A proposal is not permission.',
   'No public access to the private JARVIS Control Surface',
+  'The public walkthrough reads no private memory.',
+  'approval, execution and automation remain unavailable',
 ];
 
 for (const contract of required) {
@@ -33,4 +33,4 @@ for (const pattern of forbidden) {
   if (pattern.test(source)) throw new Error(`JARVIS launcher violates the no-proxy boundary: ${pattern}`);
 }
 
-console.log('PASS: JARVIS launcher is local-only, read-only and no-actuation.');
+console.log('PASS: JARVIS public surface remains local-only, read-only, no-proxy and no-actuation.');
