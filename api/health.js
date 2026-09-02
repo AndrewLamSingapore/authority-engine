@@ -11,5 +11,6 @@ export default function handler(req, res) {
     ok: true, service: 'authority-engine', revision: process.env.VERCEL_GIT_COMMIT_SHA || null,
     evidence_review: { configured: reviewConfigured, state: reviewConfigured ? 'ready' : 'disabled_missing_credentials', publication_mode: 'explicit_draft_only' },
     portfolio_relay: { configured: relayConfigured, state: relayConfigured ? 'ready' : 'disabled_missing_credentials' },
+    jarvis_observability: { configured: true, state: 'ready', exposure: 'sanitized_public_metadata_only' },
   });
 }

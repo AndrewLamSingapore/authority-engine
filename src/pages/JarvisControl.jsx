@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Activity,
@@ -163,6 +163,15 @@ const conversationPaths = [
 
 export default function JarvisControl() {
   const [activeView, setActiveView] = useState(publicViews[0].id);
+  const [systemSignal, setSystemSignal] = useState(null);
+  useEffect(() => {
+    let active = true;
+    fetch('/api/jarvis-status', { headers: { accept: 'application/json' } })
+      .then((response) => response.ok ? response.json() : null)
+      .then((value) => { if (active) setSystemSignal(value); })
+      .catch(() => {});
+    return () => { active = false; };
+  }, []);
   const view = publicViews.find((item) => item.id === activeView) || publicViews[0];
   const ActiveIcon = view.Icon;
 
@@ -285,6 +294,24 @@ export default function JarvisControl() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="border-y border-white/[.07] bg-white/[.012]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="eyebrow">Verified system signal</div>
+          <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-3" aria-live="polite">
+            {[
+              ['Authority', systemSignal?.self?.state || 'checking'],
+              ['Portal', systemSignal?.portal?.state || 'checking'],
+              ['PRIME', systemSignal?.prime?.state || 'checking'],
+              ['Runtime drift', systemSignal?.drift?.state || 'checking'],
+            ].map(([label, value]) => <article key={label} className="rounded-2xl border border-white/[.08] bg-black/15 p-5">
+              <div className="text-[9px] font-black uppercase tracking-[.14em] text-slate-600">{label}</div>
+              <div className={`mt-3 text-lg font-black ${value === 'ready' || value === 'aligned' ? 'text-emerald-300' : value === 'checking' ? 'text-slate-400' : 'text-amber-300'}`}>{value}</div>
+            </article>)}
+          </div>
+          <p className="mt-4 text-xs leading-relaxed text-slate-500">Sanitized availability, revision and queue signals only. No private PRIME endpoint, credential, prompt or memory is exposed.</p>
         </div>
       </section>
 
