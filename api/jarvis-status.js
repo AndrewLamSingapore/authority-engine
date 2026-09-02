@@ -37,7 +37,7 @@ export default async function handler(req, res) {
   const portal = await portalSignal();
   const expectedPortal = process.env.EXPECTED_PORTAL_REVISION || null;
   const primeSource = process.env.PRIME_SOURCE_REVISION || 'daeeb30b631954211d30d838821aaca5c72fe037';
-  const primeRuntime = process.env.PRIME_RUNTIME_REVISION || '7633d9c';
+  const primeRuntime = process.env.PRIME_RUNTIME_REVISION || 'daeeb30';
   const drift = [];
   if (portal.state !== 'ready') drift.push({ component: 'portal', kind: 'availability', state: portal.state });
   if (expectedPortal && portal.revision && !portal.revision.startsWith(expectedPortal)) drift.push({ component: 'portal', kind: 'revision', expected: expectedPortal, actual: portal.revision });
