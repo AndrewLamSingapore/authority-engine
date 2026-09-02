@@ -1,4 +1,4 @@
-const DEFAULT_PORTAL_HEALTH = 'https://the-portal.vercel.app/api/health';
+const DEFAULT_PORTAL_HEALTH = 'https://the-portal-ten.vercel.app/api/health';
 
 async function portalSignal(fetchImpl = fetch) {
   const controller = new AbortController();
@@ -36,7 +36,7 @@ export default async function handler(req, res) {
   }
   const portal = await portalSignal();
   const expectedPortal = process.env.EXPECTED_PORTAL_REVISION || null;
-  const primeSource = process.env.PRIME_SOURCE_REVISION || '07da6b39d7f93ec599fb5d531da7107c94d3bfcf';
+  const primeSource = process.env.PRIME_SOURCE_REVISION || 'daeeb30b631954211d30d838821aaca5c72fe037';
   const primeRuntime = process.env.PRIME_RUNTIME_REVISION || '7633d9c';
   const drift = [];
   if (portal.state !== 'ready') drift.push({ component: 'portal', kind: 'availability', state: portal.state });
