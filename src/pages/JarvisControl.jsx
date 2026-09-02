@@ -181,88 +181,105 @@ export default function JarvisControl() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid xl:grid-cols-[.88fr_1.12fr] gap-12 xl:gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-3 rounded-full border border-emerald-300/20 bg-emerald-300/[.055] px-4 py-2 text-[10px] font-black uppercase tracking-[.17em] text-emerald-200">
-                <span className="h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_16px_rgba(110,231,183,.9)]" />
-                Public-safe view · E2 working prototype
+              <div className="inline-flex items-center gap-3 rounded-full border border-lime-300/20 bg-lime-300/[.055] px-4 py-2 text-[10px] font-black uppercase tracking-[.17em] text-lime-200">
+                <span className="h-2 w-2 rounded-full bg-lime-300 shadow-[0_0_16px_rgba(190,242,100,.9)]" />
+                J Console · Public signal available
               </div>
               <h1 className="mt-7 text-5xl sm:text-6xl lg:text-7xl font-black tracking-[-0.065em] leading-[.92] text-white">
-                AI should not only look powerful.
-                <span className="block mt-3 text-gradient">It should look accountable.</span>
+                Meet the public face of JARVIS.
+                <span className="block mt-3 text-gradient">The J Console.</span>
               </h1>
               <p className="mt-7 max-w-2xl text-lg sm:text-xl leading-relaxed text-slate-300">
-                JARVIS is a private, local-first control surface for governed reasoning. This public walkthrough shows how it separates evidence, memory, proposals and authority—without exposing the system behind it.
+                A public, read-only signal from a private, local-first intelligence system. J Console makes the operating boundary visible: human authority, public information only and zero actuation.
               </p>
 
               <div className="mt-9 flex flex-col sm:flex-row gap-3">
-                <Link
-                  to="/contact"
-                  state={{ inquiryType: 'JARVIS / Governed AI Conversation', message: 'I would like to discuss JARVIS and how governed AI could support a real decision or opportunity.' }}
+                <a
+                  href={JARVIS_PUBLIC_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="premium-button signal-cta inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold"
                 >
-                  Discuss a real use case <ArrowRight className="w-4 h-4" />
-                </Link>
+                  Open J Console <ArrowUpRight className="w-4 h-4" />
+                </a>
                 <a href="#public-walkthrough" className="ghost-button inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold">
-                  See how it thinks <ArrowDown className="w-4 h-4" />
+                  Inspect the boundary <ArrowDown className="w-4 h-4" />
                 </a>
               </div>
 
               <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-xs font-bold uppercase tracking-[.12em] text-slate-500">
-                {['Local-first', 'Read-only', 'No actuation'].map((item) => <span key={item} className="inline-flex items-center gap-2"><Check className="w-3.5 h-3.5 text-emerald-300" /> {item}</span>)}
+                {['Public only', 'Human authority', 'No actuation'].map((item) => <span key={item} className="inline-flex items-center gap-2"><Check className="w-3.5 h-3.5 text-lime-300" /> {item}</span>)}
               </div>
             </div>
 
-            <div id="public-walkthrough" className="jarvis-console relative rounded-[2rem] border border-white/10 bg-[#07100f]/90 p-3 sm:p-4 shadow-[0_40px_120px_rgba(0,0,0,.58)]" data-tilt>
+            <a href={JARVIS_PUBLIC_URL} target="_blank" rel="noopener noreferrer" aria-label="Open the public J Console" className="j-console-feature group relative block rounded-[2rem] border border-white/10 bg-[#111512]/95 p-5 sm:p-7 shadow-[0_40px_120px_rgba(0,0,0,.58)]" data-tilt>
               <div className="signal-border-trace" aria-hidden="true" />
-              <div className="rounded-[1.55rem] border border-white/[.08] bg-[#07100f] overflow-hidden">
-                <div className="flex items-center justify-between gap-4 px-5 py-4 border-b border-white/[.07] bg-white/[.018]">
-                  <div className="flex items-center gap-2">
-                    <span className="h-2.5 w-2.5 rounded-full bg-rose-300/70" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-amber-300/70" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-300/70" />
-                  </div>
-                  <div className="text-[9px] sm:text-[10px] font-black uppercase tracking-[.16em] text-slate-500">Public-safe · redacted · no live JARVIS data</div>
+              <div className="relative min-h-[520px] overflow-hidden rounded-[1.55rem] border border-white/[.08] bg-[#151916] p-6 sm:p-8">
+                <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-[.18em]">
+                  <span className="text-slate-300">Public signal</span>
+                  <span className="inline-flex items-center gap-2 text-lime-300"><span className="h-2 w-2 rounded-full border-2 border-lime-300" /> Available</span>
                 </div>
+                <div className="relative mx-auto mt-9 flex h-60 max-w-sm items-center justify-center" aria-hidden="true">
+                  <div className="absolute h-60 w-60 rounded-full border border-white/[.07]" />
+                  <div className="absolute h-44 w-44 rounded-full border border-white/[.13]" />
+                  <div className="absolute right-[19%] top-[20%] h-2.5 w-2.5 rounded-full bg-slate-500 shadow-[0_0_16px_rgba(148,163,184,.7)]" />
+                  <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-lime-300 text-5xl font-serif text-[#18200d] shadow-[0_0_45px_rgba(190,242,100,.3)] transition-transform duration-500 group-hover:scale-105">J</div>
+                </div>
+                <div className="mt-8 grid grid-cols-2 border border-white/[.1]">
+                  {[
+                    ['Mode', 'Read-only'],
+                    ['Authority', 'Human'],
+                    ['Boundary', 'Public only'],
+                    ['Actuation', 'None'],
+                  ].map(([label, value]) => <div key={label} className="min-h-24 border-b border-r border-white/[.08] p-4 last:border-b-0 even:border-r-0 [&:nth-child(3)]:border-b-0">
+                    <div className="text-[10px] font-bold uppercase tracking-[.16em] text-slate-500">{label}</div>
+                    <div className="mt-3 text-lg font-black text-white">{value}</div>
+                  </div>)}
+                </div>
+                <div className="mt-5 flex items-center justify-between text-xs font-bold text-slate-500">
+                  <span>J Console / public presentation layer</span>
+                  <span className="inline-flex items-center gap-1 text-lime-300 transition-transform group-hover:translate-x-1">Enter <ArrowUpRight className="h-3.5 w-3.5" /></span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
 
-                <div className="grid lg:grid-cols-[150px_1fr] min-h-[470px]">
-                  <div className="border-b lg:border-b-0 lg:border-r border-white/[.07] p-3">
-                    <div className="flex lg:grid gap-1 overflow-x-auto" role="tablist" aria-label="Public JARVIS views">
-                      {publicViews.map(({ id, label, Icon }) => {
-                        const selected = id === activeView;
-                        return <button
-                          key={id}
-                          type="button"
-                          role="tab"
-                          id={`jarvis-tab-${id}`}
-                          aria-selected={selected}
-                          aria-controls="jarvis-public-panel"
-                          onClick={() => setActiveView(id)}
-                          className={`jarvis-view-tab shrink-0 lg:w-full flex items-center gap-2.5 rounded-xl px-3 py-3 text-left text-xs font-bold ${selected ? 'is-active' : ''}`}
-                        >
-                          <Icon className="w-4 h-4" /> {label}
-                        </button>;
-                      })}
-                    </div>
+      <section id="public-walkthrough" className="border-y border-white/[.07] bg-white/[.012]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
+          <div className="max-w-3xl">
+            <div className="eyebrow">Inside the public model</div>
+            <h2 className="mt-5 text-4xl sm:text-5xl font-black tracking-[-0.05em] text-white">Inspect the logic without exposing the system.</h2>
+            <p className="mt-5 text-lg leading-relaxed text-slate-400">Six redacted views show how JARVIS separates intent, evidence, memory, reasoning, proposals and audit. No private runtime data crosses this boundary.</p>
+          </div>
+          <div className="jarvis-console relative mt-12 rounded-[2rem] border border-white/10 bg-[#07100f]/90 p-3 sm:p-4 shadow-[0_40px_120px_rgba(0,0,0,.45)]">
+            <div className="rounded-[1.55rem] border border-white/[.08] bg-[#07100f] overflow-hidden">
+              <div className="flex items-center justify-between gap-4 px-5 py-4 border-b border-white/[.07] bg-white/[.018]">
+                <div className="text-[9px] sm:text-[10px] font-black uppercase tracking-[.16em] text-slate-500">J Console evidence model · redacted</div>
+                <div className="text-[9px] font-black uppercase tracking-[.14em] text-emerald-300">No live JARVIS data</div>
+              </div>
+              <div className="grid lg:grid-cols-[180px_1fr] min-h-[430px]">
+                <div className="border-b lg:border-b-0 lg:border-r border-white/[.07] p-3">
+                  <div className="flex lg:grid gap-1 overflow-x-auto" role="tablist" aria-label="Public JARVIS views">
+                    {publicViews.map(({ id, label, Icon }) => {
+                      const selected = id === activeView;
+                      return <button key={id} type="button" role="tab" id={`jarvis-tab-${id}`} aria-selected={selected} aria-controls="jarvis-public-panel" onClick={() => setActiveView(id)} className={`jarvis-view-tab shrink-0 lg:w-full flex items-center gap-2.5 rounded-xl px-3 py-3 text-left text-xs font-bold ${selected ? 'is-active' : ''}`}>
+                        <Icon className="w-4 h-4" /> {label}
+                      </button>;
+                    })}
                   </div>
-
-                  <div
-                    key={view.id}
-                    id="jarvis-public-panel"
-                    role="tabpanel"
-                    aria-labelledby={`jarvis-tab-${view.id}`}
-                    className="jarvis-view-panel p-6 sm:p-8 flex flex-col"
-                  >
-                    <div className="flex items-start justify-between gap-5">
-                      <div className="h-12 w-12 rounded-2xl border border-emerald-300/20 bg-emerald-300/[.07] flex items-center justify-center text-emerald-300">
-                        <ActiveIcon className="w-6 h-6" />
-                      </div>
-                      <span className="rounded-full border border-emerald-300/15 bg-emerald-300/[.04] px-3 py-1.5 text-[9px] font-black uppercase tracking-[.14em] text-emerald-300">{view.signal}</span>
-                    </div>
-                    <div className="mt-10 text-[10px] font-black uppercase tracking-[.18em] text-slate-600">{view.label} / public model</div>
-                    <h2 className="mt-3 max-w-xl text-2xl sm:text-3xl font-black tracking-[-0.035em] leading-tight text-white">{view.title}</h2>
-                    <p className="mt-4 max-w-xl leading-relaxed text-slate-400">{view.text}</p>
-                    <div className="mt-auto pt-8 grid sm:grid-cols-3 gap-2">
-                      {view.evidence.map((item) => <div key={item} className="rounded-xl border border-white/[.07] bg-white/[.02] px-3 py-3 text-[10px] font-bold uppercase tracking-[.08em] text-slate-400"><Check className="inline w-3.5 h-3.5 mr-1.5 text-emerald-300" />{item}</div>)}
-                    </div>
+                </div>
+                <div key={view.id} id="jarvis-public-panel" role="tabpanel" aria-labelledby={`jarvis-tab-${view.id}`} className="jarvis-view-panel p-6 sm:p-8 flex flex-col">
+                  <div className="flex items-start justify-between gap-5">
+                    <div className="h-12 w-12 rounded-2xl border border-emerald-300/20 bg-emerald-300/[.07] flex items-center justify-center text-emerald-300"><ActiveIcon className="w-6 h-6" /></div>
+                    <span className="rounded-full border border-emerald-300/15 bg-emerald-300/[.04] px-3 py-1.5 text-[9px] font-black uppercase tracking-[.14em] text-emerald-300">{view.signal}</span>
+                  </div>
+                  <div className="mt-10 text-[10px] font-black uppercase tracking-[.18em] text-slate-600">{view.label} / public model</div>
+                  <h3 className="mt-3 max-w-xl text-2xl sm:text-3xl font-black tracking-[-0.035em] leading-tight text-white">{view.title}</h3>
+                  <p className="mt-4 max-w-xl leading-relaxed text-slate-400">{view.text}</p>
+                  <div className="mt-auto pt-8 grid sm:grid-cols-3 gap-2">
+                    {view.evidence.map((item) => <div key={item} className="rounded-xl border border-white/[.07] bg-white/[.02] px-3 py-3 text-[10px] font-bold uppercase tracking-[.08em] text-slate-400"><Check className="inline w-3.5 h-3.5 mr-1.5 text-emerald-300" />{item}</div>)}
                   </div>
                 </div>
               </div>
@@ -353,15 +370,15 @@ export default function JarvisControl() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 sm:pb-28">
         <div className="rounded-[2.2rem] border border-white/10 bg-gradient-to-br from-emerald-400/[.075] via-white/[.02] to-amber-300/[.045] p-7 sm:p-10 lg:p-12">
           <div className="max-w-3xl">
-            <div className="eyebrow">JARVIS launch surfaces</div>
+            <div className="eyebrow">JARVIS system boundaries</div>
             <h2 className="mt-4 text-3xl sm:text-4xl font-black tracking-[-0.04em] text-white">One authority layer, three explicit boundaries.</h2>
             <p className="mt-4 leading-relaxed text-slate-400">Authority Engine launches each surface and states its role. It never proxies private JARVIS data or becomes a second control plane.</p>
           </div>
           <div className="mt-9 grid lg:grid-cols-3 gap-4">
             <a href={JARVIS_PUBLIC_URL} target="_blank" rel="noopener noreferrer" className="system-card group rounded-3xl p-6 sm:p-7">
               <div className="flex items-center justify-between"><Network className="w-6 h-6 text-emerald-300" /><span className="rounded-full border border-emerald-300/20 px-3 py-1 text-[9px] font-black uppercase tracking-[.13em] text-emerald-300">Public</span></div>
-              <h3 className="mt-10 text-xl font-black text-white">Lam Public JARVIS</h3><p className="mt-3 text-sm leading-relaxed text-slate-400">Public positioning, approved knowledge, evidence and qualified enquiries. No private PRIME access.</p>
-              <div className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-emerald-300">Open public surface <ArrowUpRight className="w-4 h-4" /></div>
+              <h3 className="mt-10 text-xl font-black text-white">J Console</h3><p className="mt-3 text-sm leading-relaxed text-slate-400">The public presentation layer for approved knowledge, evidence and qualified enquiries. No private PRIME access.</p>
+              <div className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-emerald-300">Open J Console <ArrowUpRight className="w-4 h-4" /></div>
             </a>
             <a href={RELATIONSHIP_CONSOLE_URL} target="_blank" rel="noopener noreferrer" className="system-card group rounded-3xl p-6 sm:p-7">
               <div className="flex items-center justify-between"><Radar className="w-6 h-6 text-amber-300" /><span className="rounded-full border border-amber-300/20 px-3 py-1 text-[9px] font-black uppercase tracking-[.13em] text-amber-300">Owner only</span></div>
