@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "vite",
     "build": "node scripts/verify-sound.js && node scripts/generate-sitemap.js && node scripts/generate-og.js && vite build",
-    "check:server": "node --check api/health.js && node --check api/insights.js && node --check api/_authority-policy.js && node --check api/_sanity.js && node --check api/_portfolio-relay.js && node --check api/portfolio-evidence.js && node --check api/portfolio-publication.js",
+    "check:server": "node --check api/health.js && node --check api/jarvis-status.js && node --check api/insights.js && node --check api/_authority-policy.js && node --check api/_sanity.js && node --check api/_portfolio-relay.js && node --check api/portfolio-evidence.js && node --check api/portfolio-publication.js",
     "check:jarvis": "node scripts/verify-jarvis-launcher.js",
     "test:authority": "node --test tests/*.test.mjs",
     "check:portfolio-contracts": "node scripts/portfolio-contract-integrity.mjs",
