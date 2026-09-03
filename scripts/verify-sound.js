@@ -13,7 +13,9 @@ assert.ok(fs.statSync(asset).size > 100_000, 'thematic sound file is unexpectedl
 assert.ok(component.includes('preload="metadata"'), 'audio must not autoplay on page load');
 assert.ok(component.includes('aria-pressed={playing}') && component.includes('aria-live="polite"'), 'sound control must expose the actual playback state');
 assert.ok(component.includes("playing ? 'PLAYING' : ready ? 'SOUND READY'"), 'sound control must distinguish ready from playing');
-assert.ok(component.includes('const MAX_VOLUME = 0.45'), 'sound must be audible on laptop speakers');
+assert.ok(component.includes('const MAX_VOLUME = 0.9'), 'sound must be audible on laptop speakers');
+assert.ok(component.includes('playConfirmationCue') && component.includes('783.99'), 'sound must begin with the shared audible confirmation cue');
+assert.ok(component.includes('loop') && component.includes('await audio.play()'), 'playing state must represent continuous, successful theme playback');
 assert.ok(component.includes('role="alert"') && component.includes('NotAllowedError'), 'sound playback failures must be visible');
 assert.ok(component.includes('authority-sound-enabled-v1'), 'sound preference must be versioned and local');
 assert.ok(component.includes("document.addEventListener('visibilitychange'"), 'audio must pause in hidden tabs');
