@@ -3,7 +3,7 @@ import { Volume2, VolumeX } from 'lucide-react';
 
 const SOUND_PREFERENCE = 'authority-sound-enabled-v1';
 const PLAY_EVENT = 'authority-theme:play';
-const MAX_VOLUME = 0.18;
+const MAX_VOLUME = 0.45;
 
 function readPreference() {
   try {
@@ -24,10 +24,13 @@ function writePreference(enabled) {
 export default function SoundControl() {
   const audioRef = useRef(null);
   const fadeFrameRef = useRef(null);
-  const [enabled, setEnabled] = useState(readPreference);
+  const [ready, setReady] = useState(readPreference);
   const [playing, setPlaying] = useState(false);
   const [unavailable, setUnavailable] = useState(false);
-  const [status, setStatus] = useState('Website sound is off.');
+  const [error, setError] = useState('');
+  const [status, setStatus] = useState(() => readPreference()
+    ? 'Website sound is ready. Select it to begin playback.'
+    : 'Website sound is off.');
 
   const stopTheme = useCallback((immediate = false) => {
     const audio = audioRef.current;
@@ -55,8 +58,9 @@ export default function SoundControl() {
 
   const playTheme = useCallback(async ({ restart = true, bypassPreference = false } = {}) => {
     const audio = audioRef.current;
-    if (!audio || unavailable || (!enabled && !bypassPreference)) return;
+    if (!audio || unavailable || (!ready && !bypassPreference)) return false;
     cancelAnimationFrame(fadeFrameRef.current);
+    setError('');
     try {
       if (restart || audio.ended) audio.currentTime = 0;
       audio.volume = 0;
@@ -70,22 +74,32 @@ export default function SoundControl() {
         if (progress < 1 && !audio.paused) fadeFrameRef.current = requestAnimationFrame(fade);
       };
       fadeFrameRef.current = requestAnimationFrame(fade);
-    } catch {
+      return true;
+    } catch (playError) {
+      const message = playError?.name === 'NotAllowedError'
+        ? 'Your browser blocked audio. Select SOUND READY again to allow playback.'
+        : 'Audio could not start. Check this tab’s sound permission and try again.';
       setPlaying(false);
-      setStatus('Select sound again to play the website theme.');
+      setError(message);
+      setStatus(message);
+      return false;
     }
-  }, [enabled, unavailable]);
+  }, [ready, unavailable]);
 
-  const toggleSound = () => {
-    const nextEnabled = !enabled;
-    setEnabled(nextEnabled);
-    writePreference(nextEnabled);
-    if (nextEnabled) {
-      setStatus('Website sound is on.');
-      playTheme({ restart: true, bypassPreference: true });
-    } else {
+  const toggleSound = async () => {
+    if (playing) {
       stopTheme();
+      setReady(false);
+      writePreference(false);
+      setError('');
       setStatus('Website sound is off.');
+      return;
+    }
+
+    const started = await playTheme({ restart: true, bypassPreference: true });
+    if (started) {
+      setReady(true);
+      writePreference(true);
     }
   };
 
@@ -105,36 +119,40 @@ export default function SoundControl() {
     };
   }, [playTheme, stopTheme]);
 
-  const label = unavailable ? 'SOUND UNAVAILABLE' : enabled ? 'SOUND ON' : 'SOUND OFF';
+  const label = unavailable ? 'SOUND UNAVAILABLE' : playing ? 'PLAYING' : ready ? 'SOUND READY' : 'SOUND OFF';
 
   return (
     <>
       <button
         type="button"
-        className={`authority-sound-control${enabled ? ' is-enabled' : ''}${playing ? ' is-playing' : ''}`}
-        aria-pressed={enabled}
+        className={`authority-sound-control${ready ? ' is-enabled' : ''}${playing ? ' is-playing' : ''}`}
+        aria-pressed={playing}
         aria-describedby="authority-sound-status"
         disabled={unavailable}
         onClick={toggleSound}
-        title={enabled ? 'Turn website sound off' : 'Play the website theme'}
+        title={playing ? 'Turn website sound off' : 'Play the website theme'}
       >
         <span className="authority-sound-wave" aria-hidden="true"><i /><i /><i /><i /></span>
         <span className="hidden sm:inline">{label}</span>
-        <span className="sm:hidden" aria-hidden="true">{enabled ? <Volume2 size={16} /> : <VolumeX size={16} />}</span>
+        <span className="sm:hidden" aria-hidden="true">{playing ? <Volume2 size={16} /> : <VolumeX size={16} />}</span>
       </button>
       <span id="authority-sound-status" className="sr-only" role="status" aria-live="polite">{status}</span>
+      {error && <span className="authority-sound-error" role="alert">{error}</span>}
       <audio
         ref={audioRef}
         preload="metadata"
         onEnded={() => {
           setPlaying(false);
-          setStatus('Website theme complete. Sound remains on.');
+          setReady(true);
+          setStatus('Website theme complete. Sound is ready to play again.');
         }}
         onError={() => {
           setUnavailable(true);
-          setEnabled(false);
+          setReady(false);
           writePreference(false);
-          setStatus('Website sound is unavailable.');
+          const message = 'Website audio could not load. Please refresh and try again.';
+          setError(message);
+          setStatus(message);
         }}
       >
         <source src="/authority-theme-v1.mp3" type="audio/mpeg" />
