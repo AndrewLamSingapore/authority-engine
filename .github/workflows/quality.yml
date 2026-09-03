@@ -25,6 +25,7 @@ jobs:
       - run: npm run lint
       - run: npm run check:server
       - run: npm run check:jarvis
+      - run: npm run check:agent-registry
       - run: npm run check:portfolio-contracts
       - run: npm run test:authority
       - run: npm run build
