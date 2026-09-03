@@ -1,6 +1,7 @@
 import React from 'react';
-import { ArrowRight, Boxes, Building2, CheckCircle2, ClipboardCheck, Container, MapPin, ShieldCheck, TimerReset } from 'lucide-react';
+import { ArrowRight, BadgeCheck, Boxes, Building2, CheckCircle2, ClipboardCheck, Container, MapPin, ShieldCheck, TimerReset } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const services = [
   {
@@ -29,9 +30,22 @@ const quoteDrivers = [
   'Waiting, access or special operating conditions',
 ];
 
+const companyParticulars = [
+  ['Unique Entity Number (UEN)', '202441264C'],
+  ['Registration date', '8 October 2024'],
+  ['Legal entity type', 'Exempt private company limited by shares'],
+  ['Primary business activity', 'Courier activities other than national post activities'],
+  ['Secondary business activity', 'Supporting services to land transport N.E.C.'],
+  ['Jurisdiction', 'Singapore'],
+];
+
 export default function MaxwellExcel() {
   return (
     <div className="bg-[#050807] min-h-screen pt-28 pb-24 text-slate-100 overflow-hidden">
+      <SEO
+        title="Maxwell Excel Service — Singapore Container Operations"
+        description="Registered company particulars and operating evidence for Maxwell Excel Service Pte. Ltd. (UEN 202441264C), a Singapore container-handling service."
+      />
       <section className="relative px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-[-20%] right-[-12%] h-[520px] w-[520px] rounded-full bg-emerald-500/[0.08] blur-[130px]" />
@@ -64,6 +78,34 @@ export default function MaxwellExcel() {
             <p className="mt-6 text-xs leading-relaxed text-slate-600">Records are verified and anonymised. Customer identity, negotiated prices and worker information are not published.</p>
           </div>
         </div>
+      </section>
+
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-white/[0.07]" aria-labelledby="company-particulars-heading">
+        <div className="grid lg:grid-cols-[.72fr_1.28fr] gap-10 lg:gap-16 items-start">
+          <div>
+            <BadgeCheck className="w-8 h-8 text-emerald-300" />
+            <div className="mt-8 eyebrow">Registered company particulars</div>
+            <h2 id="company-particulars-heading" className="mt-4 text-4xl sm:text-5xl font-black text-white">A named, registered Singapore entity.</h2>
+            <p className="mt-5 text-base leading-relaxed text-slate-400">These particulars identify the legal operating entity behind the service. The registered residential address is intentionally not republished here.</p>
+            <div className="mt-7 inline-flex items-center gap-2 rounded-full border border-emerald-300/20 bg-emerald-300/[0.08] px-4 py-2 text-sm font-bold text-emerald-300">
+              <span className="h-2 w-2 rounded-full bg-emerald-300" aria-hidden="true" />
+              Live company
+            </div>
+          </div>
+          <dl className="signal-card rounded-[2rem] divide-y divide-white/[0.07] px-6 sm:px-8">
+            {companyParticulars.map(([label, value]) => (
+              <div key={label} className="grid sm:grid-cols-[.78fr_1.22fr] gap-2 sm:gap-8 py-5 sm:py-6">
+                <dt className="text-sm font-semibold text-slate-500">{label}</dt>
+                <dd className="text-base font-semibold leading-relaxed text-slate-100">{value}</dd>
+              </div>
+            ))}
+            <div className="grid sm:grid-cols-[.78fr_1.22fr] gap-2 sm:gap-8 py-5 sm:py-6">
+              <dt className="text-sm font-semibold text-slate-500">Issuance agency</dt>
+              <dd className="text-base font-semibold text-slate-100">Accounting and Corporate Regulatory Authority (ACRA)</dd>
+            </div>
+          </dl>
+        </div>
+        <p className="mt-5 text-xs leading-relaxed text-slate-600">Company particulars reproduced from the registry record supplied for this Authority Engine entry.</p>
       </section>
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-white/[0.07]">
