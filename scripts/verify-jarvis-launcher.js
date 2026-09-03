@@ -19,6 +19,7 @@ const required = [
   'No public access to the private JARVIS Control Surface',
   'The public walkthrough reads no private memory.',
   'approval, execution and automation remain unavailable',
+  "fetch('/api/jarvis-status'",
 ];
 
 for (const contract of required) {
@@ -26,12 +27,17 @@ for (const contract of required) {
 }
 
 const forbidden = [
-  /fetch\s*\(/,
+  /fetch\s*\(\s*(?!['"]\/api\/jarvis-status['"])/,
   /axios/i,
   /<iframe/i,
   /prime\.lamjarvis\.com/i,
   /\/api\/control-surface/i,
 ];
+
+const fetchCalls = source.match(/fetch\s*\(/g) || [];
+if (fetchCalls.length !== 1) {
+  throw new Error(`JARVIS public surface must make exactly one sanitized status request; found ${fetchCalls.length}`);
+}
 
 for (const pattern of forbidden) {
   if (pattern.test(source)) throw new Error(`JARVIS launcher violates the no-proxy boundary: ${pattern}`);
