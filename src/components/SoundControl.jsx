@@ -3,7 +3,7 @@ import { Volume2, VolumeX } from 'lucide-react';
 
 const SOUND_PREFERENCE = 'authority-sound-enabled-v1';
 const PLAY_EVENT = 'authority-theme:play';
-const MAX_VOLUME = 0.45;
+const MAX_VOLUME = 0.9;
 
 function readPreference() {
   try {
@@ -23,6 +23,7 @@ function writePreference(enabled) {
 
 export default function SoundControl() {
   const audioRef = useRef(null);
+  const cueContextRef = useRef(null);
   const fadeFrameRef = useRef(null);
   const [ready, setReady] = useState(readPreference);
   const [playing, setPlaying] = useState(false);
@@ -34,6 +35,8 @@ export default function SoundControl() {
 
   const stopTheme = useCallback((immediate = false) => {
     const audio = audioRef.current;
+    cueContextRef.current?.close().catch(() => {});
+    cueContextRef.current = null;
     cancelAnimationFrame(fadeFrameRef.current);
     if (!audio || audio.paused) return;
     if (immediate) {
@@ -56,6 +59,34 @@ export default function SoundControl() {
     fadeFrameRef.current = requestAnimationFrame(fade);
   }, []);
 
+  const playConfirmationCue = useCallback(async () => {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) throw new Error('Web Audio is not supported by this browser.');
+    const context = new AudioContextClass();
+    cueContextRef.current = context;
+    await context.resume();
+    if (context.state !== 'running') throw new Error('The browser did not allow audio playback.');
+    const master = context.createGain();
+    master.gain.value = 0.16;
+    master.connect(context.destination);
+    [523.25, 659.25, 783.99].forEach((frequency, index) => {
+      const start = context.currentTime + 0.03 + index * 0.22;
+      const oscillator = context.createOscillator();
+      const gain = context.createGain();
+      oscillator.frequency.value = frequency;
+      gain.gain.setValueAtTime(0.0001, start);
+      gain.gain.exponentialRampToValueAtTime(0.9, start + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.38);
+      oscillator.connect(gain).connect(master);
+      oscillator.start(start);
+      oscillator.stop(start + 0.4);
+    });
+    window.setTimeout(() => {
+      if (cueContextRef.current === context) cueContextRef.current = null;
+      context.close().catch(() => {});
+    }, 1300);
+  }, []);
+
   const playTheme = useCallback(async ({ restart = true, bypassPreference = false } = {}) => {
     const audio = audioRef.current;
     if (!audio || unavailable || (!ready && !bypassPreference)) return false;
@@ -65,6 +96,7 @@ export default function SoundControl() {
       if (restart || audio.ended) audio.currentTime = 0;
       audio.volume = 0;
       await audio.play();
+      await playConfirmationCue();
       setPlaying(true);
       setStatus('Website theme is playing.');
       const started = performance.now();
@@ -80,11 +112,15 @@ export default function SoundControl() {
         ? 'Your browser blocked audio. Select SOUND READY again to allow playback.'
         : 'Audio could not start. Check this tab’s sound permission and try again.';
       setPlaying(false);
+      audio.pause();
+      audio.volume = 0;
+      cueContextRef.current?.close().catch(() => {});
+      cueContextRef.current = null;
       setError(message);
       setStatus(message);
       return false;
     }
-  }, [ready, unavailable]);
+  }, [playConfirmationCue, ready, unavailable]);
 
   const toggleSound = async () => {
     if (playing) {
@@ -140,11 +176,12 @@ export default function SoundControl() {
       {error && <span className="authority-sound-error" role="alert">{error}</span>}
       <audio
         ref={audioRef}
+        loop
         preload="metadata"
         onEnded={() => {
           setPlaying(false);
           setReady(true);
-          setStatus('Website theme complete. Sound is ready to play again.');
+          setStatus('Website theme stopped. Sound is ready to play again.');
         }}
         onError={() => {
           setUnavailable(true);
