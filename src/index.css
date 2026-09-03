@@ -317,6 +317,7 @@ body { margin: 0; -webkit-font-smoothing: antialiased; text-rendering: optimizeL
 .authority-sound-control:hover, .authority-sound-control:focus-visible { color: #e2e8f0; border-color: rgba(255,255,255,.2); }
 .authority-sound-control.is-enabled { color: #6ee7b7; border-color: rgba(110,231,183,.24); background: rgba(52,211,153,.055); }
 .authority-sound-control:disabled { cursor: default; opacity: .55; }
+.authority-sound-error { position: fixed; right: 1rem; top: 4.5rem; z-index: 70; max-width: min(24rem, calc(100vw - 2rem)); padding: .7rem .9rem; border: 1px solid rgba(248,113,113,.45); border-radius: .75rem; background: rgba(69,10,10,.96); color: #fecaca; font-size: .78rem; line-height: 1.35; box-shadow: 0 12px 32px rgba(0,0,0,.35); }
 .authority-sound-wave { display: inline-flex; align-items: center; gap: 2px; width: 14px; height: 12px; }
 .authority-sound-wave i { display: block; width: 2px; height: 3px; border-radius: 999px; background: currentColor; opacity: .58; }
 .authority-sound-control.is-playing .authority-sound-wave i { animation: authority-sound-signal .82s ease-in-out infinite alternate; }
