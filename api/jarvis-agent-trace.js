@@ -1,6 +1,7 @@
 const ALLOWED_EVENT_FIELDS = new Set(['trace_id','timestamp','agent_id','stage','status','sequence']);
 const SUMMARY_FIELDS = new Set(['registered_agents','active_agents','executions_today','denied_handoffs_today','average_latency_ms','active_window_seconds']);
 const DEFAULT_TRACE_SOURCE = 'https://bksyjvppcwfgwoelnyvp.supabase.co/functions/v1/jarvis-trace-relay';
+const ALLOWED_STATES = new Set(['verified_events','connected_idle','stale','disabled','no_public_trace']);
 
 function sanitizeEvent(value) {
   if (!value || typeof value !== 'object') return null;
@@ -53,9 +54,9 @@ export default async function handler(req, res) {
     const body = await response.json();
     const events = Array.isArray(body.events) ? body.events.map(sanitizeEvent).filter(Boolean).slice(-100) : [];
     const summary = sanitizeSummary(body.summary);
-    const state = events.length
-      ? (body.state === 'stale' ? 'stale' : 'verified_events')
-      : body.state === 'disabled' ? 'disabled' : body.state === 'stale' ? 'stale' : 'no_public_trace';
+    let state = ALLOWED_STATES.has(body.state) ? body.state : 'no_public_trace';
+    if (events.length && state !== 'stale') state = 'verified_events';
+    if (!events.length && state === 'verified_events') state = body.source_generated_at ? 'connected_idle' : 'no_public_trace';
     return res.status(200).json({
       ok: true,
       state,
@@ -80,4 +81,4 @@ export default async function handler(req, res) {
   }
 }
 
-export { sanitizeEvent, sanitizeSummary, ALLOWED_EVENT_FIELDS, SUMMARY_FIELDS, DEFAULT_TRACE_SOURCE };
+export { sanitizeEvent, sanitizeSummary, ALLOWED_EVENT_FIELDS, SUMMARY_FIELDS, DEFAULT_TRACE_SOURCE, ALLOWED_STATES };
