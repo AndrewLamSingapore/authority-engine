@@ -1,1 +1,836 @@
-{"schema_version":"1.0.0","last_updated":"2026-09-03T20:49:00+08:00","registry_id":"jarvis-prime-agent-registry","orchestrator":{"id":"prime","name":"JARVIS PRIME","role":"Cognitive Control Plane","public_description":"Coordinates bounded specialist reasoning while policy, evidence and owner approval remain authoritative."},"agents":[{"id":"A01","name":"Strategy Lead","division":"Strategy","role":"Lead","reports_to":"prime","authority":"advisory","status":"registered","public_description":"Frames objectives, priorities and bounded decision plans."},{"id":"A02","name":"Planning Agent","division":"Strategy","role":"Planning","reports_to":"A01","authority":"advisory","status":"registered","public_description":"Turns objectives into sequenced internal plans."},{"id":"A03","name":"Roadmap Agent","division":"Strategy","role":"Roadmapping","reports_to":"A01","authority":"advisory","status":"registered","public_description":"Structures milestones, dependencies and decision points."},{"id":"A04","name":"Decision Agent","division":"Strategy","role":"Decision Support","reports_to":"A01","authority":"advisory","status":"registered","public_description":"Compares bounded options and preserves uncertainty."},{"id":"A05","name":"Portfolio Agent","division":"Strategy","role":"Portfolio Review","reports_to":"A01","authority":"advisory","status":"registered","public_description":"Reviews competing initiatives against stated objectives."},{"id":"A06","name":"Research Lead","division":"Research","role":"Lead","reports_to":"prime","authority":"advisory","status":"registered","public_description":"Coordinates evidence-bounded research and identifies evidence gaps."},{"id":"A07","name":"Evidence Agent","division":"Research","role":"Evidence Review","reports_to":"A06","authority":"advisory","status":"registered","public_description":"Reviews supplied evidence and separates support from assumption."},{"id":"A08","name":"Comparison Agent","division":"Research","role":"Comparative Analysis","reports_to":"A06","authority":"advisory","status":"registered","public_description":"Builds structured comparisons from available evidence."},{"id":"A09","name":"Knowledge Agent","division":"Research","role":"Knowledge Synthesis","reports_to":"A06","authority":"advisory","status":"registered","public_description":"Synthesizes verified context into bounded knowledge summaries."},{"id":"A10","name":"Gap Agent","division":"Research","role":"Evidence Gaps","reports_to":"A06","authority":"advisory","status":"registered","public_description":"Identifies missing evidence required for stronger conclusions."},{"id":"A11","name":"Data Lead","division":"Data","role":"Lead","reports_to":"prime","authority":"advisory","status":"registered","public_description":"Coordinates analysis of explicitly available verified datasets."},{"id":"A12","name":"Metrics Agent","division":"Data","role":"Metrics","reports_to":"A11","authority":"advisory","status":"registered","public_description":"Structures measurements and baselines from verified data."},{"id":"A13","name":"Analysis Agent","division":"Data","role":"Analysis","reports_to":"A11","authority":"advisory","status":"registered","public_description":"Performs bounded analytical reasoning over supplied data."},{"id":"A14","name":"Forecast Agent","division":"Data","role":"Scenario Analysis","reports_to":"A11","authority":"advisory","status":"registered","public_description":"Builds explicitly qualified scenarios without inventing observations."},{"id":"A15","name":"Data Quality Agent","division":"Data","role":"Data Quality","reports_to":"A11","authority":"review","status":"registered","public_description":"Checks dataset sufficiency, provenance and analytical limitations."},{"id":"A16","name":"Engineering Lead","division":"Engineering","role":"Lead","reports_to":"prime","authority":"advisory","status":"registered","public_description":"Coordinates bounded technical design and validation."},{"id":"A17","name":"Architecture Agent","division":"Engineering","role":"Architecture","reports_to":"A16","authority":"advisory","status":"registered","public_description":"Designs internal system structures within defined safety boundaries."},{"id":"A18","name":"Implementation Agent","division":"Engineering","role":"Implementation","reports_to":"A16","authority":"proposal","status":"registered","public_description":"Produces implementation proposals and internal technical artifacts."},{"id":"A19","name":"Test Agent","division":"Engineering","role":"Testing","reports_to":"A16","authority":"review","status":"registered","public_description":"Defines and evaluates bounded technical tests."},{"id":"A20","name":"Reliability Agent","division":"Engineering","role":"Reliability","reports_to":"A16","authority":"review","status":"registered","public_description":"Reviews failure modes, recovery assumptions and operational resilience."},{"id":"A21","name":"Economic Lead","division":"Economic","role":"Lead","reports_to":"prime","authority":"advisory","status":"registered","public_description":"Coordinates bounded economic and resource reasoning."},{"id":"A22","name":"Value Agent","division":"Economic","role":"Value Analysis","reports_to":"A21","authority":"advisory","status":"registered","public_description":"Examines value creation, trade-offs and resource implications."},{"id":"A23","name":"Cost Agent","division":"Economic","role":"Cost Analysis","reports_to":"A21","authority":"advisory","status":"registered","public_description":"Structures cost and resource comparisons from supplied evidence."},{"id":"A24","name":"Asset Agent","division":"Economic","role":"Asset Analysis","reports_to":"A21","authority":"advisory","status":"registered","public_description":"Reviews asset and capability implications without executing transactions."},{"id":"A25","name":"Quality Lead","division":"Quality","role":"Lead","reports_to":"prime","authority":"review","status":"registered","public_description":"Coordinates verification, critique and policy-conformance review."},{"id":"A26","name":"Verification Agent","division":"Quality","role":"Verification","reports_to":"A25","authority":"review","status":"registered","public_description":"Checks outputs for completeness, support and consistency."},{"id":"A27","name":"Critic Agent","division":"Quality","role":"Adversarial Critique","reports_to":"A25","authority":"review","status":"registered","public_description":"Challenges unsupported claims, contradictions and hidden assumptions."},{"id":"A28","name":"Risk Agent","division":"Quality","role":"Risk Review","reports_to":"A25","authority":"review","status":"registered","public_description":"Surfaces bounded failure modes and consequential-risk concerns."},{"id":"A29","name":"Policy Agent","division":"Quality","role":"Policy Review","reports_to":"A25","authority":"review","status":"registered","public_description":"Checks proposed outcomes against the Stable Spine safety boundary."}],"disclosure":"Public-safe projection. Operational prompts, credentials, endpoints and internal instructions are excluded by policy."}
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2026-09-03T20:49:00+08:00",
+  "registry_id": "jarvis-prime-agent-registry",
+  "orchestrator": {
+    "id": "prime",
+    "name": "JARVIS PRIME",
+    "role": "Cognitive Control Plane",
+    "public_description": "Coordinates bounded specialist reasoning while policy, evidence and owner approval remain authoritative."
+  },
+  "agents": [
+    {
+      "id": "A01",
+      "name": "Strategy Lead",
+      "division": "Strategy",
+      "role": "Lead",
+      "reports_to": "prime",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Frames objectives, priorities and bounded decision plans."
+    },
+    {
+      "id": "A02",
+      "name": "Planning Agent",
+      "division": "Strategy",
+      "role": "Planning",
+      "reports_to": "A01",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Turns objectives into sequenced internal plans."
+    },
+    {
+      "id": "A03",
+      "name": "Roadmap Agent",
+      "division": "Strategy",
+      "role": "Roadmapping",
+      "reports_to": "A01",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Structures milestones, dependencies and decision points."
+    },
+    {
+      "id": "A04",
+      "name": "Decision Agent",
+      "division": "Strategy",
+      "role": "Decision Support",
+      "reports_to": "A01",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Compares bounded options and preserves uncertainty."
+    },
+    {
+      "id": "A05",
+      "name": "Portfolio Agent",
+      "division": "Strategy",
+      "role": "Portfolio Review",
+      "reports_to": "A01",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Reviews competing initiatives against stated objectives."
+    },
+    {
+      "id": "A06",
+      "name": "Research Lead",
+      "division": "Research",
+      "role": "Lead",
+      "reports_to": "prime",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Coordinates evidence-bounded research and identifies evidence gaps."
+    },
+    {
+      "id": "A07",
+      "name": "Evidence Agent",
+      "division": "Research",
+      "role": "Evidence Review",
+      "reports_to": "A06",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Reviews supplied evidence and separates support from assumption."
+    },
+    {
+      "id": "A08",
+      "name": "Comparison Agent",
+      "division": "Research",
+      "role": "Comparative Analysis",
+      "reports_to": "A06",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Builds structured comparisons from available evidence."
+    },
+    {
+      "id": "A09",
+      "name": "Knowledge Agent",
+      "division": "Research",
+      "role": "Knowledge Synthesis",
+      "reports_to": "A06",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Synthesizes verified context into bounded knowledge summaries."
+    },
+    {
+      "id": "A10",
+      "name": "Gap Agent",
+      "division": "Research",
+      "role": "Evidence Gaps",
+      "reports_to": "A06",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Identifies missing evidence required for stronger conclusions."
+    },
+    {
+      "id": "A11",
+      "name": "Data Lead",
+      "division": "Data",
+      "role": "Lead",
+      "reports_to": "prime",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Coordinates analysis of explicitly available verified datasets."
+    },
+    {
+      "id": "A12",
+      "name": "Metrics Agent",
+      "division": "Data",
+      "role": "Metrics",
+      "reports_to": "A11",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Structures measurements and baselines from verified data."
+    },
+    {
+      "id": "A13",
+      "name": "Analysis Agent",
+      "division": "Data",
+      "role": "Analysis",
+      "reports_to": "A11",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Performs bounded analytical reasoning over supplied data."
+    },
+    {
+      "id": "A14",
+      "name": "Forecast Agent",
+      "division": "Data",
+      "role": "Scenario Analysis",
+      "reports_to": "A11",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Builds explicitly qualified scenarios without inventing observations."
+    },
+    {
+      "id": "A15",
+      "name": "Data Quality Agent",
+      "division": "Data",
+      "role": "Data Quality",
+      "reports_to": "A11",
+      "authority": "review",
+      "status": "registered",
+      "public_description": "Checks dataset sufficiency, provenance and analytical limitations."
+    },
+    {
+      "id": "A16",
+      "name": "Engineering Lead",
+      "division": "Engineering",
+      "role": "Lead",
+      "reports_to": "prime",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Coordinates bounded technical design and validation."
+    },
+    {
+      "id": "A17",
+      "name": "Architecture Agent",
+      "division": "Engineering",
+      "role": "Architecture",
+      "reports_to": "A16",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Designs internal system structures within defined safety boundaries."
+    },
+    {
+      "id": "A18",
+      "name": "Implementation Agent",
+      "division": "Engineering",
+      "role": "Implementation",
+      "reports_to": "A16",
+      "authority": "proposal",
+      "status": "registered",
+      "public_description": "Produces implementation proposals and internal technical artifacts."
+    },
+    {
+      "id": "A19",
+      "name": "Test Agent",
+      "division": "Engineering",
+      "role": "Testing",
+      "reports_to": "A16",
+      "authority": "review",
+      "status": "registered",
+      "public_description": "Defines and evaluates bounded technical tests."
+    },
+    {
+      "id": "A20",
+      "name": "Reliability Agent",
+      "division": "Engineering",
+      "role": "Reliability",
+      "reports_to": "A16",
+      "authority": "review",
+      "status": "registered",
+      "public_description": "Reviews failure modes, recovery assumptions and operational resilience."
+    },
+    {
+      "id": "A21",
+      "name": "Economic Lead",
+      "division": "Economic",
+      "role": "Lead",
+      "reports_to": "prime",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Coordinates bounded economic and resource reasoning."
+    },
+    {
+      "id": "A22",
+      "name": "Value Agent",
+      "division": "Economic",
+      "role": "Value Analysis",
+      "reports_to": "A21",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Examines value creation, trade-offs and resource implications."
+    },
+    {
+      "id": "A23",
+      "name": "Cost Agent",
+      "division": "Economic",
+      "role": "Cost Analysis",
+      "reports_to": "A21",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Structures cost and resource comparisons from supplied evidence."
+    },
+    {
+      "id": "A24",
+      "name": "Asset Agent",
+      "division": "Economic",
+      "role": "Asset Analysis",
+      "reports_to": "A21",
+      "authority": "advisory",
+      "status": "registered",
+      "public_description": "Reviews asset and capability implications without executing transactions."
+    },
+    {
+      "id": "A25",
+      "name": "Quality Lead",
+      "division": "Quality",
+      "role": "Lead",
+      "reports_to": "prime",
+      "authority": "review",
+      "status": "registered",
+      "public_description": "Coordinates verification, critique and policy-conformance review."
+    },
+    {
+      "id": "A26",
+      "name": "Verification Agent",
+      "division": "Quality",
+      "role": "Verification",
+      "reports_to": "A25",
+      "authority": "review",
+      "status": "registered",
+      "public_description": "Checks outputs for completeness, support and consistency."
+    },
+    {
+      "id": "A27",
+      "name": "Critic Agent",
+      "division": "Quality",
+      "role": "Adversarial Critique",
+      "reports_to": "A25",
+      "authority": "review",
+      "status": "registered",
+      "public_description": "Challenges unsupported claims, contradictions and hidden assumptions."
+    },
+    {
+      "id": "A28",
+      "name": "Risk Agent",
+      "division": "Quality",
+      "role": "Risk Review",
+      "reports_to": "A25",
+      "authority": "review",
+      "status": "registered",
+      "public_description": "Surfaces bounded failure modes and consequential-risk concerns."
+    },
+    {
+      "id": "A29",
+      "name": "Policy Agent",
+      "division": "Quality",
+      "role": "Policy Review",
+      "reports_to": "A25",
+      "authority": "review",
+      "status": "registered",
+      "public_description": "Checks proposed outcomes against the Stable Spine safety boundary."
+    }
+  ],
+  "relationships": [
+    {
+      "source": "prime",
+      "target": "A01",
+      "type": "reports_to"
+    },
+    {
+      "source": "A01",
+      "target": "A02",
+      "type": "reports_to"
+    },
+    {
+      "source": "A01",
+      "target": "A03",
+      "type": "reports_to"
+    },
+    {
+      "source": "A01",
+      "target": "A04",
+      "type": "reports_to"
+    },
+    {
+      "source": "A01",
+      "target": "A05",
+      "type": "reports_to"
+    },
+    {
+      "source": "prime",
+      "target": "A06",
+      "type": "reports_to"
+    },
+    {
+      "source": "A06",
+      "target": "A07",
+      "type": "reports_to"
+    },
+    {
+      "source": "A06",
+      "target": "A08",
+      "type": "reports_to"
+    },
+    {
+      "source": "A06",
+      "target": "A09",
+      "type": "reports_to"
+    },
+    {
+      "source": "A06",
+      "target": "A10",
+      "type": "reports_to"
+    },
+    {
+      "source": "prime",
+      "target": "A11",
+      "type": "reports_to"
+    },
+    {
+      "source": "A11",
+      "target": "A12",
+      "type": "reports_to"
+    },
+    {
+      "source": "A11",
+      "target": "A13",
+      "type": "reports_to"
+    },
+    {
+      "source": "A11",
+      "target": "A14",
+      "type": "reports_to"
+    },
+    {
+      "source": "A11",
+      "target": "A15",
+      "type": "reports_to"
+    },
+    {
+      "source": "prime",
+      "target": "A16",
+      "type": "reports_to"
+    },
+    {
+      "source": "A16",
+      "target": "A17",
+      "type": "reports_to"
+    },
+    {
+      "source": "A16",
+      "target": "A18",
+      "type": "reports_to"
+    },
+    {
+      "source": "A16",
+      "target": "A19",
+      "type": "reports_to"
+    },
+    {
+      "source": "A16",
+      "target": "A20",
+      "type": "reports_to"
+    },
+    {
+      "source": "prime",
+      "target": "A21",
+      "type": "reports_to"
+    },
+    {
+      "source": "A21",
+      "target": "A22",
+      "type": "reports_to"
+    },
+    {
+      "source": "A21",
+      "target": "A23",
+      "type": "reports_to"
+    },
+    {
+      "source": "A21",
+      "target": "A24",
+      "type": "reports_to"
+    },
+    {
+      "source": "prime",
+      "target": "A25",
+      "type": "reports_to"
+    },
+    {
+      "source": "A25",
+      "target": "A26",
+      "type": "reports_to"
+    },
+    {
+      "source": "A25",
+      "target": "A27",
+      "type": "reports_to"
+    },
+    {
+      "source": "A25",
+      "target": "A28",
+      "type": "reports_to"
+    },
+    {
+      "source": "A25",
+      "target": "A29",
+      "type": "reports_to"
+    },
+    {
+      "source": "A01",
+      "target": "A02",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A01",
+      "target": "A03",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A01",
+      "target": "A04",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A01",
+      "target": "A05",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A01",
+      "target": "A06",
+      "type": "may_consult"
+    },
+    {
+      "source": "A01",
+      "target": "A11",
+      "type": "may_consult"
+    },
+    {
+      "source": "A01",
+      "target": "A16",
+      "type": "may_consult"
+    },
+    {
+      "source": "A01",
+      "target": "A21",
+      "type": "may_consult"
+    },
+    {
+      "source": "A01",
+      "target": "A25",
+      "type": "may_consult"
+    },
+    {
+      "source": "A02",
+      "target": "A01",
+      "type": "may_consult"
+    },
+    {
+      "source": "A03",
+      "target": "A01",
+      "type": "may_consult"
+    },
+    {
+      "source": "A04",
+      "target": "A01",
+      "type": "may_consult"
+    },
+    {
+      "source": "A05",
+      "target": "A01",
+      "type": "may_consult"
+    },
+    {
+      "source": "A06",
+      "target": "A01",
+      "type": "may_consult"
+    },
+    {
+      "source": "A06",
+      "target": "A07",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A06",
+      "target": "A08",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A06",
+      "target": "A09",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A06",
+      "target": "A10",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A06",
+      "target": "A11",
+      "type": "may_consult"
+    },
+    {
+      "source": "A06",
+      "target": "A16",
+      "type": "may_consult"
+    },
+    {
+      "source": "A06",
+      "target": "A21",
+      "type": "may_consult"
+    },
+    {
+      "source": "A06",
+      "target": "A25",
+      "type": "may_consult"
+    },
+    {
+      "source": "A07",
+      "target": "A06",
+      "type": "may_consult"
+    },
+    {
+      "source": "A08",
+      "target": "A06",
+      "type": "may_consult"
+    },
+    {
+      "source": "A09",
+      "target": "A06",
+      "type": "may_consult"
+    },
+    {
+      "source": "A10",
+      "target": "A06",
+      "type": "may_consult"
+    },
+    {
+      "source": "A11",
+      "target": "A01",
+      "type": "may_consult"
+    },
+    {
+      "source": "A11",
+      "target": "A06",
+      "type": "may_consult"
+    },
+    {
+      "source": "A11",
+      "target": "A12",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A11",
+      "target": "A13",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A11",
+      "target": "A14",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A11",
+      "target": "A15",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A11",
+      "target": "A16",
+      "type": "may_consult"
+    },
+    {
+      "source": "A11",
+      "target": "A21",
+      "type": "may_consult"
+    },
+    {
+      "source": "A11",
+      "target": "A25",
+      "type": "may_consult"
+    },
+    {
+      "source": "A12",
+      "target": "A11",
+      "type": "may_consult"
+    },
+    {
+      "source": "A13",
+      "target": "A11",
+      "type": "may_consult"
+    },
+    {
+      "source": "A14",
+      "target": "A11",
+      "type": "may_consult"
+    },
+    {
+      "source": "A15",
+      "target": "A11",
+      "type": "may_consult"
+    },
+    {
+      "source": "A16",
+      "target": "A01",
+      "type": "may_consult"
+    },
+    {
+      "source": "A16",
+      "target": "A06",
+      "type": "may_consult"
+    },
+    {
+      "source": "A16",
+      "target": "A11",
+      "type": "may_consult"
+    },
+    {
+      "source": "A16",
+      "target": "A17",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A16",
+      "target": "A18",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A16",
+      "target": "A19",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A16",
+      "target": "A20",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A16",
+      "target": "A21",
+      "type": "may_consult"
+    },
+    {
+      "source": "A16",
+      "target": "A25",
+      "type": "may_consult"
+    },
+    {
+      "source": "A17",
+      "target": "A16",
+      "type": "may_consult"
+    },
+    {
+      "source": "A18",
+      "target": "A16",
+      "type": "may_consult"
+    },
+    {
+      "source": "A19",
+      "target": "A16",
+      "type": "may_consult"
+    },
+    {
+      "source": "A20",
+      "target": "A16",
+      "type": "may_consult"
+    },
+    {
+      "source": "A21",
+      "target": "A01",
+      "type": "may_consult"
+    },
+    {
+      "source": "A21",
+      "target": "A06",
+      "type": "may_consult"
+    },
+    {
+      "source": "A21",
+      "target": "A11",
+      "type": "may_consult"
+    },
+    {
+      "source": "A21",
+      "target": "A16",
+      "type": "may_consult"
+    },
+    {
+      "source": "A21",
+      "target": "A22",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A21",
+      "target": "A23",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A21",
+      "target": "A24",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A21",
+      "target": "A25",
+      "type": "may_consult"
+    },
+    {
+      "source": "A22",
+      "target": "A21",
+      "type": "may_consult"
+    },
+    {
+      "source": "A23",
+      "target": "A21",
+      "type": "may_consult"
+    },
+    {
+      "source": "A24",
+      "target": "A21",
+      "type": "may_consult"
+    },
+    {
+      "source": "A25",
+      "target": "A01",
+      "type": "may_consult"
+    },
+    {
+      "source": "A25",
+      "target": "A06",
+      "type": "may_consult"
+    },
+    {
+      "source": "A25",
+      "target": "A11",
+      "type": "may_consult"
+    },
+    {
+      "source": "A25",
+      "target": "A16",
+      "type": "may_consult"
+    },
+    {
+      "source": "A25",
+      "target": "A21",
+      "type": "may_consult"
+    },
+    {
+      "source": "A25",
+      "target": "A26",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A25",
+      "target": "A27",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A25",
+      "target": "A28",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A25",
+      "target": "A29",
+      "type": "may_delegate"
+    },
+    {
+      "source": "A26",
+      "target": "A25",
+      "type": "may_consult"
+    },
+    {
+      "source": "A27",
+      "target": "A25",
+      "type": "may_consult"
+    },
+    {
+      "source": "A28",
+      "target": "A25",
+      "type": "may_consult"
+    },
+    {
+      "source": "A29",
+      "target": "A25",
+      "type": "may_consult"
+    }
+  ],
+  "relationship_policy": {
+    "max_delegation_depth": 1,
+    "consequential_actions_require_owner_approval": true,
+    "network_is_enforced": true
+  },
+  "disclosure": "Public-safe projection. Operational prompts, credentials, endpoints and internal instructions are excluded by policy."
+}
