@@ -43,6 +43,9 @@ function Execution({trace}){
   if(!trace)return <div className="mt-10 border border-white/10 rounded-3xl p-8 text-slate-500">Checking sanitized execution boundary…</div>;
   const events=trace.events||[];
   const summary=trace.summary||{registered_agents:29,active_agents:0,executions_today:0,denied_handoffs_today:0,average_latency_ms:null,active_window_seconds:300};
+  const titles={verified_events:'Published runtime events',connected_idle:'Relay connected · runtime idle',stale:'Trace relay stale',disabled:'Public trace disabled',source_unavailable:'Trace source unavailable',no_public_trace:'No verified public runtime activity'};
+  const healthy=trace.state==='verified_events'||trace.state==='connected_idle';
+  const stale=trace.state==='stale';
   return <div className="mt-10 space-y-6">
     <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
       <Metric label="Registered" value={summary.registered_agents??29}/>
@@ -51,9 +54,9 @@ function Execution({trace}){
       <Metric label="Denied hand-offs" value={summary.denied_handoffs_today??0}/>
       <Metric label="Avg latency" value={summary.average_latency_ms==null?'—':`${Math.round(summary.average_latency_ms)} ms`}/>
     </div>
-    <div className="border border-white/10 rounded-3xl p-6"><div className="flex items-center justify-between gap-4"><div><div className="text-[10px] uppercase tracking-[.2em] text-slate-500">Verified execution trace</div><h2 className="text-2xl font-black mt-2">{trace.state==='verified_events'?'Published runtime events':'No verified public runtime activity'}</h2></div><span className={`text-xs px-3 py-1.5 rounded-full border ${trace.state==='verified_events'?'border-emerald-500/30 text-emerald-300':'border-white/10 text-slate-500'}`}>{trace.state}</span></div>
+    <div className="border border-white/10 rounded-3xl p-6"><div className="flex items-center justify-between gap-4"><div><div className="text-[10px] uppercase tracking-[.2em] text-slate-500">Verified execution trace</div><h2 className="text-2xl font-black mt-2">{titles[trace.state]||'Execution boundary status'}</h2>{trace.source_generated_at&&<div className="text-xs text-slate-500 mt-2">Last PRIME heartbeat {new Date(trace.source_generated_at).toLocaleString()}</div>}</div><span className={`text-xs px-3 py-1.5 rounded-full border ${healthy?'border-emerald-500/30 text-emerald-300':stale?'border-amber-500/30 text-amber-300':'border-white/10 text-slate-500'}`}>{trace.state}</span></div>
       <p className="text-slate-500 text-xs mt-3">Active means a sanitized started event within the last {Math.round((summary.active_window_seconds||300)/60)} minutes that has not yet reached a terminal state.</p>
-      {events.length?<div className="mt-6 grid gap-3">{events.map((e,i)=><div key={`${e.trace_id}-${e.sequence??i}`} className="border border-white/[.07] rounded-xl p-4"><div className="flex justify-between gap-4 text-xs text-slate-500"><span>{e.trace_id}</span><span>{new Date(e.timestamp).toLocaleString()}</span></div><div className="mt-2 font-semibold">{e.agent_id} · {e.stage}</div><div className="text-sm text-slate-400 mt-1">{e.status}</div></div>)}</div>:<p className="text-slate-400 mt-5 max-w-3xl">{trace.boundary||'JARVIS has not published sanitized runtime events. The interface intentionally shows zero activity rather than inventing it.'}</p>}
+      {events.length?<div className="mt-6 grid gap-3">{events.map((e,i)=><div key={`${e.trace_id}-${e.sequence??i}`} className="border border-white/[.07] rounded-xl p-4"><div className="flex justify-between gap-4 text-xs text-slate-500"><span>{e.trace_id}</span><span>{new Date(e.timestamp).toLocaleString()}</span></div><div className="mt-2 font-semibold">{e.agent_id} · {e.stage}</div><div className="text-sm text-slate-400 mt-1">{e.status}</div></div>)}</div>:<p className="text-slate-400 mt-5 max-w-3xl">{trace.state==='connected_idle'?'PRIME is publishing a verified heartbeat, but no sanitized execution event is currently available.':trace.boundary||'JARVIS has not published sanitized runtime events. The interface intentionally shows zero activity rather than inventing it.'}</p>}
     </div>
   </div>
 }
