@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { sanitizeEvent, sanitizeSummary } from '../api/jarvis-agent-trace.js';
+import { sanitizeEvent, sanitizeSummary, DEFAULT_TRACE_SOURCE } from '../api/jarvis-agent-trace.js';
 
 test('trace sanitizer exposes only allowlisted metadata', () => {
   const event = sanitizeEvent({
@@ -45,4 +45,11 @@ test('empty summary reports truthful zero runtime activity', () => {
   assert.equal(summary.active_agents, 0);
   assert.equal(summary.executions_today, 0);
   assert.equal(summary.denied_handoffs_today, 0);
+});
+
+test('default trace source is the durable Supabase relay and contains no credential', () => {
+  assert.equal(DEFAULT_TRACE_SOURCE, 'https://bksyjvppcwfgwoelnyvp.supabase.co/functions/v1/jarvis-trace-relay');
+  assert.ok(DEFAULT_TRACE_SOURCE.startsWith('https://'));
+  assert.equal(DEFAULT_TRACE_SOURCE.includes('@'), false);
+  assert.equal(DEFAULT_TRACE_SOURCE.includes('token='), false);
 });
