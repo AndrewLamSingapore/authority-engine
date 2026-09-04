@@ -1,5 +1,6 @@
 const ALLOWED_EVENT_FIELDS = new Set(['trace_id','timestamp','agent_id','stage','status','sequence']);
 const SUMMARY_FIELDS = new Set(['registered_agents','active_agents','executions_today','denied_handoffs_today','average_latency_ms','active_window_seconds']);
+const DEFAULT_TRACE_SOURCE = 'https://bksyjvppcwfgwoelnyvp.supabase.co/functions/v1/jarvis-trace-relay';
 
 function sanitizeEvent(value) {
   if (!value || typeof value !== 'object') return null;
@@ -43,18 +44,7 @@ export default async function handler(req, res) {
   }
 
   const emptySummary = sanitizeSummary(null);
-  const source = process.env.JARVIS_PUBLIC_TRACE_URL;
-  if (!source) {
-    return res.status(200).json({
-      ok: true,
-      state: 'no_public_trace',
-      generated_at: new Date().toISOString(),
-      summary: emptySummary,
-      events: [],
-      boundary: 'No execution trace is published unless PRIME emits sanitized events through an explicitly configured public trace relay. No activity is synthesized.',
-    });
-  }
-
+  const source = process.env.JARVIS_PUBLIC_TRACE_URL || DEFAULT_TRACE_SOURCE;
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 4000);
   try {
@@ -63,11 +53,14 @@ export default async function handler(req, res) {
     const body = await response.json();
     const events = Array.isArray(body.events) ? body.events.map(sanitizeEvent).filter(Boolean).slice(-100) : [];
     const summary = sanitizeSummary(body.summary);
-    const state = events.length ? 'verified_events' : body.state === 'disabled' ? 'disabled' : 'no_public_trace';
+    const state = events.length
+      ? (body.state === 'stale' ? 'stale' : 'verified_events')
+      : body.state === 'disabled' ? 'disabled' : body.state === 'stale' ? 'stale' : 'no_public_trace';
     return res.status(200).json({
       ok: true,
       state,
       generated_at: new Date().toISOString(),
+      source_generated_at: typeof body.source_generated_at === 'string' ? body.source_generated_at : null,
       summary,
       events,
       boundary: 'sanitized runtime authority metadata only; no prompts, results, credentials or private endpoints',
@@ -77,6 +70,7 @@ export default async function handler(req, res) {
       ok: true,
       state: 'source_unavailable',
       generated_at: new Date().toISOString(),
+      source_generated_at: null,
       summary: emptySummary,
       events: [],
       boundary: 'Trace source unavailable; no synthetic events substituted.',
@@ -86,4 +80,4 @@ export default async function handler(req, res) {
   }
 }
 
-export { sanitizeEvent, sanitizeSummary, ALLOWED_EVENT_FIELDS, SUMMARY_FIELDS };
+export { sanitizeEvent, sanitizeSummary, ALLOWED_EVENT_FIELDS, SUMMARY_FIELDS, DEFAULT_TRACE_SOURCE };
