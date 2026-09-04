@@ -39,11 +39,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
       - name: Wait for the Git-connected deployment
         if: github.event_name == 'push'
         run: sleep 45
-      - run: npm run smoke:production
+      - run: node scripts/production-smoke.mjs
         env:
           AUTHORITY_PRODUCTION_URL: ${{ vars.AUTHORITY_PRODUCTION_URL || 'https://authority-engine-app.vercel.app' }}
