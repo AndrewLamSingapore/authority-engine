@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { sanitizeEvent } from '../api/jarvis-agent-trace.js';
+import { sanitizeEvent, sanitizeSummary } from '../api/jarvis-agent-trace.js';
 
 test('trace sanitizer exposes only allowlisted metadata', () => {
   const event = sanitizeEvent({
@@ -17,4 +17,32 @@ test('trace sanitizer exposes only allowlisted metadata', () => {
 test('trace sanitizer rejects incomplete events', () => {
   assert.equal(sanitizeEvent({ trace_id: 'trace-1', agent_id: 'A19' }), null);
   assert.equal(sanitizeEvent(null), null);
+});
+
+test('summary sanitizer is bounded and strips private fields', () => {
+  assert.deepEqual(sanitizeSummary({
+    registered_agents: 999,
+    active_agents: 4,
+    executions_today: 8,
+    denied_handoffs_today: 2,
+    average_latency_ms: 12.5,
+    active_window_seconds: 99999,
+    prompt: 'secret',
+    endpoint: 'private',
+  }), {
+    registered_agents: 29,
+    active_agents: 4,
+    executions_today: 8,
+    denied_handoffs_today: 2,
+    average_latency_ms: 12.5,
+    active_window_seconds: 3600,
+  });
+});
+
+test('empty summary reports truthful zero runtime activity', () => {
+  const summary = sanitizeSummary(null);
+  assert.equal(summary.registered_agents, 29);
+  assert.equal(summary.active_agents, 0);
+  assert.equal(summary.executions_today, 0);
+  assert.equal(summary.denied_handoffs_today, 0);
 });
