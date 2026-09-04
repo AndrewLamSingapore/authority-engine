@@ -307,6 +307,11 @@
       "type": "reports_to"
     },
     {
+      "source": "prime",
+      "target": "A01",
+      "type": "may_delegate"
+    },
+    {
       "source": "A01",
       "target": "A02",
       "type": "reports_to"
@@ -330,6 +335,11 @@
       "source": "prime",
       "target": "A06",
       "type": "reports_to"
+    },
+    {
+      "source": "prime",
+      "target": "A06",
+      "type": "may_delegate"
     },
     {
       "source": "A06",
@@ -357,6 +367,11 @@
       "type": "reports_to"
     },
     {
+      "source": "prime",
+      "target": "A11",
+      "type": "may_delegate"
+    },
+    {
       "source": "A11",
       "target": "A12",
       "type": "reports_to"
@@ -380,6 +395,11 @@
       "source": "prime",
       "target": "A16",
       "type": "reports_to"
+    },
+    {
+      "source": "prime",
+      "target": "A16",
+      "type": "may_delegate"
     },
     {
       "source": "A16",
@@ -407,6 +427,11 @@
       "type": "reports_to"
     },
     {
+      "source": "prime",
+      "target": "A21",
+      "type": "may_delegate"
+    },
+    {
       "source": "A21",
       "target": "A22",
       "type": "reports_to"
@@ -425,6 +450,11 @@
       "source": "prime",
       "target": "A25",
       "type": "reports_to"
+    },
+    {
+      "source": "prime",
+      "target": "A25",
+      "type": "may_delegate"
     },
     {
       "source": "A25",
@@ -830,7 +860,8 @@
   "relationship_policy": {
     "max_delegation_depth": 1,
     "consequential_actions_require_owner_approval": true,
-    "network_is_enforced": true
+    "network_is_enforced": true,
+    "unknown_agent_policy": "deny"
   },
   "disclosure": "Public-safe projection. Operational prompts, credentials, endpoints and internal instructions are excluded by policy."
 }
