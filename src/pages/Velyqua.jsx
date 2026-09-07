@@ -3,7 +3,7 @@ import { Activity, ArrowRight, Database, ExternalLink, ShieldCheck, Waves } from
 import { Link } from 'react-router-dom';
 import velyquaLogo from '../assets/velyqua-logo.svg';
 
-const velyquaUrl = 'https://andrewlamsingapore.github.io/velyqua/';
+const velyquaUrl = 'https://velyqua.vercel.app/';
 const repositoryUrl = 'https://github.com/AndrewLamSingapore/velyqua';
 
 const principles = [
