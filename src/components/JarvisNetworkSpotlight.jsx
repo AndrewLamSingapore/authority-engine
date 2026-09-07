@@ -39,7 +39,7 @@ export default function JarvisNetworkSpotlight() {
             <div className="flex items-center justify-between gap-4 border-t border-white/[.07] pt-5 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
               <div className="hidden xl:block">
                 <div className="text-[9px] font-bold uppercase tracking-[.18em] text-slate-600">Canonical registry</div>
-                <div className="mt-1 flex items-center gap-2 text-xs font-bold text-slate-300"><Sparkles className="h-3.5 w-3.5 text-amber-300" /> Schema v1.0.0</div>
+                <div className="mt-1 flex items-center gap-2 text-xs font-bold text-slate-300"><Sparkles className="h-3.5 w-3.5 text-amber-300" /> Governed relationships</div>
               </div>
               <span className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-emerald-300 px-5 py-3 text-sm font-black text-[#04100b] transition group-hover:bg-emerald-200">
                 Explore network <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
