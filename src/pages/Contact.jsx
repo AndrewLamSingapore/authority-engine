@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { MapPin, Send, ShieldCheck, CheckCircle2, Loader2, ArrowUpRight } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
+import { contactContext, inquiryTypes } from '../lib/contact-context';
 
 export default function Contact() {
   const location = useLocation();
+  const context = contactContext(location.search, location.state);
   const [formData, setFormData] = useState(() => ({
     name: '',
     email: '',
     company: '',
-    inquiryType: location.state?.inquiryType || 'Operations Excellence Opportunity',
-    message: location.state?.message || '',
+    inquiryType: context.inquiryType,
+    message: context.message,
   }));
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,7 +31,8 @@ export default function Contact() {
       const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ ...formData, _subject: `Authority Engine: ${formData.inquiryType}` })
+        signal: AbortSignal.timeout(20000),
+        body: JSON.stringify({ ...formData, source: context.source, _subject: `Authority Engine: ${formData.inquiryType}` })
       });
       if (!response.ok) {
         let message = 'Your message could not be sent. Please try again.';
@@ -42,7 +45,7 @@ export default function Contact() {
       setSubmitted(true);
       setFormData({ name: '', email: '', company: '', inquiryType: 'Operations Excellence Opportunity', message: '' });
     } catch (err) {
-      setError(err.message || 'A network error occurred. Please try again.');
+      setError(err.name === 'TimeoutError' ? 'Confirmation took too long. Your message may have arrived. You can also reach me on LinkedIn below.' : err.message || 'A network error occurred. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -55,8 +58,8 @@ export default function Contact() {
         <div className="grid lg:grid-cols-[.85fr_1.15fr] gap-12 lg:gap-20 items-start">
           <div className="lg:sticky lg:top-32">
             <div className="eyebrow">Start a conversation</div>
-            <h1 className="mt-5 text-5xl sm:text-6xl font-black tracking-[-0.055em] leading-[.94] text-white">Turn an operational problem into a <span className="text-gradient">better decision.</span></h1>
-            <p className="mt-6 text-lg leading-relaxed text-slate-400 max-w-xl">Open to operations excellence, process improvement, supply chain analytics, operations analysis, warehouse and logistics opportunities in Singapore.</p>
+            <h1 className="mt-5 text-5xl sm:text-6xl font-black tracking-[-0.055em] leading-[.94] text-white">A good conversation can <span className="text-gradient">change what comes next.</span></h1>
+            <p className="mt-6 text-lg leading-relaxed text-slate-400 max-w-xl">Have an opportunity, a practical problem or an idea worth exploring? Tell me what you have in mind. I’m open to operations and analytics roles, project collaborations and thoughtful connections.</p>
             <div className="mt-9 grid gap-3">
               <div className="signal-card rounded-2xl p-5 flex gap-4"><MapPin className="w-5 h-5 text-amber-300 shrink-0 mt-0.5"/><div><div className="font-semibold text-white">Singapore</div><div className="text-sm text-slate-500 mt-1">On-site, hybrid and remote opportunities</div></div></div>
               <div className="signal-card rounded-2xl p-5 flex gap-4"><ShieldCheck className="w-5 h-5 text-emerald-300 shrink-0 mt-0.5"/><div><div className="font-semibold text-white">20+ years in operations</div><div className="text-sm text-slate-500 mt-1">Frontline experience combined with analytics and AI</div></div></div>
@@ -69,22 +72,23 @@ export default function Contact() {
               <div className="min-h-[480px] flex flex-col items-center justify-center text-center">
                 <div className="h-16 w-16 rounded-full border border-emerald-400/20 bg-emerald-400/[0.08] flex items-center justify-center"><CheckCircle2 className="w-8 h-8 text-emerald-300"/></div>
                 <h2 className="mt-7 text-3xl font-black text-white">Message received.</h2>
-                <p className="mt-3 text-slate-400 max-w-md">Thank you. Your inquiry has been submitted successfully through Authority Engine.</p>
+                <p className="mt-3 text-slate-400 max-w-md">Thank you for reaching out. Your message has been submitted. We can continue the conversation by email, or connect on LinkedIn.</p>
+                <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="premium-button mt-6 px-6 py-3 rounded-full font-semibold">Connect on LinkedIn</a>
                 <button onClick={() => setSubmitted(false)} className="ghost-button mt-8 px-6 py-3 rounded-full font-semibold">Send another message</button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div><div className="text-xs uppercase tracking-[.18em] text-slate-500">Direct inquiry</div><h2 className="mt-2 text-3xl font-black text-white">What are you trying to improve?</h2><p className="mt-2 text-sm leading-relaxed text-slate-500">Share enough context to make the first conversation useful.</p></div>
-                <div><label htmlFor="name" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Full name *</label><input type="text" id="name" name="name" autoComplete="name" required value={formData.name} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60" placeholder="Your name"/></div>
+                <div><div className="text-xs uppercase tracking-[.18em] text-slate-500">{context.source} · Direct inquiry</div><h2 className="mt-2 text-3xl font-black text-white">What could we explore together?</h2><p className="mt-2 text-sm leading-relaxed text-slate-500">A few lines are enough: what you’re working on, what you need, and how I could help.</p></div>
+                <div><label htmlFor="name" className="block text-sm font-semibold uppercase tracking-wider text-slate-400 mb-2">Full name *</label><input type="text" id="name" name="name" autoComplete="name" required value={formData.name} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60" placeholder="Your name"/></div>
                 <div className="grid sm:grid-cols-2 gap-4">
-                  <div><label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Email *</label><input type="email" id="email" name="email" autoComplete="email" required value={formData.email} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60" placeholder="name@company.com"/></div>
-                  <div><label htmlFor="company" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Company</label><input type="text" id="company" name="company" autoComplete="organization" value={formData.company} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60" placeholder="Organisation"/></div>
+                  <div><label htmlFor="email" className="block text-sm font-semibold uppercase tracking-wider text-slate-400 mb-2">Email *</label><input type="email" id="email" name="email" autoComplete="email" required value={formData.email} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60" placeholder="name@company.com"/></div>
+                  <div><label htmlFor="company" className="block text-sm font-semibold uppercase tracking-wider text-slate-400 mb-2">Company</label><input type="text" id="company" name="company" autoComplete="organization" value={formData.company} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60" placeholder="Organisation"/></div>
                 </div>
-                <div><label htmlFor="inquiryType" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Inquiry</label><select id="inquiryType" name="inquiryType" value={formData.inquiryType} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60"><option>Operations Excellence Opportunity</option><option>Supply Chain or Analytics Collaboration</option><option>JARVIS / Governed AI Conversation</option><option>Professional Inquiry</option><option>Maxwell Container Service</option></select></div>
-                <div><label htmlFor="message" className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Message *</label><textarea id="message" name="message" required rows="6" maxLength="4000" value={formData.message} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60 resize-y" placeholder="The situation, challenge, opportunity or decision you are working through..."/></div>
+                <div><label htmlFor="inquiryType" className="block text-sm font-semibold uppercase tracking-wider text-slate-400 mb-2">Inquiry</label><select id="inquiryType" name="inquiryType" value={formData.inquiryType} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60">{inquiryTypes.map(type => <option key={type}>{type}</option>)}</select></div>
+                <div><label htmlFor="message" className="block text-sm font-semibold uppercase tracking-wider text-slate-400 mb-2">Message *</label><textarea id="message" name="message" required rows="5" maxLength="4000" value={formData.message} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60 resize-y" placeholder="The situation, challenge, opportunity or decision you are working through..."/></div>
                 {error && <div role="alert" className="text-rose-300 text-sm bg-rose-950/30 p-4 rounded-xl border border-rose-900/60">{error}</div>}
                 <button type="submit" disabled={isSubmitting} className="premium-button w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 disabled:opacity-50">{isSubmitting ? <><Loader2 className="w-5 h-5 animate-spin"/> Sending…</> : <><Send className="w-4 h-4"/> Send inquiry</>}</button>
-                <p className="text-center text-xs text-slate-600">Your details are used only to respond to your inquiry.</p>
+                <p className="text-center text-xs text-slate-600">This form uses Formspree to deliver your enquiry. Your details are used to respond and continue this conversation; this does not subscribe you to marketing.</p>
               </form>
             )}
           </div>
