@@ -26,7 +26,7 @@ import SignalField from '../components/SignalField';
 
 const githubUrl = 'https://github.com/AndrewLamSingapore';
 const containerCaseStudyUrl = '/live-container-operations-case-study.pdf';
-const velyquaUrl = 'https://andrewlamsingapore.github.io/velyqua/';
+const velyquaUrl = 'https://velyqua.vercel.app/';
 const gamePlatformUrl = 'https://game-platform-wine-nine.vercel.app/';
 const playWebsiteTheme = () => window.dispatchEvent(new Event('authority-theme:play'));
 
@@ -432,7 +432,7 @@ export default function Home() {
           <div className="absolute -right-20 -top-28 h-72 w-72 rounded-full bg-emerald-400/10 blur-[90px]" aria-hidden="true" />
           <div className="relative grid lg:grid-cols-[1fr_.9fr] gap-10 lg:gap-16 items-center">
             <div>
-              <div className="eyebrow">Flagship interactive system · Portal 4.1</div>
+              <div className="eyebrow">Flagship interactive system</div>
               <h2 className="mt-4 text-4xl sm:text-6xl font-black tracking-[-0.055em] text-white">The Portal</h2>
               <p className="mt-5 max-w-2xl text-base sm:text-lg leading-relaxed text-slate-300">A living knowledge graph built to connect encounters, evidence, questions and ideas—so useful context compounds instead of disappearing.</p>
               <div className="mt-8 flex flex-wrap gap-3">
