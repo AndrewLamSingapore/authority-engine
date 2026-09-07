@@ -10,15 +10,9 @@ This is Andrew Lam's public **PROVE layer**: a recruiter- and decision-maker-fac
 
 The repository slug is historical; the public identity is deliberately **Andrew Lam — Operations Intelligence** so the work is attributable to a person rather than confused with unrelated businesses using similar names.
 
-The purpose is not to display a technology stack. It is to answer a harder question:
-
 > **What can the evidence actually support?**
 
----
-
 ## What this system proves
-
-The site turns operational experience and analytical work into inspectable case studies rather than unsupported capability claims.
 
 | Evidence | Scale | What it demonstrates |
 |---|---:|---|
@@ -28,13 +22,9 @@ The site turns operational experience and analytical work into inspectable case 
 
 Anonymised operational evidence and synthetic demonstrations are deliberately labelled differently.
 
----
-
 ## Evidence discipline
 
 > **A polished interface does not upgrade the quality of the underlying evidence.**
-
-Evidence is described according to what it actually is: operational, anonymised, synthetic, experimental or implemented.
 
 | Level | Meaning |
 |---|---|
@@ -45,55 +35,38 @@ Evidence is described according to what it actually is: operational, anonymised,
 | **E4** | Repeated validation |
 | **E5** | Production evidence at meaningful scale |
 
-A single project may contain evidence at multiple levels.
-
----
-
 ## Operating thesis
 
 **OBSERVE → CONNECT → ANTICIPATE → DECIDE → ACT → LEARN**
 
-The recurring problem across operations is not a shortage of KPIs. It is that many KPIs become obvious only after deterioration has already happened.
+## Public builds
 
-This portfolio explores how operating context, data and multiple weak signals can improve management visibility and eventually support earlier intervention.
+| Build | Evidence status | Public destination | Source |
+|---|---|---|---|
+| **The Portal** | Public interactive build | https://the-portal-ten.vercel.app/ | https://github.com/AndrewLamSingapore/the-portal |
+| **VELYQUA** | Working public prototype / evolving evidence | https://velyqua.vercel.app/ | https://github.com/AndrewLamSingapore/velyqua |
+| **Game Platform** | **E2 — working prototype** | https://game-platform-wine-nine.vercel.app/ | https://github.com/AndrewLamSingapore/game-platform |
+| **The Sky Tablet** | **E2 — working prototype** | https://sky-tablet.vercel.app/ | https://github.com/AndrewLamSingapore/sky-tablet |
 
----
+The Sky Tablet is an interactive exploration of Mesopotamian astronomy and cuneiform. Its software is publicly inspectable at E2; its simplified historical mappings remain educational rather than upgraded to scholarly evidence merely because the interface works.
 
 ## Technical implementation
 
 - **React 19 + Vite** — frontend application
-- **React Router v7** — routed case studies and insight pages
+- **React Router v7** — routed case studies and public-build pages
 - **Tailwind CSS** — responsive presentation system
 - **Sanity** — published insight content
 - **Formspree** — inquiry workflow
 - **Vercel** — hosting and deployment
 - **GitHub Actions** — lint + production build quality gate
 
-### Sonic identity
-
-The site includes an original 8.4-second career theme built around a warm operational foundation, rising glass-like notes and a confident resolution. It remains off by default. The persistent header control previews the theme when enabled, and the primary **Inspect the evidence** transition replays it only after the visitor has opted in. Playback is deliberately restrained, fades smoothly, pauses in hidden tabs and never autoplays on an ordinary page load.
-
-The technology is supporting infrastructure. The evidence and reasoning are the product.
-
-```bash
-npm ci
-npm run lint
-npm run build
-```
-
----
-
 ## Portfolio architecture
 
 | Layer | Purpose | Destination |
 |---|---|---|
-| **THINK** | Ideas and operating perspective | [LinkedIn](https://www.linkedin.com/in/lam-teck-sing-andrew-79886719) |
+| **THINK** | Ideas and operating perspective | LinkedIn |
 | **PROVE** | Evidence, case studies and analytical demonstrations | **This project** |
-| **BUILD** | Code, products and experiments | [GitHub](https://github.com/AndrewLamSingapore) |
-
-The BUILD layer includes the independently deployed [Game Platform](https://game-platform-wine-nine.vercel.app/), a persistent AI-native role-playing system with bounded GM reasoning and server-authoritative state. Game Platform is published at **E2 — working prototype**. Its deployed software and authority boundaries are evidenced; multiplayer acceptance, retention, market demand and commercial viability remain unvalidated.
-
----
+| **BUILD** | Code, products and experiments | GitHub |
 
 ## Standard for public claims
 
