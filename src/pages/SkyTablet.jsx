@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, ExternalLink, Github, Orbit, Star, Languages } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Orbit, Star, Languages } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const liveUrl='https://sky-tablet.vercel.app/';
@@ -16,7 +16,7 @@ export default function SkyTablet(){
      <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">An interactive public exploration of Mesopotamian astronomy and cuneiform writing, built around explicit evidence boundaries rather than presenting educational simplifications as scholarship.</p>
      <div className="mt-8 flex flex-wrap gap-3">
       <a href={liveUrl} target="_blank" rel="noreferrer" className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Open live experience <ExternalLink className="w-4 h-4"/></a>
-      <a href={repoUrl} target="_blank" rel="noreferrer" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold"><Github className="w-4 h-4"/>Inspect source</a>
+      <a href={repoUrl} target="_blank" rel="noreferrer" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold"><ExternalLink className="w-4 h-4"/>Inspect source</a>
      </div>
     </div>
     <div className="rounded-[2rem] border border-white/[0.09] bg-white/[0.025] p-7 sm:p-9">
