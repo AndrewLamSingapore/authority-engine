@@ -1,866 +1,983 @@
 {
-  "schema_version": "1.0.0",
-  "last_updated": "2026-09-03T20:49:00+08:00",
+  "schema_version": "1.1",
+  "last_updated": "2026-09-04",
   "registry_id": "jarvis-prime-agent-registry",
   "orchestrator": {
     "id": "prime",
     "name": "JARVIS PRIME",
-    "role": "Cognitive Control Plane",
-    "public_description": "Coordinates bounded specialist reasoning while policy, evidence and owner approval remain authoritative."
+    "role": "Cognitive Control Plane / Orchestrator",
+    "public_description": "Receives the objective, governs execution, routes work and coordinates all specialist agents."
   },
   "agents": [
     {
-      "id": "A01",
+      "agent_id": "a01",
+      "authority": "advisory",
+      "can_delegate": true,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Strategy Lead",
-      "division": "Strategy",
-      "role": "Lead",
+      "public_description": "Owns strategic reasoning and coordinates strategy work.",
       "reports_to": "prime",
-      "authority": "advisory",
-      "status": "registered",
-      "public_description": "Frames objectives, priorities and bounded decision plans."
+      "role": "Strategic reasoning owner",
+      "status": "planned",
+      "id": "a01",
+      "division": "Strategy"
     },
     {
-      "id": "A02",
+      "agent_id": "a02",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Planning Agent",
-      "division": "Strategy",
-      "role": "Planning",
-      "reports_to": "A01",
-      "authority": "advisory",
-      "status": "registered",
-      "public_description": "Turns objectives into sequenced internal plans."
+      "public_description": "Converts objectives into executable task sequences.",
+      "reports_to": "a01",
+      "role": "Objective-to-task decomposition",
+      "status": "planned",
+      "id": "a02",
+      "division": "Strategy"
     },
     {
-      "id": "A03",
+      "agent_id": "a03",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Roadmap Agent",
-      "division": "Strategy",
-      "role": "Roadmapping",
-      "reports_to": "A01",
-      "authority": "advisory",
-      "status": "registered",
-      "public_description": "Structures milestones, dependencies and decision points."
+      "public_description": "Builds milestones, dependencies and longer-term execution paths.",
+      "reports_to": "a01",
+      "role": "Milestone and dependency planning",
+      "status": "planned",
+      "id": "a03",
+      "division": "Strategy"
     },
     {
-      "id": "A04",
+      "agent_id": "a04",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Decision Agent",
-      "division": "Strategy",
-      "role": "Decision Support",
-      "reports_to": "A01",
-      "authority": "advisory",
-      "status": "registered",
-      "public_description": "Compares bounded options and preserves uncertainty."
+      "public_description": "Evaluates alternatives and produces decision-ready recommendations.",
+      "reports_to": "a01",
+      "role": "Option evaluation",
+      "status": "planned",
+      "id": "a04",
+      "division": "Strategy"
     },
     {
-      "id": "A05",
+      "agent_id": "a05",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Portfolio Agent",
-      "division": "Strategy",
-      "role": "Portfolio Review",
-      "reports_to": "A01",
-      "authority": "advisory",
-      "status": "registered",
-      "public_description": "Reviews competing initiatives against stated objectives."
+      "public_description": "Prioritizes competing initiatives against strategy, capacity, value and risk.",
+      "reports_to": "a01",
+      "role": "Portfolio prioritization",
+      "status": "planned",
+      "id": "a05",
+      "division": "Strategy"
     },
     {
-      "id": "A06",
+      "agent_id": "a06",
+      "authority": "advisory",
+      "can_delegate": true,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Research Lead",
-      "division": "Research",
-      "role": "Lead",
+      "public_description": "Directs research and determines what evidence is required.",
       "reports_to": "prime",
-      "authority": "advisory",
-      "status": "registered",
-      "public_description": "Coordinates evidence-bounded research and identifies evidence gaps."
+      "role": "Research direction",
+      "status": "planned",
+      "id": "a06",
+      "division": "Research"
     },
     {
-      "id": "A07",
+      "agent_id": "a07",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Evidence Agent",
-      "division": "Research",
-      "role": "Evidence Review",
-      "reports_to": "A06",
-      "authority": "advisory",
-      "status": "registered",
-      "public_description": "Reviews supplied evidence and separates support from assumption."
+      "public_description": "Finds and evaluates supporting evidence.",
+      "reports_to": "a06",
+      "role": "Evidence discovery",
+      "status": "planned",
+      "id": "a07",
+      "division": "Research"
     },
     {
-      "id": "A08",
+      "agent_id": "a08",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Comparison Agent",
-      "division": "Research",
-      "role": "Comparative Analysis",
-      "reports_to": "A06",
-      "authority": "advisory",
-      "status": "registered",
-      "public_description": "Builds structured comparisons from available evidence."
+      "public_description": "Performs structured alternative, competitor and option comparisons.",
+      "reports_to": "a06",
+      "role": "Structured comparison",
+      "status": "planned",
+      "id": "a08",
+      "division": "Research"
     },
     {
-      "id": "A09",
+      "agent_id": "a09",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Knowledge Agent",
-      "division": "Research",
-      "role": "Knowledge Synthesis",
-      "reports_to": "A06",
-      "authority": "advisory",
-      "status": "registered",
-      "public_description": "Synthesizes verified context into bounded knowledge summaries."
+      "public_description": "Organizes accumulated knowledge and makes it reusable.",
+      "reports_to": "a06",
+      "role": "Knowledge organization",
+      "status": "planned",
+      "id": "a09",
+      "division": "Research"
     },
     {
-      "id": "A10",
-      "name": "Gap Agent",
-      "division": "Research",
-      "role": "Evidence Gaps",
-      "reports_to": "A06",
+      "agent_id": "a10",
       "authority": "advisory",
-      "status": "registered",
-      "public_description": "Identifies missing evidence required for stronger conclusions."
-    },
-    {
-      "id": "A11",
+      "can_delegate": true,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Data Lead",
-      "division": "Data",
-      "role": "Lead",
+      "public_description": "Coordinates data work and analytical outputs, including database model, caching, batch/stream and normalization tradeoffs.",
       "reports_to": "prime",
-      "authority": "advisory",
-      "status": "registered",
-      "public_description": "Coordinates analysis of explicitly available verified datasets."
+      "role": "Data and analytics coordination",
+      "status": "planned",
+      "id": "a10",
+      "division": "Data"
     },
     {
-      "id": "A12",
+      "agent_id": "a11",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Metrics Agent",
-      "division": "Data",
-      "role": "Metrics",
-      "reports_to": "A11",
-      "authority": "advisory",
-      "status": "registered",
-      "public_description": "Structures measurements and baselines from verified data."
+      "public_description": "Defines KPIs, measurements and performance indicators.",
+      "reports_to": "a10",
+      "role": "KPI definition",
+      "status": "planned",
+      "id": "a11",
+      "division": "Data"
     },
     {
-      "id": "A13",
+      "agent_id": "a12",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Analysis Agent",
-      "division": "Data",
-      "role": "Analysis",
-      "reports_to": "A11",
-      "authority": "advisory",
-      "status": "registered",
-      "public_description": "Performs bounded analytical reasoning over supplied data."
+      "public_description": "Performs descriptive and diagnostic analysis.",
+      "reports_to": "a10",
+      "role": "Descriptive/diagnostic analysis",
+      "status": "planned",
+      "id": "a12",
+      "division": "Data"
     },
     {
-      "id": "A14",
+      "agent_id": "a13",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Forecast Agent",
-      "division": "Data",
-      "role": "Scenario Analysis",
-      "reports_to": "A11",
-      "authority": "advisory",
-      "status": "registered",
-      "public_description": "Builds explicitly qualified scenarios without inventing observations."
+      "public_description": "Handles forecasting and forward-looking analytical work.",
+      "reports_to": "a10",
+      "role": "Forecasting",
+      "status": "planned",
+      "id": "a13",
+      "division": "Data"
     },
     {
-      "id": "A15",
+      "agent_id": "a14",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Data Quality Agent",
-      "division": "Data",
-      "role": "Data Quality",
-      "reports_to": "A11",
-      "authority": "review",
-      "status": "registered",
-      "public_description": "Checks dataset sufficiency, provenance and analytical limitations."
+      "public_description": "Checks completeness, consistency, validity and reliability of data, including schema normalization tradeoffs.",
+      "reports_to": "a10",
+      "role": "Data quality checks",
+      "status": "planned",
+      "id": "a14",
+      "division": "Data"
     },
     {
-      "id": "A16",
+      "agent_id": "a15",
+      "authority": "advisory",
+      "can_delegate": true,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Engineering Lead",
-      "division": "Engineering",
-      "role": "Lead",
+      "public_description": "Owns technical execution and coordinates engineering agents.",
       "reports_to": "prime",
-      "authority": "advisory",
-      "status": "registered",
-      "public_description": "Coordinates bounded technical design and validation."
+      "role": "Technical execution ownership",
+      "status": "planned",
+      "id": "a15",
+      "division": "Engineering"
     },
     {
-      "id": "A17",
+      "agent_id": "a16",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "required_for_execution",
+      "model": "unassigned",
       "name": "Architecture Agent",
-      "division": "Engineering",
-      "role": "Architecture",
-      "reports_to": "A16",
-      "authority": "advisory",
-      "status": "registered",
-      "public_description": "Designs internal system structures within defined safety boundaries."
+      "public_description": "Designs system architecture, interfaces and technical boundaries, including API, caching and consistency-versus-availability tradeoffs.",
+      "reports_to": "a15",
+      "role": "System architecture design",
+      "status": "planned",
+      "id": "a16",
+      "division": "Engineering"
     },
     {
-      "id": "A18",
+      "agent_id": "a17",
+      "authority": "restricted",
+      "can_delegate": false,
+      "human_approval": "required_for_execution",
+      "model": "unassigned",
       "name": "Implementation Agent",
-      "division": "Engineering",
-      "role": "Implementation",
-      "reports_to": "A16",
-      "authority": "proposal",
-      "status": "registered",
-      "public_description": "Produces implementation proposals and internal technical artifacts."
+      "public_description": "Converts approved designs into working implementation.",
+      "reports_to": "a15",
+      "role": "Design-to-code conversion",
+      "status": "planned",
+      "id": "a17",
+      "division": "Engineering"
     },
     {
-      "id": "A19",
+      "agent_id": "a18",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Test Agent",
-      "division": "Engineering",
-      "role": "Testing",
-      "reports_to": "A16",
-      "authority": "review",
-      "status": "registered",
-      "public_description": "Defines and evaluates bounded technical tests."
+      "public_description": "Tests functionality and identifies defects and regressions.",
+      "reports_to": "a15",
+      "role": "Functional testing",
+      "status": "planned",
+      "id": "a18",
+      "division": "Engineering"
     },
     {
-      "id": "A20",
+      "agent_id": "a19",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Reliability Agent",
-      "division": "Engineering",
-      "role": "Reliability",
-      "reports_to": "A16",
-      "authority": "review",
-      "status": "registered",
-      "public_description": "Reviews failure modes, recovery assumptions and operational resilience."
+      "public_description": "Evaluates operational resilience, failure modes and system stability, including caching and availability tradeoffs.",
+      "reports_to": "a15",
+      "role": "Operational resilience evaluation",
+      "status": "planned",
+      "id": "a19",
+      "division": "Engineering"
     },
     {
-      "id": "A21",
+      "agent_id": "a20",
+      "authority": "advisory",
+      "can_delegate": true,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Economic Lead",
-      "division": "Economic",
-      "role": "Lead",
+      "public_description": "Oversees economic analysis and commercial outcomes.",
       "reports_to": "prime",
-      "authority": "advisory",
-      "status": "registered",
-      "public_description": "Coordinates bounded economic and resource reasoning."
+      "role": "Economic analysis ownership",
+      "status": "planned",
+      "id": "a20",
+      "division": "Economic"
     },
     {
-      "id": "A22",
-      "name": "Value Agent",
-      "division": "Economic",
-      "role": "Value Analysis",
-      "reports_to": "A21",
+      "agent_id": "a21",
       "authority": "advisory",
-      "status": "registered",
-      "public_description": "Examines value creation, trade-offs and resource implications."
-    },
-    {
-      "id": "A23",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Cost Agent",
-      "division": "Economic",
-      "role": "Cost Analysis",
-      "reports_to": "A21",
-      "authority": "advisory",
-      "status": "registered",
-      "public_description": "Structures cost and resource comparisons from supplied evidence."
+      "public_description": "Analyzes costs, expenses and cost drivers.",
+      "reports_to": "a20",
+      "role": "Cost analysis",
+      "status": "planned",
+      "id": "a21",
+      "division": "Economic"
     },
     {
-      "id": "A24",
-      "name": "Asset Agent",
-      "division": "Economic",
-      "role": "Asset Analysis",
-      "reports_to": "A21",
+      "agent_id": "a22",
       "authority": "advisory",
-      "status": "registered",
-      "public_description": "Reviews asset and capability implications without executing transactions."
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
+      "name": "Value Agent",
+      "public_description": "Evaluates value creation, ROI and impact.",
+      "reports_to": "a20",
+      "role": "Value/ROI evaluation",
+      "status": "planned",
+      "id": "a22",
+      "division": "Economic"
     },
     {
-      "id": "A25",
+      "agent_id": "a23",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
+      "name": "Resource Agent",
+      "public_description": "Optimizes resources, capacity and allocation.",
+      "reports_to": "a20",
+      "role": "Resource optimization",
+      "status": "planned",
+      "id": "a23",
+      "division": "Economic"
+    },
+    {
+      "agent_id": "a24",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
+      "name": "Commercial Agent",
+      "public_description": "Covers market, pricing, revenue and business models.",
+      "reports_to": "a20",
+      "role": "Market and pricing analysis",
+      "status": "planned",
+      "id": "a24",
+      "division": "Economic"
+    },
+    {
+      "agent_id": "a25",
+      "authority": "advisory",
+      "can_delegate": true,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Quality Lead",
-      "division": "Quality",
-      "role": "Lead",
+      "public_description": "Leads quality governance, standards and assurance.",
       "reports_to": "prime",
-      "authority": "review",
-      "status": "registered",
-      "public_description": "Coordinates verification, critique and policy-conformance review."
+      "role": "Quality governance ownership",
+      "status": "planned",
+      "id": "a25",
+      "division": "Quality"
     },
     {
-      "id": "A26",
+      "agent_id": "a26",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
+      "name": "Review Agent",
+      "public_description": "Performs independent reviews and critical assessments.",
+      "reports_to": "a25",
+      "role": "Independent review",
+      "status": "planned",
+      "id": "a26",
+      "division": "Quality"
+    },
+    {
+      "agent_id": "a27",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Verification Agent",
-      "division": "Quality",
-      "role": "Verification",
-      "reports_to": "A25",
-      "authority": "review",
-      "status": "registered",
-      "public_description": "Checks outputs for completeness, support and consistency."
+      "public_description": "Verifies work, evidence and compliance.",
+      "reports_to": "a25",
+      "role": "Compliance verification",
+      "status": "planned",
+      "id": "a27",
+      "division": "Quality"
     },
     {
-      "id": "A27",
-      "name": "Critic Agent",
-      "division": "Quality",
-      "role": "Adversarial Critique",
-      "reports_to": "A25",
-      "authority": "review",
-      "status": "registered",
-      "public_description": "Challenges unsupported claims, contradictions and hidden assumptions."
-    },
-    {
-      "id": "A28",
+      "agent_id": "a28",
+      "authority": "advisory",
+      "can_delegate": false,
+      "human_approval": "not_required",
+      "model": "unassigned",
       "name": "Risk Agent",
-      "division": "Quality",
-      "role": "Risk Review",
-      "reports_to": "A25",
-      "authority": "review",
-      "status": "registered",
-      "public_description": "Surfaces bounded failure modes and consequential-risk concerns."
+      "public_description": "Identifies risks and ensures mitigations are in place.",
+      "reports_to": "a25",
+      "role": "Risk identification",
+      "status": "planned",
+      "id": "a28",
+      "division": "Quality"
     },
     {
-      "id": "A29",
-      "name": "Policy Agent",
-      "division": "Quality",
-      "role": "Policy Review",
-      "reports_to": "A25",
-      "authority": "review",
-      "status": "registered",
-      "public_description": "Checks proposed outcomes against the Stable Spine safety boundary."
+      "agent_id": "a29",
+      "authority": "restricted",
+      "can_delegate": false,
+      "human_approval": "required_for_execution",
+      "model": "unassigned",
+      "name": "Release Agent",
+      "public_description": "Final quality gate and release readiness control.",
+      "reports_to": "a25",
+      "role": "Release readiness gate",
+      "status": "planned",
+      "id": "a29",
+      "division": "Quality"
     }
   ],
   "relationships": [
     {
       "source": "prime",
-      "target": "A01",
+      "target": "a01",
       "type": "reports_to"
     },
     {
       "source": "prime",
-      "target": "A01",
+      "target": "a01",
       "type": "may_delegate"
     },
     {
-      "source": "A01",
-      "target": "A02",
+      "source": "a01",
+      "target": "a02",
       "type": "reports_to"
     },
     {
-      "source": "A01",
-      "target": "A03",
+      "source": "a01",
+      "target": "a03",
       "type": "reports_to"
     },
     {
-      "source": "A01",
-      "target": "A04",
+      "source": "a01",
+      "target": "a04",
       "type": "reports_to"
     },
     {
-      "source": "A01",
-      "target": "A05",
-      "type": "reports_to"
-    },
-    {
-      "source": "prime",
-      "target": "A06",
+      "source": "a01",
+      "target": "a05",
       "type": "reports_to"
     },
     {
       "source": "prime",
-      "target": "A06",
-      "type": "may_delegate"
-    },
-    {
-      "source": "A06",
-      "target": "A07",
-      "type": "reports_to"
-    },
-    {
-      "source": "A06",
-      "target": "A08",
-      "type": "reports_to"
-    },
-    {
-      "source": "A06",
-      "target": "A09",
-      "type": "reports_to"
-    },
-    {
-      "source": "A06",
-      "target": "A10",
+      "target": "a06",
       "type": "reports_to"
     },
     {
       "source": "prime",
-      "target": "A11",
+      "target": "a06",
+      "type": "may_delegate"
+    },
+    {
+      "source": "a06",
+      "target": "a07",
+      "type": "reports_to"
+    },
+    {
+      "source": "a06",
+      "target": "a08",
+      "type": "reports_to"
+    },
+    {
+      "source": "a06",
+      "target": "a09",
       "type": "reports_to"
     },
     {
       "source": "prime",
-      "target": "A11",
-      "type": "may_delegate"
-    },
-    {
-      "source": "A11",
-      "target": "A12",
-      "type": "reports_to"
-    },
-    {
-      "source": "A11",
-      "target": "A13",
-      "type": "reports_to"
-    },
-    {
-      "source": "A11",
-      "target": "A14",
-      "type": "reports_to"
-    },
-    {
-      "source": "A11",
-      "target": "A15",
+      "target": "a10",
       "type": "reports_to"
     },
     {
       "source": "prime",
-      "target": "A16",
+      "target": "a10",
+      "type": "may_delegate"
+    },
+    {
+      "source": "a10",
+      "target": "a11",
+      "type": "reports_to"
+    },
+    {
+      "source": "a10",
+      "target": "a12",
+      "type": "reports_to"
+    },
+    {
+      "source": "a10",
+      "target": "a13",
+      "type": "reports_to"
+    },
+    {
+      "source": "a10",
+      "target": "a14",
       "type": "reports_to"
     },
     {
       "source": "prime",
-      "target": "A16",
-      "type": "may_delegate"
-    },
-    {
-      "source": "A16",
-      "target": "A17",
-      "type": "reports_to"
-    },
-    {
-      "source": "A16",
-      "target": "A18",
-      "type": "reports_to"
-    },
-    {
-      "source": "A16",
-      "target": "A19",
-      "type": "reports_to"
-    },
-    {
-      "source": "A16",
-      "target": "A20",
+      "target": "a15",
       "type": "reports_to"
     },
     {
       "source": "prime",
-      "target": "A21",
+      "target": "a15",
+      "type": "may_delegate"
+    },
+    {
+      "source": "a15",
+      "target": "a16",
+      "type": "reports_to"
+    },
+    {
+      "source": "a15",
+      "target": "a17",
+      "type": "reports_to"
+    },
+    {
+      "source": "a15",
+      "target": "a18",
+      "type": "reports_to"
+    },
+    {
+      "source": "a15",
+      "target": "a19",
       "type": "reports_to"
     },
     {
       "source": "prime",
-      "target": "A21",
-      "type": "may_delegate"
-    },
-    {
-      "source": "A21",
-      "target": "A22",
-      "type": "reports_to"
-    },
-    {
-      "source": "A21",
-      "target": "A23",
-      "type": "reports_to"
-    },
-    {
-      "source": "A21",
-      "target": "A24",
+      "target": "a20",
       "type": "reports_to"
     },
     {
       "source": "prime",
-      "target": "A25",
+      "target": "a20",
+      "type": "may_delegate"
+    },
+    {
+      "source": "a20",
+      "target": "a21",
+      "type": "reports_to"
+    },
+    {
+      "source": "a20",
+      "target": "a22",
+      "type": "reports_to"
+    },
+    {
+      "source": "a20",
+      "target": "a23",
+      "type": "reports_to"
+    },
+    {
+      "source": "a20",
+      "target": "a24",
       "type": "reports_to"
     },
     {
       "source": "prime",
-      "target": "A25",
-      "type": "may_delegate"
-    },
-    {
-      "source": "A25",
-      "target": "A26",
+      "target": "a25",
       "type": "reports_to"
     },
     {
-      "source": "A25",
-      "target": "A27",
+      "source": "prime",
+      "target": "a25",
+      "type": "may_delegate"
+    },
+    {
+      "source": "a25",
+      "target": "a26",
       "type": "reports_to"
     },
     {
-      "source": "A25",
-      "target": "A28",
+      "source": "a25",
+      "target": "a27",
       "type": "reports_to"
     },
     {
-      "source": "A25",
-      "target": "A29",
+      "source": "a25",
+      "target": "a28",
       "type": "reports_to"
     },
     {
-      "source": "A01",
-      "target": "A02",
+      "source": "a25",
+      "target": "a29",
+      "type": "reports_to"
+    },
+    {
+      "source": "a01",
+      "target": "a02",
       "type": "may_delegate"
     },
     {
-      "source": "A01",
-      "target": "A03",
+      "source": "a01",
+      "target": "a03",
       "type": "may_delegate"
     },
     {
-      "source": "A01",
-      "target": "A04",
+      "source": "a01",
+      "target": "a04",
       "type": "may_delegate"
     },
     {
-      "source": "A01",
-      "target": "A05",
+      "source": "a01",
+      "target": "a05",
       "type": "may_delegate"
     },
     {
-      "source": "A01",
-      "target": "A06",
+      "source": "a01",
+      "target": "a06",
       "type": "may_consult"
     },
     {
-      "source": "A01",
-      "target": "A11",
+      "source": "a01",
+      "target": "a10",
       "type": "may_consult"
     },
     {
-      "source": "A01",
-      "target": "A16",
+      "source": "a01",
+      "target": "a15",
       "type": "may_consult"
     },
     {
-      "source": "A01",
-      "target": "A21",
+      "source": "a01",
+      "target": "a20",
       "type": "may_consult"
     },
     {
-      "source": "A01",
-      "target": "A25",
+      "source": "a01",
+      "target": "a25",
       "type": "may_consult"
     },
     {
-      "source": "A02",
-      "target": "A01",
+      "source": "a02",
+      "target": "a01",
       "type": "may_consult"
     },
     {
-      "source": "A03",
-      "target": "A01",
+      "source": "a03",
+      "target": "a01",
       "type": "may_consult"
     },
     {
-      "source": "A04",
-      "target": "A01",
+      "source": "a04",
+      "target": "a01",
       "type": "may_consult"
     },
     {
-      "source": "A05",
-      "target": "A01",
+      "source": "a05",
+      "target": "a01",
       "type": "may_consult"
     },
     {
-      "source": "A06",
-      "target": "A01",
+      "source": "a06",
+      "target": "a01",
       "type": "may_consult"
     },
     {
-      "source": "A06",
-      "target": "A07",
+      "source": "a06",
+      "target": "a07",
       "type": "may_delegate"
     },
     {
-      "source": "A06",
-      "target": "A08",
+      "source": "a06",
+      "target": "a08",
       "type": "may_delegate"
     },
     {
-      "source": "A06",
-      "target": "A09",
+      "source": "a06",
+      "target": "a09",
       "type": "may_delegate"
     },
     {
-      "source": "A06",
-      "target": "A10",
+      "source": "a06",
+      "target": "a10",
+      "type": "may_consult"
+    },
+    {
+      "source": "a06",
+      "target": "a15",
+      "type": "may_consult"
+    },
+    {
+      "source": "a06",
+      "target": "a20",
+      "type": "may_consult"
+    },
+    {
+      "source": "a06",
+      "target": "a25",
+      "type": "may_consult"
+    },
+    {
+      "source": "a07",
+      "target": "a06",
+      "type": "may_consult"
+    },
+    {
+      "source": "a08",
+      "target": "a06",
+      "type": "may_consult"
+    },
+    {
+      "source": "a09",
+      "target": "a06",
+      "type": "may_consult"
+    },
+    {
+      "source": "a10",
+      "target": "a01",
+      "type": "may_consult"
+    },
+    {
+      "source": "a10",
+      "target": "a06",
+      "type": "may_consult"
+    },
+    {
+      "source": "a10",
+      "target": "a11",
       "type": "may_delegate"
     },
     {
-      "source": "A06",
-      "target": "A11",
-      "type": "may_consult"
-    },
-    {
-      "source": "A06",
-      "target": "A16",
-      "type": "may_consult"
-    },
-    {
-      "source": "A06",
-      "target": "A21",
-      "type": "may_consult"
-    },
-    {
-      "source": "A06",
-      "target": "A25",
-      "type": "may_consult"
-    },
-    {
-      "source": "A07",
-      "target": "A06",
-      "type": "may_consult"
-    },
-    {
-      "source": "A08",
-      "target": "A06",
-      "type": "may_consult"
-    },
-    {
-      "source": "A09",
-      "target": "A06",
-      "type": "may_consult"
-    },
-    {
-      "source": "A10",
-      "target": "A06",
-      "type": "may_consult"
-    },
-    {
-      "source": "A11",
-      "target": "A01",
-      "type": "may_consult"
-    },
-    {
-      "source": "A11",
-      "target": "A06",
-      "type": "may_consult"
-    },
-    {
-      "source": "A11",
-      "target": "A12",
+      "source": "a10",
+      "target": "a12",
       "type": "may_delegate"
     },
     {
-      "source": "A11",
-      "target": "A13",
+      "source": "a10",
+      "target": "a13",
       "type": "may_delegate"
     },
     {
-      "source": "A11",
-      "target": "A14",
+      "source": "a10",
+      "target": "a14",
       "type": "may_delegate"
     },
     {
-      "source": "A11",
-      "target": "A15",
+      "source": "a10",
+      "target": "a15",
+      "type": "may_consult"
+    },
+    {
+      "source": "a10",
+      "target": "a20",
+      "type": "may_consult"
+    },
+    {
+      "source": "a10",
+      "target": "a25",
+      "type": "may_consult"
+    },
+    {
+      "source": "a11",
+      "target": "a10",
+      "type": "may_consult"
+    },
+    {
+      "source": "a12",
+      "target": "a10",
+      "type": "may_consult"
+    },
+    {
+      "source": "a13",
+      "target": "a10",
+      "type": "may_consult"
+    },
+    {
+      "source": "a14",
+      "target": "a10",
+      "type": "may_consult"
+    },
+    {
+      "source": "a15",
+      "target": "a01",
+      "type": "may_consult"
+    },
+    {
+      "source": "a15",
+      "target": "a06",
+      "type": "may_consult"
+    },
+    {
+      "source": "a15",
+      "target": "a10",
+      "type": "may_consult"
+    },
+    {
+      "source": "a15",
+      "target": "a16",
       "type": "may_delegate"
     },
     {
-      "source": "A11",
-      "target": "A16",
-      "type": "may_consult"
-    },
-    {
-      "source": "A11",
-      "target": "A21",
-      "type": "may_consult"
-    },
-    {
-      "source": "A11",
-      "target": "A25",
-      "type": "may_consult"
-    },
-    {
-      "source": "A12",
-      "target": "A11",
-      "type": "may_consult"
-    },
-    {
-      "source": "A13",
-      "target": "A11",
-      "type": "may_consult"
-    },
-    {
-      "source": "A14",
-      "target": "A11",
-      "type": "may_consult"
-    },
-    {
-      "source": "A15",
-      "target": "A11",
-      "type": "may_consult"
-    },
-    {
-      "source": "A16",
-      "target": "A01",
-      "type": "may_consult"
-    },
-    {
-      "source": "A16",
-      "target": "A06",
-      "type": "may_consult"
-    },
-    {
-      "source": "A16",
-      "target": "A11",
-      "type": "may_consult"
-    },
-    {
-      "source": "A16",
-      "target": "A17",
+      "source": "a15",
+      "target": "a17",
       "type": "may_delegate"
     },
     {
-      "source": "A16",
-      "target": "A18",
+      "source": "a15",
+      "target": "a18",
       "type": "may_delegate"
     },
     {
-      "source": "A16",
-      "target": "A19",
+      "source": "a15",
+      "target": "a19",
       "type": "may_delegate"
     },
     {
-      "source": "A16",
-      "target": "A20",
+      "source": "a15",
+      "target": "a20",
+      "type": "may_consult"
+    },
+    {
+      "source": "a15",
+      "target": "a25",
+      "type": "may_consult"
+    },
+    {
+      "source": "a16",
+      "target": "a15",
+      "type": "may_consult"
+    },
+    {
+      "source": "a17",
+      "target": "a15",
+      "type": "may_consult"
+    },
+    {
+      "source": "a18",
+      "target": "a15",
+      "type": "may_consult"
+    },
+    {
+      "source": "a19",
+      "target": "a15",
+      "type": "may_consult"
+    },
+    {
+      "source": "a20",
+      "target": "a01",
+      "type": "may_consult"
+    },
+    {
+      "source": "a20",
+      "target": "a06",
+      "type": "may_consult"
+    },
+    {
+      "source": "a20",
+      "target": "a10",
+      "type": "may_consult"
+    },
+    {
+      "source": "a20",
+      "target": "a15",
+      "type": "may_consult"
+    },
+    {
+      "source": "a20",
+      "target": "a21",
       "type": "may_delegate"
     },
     {
-      "source": "A16",
-      "target": "A21",
-      "type": "may_consult"
-    },
-    {
-      "source": "A16",
-      "target": "A25",
-      "type": "may_consult"
-    },
-    {
-      "source": "A17",
-      "target": "A16",
-      "type": "may_consult"
-    },
-    {
-      "source": "A18",
-      "target": "A16",
-      "type": "may_consult"
-    },
-    {
-      "source": "A19",
-      "target": "A16",
-      "type": "may_consult"
-    },
-    {
-      "source": "A20",
-      "target": "A16",
-      "type": "may_consult"
-    },
-    {
-      "source": "A21",
-      "target": "A01",
-      "type": "may_consult"
-    },
-    {
-      "source": "A21",
-      "target": "A06",
-      "type": "may_consult"
-    },
-    {
-      "source": "A21",
-      "target": "A11",
-      "type": "may_consult"
-    },
-    {
-      "source": "A21",
-      "target": "A16",
-      "type": "may_consult"
-    },
-    {
-      "source": "A21",
-      "target": "A22",
+      "source": "a20",
+      "target": "a22",
       "type": "may_delegate"
     },
     {
-      "source": "A21",
-      "target": "A23",
+      "source": "a20",
+      "target": "a23",
       "type": "may_delegate"
     },
     {
-      "source": "A21",
-      "target": "A24",
+      "source": "a20",
+      "target": "a24",
       "type": "may_delegate"
     },
     {
-      "source": "A21",
-      "target": "A25",
+      "source": "a20",
+      "target": "a25",
       "type": "may_consult"
     },
     {
-      "source": "A22",
-      "target": "A21",
+      "source": "a21",
+      "target": "a20",
       "type": "may_consult"
     },
     {
-      "source": "A23",
-      "target": "A21",
+      "source": "a22",
+      "target": "a20",
       "type": "may_consult"
     },
     {
-      "source": "A24",
-      "target": "A21",
+      "source": "a23",
+      "target": "a20",
       "type": "may_consult"
     },
     {
-      "source": "A25",
-      "target": "A01",
+      "source": "a24",
+      "target": "a20",
       "type": "may_consult"
     },
     {
-      "source": "A25",
-      "target": "A06",
+      "source": "a25",
+      "target": "a01",
       "type": "may_consult"
     },
     {
-      "source": "A25",
-      "target": "A11",
+      "source": "a25",
+      "target": "a06",
       "type": "may_consult"
     },
     {
-      "source": "A25",
-      "target": "A16",
+      "source": "a25",
+      "target": "a10",
       "type": "may_consult"
     },
     {
-      "source": "A25",
-      "target": "A21",
+      "source": "a25",
+      "target": "a15",
       "type": "may_consult"
     },
     {
-      "source": "A25",
-      "target": "A26",
+      "source": "a25",
+      "target": "a20",
+      "type": "may_consult"
+    },
+    {
+      "source": "a25",
+      "target": "a26",
       "type": "may_delegate"
     },
     {
-      "source": "A25",
-      "target": "A27",
+      "source": "a25",
+      "target": "a27",
       "type": "may_delegate"
     },
     {
-      "source": "A25",
-      "target": "A28",
+      "source": "a25",
+      "target": "a28",
       "type": "may_delegate"
     },
     {
-      "source": "A25",
-      "target": "A29",
+      "source": "a25",
+      "target": "a29",
       "type": "may_delegate"
     },
     {
-      "source": "A26",
-      "target": "A25",
+      "source": "a26",
+      "target": "a25",
       "type": "may_consult"
     },
     {
-      "source": "A27",
-      "target": "A25",
+      "source": "a27",
+      "target": "a25",
       "type": "may_consult"
     },
     {
-      "source": "A28",
-      "target": "A25",
+      "source": "a28",
+      "target": "a25",
       "type": "may_consult"
     },
     {
-      "source": "A29",
-      "target": "A25",
+      "source": "a29",
+      "target": "a25",
       "type": "may_consult"
     }
   ],
   "relationship_policy": {
-    "max_delegation_depth": 1,
+    "max_delegation_depth": 2,
     "consequential_actions_require_owner_approval": true,
     "network_is_enforced": true,
+    "runtime_activation_verified": false,
     "unknown_agent_policy": "deny"
   },
   "disclosure": "Public-safe projection. Operational prompts, credentials, endpoints and internal instructions are excluded by policy."
