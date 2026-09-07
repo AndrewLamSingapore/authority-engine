@@ -1,5 +1,7 @@
 # Andrew Lam — Operations Intelligence Evidence Hub
 
+[**Open Authority Engine ↗**](https://authority-engine-app.vercel.app/) · [**Discuss this project**](https://authority-engine-app.vercel.app/contact?source=github) · [**Meet Andrew Lam**](https://authority-engine-app.vercel.app/about)
+
 > Repository slug: `authority-engine`
 
 ## Operations intelligence, backed by inspectable evidence.

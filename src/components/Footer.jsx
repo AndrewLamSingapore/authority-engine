@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import EcosystemLinks from './EcosystemLinks';
 import { Mail } from 'lucide-react';
 
 const LinkedInIcon = ({ className = "w-5 h-5" }) => (
@@ -12,13 +13,13 @@ export default function Footer() {
   const linkedinUrl = "https://www.linkedin.com/in/lam-teck-sing-andrew-79886719";
 
   return (
-    <footer className="bg-[#050A09] border-t border-gray-800 text-gray-400 py-12">
+    <><EcosystemLinks /><footer className="bg-[#050A09] border-t border-gray-800 text-gray-400 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
         <div>
           <h3 className="text-lg font-semibold text-white">Andrew Lam</h3>
           <p className="text-sm mt-1">Authority Engine · Operations · Analytics · Applied AI</p>
         </div>
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-6"><a href="https://github.com/AndrewLamSingapore" className="text-sm hover:text-emerald-300">GitHub</a>
           <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors p-2" aria-label="Andrew Lam on LinkedIn">
             <LinkedInIcon className="w-5 h-5" />
           </a>
@@ -28,6 +29,6 @@ export default function Footer() {
         </div>
         <div className="text-sm">© {new Date().getFullYear()} Andrew Lam. All rights reserved.</div>
       </div>
-    </footer>
+    </footer></>
   );
 }

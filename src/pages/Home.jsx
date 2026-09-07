@@ -57,7 +57,7 @@ const audiencePaths = [
     label: 'Explorer',
     eyebrow: 'Following the frontier',
     title: 'Enter the ideas still being tested.',
-    text: 'Explore governed experiments in operational memory, AI authority, machine systems and connected aquaculture—with maturity labels kept visible.',
+    text: 'Explore governed experiments in operational memory, AI authority, machine systems and living-water systems—with maturity labels kept visible.',
     action: 'Enter The Portal',
     to: '/portal',
   },
@@ -103,7 +103,7 @@ const authoritySignals = [
     Icon: Layers3,
     tag: 'CONTROLLED EXPLORATION',
     title: 'Where machines begin to observe, decide and act.',
-    text: 'VELYQUA 0.6 explores explainable aquarium decisions, memory and future sensor integration. Machine-economy work examines the authority and evidence machines may need before acting.',
+    text: 'VELYQUA explores software-first water intelligence using observations from manual tests, sensors and other sources. Machine-economy work examines the authority and evidence machines may need before acting.',
     proof: 'Browser concepts are inspectable. Physical implementation and market claims remain unvalidated.',
     action: 'Open the Aqua exploration',
     to: '/velyqua',
@@ -232,7 +232,7 @@ export default function Home() {
     <div className="overflow-hidden bg-[#050807] text-slate-100">
       <section className="authority-hero relative min-h-[calc(100svh-5rem)] flex items-center pt-28 pb-14 px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <SignalField />
+          <img src={signalVisual} alt="" className="hero-atmosphere-art" fetchPriority="high" /><SignalField />
           <div className="ambient-orb ambient-orb-one absolute -top-40 right-[-10%] h-[620px] w-[620px] rounded-full bg-emerald-500/[0.1] blur-[120px]" />
           <div className="ambient-orb ambient-orb-two absolute bottom-[-20%] left-[-10%] h-[520px] w-[520px] rounded-full bg-amber-400/[0.065] blur-[130px]" />
           <div className="hero-grid absolute inset-0 opacity-35" />
@@ -249,22 +249,22 @@ export default function Home() {
               Operations Leadership · Analytics · Applied AI
             </div>
             <h1 className="authority-headline mt-7 text-[clamp(2.8rem,5.5vw,5.1rem)] font-black tracking-[-0.055em] leading-[.93] text-white">
-              <span className="hero-line"><span>I TURN COMPLEX</span></span>
-              <span className="hero-line"><span>OPERATIONS INTO</span></span>
-              <span className="hero-line"><span className="text-gradient">DECISIONS THAT MOVE.</span></span>
+              <span className="hero-line"><span>Complex operations.</span></span>
+              <span className="hero-line"><span>Clearer decisions.</span></span>
+              <span className="hero-line"><span className="text-gradient">Real possibilities.</span></span>
             </h1>
             <p className="mt-7 max-w-2xl text-[15px] sm:text-base leading-relaxed text-slate-300/80">
-              I combine 20+ years across supply chain, warehousing, cold chain and logistics with Power BI, SQL, business analytics and applied AI—building resilient operations through data and execution.
+              I’m Andrew Lam. I bring 20+ years of supply chain and logistics experience to practical analytics and applied AI. Explore the evidence, try the working ideas, and tell me what you want to improve.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/insights" onClick={playWebsiteTheme} className="signal-cta premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
-                Explore the work <ArrowRight className="w-4 h-4" />
+              <Link to="/contact?source=authority-engine" onClick={playWebsiteTheme} className="signal-cta premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
+                Let’s explore your next move <ArrowRight className="w-4 h-4" />
               </Link>
               <a href={gamePlatformUrl} target="_blank" rel="noopener noreferrer" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
                 Play a living world <ExternalLink className="w-4 h-4" />
               </a>
-              <Link to="/contact" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
-                Bring me a problem
+              <Link to="/insights" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
+                See the evidence
               </Link>
             </div>
             <div className="mt-6 flex items-center gap-3 text-sm text-slate-500">
@@ -467,8 +467,8 @@ export default function Home() {
               <div className="eyebrow">Controlled exploration · VELYQUA 维澜</div>
               <h2 className="mt-4 text-4xl sm:text-5xl font-black text-white">VELYQUA <span className="text-emerald-300">维澜</span></h2>
               <p className="mt-3 text-sm font-semibold tracking-wide text-emerald-300">洞察微澜，守护水境。</p>
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-300">A browser concept exploring how incomplete aquarium observations could become explainable next actions—while preserving uncertainty and tank memory.</p>
-              <p className="mt-4 text-sm leading-relaxed text-slate-500">The interactive concept is inspectable. Physical sensor integration, implementation and market claims remain unvalidated.</p>
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-300">Intelligence for Living Water. A software-first exploration of how manual tests, sensors and observations can become trustworthy, explainable next steps.</p>
+              <p className="mt-4 text-sm leading-relaxed text-slate-500">Explore the browser prototype. Observation Contract v1 is design-frozen; real-water sensor validation and commercial outcomes remain unverified.</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link to="/velyqua" className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Explore it here <ArrowRight className="w-4 h-4" /></Link>
                 <a href={velyquaUrl} target="_blank" rel="noreferrer" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Open full experience <ExternalLink className="w-4 h-4" /></a>
@@ -507,7 +507,7 @@ export default function Home() {
             <p className="mt-4 text-sm leading-relaxed text-slate-500">The operating dataset is verified and anonymised. No unverified profit, savings or expansion claim is made.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/maxwell-excel" className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">View operating case <ArrowRight className="w-4 h-4" /></Link>
-              <Link to="/contact" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Request container service</Link>
+              <Link to="/contact?source=maxwell-excel" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Request container service</Link>
             </div>
           </div>
         </div>
