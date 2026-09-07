@@ -2,9 +2,9 @@ import fs from 'node:fs';
 
 const path = new URL('../public/data/jarvis-agent-registry.json', import.meta.url);
 const registry = JSON.parse(fs.readFileSync(path, 'utf8'));
-const forbidden = new Set(['system_prompt','credentials','endpoint','filesystem_path','tool_secrets','internal_instructions']);
+const forbidden = new Set(['system_prompt','credentials','endpoint','filesystem_path','tool_secrets','internal_instructions','receives','produces']);
 
-if (registry.schema_version !== '1.0.0') throw new Error(`unexpected schema ${registry.schema_version}`);
+if (!['1.0.0', '1.1'].includes(registry.schema_version)) throw new Error(`unexpected schema ${registry.schema_version}`);
 if (!registry.last_updated) throw new Error('missing last_updated');
 if (!registry.orchestrator || registry.orchestrator.id !== 'prime') throw new Error('invalid orchestrator');
 if (!Array.isArray(registry.agents) || registry.agents.length !== 29) throw new Error(`expected 29 agents, got ${registry.agents?.length}`);

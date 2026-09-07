@@ -109,7 +109,7 @@ function Shell({ children }) {
 }
 
 function Hierarchy({ registry, divisions, division, setDivision, visible, selected, setSelected }) {
-  const leads = visible.filter((agent) => agent.role === 'Lead');
+  const leads = visible.filter((agent) => agent.can_delegate === true || agent.role === 'Lead');
   const details = selected || registry.orchestrator;
   return <>
     <div className="mt-8 flex gap-2 flex-wrap">
