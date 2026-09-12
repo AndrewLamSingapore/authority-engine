@@ -17,6 +17,7 @@ assert.ok(component.includes('const MAX_VOLUME = 0.9'), 'sound must be audible o
 assert.ok(component.includes('playConfirmationCue') && component.includes('783.99'), 'sound must begin with the shared audible confirmation cue');
 assert.ok(component.includes('const cuePromise = playConfirmationCue()') && component.includes('Promise.all([themePromise, cuePromise])'), 'theme and cue must start inside the same user activation');
 assert.ok(component.includes('audio.muted = false') && component.includes('audio.defaultMuted = false'), 'playback must explicitly clear inherited mute state');
+assert.ok(component.includes('onPlaying={() =>') && component.includes('onPause={() =>'), 'sound UI must follow actual media playback events');
 assert.ok(component.includes('loop') && component.includes('const themePromise = audio.play()'), 'playing state must represent continuous, successful theme playback');
 assert.ok(component.includes('role="alert"') && component.includes('NotAllowedError'), 'sound playback failures must be visible');
 assert.ok(component.includes('authority-sound-enabled-v1'), 'sound preference must be versioned and local');

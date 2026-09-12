@@ -103,7 +103,6 @@ export default function SoundControl() {
       const cuePromise = playConfirmationCue();
       const themePromise = audio.play();
       await Promise.all([themePromise, cuePromise]);
-      setPlaying(true);
       setStatus('Website theme is playing.');
       const started = performance.now();
       const fade = (now) => {
@@ -184,6 +183,14 @@ export default function SoundControl() {
         ref={audioRef}
         loop
         preload="metadata"
+        onPlaying={() => {
+          setPlaying(true);
+          setStatus('Website theme is playing.');
+        }}
+        onPause={() => {
+          setPlaying(false);
+          setStatus('Website theme paused. Select SOUND READY to resume playback.');
+        }}
         onEnded={() => {
           setPlaying(false);
           setReady(true);
