@@ -94,9 +94,15 @@ export default function SoundControl() {
     setError('');
     try {
       if (restart || audio.ended) audio.currentTime = 0;
+      audio.defaultMuted = false;
+      audio.muted = false;
       audio.volume = 0;
-      await audio.play();
-      await playConfirmationCue();
+      // Start both playback paths while the click still owns browser activation.
+      // Awaiting one before starting the other can make mobile browsers reject
+      // the delayed AudioContext resume even though the user selected sound.
+      const cuePromise = playConfirmationCue();
+      const themePromise = audio.play();
+      await Promise.all([themePromise, cuePromise]);
       setPlaying(true);
       setStatus('Website theme is playing.');
       const started = performance.now();
