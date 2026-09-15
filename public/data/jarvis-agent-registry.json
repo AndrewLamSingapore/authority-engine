@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.1",
-  "last_updated": "2026-09-04",
+  "schema_version": "2.0",
+  "last_updated": "2026-09-13",
   "registry_id": "jarvis-prime-agent-registry",
   "orchestrator": {
     "id": "prime",
@@ -16,10 +16,10 @@
       "human_approval": "not_required",
       "model": "unassigned",
       "name": "Strategy Lead",
-      "public_description": "Owns strategic reasoning and coordinates strategy work.",
+      "public_description": "Strategic reasoning owner",
       "reports_to": "prime",
       "role": "Strategic reasoning owner",
-      "status": "planned",
+      "status": "registered",
       "id": "a01",
       "division": "Strategy"
     },
@@ -29,26 +29,12 @@
       "can_delegate": false,
       "human_approval": "not_required",
       "model": "unassigned",
-      "name": "Planning Agent",
-      "public_description": "Converts objectives into executable task sequences.",
+      "name": "Planning and Roadmap Agent",
+      "public_description": "Objective-to-task decomposition; Milestone and dependency planning",
       "reports_to": "a01",
-      "role": "Objective-to-task decomposition",
-      "status": "planned",
+      "role": "Objective-to-task decomposition; Milestone and dependency planning",
+      "status": "registered",
       "id": "a02",
-      "division": "Strategy"
-    },
-    {
-      "agent_id": "a03",
-      "authority": "advisory",
-      "can_delegate": false,
-      "human_approval": "not_required",
-      "model": "unassigned",
-      "name": "Roadmap Agent",
-      "public_description": "Builds milestones, dependencies and longer-term execution paths.",
-      "reports_to": "a01",
-      "role": "Milestone and dependency planning",
-      "status": "planned",
-      "id": "a03",
       "division": "Strategy"
     },
     {
@@ -57,11 +43,11 @@
       "can_delegate": false,
       "human_approval": "not_required",
       "model": "unassigned",
-      "name": "Decision Agent",
-      "public_description": "Evaluates alternatives and produces decision-ready recommendations.",
+      "name": "Decision and Comparison Agent",
+      "public_description": "Option evaluation; Structured comparison",
       "reports_to": "a01",
-      "role": "Option evaluation",
-      "status": "planned",
+      "role": "Option evaluation; Structured comparison",
+      "status": "registered",
       "id": "a04",
       "division": "Strategy"
     },
@@ -71,11 +57,11 @@
       "can_delegate": false,
       "human_approval": "not_required",
       "model": "unassigned",
-      "name": "Portfolio Agent",
-      "public_description": "Prioritizes competing initiatives against strategy, capacity, value and risk.",
+      "name": "Portfolio and Capacity Agent",
+      "public_description": "Portfolio prioritization; Resource optimization",
       "reports_to": "a01",
-      "role": "Portfolio prioritization",
-      "status": "planned",
+      "role": "Portfolio prioritization; Resource optimization",
+      "status": "registered",
       "id": "a05",
       "division": "Strategy"
     },
@@ -86,10 +72,10 @@
       "human_approval": "not_required",
       "model": "unassigned",
       "name": "Research Lead",
-      "public_description": "Directs research and determines what evidence is required.",
+      "public_description": "Research direction",
       "reports_to": "prime",
       "role": "Research direction",
-      "status": "planned",
+      "status": "registered",
       "id": "a06",
       "division": "Research"
     },
@@ -100,25 +86,11 @@
       "human_approval": "not_required",
       "model": "unassigned",
       "name": "Evidence Agent",
-      "public_description": "Finds and evaluates supporting evidence.",
+      "public_description": "Evidence discovery",
       "reports_to": "a06",
       "role": "Evidence discovery",
-      "status": "planned",
+      "status": "registered",
       "id": "a07",
-      "division": "Research"
-    },
-    {
-      "agent_id": "a08",
-      "authority": "advisory",
-      "can_delegate": false,
-      "human_approval": "not_required",
-      "model": "unassigned",
-      "name": "Comparison Agent",
-      "public_description": "Performs structured alternative, competitor and option comparisons.",
-      "reports_to": "a06",
-      "role": "Structured comparison",
-      "status": "planned",
-      "id": "a08",
       "division": "Research"
     },
     {
@@ -128,10 +100,10 @@
       "human_approval": "not_required",
       "model": "unassigned",
       "name": "Knowledge Agent",
-      "public_description": "Organizes accumulated knowledge and makes it reusable.",
+      "public_description": "Knowledge organization",
       "reports_to": "a06",
       "role": "Knowledge organization",
-      "status": "planned",
+      "status": "registered",
       "id": "a09",
       "division": "Research"
     },
@@ -142,25 +114,11 @@
       "human_approval": "not_required",
       "model": "unassigned",
       "name": "Data Lead",
-      "public_description": "Coordinates data work and analytical outputs, including database model, caching, batch/stream and normalization tradeoffs.",
+      "public_description": "Data and analytics coordination",
       "reports_to": "prime",
       "role": "Data and analytics coordination",
-      "status": "planned",
+      "status": "registered",
       "id": "a10",
-      "division": "Data"
-    },
-    {
-      "agent_id": "a11",
-      "authority": "advisory",
-      "can_delegate": false,
-      "human_approval": "not_required",
-      "model": "unassigned",
-      "name": "Metrics Agent",
-      "public_description": "Defines KPIs, measurements and performance indicators.",
-      "reports_to": "a10",
-      "role": "KPI definition",
-      "status": "planned",
-      "id": "a11",
       "division": "Data"
     },
     {
@@ -169,11 +127,11 @@
       "can_delegate": false,
       "human_approval": "not_required",
       "model": "unassigned",
-      "name": "Analysis Agent",
-      "public_description": "Performs descriptive and diagnostic analysis.",
+      "name": "Metrics and Analysis Agent",
+      "public_description": "KPI definition; Descriptive/diagnostic analysis",
       "reports_to": "a10",
-      "role": "Descriptive/diagnostic analysis",
-      "status": "planned",
+      "role": "KPI definition; Descriptive/diagnostic analysis",
+      "status": "registered",
       "id": "a12",
       "division": "Data"
     },
@@ -184,10 +142,10 @@
       "human_approval": "not_required",
       "model": "unassigned",
       "name": "Forecast Agent",
-      "public_description": "Handles forecasting and forward-looking analytical work.",
+      "public_description": "Forecasting",
       "reports_to": "a10",
       "role": "Forecasting",
-      "status": "planned",
+      "status": "registered",
       "id": "a13",
       "division": "Data"
     },
@@ -198,10 +156,10 @@
       "human_approval": "not_required",
       "model": "unassigned",
       "name": "Data Quality Agent",
-      "public_description": "Checks completeness, consistency, validity and reliability of data, including schema normalization tradeoffs.",
+      "public_description": "Data quality checks",
       "reports_to": "a10",
       "role": "Data quality checks",
-      "status": "planned",
+      "status": "registered",
       "id": "a14",
       "division": "Data"
     },
@@ -212,10 +170,10 @@
       "human_approval": "not_required",
       "model": "unassigned",
       "name": "Engineering Lead",
-      "public_description": "Owns technical execution and coordinates engineering agents.",
+      "public_description": "Technical execution ownership",
       "reports_to": "prime",
       "role": "Technical execution ownership",
-      "status": "planned",
+      "status": "registered",
       "id": "a15",
       "division": "Engineering"
     },
@@ -226,10 +184,10 @@
       "human_approval": "required_for_execution",
       "model": "unassigned",
       "name": "Architecture Agent",
-      "public_description": "Designs system architecture, interfaces and technical boundaries, including API, caching and consistency-versus-availability tradeoffs.",
+      "public_description": "System architecture design",
       "reports_to": "a15",
       "role": "System architecture design",
-      "status": "planned",
+      "status": "registered",
       "id": "a16",
       "division": "Engineering"
     },
@@ -240,10 +198,10 @@
       "human_approval": "required_for_execution",
       "model": "unassigned",
       "name": "Implementation Agent",
-      "public_description": "Converts approved designs into working implementation.",
+      "public_description": "Design-to-code conversion",
       "reports_to": "a15",
       "role": "Design-to-code conversion",
-      "status": "planned",
+      "status": "registered",
       "id": "a17",
       "division": "Engineering"
     },
@@ -253,11 +211,11 @@
       "can_delegate": false,
       "human_approval": "not_required",
       "model": "unassigned",
-      "name": "Test Agent",
-      "public_description": "Tests functionality and identifies defects and regressions.",
+      "name": "Test and Verification Agent",
+      "public_description": "Functional testing; Compliance verification",
       "reports_to": "a15",
-      "role": "Functional testing",
-      "status": "planned",
+      "role": "Functional testing; Compliance verification",
+      "status": "registered",
       "id": "a18",
       "division": "Engineering"
     },
@@ -268,10 +226,10 @@
       "human_approval": "not_required",
       "model": "unassigned",
       "name": "Reliability Agent",
-      "public_description": "Evaluates operational resilience, failure modes and system stability, including caching and availability tradeoffs.",
+      "public_description": "Operational resilience evaluation",
       "reports_to": "a15",
       "role": "Operational resilience evaluation",
-      "status": "planned",
+      "status": "registered",
       "id": "a19",
       "division": "Engineering"
     },
@@ -281,11 +239,11 @@
       "can_delegate": true,
       "human_approval": "not_required",
       "model": "unassigned",
-      "name": "Economic Lead",
-      "public_description": "Oversees economic analysis and commercial outcomes.",
+      "name": "Commercial and Economic Lead",
+      "public_description": "Economic analysis ownership; Market and pricing analysis",
       "reports_to": "prime",
-      "role": "Economic analysis ownership",
-      "status": "planned",
+      "role": "Economic analysis ownership; Market and pricing analysis",
+      "status": "registered",
       "id": "a20",
       "division": "Economic"
     },
@@ -295,96 +253,26 @@
       "can_delegate": false,
       "human_approval": "not_required",
       "model": "unassigned",
-      "name": "Cost Agent",
-      "public_description": "Analyzes costs, expenses and cost drivers.",
+      "name": "Cost and Value Agent",
+      "public_description": "Cost analysis; Value/ROI evaluation",
       "reports_to": "a20",
-      "role": "Cost analysis",
-      "status": "planned",
+      "role": "Cost analysis; Value/ROI evaluation",
+      "status": "registered",
       "id": "a21",
       "division": "Economic"
     },
     {
-      "agent_id": "a22",
-      "authority": "advisory",
-      "can_delegate": false,
-      "human_approval": "not_required",
-      "model": "unassigned",
-      "name": "Value Agent",
-      "public_description": "Evaluates value creation, ROI and impact.",
-      "reports_to": "a20",
-      "role": "Value/ROI evaluation",
-      "status": "planned",
-      "id": "a22",
-      "division": "Economic"
-    },
-    {
-      "agent_id": "a23",
-      "authority": "advisory",
-      "can_delegate": false,
-      "human_approval": "not_required",
-      "model": "unassigned",
-      "name": "Resource Agent",
-      "public_description": "Optimizes resources, capacity and allocation.",
-      "reports_to": "a20",
-      "role": "Resource optimization",
-      "status": "planned",
-      "id": "a23",
-      "division": "Economic"
-    },
-    {
-      "agent_id": "a24",
-      "authority": "advisory",
-      "can_delegate": false,
-      "human_approval": "not_required",
-      "model": "unassigned",
-      "name": "Commercial Agent",
-      "public_description": "Covers market, pricing, revenue and business models.",
-      "reports_to": "a20",
-      "role": "Market and pricing analysis",
-      "status": "planned",
-      "id": "a24",
-      "division": "Economic"
-    },
-    {
-      "agent_id": "a25",
+      "agent_id": "a26",
       "authority": "advisory",
       "can_delegate": true,
       "human_approval": "not_required",
       "model": "unassigned",
-      "name": "Quality Lead",
-      "public_description": "Leads quality governance, standards and assurance.",
+      "name": "Independent Quality Lead",
+      "public_description": "Quality governance ownership; Independent review",
       "reports_to": "prime",
-      "role": "Quality governance ownership",
-      "status": "planned",
-      "id": "a25",
-      "division": "Quality"
-    },
-    {
-      "agent_id": "a26",
-      "authority": "advisory",
-      "can_delegate": false,
-      "human_approval": "not_required",
-      "model": "unassigned",
-      "name": "Review Agent",
-      "public_description": "Performs independent reviews and critical assessments.",
-      "reports_to": "a25",
-      "role": "Independent review",
-      "status": "planned",
+      "role": "Quality governance ownership; Independent review",
+      "status": "registered",
       "id": "a26",
-      "division": "Quality"
-    },
-    {
-      "agent_id": "a27",
-      "authority": "advisory",
-      "can_delegate": false,
-      "human_approval": "not_required",
-      "model": "unassigned",
-      "name": "Verification Agent",
-      "public_description": "Verifies work, evidence and compliance.",
-      "reports_to": "a25",
-      "role": "Compliance verification",
-      "status": "planned",
-      "id": "a27",
       "division": "Quality"
     },
     {
@@ -394,10 +282,10 @@
       "human_approval": "not_required",
       "model": "unassigned",
       "name": "Risk Agent",
-      "public_description": "Identifies risks and ensures mitigations are in place.",
-      "reports_to": "a25",
+      "public_description": "Risk identification",
+      "reports_to": "a26",
       "role": "Risk identification",
-      "status": "planned",
+      "status": "registered",
       "id": "a28",
       "division": "Quality"
     },
@@ -408,10 +296,10 @@
       "human_approval": "required_for_execution",
       "model": "unassigned",
       "name": "Release Agent",
-      "public_description": "Final quality gate and release readiness control.",
-      "reports_to": "a25",
+      "public_description": "Release readiness gate",
+      "reports_to": "a26",
       "role": "Release readiness gate",
-      "status": "planned",
+      "status": "registered",
       "id": "a29",
       "division": "Quality"
     }
@@ -430,11 +318,6 @@
     {
       "source": "a01",
       "target": "a02",
-      "type": "reports_to"
-    },
-    {
-      "source": "a01",
-      "target": "a03",
       "type": "reports_to"
     },
     {
@@ -464,11 +347,6 @@
     },
     {
       "source": "a06",
-      "target": "a08",
-      "type": "reports_to"
-    },
-    {
-      "source": "a06",
       "target": "a09",
       "type": "reports_to"
     },
@@ -481,11 +359,6 @@
       "source": "prime",
       "target": "a10",
       "type": "may_delegate"
-    },
-    {
-      "source": "a10",
-      "target": "a11",
-      "type": "reports_to"
     },
     {
       "source": "a10",
@@ -548,58 +421,28 @@
       "type": "reports_to"
     },
     {
-      "source": "a20",
-      "target": "a22",
-      "type": "reports_to"
-    },
-    {
-      "source": "a20",
-      "target": "a23",
-      "type": "reports_to"
-    },
-    {
-      "source": "a20",
-      "target": "a24",
-      "type": "reports_to"
-    },
-    {
       "source": "prime",
-      "target": "a25",
-      "type": "reports_to"
-    },
-    {
-      "source": "prime",
-      "target": "a25",
-      "type": "may_delegate"
-    },
-    {
-      "source": "a25",
       "target": "a26",
       "type": "reports_to"
     },
     {
-      "source": "a25",
-      "target": "a27",
-      "type": "reports_to"
+      "source": "prime",
+      "target": "a26",
+      "type": "may_delegate"
     },
     {
-      "source": "a25",
+      "source": "a26",
       "target": "a28",
       "type": "reports_to"
     },
     {
-      "source": "a25",
+      "source": "a26",
       "target": "a29",
       "type": "reports_to"
     },
     {
       "source": "a01",
       "target": "a02",
-      "type": "may_delegate"
-    },
-    {
-      "source": "a01",
-      "target": "a03",
       "type": "may_delegate"
     },
     {
@@ -634,16 +477,11 @@
     },
     {
       "source": "a01",
-      "target": "a25",
+      "target": "a26",
       "type": "may_consult"
     },
     {
       "source": "a02",
-      "target": "a01",
-      "type": "may_consult"
-    },
-    {
-      "source": "a03",
       "target": "a01",
       "type": "may_consult"
     },
@@ -669,11 +507,6 @@
     },
     {
       "source": "a06",
-      "target": "a08",
-      "type": "may_delegate"
-    },
-    {
-      "source": "a06",
       "target": "a09",
       "type": "may_delegate"
     },
@@ -694,16 +527,11 @@
     },
     {
       "source": "a06",
-      "target": "a25",
+      "target": "a26",
       "type": "may_consult"
     },
     {
       "source": "a07",
-      "target": "a06",
-      "type": "may_consult"
-    },
-    {
-      "source": "a08",
       "target": "a06",
       "type": "may_consult"
     },
@@ -721,11 +549,6 @@
       "source": "a10",
       "target": "a06",
       "type": "may_consult"
-    },
-    {
-      "source": "a10",
-      "target": "a11",
-      "type": "may_delegate"
     },
     {
       "source": "a10",
@@ -754,12 +577,7 @@
     },
     {
       "source": "a10",
-      "target": "a25",
-      "type": "may_consult"
-    },
-    {
-      "source": "a11",
-      "target": "a10",
+      "target": "a26",
       "type": "may_consult"
     },
     {
@@ -819,7 +637,7 @@
     },
     {
       "source": "a15",
-      "target": "a25",
+      "target": "a26",
       "type": "may_consult"
     },
     {
@@ -869,22 +687,7 @@
     },
     {
       "source": "a20",
-      "target": "a22",
-      "type": "may_delegate"
-    },
-    {
-      "source": "a20",
-      "target": "a23",
-      "type": "may_delegate"
-    },
-    {
-      "source": "a20",
-      "target": "a24",
-      "type": "may_delegate"
-    },
-    {
-      "source": "a20",
-      "target": "a25",
+      "target": "a26",
       "type": "may_consult"
     },
     {
@@ -893,83 +696,48 @@
       "type": "may_consult"
     },
     {
-      "source": "a22",
-      "target": "a20",
-      "type": "may_consult"
-    },
-    {
-      "source": "a23",
-      "target": "a20",
-      "type": "may_consult"
-    },
-    {
-      "source": "a24",
-      "target": "a20",
-      "type": "may_consult"
-    },
-    {
-      "source": "a25",
+      "source": "a26",
       "target": "a01",
       "type": "may_consult"
     },
     {
-      "source": "a25",
+      "source": "a26",
       "target": "a06",
       "type": "may_consult"
     },
     {
-      "source": "a25",
+      "source": "a26",
       "target": "a10",
       "type": "may_consult"
     },
     {
-      "source": "a25",
+      "source": "a26",
       "target": "a15",
       "type": "may_consult"
     },
     {
-      "source": "a25",
+      "source": "a26",
       "target": "a20",
       "type": "may_consult"
     },
     {
-      "source": "a25",
-      "target": "a26",
-      "type": "may_delegate"
-    },
-    {
-      "source": "a25",
-      "target": "a27",
-      "type": "may_delegate"
-    },
-    {
-      "source": "a25",
+      "source": "a26",
       "target": "a28",
       "type": "may_delegate"
     },
     {
-      "source": "a25",
+      "source": "a26",
       "target": "a29",
       "type": "may_delegate"
     },
     {
-      "source": "a26",
-      "target": "a25",
-      "type": "may_consult"
-    },
-    {
-      "source": "a27",
-      "target": "a25",
-      "type": "may_consult"
-    },
-    {
       "source": "a28",
-      "target": "a25",
+      "target": "a26",
       "type": "may_consult"
     },
     {
       "source": "a29",
-      "target": "a25",
+      "target": "a26",
       "type": "may_consult"
     }
   ],

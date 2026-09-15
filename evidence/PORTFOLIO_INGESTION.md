@@ -1,3 +1,5 @@
+> Portfolio authority: [one current JARVIS SSOT](https://github.com/AndrewLamSingapore/prime/blob/main/governance/operational-manifest.json). This document describes this repository only; it cannot override the canonical architecture or establish live deployment status.
+
 # Portfolio evidence ingestion boundary
 
 Authority Engine is the public PROVE layer, not the portfolio source of truth. It may ingest verified Portfolio Events only when the event has provenance and an evidence level appropriate to the public claim.

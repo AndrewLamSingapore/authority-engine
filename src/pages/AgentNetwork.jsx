@@ -3,7 +3,7 @@ import SEO from '../components/SEO';
 
 const MODES = ['Hierarchy', 'Network', 'Execution'];
 const EMPTY_SUMMARY = {
-  registered_agents: 29,
+  registered_agents: null,
   active_agents: 0,
   executions_today: 0,
   withheld_executions_today: 0,
@@ -79,7 +79,7 @@ export default function AgentNetwork() {
       <div className="eyebrow">J CONSOLE / AGENT NETWORK</div>
       <div className="mt-5 grid lg:grid-cols-[1fr_auto] gap-8 items-end">
         <div>
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight">29 registered agents.<br /><span className="text-emerald-400">One governed hierarchy.</span></h1>
+          <h1 className="text-4xl sm:text-6xl font-black tracking-tight">{registry.agents.length} registered agents.<br /><span className="text-emerald-400">One governed hierarchy.</span></h1>
           <p className="mt-5 text-slate-400 max-w-3xl text-lg">Registered roles are not simultaneous inference jobs. Execution View publishes only sanitized evidence emitted by the governed runtime.</p>
         </div>
         <div className="border border-emerald-500/20 bg-emerald-500/5 rounded-2xl p-4 text-sm">
@@ -181,7 +181,7 @@ function Execution({ trace }) {
   const healthy = ['verified_events', 'connected_idle'].includes(trace.state);
   return <div className="mt-10 space-y-6">
     <div className="grid grid-cols-2 lg:grid-cols-6 gap-3">
-      <Metric label="Registered" value={summary.registered_agents ?? 29} />
+      <Metric label="Registered" value={summary.registered_agents ?? '—'} />
       <Metric label="Active" value={summary.active_agents ?? 0} />
       <Metric label="Executions today" value={summary.executions_today ?? 0} />
       <Metric label="Withheld" value={summary.withheld_executions_today ?? 0} />

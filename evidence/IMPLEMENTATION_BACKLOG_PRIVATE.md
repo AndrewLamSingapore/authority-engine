@@ -1,3 +1,5 @@
+> Portfolio authority: [one current JARVIS SSOT](https://github.com/AndrewLamSingapore/prime/blob/main/governance/operational-manifest.json). This document describes this repository only; it cannot override the canonical architecture or establish live deployment status.
+
 # Verified portfolio evidence ingestion
 
 Staged runtime design: validate Portfolio Event v1 -> reject protected/private payloads -> enforce event-family allowlist -> enforce minimum evidence maturity per public claim -> preserve provenance -> deduplicate event_id -> create reviewable evidence candidate -> explicit publication decision.

@@ -4,13 +4,13 @@ const path = new URL('../public/data/jarvis-agent-registry.json', import.meta.ur
 const registry = JSON.parse(fs.readFileSync(path, 'utf8'));
 const forbidden = new Set(['system_prompt','credentials','endpoint','filesystem_path','tool_secrets','internal_instructions','receives','produces']);
 
-if (!['1.0.0', '1.1'].includes(registry.schema_version)) throw new Error(`unexpected schema ${registry.schema_version}`);
+if (!['2.0'].includes(registry.schema_version)) throw new Error(`unexpected schema ${registry.schema_version}`);
 if (!registry.last_updated) throw new Error('missing last_updated');
 if (!registry.orchestrator || registry.orchestrator.id !== 'prime') throw new Error('invalid orchestrator');
-if (!Array.isArray(registry.agents) || registry.agents.length !== 29) throw new Error(`expected 29 agents, got ${registry.agents?.length}`);
+if (!Array.isArray(registry.agents) || registry.agents.length !== 21) throw new Error(`expected 21 agents, got ${registry.agents?.length}`);
 
 const ids = new Set(registry.agents.map(a => a.id));
-if (ids.size !== 29) throw new Error('agent IDs must be unique');
+if (ids.size !== 21) throw new Error('agent IDs must be unique');
 for (const agent of registry.agents) {
   for (const key of Object.keys(agent)) if (forbidden.has(key)) throw new Error(`forbidden field ${key} on ${agent.id}`);
   if (!agent.reports_to || (agent.reports_to !== 'prime' && !ids.has(agent.reports_to))) throw new Error(`orphan ${agent.id}`);
@@ -26,4 +26,4 @@ for (const agent of registry.agents) {
   }
 }
 
-console.log(JSON.stringify({ok:true, agents:29, schema_version:registry.schema_version, last_updated:registry.last_updated}));
+console.log(JSON.stringify({ok:true, agents:registry.agents.length, schema_version:registry.schema_version, last_updated:registry.last_updated}));

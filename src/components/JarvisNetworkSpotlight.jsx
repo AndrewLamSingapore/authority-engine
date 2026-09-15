@@ -29,7 +29,7 @@ export default function JarvisNetworkSpotlight() {
                   </span>
                 </div>
                 <h2 className="mt-2 text-xl font-black tracking-[-.025em] text-white sm:text-2xl lg:text-3xl">
-                  29 registered agents. <span className="text-emerald-300">One governed hierarchy.</span>
+                  One canonical agent registry. <span className="text-emerald-300">One governed hierarchy.</span>
                 </h2>
                 <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-400 sm:text-[15px]">
                   Inspect how JARVIS PRIME coordinates strategy, research, data, engineering, economic and quality roles—with the canonical registry kept separate from simultaneous inference capacity.
