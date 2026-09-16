@@ -9,8 +9,19 @@ const sources = {
   'maxwell-excel': ['Maxwell Excel','Maxwell Container Service','I’d like to discuss a container-handling requirement.'],
   jarvis: ['JARVIS','JARVIS / Governed AI Conversation','I’d like to discuss a practical governed-AI use case.'],
 };
+const intents = {
+  role: ['Operations Excellence Opportunity', 'I’d like to discuss an operations or analytics opportunity with you.'],
+  collaboration: ['Supply Chain or Analytics Collaboration', 'I’d like to explore a project or collaboration with you.'],
+  research: ['Sky Tablet / Research Conversation', 'I’ve explored The Sky Tablet and would like to share a question, source or research idea.'],
+  hello: ['Professional Inquiry', 'I came across your work and would like to connect.'],
+};
 export function contactContext(search = '', state = {}) {
-  const key = new URLSearchParams(search).get('source');
+  const params = new URLSearchParams(search);
+  const key = params.get('source');
+  const intent = params.get('intent');
   const [source, inquiryType, message] = (Object.hasOwn(sources, key) ? sources[key] : sources['authority-engine']);
-  return { source, inquiryType: inquiryTypes.includes(state?.inquiryType) ? state.inquiryType : inquiryType, message: typeof state?.message === 'string' ? state.message.slice(0,4000) : message };
+  const selected = intent === 'collaboration' && Object.hasOwn(sources, key) && key !== 'authority-engine' && key !== 'github'
+    ? [inquiryType, message]
+    : Object.hasOwn(intents, intent) ? intents[intent] : [inquiryType, message];
+  return { source, inquiryType: inquiryTypes.includes(state?.inquiryType) ? state.inquiryType : selected[0], message: typeof state?.message === 'string' ? state.message.slice(0,4000) : selected[1] };
 }

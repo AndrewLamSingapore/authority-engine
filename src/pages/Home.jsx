@@ -27,7 +27,6 @@ import SignalField from '../components/SignalField';
 const githubUrl = 'https://github.com/AndrewLamSingapore';
 const containerCaseStudyUrl = '/live-container-operations-case-study.pdf';
 const velyquaUrl = 'https://velyqua.vercel.app/';
-const gamePlatformUrl = 'https://game-platform-wine-nine.vercel.app/';
 const playWebsiteTheme = () => window.dispatchEvent(new Event('authority-theme:play'));
 
 const audiencePaths = [
@@ -40,6 +39,8 @@ const audiencePaths = [
     text: 'Start with operating depth, analytical capability and public work that can be inspected—not a list of unsupported claims.',
     action: 'Inspect career proof',
     to: '/insights',
+    contact: '/contact?source=authority-engine&intent=role',
+    contactLabel: 'Discuss a role',
   },
   {
     id: 'collaborator',
@@ -49,7 +50,9 @@ const audiencePaths = [
     title: 'Bring a real operating problem.',
     text: 'Explore how operations knowledge, process discipline and analytics can be combined around a practical decision or workflow.',
     action: 'Start with the problem',
-    to: '/contact',
+    to: '/contact?source=authority-engine&intent=collaboration',
+    contact: '/contact?source=authority-engine&intent=collaboration',
+    contactLabel: 'Discuss a collaboration',
   },
   {
     id: 'explorer',
@@ -60,6 +63,8 @@ const audiencePaths = [
     text: 'Explore governed experiments in operational memory, AI authority, machine systems and living-water systems—with maturity labels kept visible.',
     action: 'Enter The Portal',
     to: '/portal',
+    contact: '/contact?source=authority-engine&intent=hello',
+    contactLabel: 'Introduce yourself',
   },
 ];
 
@@ -229,7 +234,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="overflow-hidden bg-[#050807] text-slate-100">
+    <div className="overflow-hidden bg-[#050807] text-slate-100 pb-20 sm:pb-0">
       <section className="authority-hero relative min-h-[calc(100svh-5rem)] flex items-center pt-28 pb-14 px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <img src={signalVisual} alt="" className="hero-atmosphere-art" fetchPriority="high" /><SignalField />
@@ -254,15 +259,12 @@ export default function Home() {
               <span className="hero-line"><span className="text-gradient">Real possibilities.</span></span>
             </h1>
             <p className="mt-7 max-w-2xl text-[15px] sm:text-base leading-relaxed text-slate-300/80">
-              I’m Andrew Lam. I bring 20+ years of supply chain and logistics experience to practical analytics and applied AI. Explore the evidence, try the working ideas, and tell me what you want to improve.
+              I’m Andrew Lam. I connect 20+ years of supply chain and logistics experience with analytics and applied AI. If you’re hiring, improving an operation or building something useful, let’s find the connection.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/contact?source=authority-engine" onClick={playWebsiteTheme} className="signal-cta premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
-                Let’s explore your next move <ArrowRight className="w-4 h-4" />
+                Talk with Andrew <ArrowRight className="w-4 h-4" />
               </Link>
-              <a href={gamePlatformUrl} target="_blank" rel="noopener noreferrer" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
-                Play a living world <ExternalLink className="w-4 h-4" />
-              </a>
               <Link to="/insights" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
                 See the evidence
               </Link>
@@ -311,6 +313,7 @@ export default function Home() {
                 <Link to={audience.to} className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-emerald-300 hover:text-emerald-200">
                   {audience.action} <ArrowRight className="w-4 h-4" />
                 </Link>
+                <div className="mt-4 border-t border-white/10 pt-4"><Link to={audience.contact} className="text-sm font-semibold text-amber-200 hover:text-white">{audience.contactLabel} ↗</Link></div>
               </div>
               </div>
             </div>
@@ -518,8 +521,8 @@ export default function Home() {
           <div className="relative grid lg:grid-cols-[.72fr_1.28fr] gap-10 lg:gap-16 items-start">
             <div>
               <div className="eyebrow">The open question</div>
-              <h2 className="mt-4 text-3xl sm:text-5xl font-black tracking-[-0.045em] leading-[.98] text-white">Authority should create a conversation.</h2>
-              <p className="mt-5 text-base leading-relaxed text-slate-400">Choose the question closest to your world. It becomes the starting point—not another generic contact form.</p>
+              <h2 className="mt-4 text-3xl sm:text-5xl font-black tracking-[-0.045em] leading-[.98] text-white">Bring the question you’re working on.</h2>
+              <p className="mt-5 text-base leading-relaxed text-slate-400">Choose a starting point. Tell me the context, and we can explore whether there’s a useful way to work together.</p>
             </div>
             <div>
               <div className="space-y-3" role="radiogroup" aria-label="Choose a question to discuss">
@@ -569,6 +572,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <aside className="sm:hidden fixed bottom-0 inset-x-0 z-40 border-t border-emerald-300/20 bg-[#07110f]/95 backdrop-blur-xl px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))] flex items-center justify-between gap-3" aria-label="Connect with Andrew">
+        <span className="text-xs text-slate-300">A role, a project, a conversation.</span>
+        <Link to="/contact?source=authority-engine&intent=hello" className="premium-button shrink-0 px-4 py-3 rounded-full text-sm font-bold">Talk with Andrew ↗</Link>
+      </aside>
     </div>
   );
 }
