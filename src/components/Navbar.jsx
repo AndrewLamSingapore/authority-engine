@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import SoundControl from './SoundControl';
 
-const projects = [['The Portal','/portal'],['JARVIS','/jarvis'],['VELYQUA','/velyqua'],['Living Worlds','/game-platform'],['Sky Tablet','/sky-tablet'],['Maxwell Excel','/maxwell-excel']];
+const projects = [['The Portal','/portal'],['JARVIS PRIME','/jarvis'],['VELYQUA','/velyqua'],['Living Worlds','/game-platform'],['Sky Tablet','/sky-tablet'],['Maxwell Excel','/maxwell-excel']];
 const primary = [['About','/about'],['Evidence','/insights']];
 export default function Navbar() {
   const [open, setOpen] = useState(false);

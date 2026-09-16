@@ -1,13 +1,14 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import SEO from '../components/SEO';
+import { Link } from 'react-router-dom';
 
 const MODES = ['Hierarchy', 'Network', 'Execution'];
 const EMPTY_SUMMARY = {
   registered_agents: null,
-  active_agents: 0,
-  executions_today: 0,
-  withheld_executions_today: 0,
-  denied_handoffs_today: 0,
+  active_agents: null,
+  executions_today: null,
+  withheld_executions_today: null,
+  denied_handoffs_today: null,
   average_latency_ms: null,
   active_window_seconds: 300,
 };
@@ -74,13 +75,13 @@ export default function AgentNetwork() {
   }
 
   return <>
-    <SEO title="JARVIS Agent Network — Governed Runtime Proof" description="Inspect the public-safe JARVIS hierarchy, relationship policy and runtime-derived governed execution proof." />
+    <SEO title="JARVIS PRIME — Agent Roles and Reported Evidence" description="Inspect the 21-role JARVIS PRIME registry and clearly scoped reported evidence. Current ABEX runtime acceptance remains unverified." />
     <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
-      <div className="eyebrow">J CONSOLE / AGENT NETWORK</div>
+      <div className="eyebrow">JARVIS PRIME / AGENT REGISTRY</div>
       <div className="mt-5 grid lg:grid-cols-[1fr_auto] gap-8 items-end">
         <div>
           <h1 className="text-4xl sm:text-6xl font-black tracking-tight">{registry.agents.length} registered agents.<br /><span className="text-emerald-400">One governed hierarchy.</span></h1>
-          <p className="mt-5 text-slate-400 max-w-3xl text-lg">Registered roles are not simultaneous inference jobs. Execution View publishes only sanitized evidence emitted by the governed runtime.</p>
+          <p className="mt-5 text-slate-400 max-w-3xl text-lg">Registered roles are not simultaneous inference jobs. Execution View shows sanitized relay reports. Their presence does not verify the current ABEX runtime.</p>
         </div>
         <div className="border border-emerald-500/20 bg-emerald-500/5 rounded-2xl p-4 text-sm">
           <div className="text-slate-500 uppercase tracking-widest text-[10px]">Canonical registry</div>
@@ -88,6 +89,7 @@ export default function AgentNetwork() {
           <div className="text-slate-400 mt-1">Updated {new Date(registry.last_updated).toLocaleString()}</div>
         </div>
       </div>
+      <div className="mt-6 flex flex-wrap gap-4 text-sm font-bold text-emerald-300"><Link to="/jarvis">← Explore JARVIS PRIME</Link><Link to="/contact?source=jarvis&intent=collaboration">Discuss the system with Andrew ↗</Link></div>
       <div className="mt-10 flex gap-2 flex-wrap">
         {MODES.map((item) => <button key={item} onClick={() => setMode(item)} className={`px-5 py-2.5 rounded-full border text-sm font-semibold transition ${mode === item ? 'border-emerald-400 bg-emerald-400/10 text-emerald-300' : 'border-white/10 text-slate-400 hover:border-white/30'}`}>{item}</button>)}
       </div>
@@ -178,22 +180,22 @@ function Execution({ trace }) {
   const summary = trace.summary || EMPTY_SUMMARY;
   const groups = groupTraces(events);
   const selected = groups.find((group) => group.trace_id === selectedId) || groups[0] || null;
-  const healthy = ['verified_events', 'connected_idle'].includes(trace.state);
+  const healthy = false; // Relay availability is not runtime acceptance.
   return <div className="mt-10 space-y-6">
     <div className="grid grid-cols-2 lg:grid-cols-6 gap-3">
       <Metric label="Registered" value={summary.registered_agents ?? '—'} />
-      <Metric label="Active" value={summary.active_agents ?? 0} />
-      <Metric label="Executions today" value={summary.executions_today ?? 0} />
-      <Metric label="Withheld" value={summary.withheld_executions_today ?? 0} />
-      <Metric label="Denied hand-offs" value={summary.denied_handoffs_today ?? 0} />
+      <Metric label="Active" value={summary.active_agents ?? '—'} />
+      <Metric label="Executions today" value={summary.executions_today ?? '—'} />
+      <Metric label="Withheld" value={summary.withheld_executions_today ?? '—'} />
+      <Metric label="Denied hand-offs" value={summary.denied_handoffs_today ?? '—'} />
       <Metric label="Avg latency" value={summary.average_latency_ms == null ? '—' : `${Math.round(summary.average_latency_ms)} ms`} />
     </div>
     <div className="border border-white/10 rounded-3xl p-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <div className="text-[10px] uppercase tracking-[.2em] text-slate-500">Runtime-derived public proof</div>
-          <h2 className="text-2xl font-black mt-2">{trace.state === 'verified_events' ? 'Verified governed execution' : trace.state === 'connected_idle' ? 'Relay connected · runtime idle' : 'No current verified execution'}</h2>
-          {trace.source_generated_at && <div className="text-xs text-slate-500 mt-2">PRIME heartbeat {new Date(trace.source_generated_at).toLocaleString()}</div>}
+          <div className="text-[10px] uppercase tracking-[.2em] text-slate-500">Reported relay metadata</div>
+          <h2 className="text-2xl font-black mt-2">Current ABEX execution remains unverified</h2>
+          {trace.source_generated_at && <div className="text-xs text-slate-500 mt-2">Relay observation {new Date(trace.source_generated_at).toLocaleString()}</div>}
         </div>
         <span className={`text-xs px-3 py-1.5 rounded-full border ${healthy ? 'border-emerald-500/30 text-emerald-300' : 'border-white/10 text-slate-500'}`}>{trace.state}</span>
       </div>
@@ -205,7 +207,7 @@ function Execution({ trace }) {
           </button>)}
         </div>
         {selected && <TraceProof group={selected} />}
-      </div> : <p className="text-slate-400 mt-5">{trace.boundary || 'No sanitized runtime events are available. Zero activity is shown rather than invented.'}</p>}
+      </div> : <p className="text-slate-400 mt-5">{trace.boundary || 'No sanitized runtime events are available. Unknown activity is shown as unknown.'}</p>}
     </div>
   </div>;
 }
@@ -227,13 +229,13 @@ function groupTraces(events) {
 function TraceProof({ group }) {
   const path = [...new Set(group.events.map((event) => event.agent_id))];
   return <div className="rounded-2xl border border-emerald-500/20 bg-black/20 p-5">
-    <div className="text-[10px] uppercase tracking-[.2em] text-emerald-400">Verified governed execution</div>
+    <div className="text-[10px] uppercase tracking-[.2em] text-emerald-400">Reported execution · not current runtime acceptance</div>
     <div className="font-mono text-sm mt-2 break-all">{group.trace_id}</div>
     <div className="mt-5">
-      <div className="text-[10px] uppercase tracking-widest text-slate-600">Observed governed path</div>
+      <div className="text-[10px] uppercase tracking-widest text-slate-600">Reported event path</div>
       <div className="flex flex-wrap items-center gap-2 mt-2">
         {path.map((id, index) => <React.Fragment key={id}><span className="px-3 py-1.5 rounded-full border border-emerald-500/25 text-emerald-300 text-xs">{id}</span>{index < path.length - 1 && <span className="text-slate-600">→</span>}</React.Fragment>)}
-        {group.gate && <><span className="text-slate-600">→</span><span className="px-3 py-1.5 rounded-full border border-amber-500/25 text-amber-300 text-xs">Stable Spine</span><span className="text-slate-600">→</span><span className="px-3 py-1.5 rounded-full border border-white/10 text-slate-300 text-xs">Authority Engine</span></>}
+        {group.gate && <><span className="text-slate-600">→</span><span className="px-3 py-1.5 rounded-full border border-amber-500/25 text-amber-300 text-xs">Historical evaluation</span><span className="text-slate-600">→</span><span className="px-3 py-1.5 rounded-full border border-white/10 text-slate-300 text-xs">Authority Engine</span></>}
       </div>
     </div>
     {group.proof && <div className="grid sm:grid-cols-3 gap-2 mt-5">
@@ -257,7 +259,7 @@ function ReleaseGate({ gate }) {
   const blocked = gate.blocking_metrics || [];
   return <div className={`mt-4 rounded-xl border p-4 ${withheld ? 'border-amber-500/20 bg-amber-500/[.04]' : 'border-emerald-500/20 bg-emerald-500/[.04]'}`}>
     <div className="flex flex-wrap items-center justify-between gap-3">
-      <div><div className="text-[10px] uppercase tracking-[.2em] text-slate-500">Stable Spine release gate</div><div className={`font-black mt-1 ${withheld ? 'text-amber-300' : 'text-emerald-300'}`}>{withheld ? 'Withheld' : 'Released'} · {Math.round((gate.score || 0) * 100)}%</div></div>
+      <div><div className="text-[10px] uppercase tracking-[.2em] text-slate-500">Historical evaluation release gate</div><div className={`font-black mt-1 ${withheld ? 'text-amber-300' : 'text-emerald-300'}`}>{withheld ? 'Withheld' : 'Released'} · {Math.round((gate.score || 0) * 100)}%</div></div>
       <span className="text-[10px] uppercase tracking-widest text-slate-500">Evaluator v{gate.evaluation_version || 'unknown'} · {gate.evaluator_valid ? 'valid' : 'invalid'}</span>
     </div>
     {blocked.length > 0 && <div className="mt-3"><div className="text-[10px] uppercase tracking-widest text-slate-600">Blocking checks</div><div className="mt-2 flex flex-wrap gap-2">{blocked.map((item) => <span key={item} className="text-xs px-2.5 py-1 rounded-full border border-amber-500/20 text-amber-200">{prettyMetric(item)}</span>)}</div></div>}
@@ -267,6 +269,6 @@ function ReleaseGate({ gate }) {
 }
 
 function prettyMetric(value) { return String(value || '').replaceAll('_', ' ').replace(/\b\w/g, (character) => character.toUpperCase()); }
-function GateCount({ label, value }) { return <div className="rounded-lg border border-white/[.06] bg-black/10 px-2 py-2"><div className="text-lg font-black">{value ?? 0}</div><div className="text-[9px] uppercase tracking-wider text-slate-600">{label}</div></div>; }
+function GateCount({ label, value }) { return <div className="rounded-lg border border-white/[.06] bg-black/10 px-2 py-2"><div className="text-lg font-black">{value ?? '—'}</div><div className="text-[9px] uppercase tracking-wider text-slate-600">{label}</div></div>; }
 function Metric({ label, value }) { return <div className="border border-white/10 bg-white/[.025] rounded-2xl p-4"><div className="text-[10px] uppercase tracking-widest text-slate-600">{label}</div><div className="text-2xl font-black mt-2">{value}</div></div>; }
 function Info({ label, value }) { return <div className="rounded-xl bg-black/20 border border-white/[.06] p-3"><div className="text-[10px] uppercase tracking-widest text-slate-600">{label}</div><div className="mt-1 capitalize">{value}</div></div>; }

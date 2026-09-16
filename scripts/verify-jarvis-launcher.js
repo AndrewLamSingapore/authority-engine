@@ -3,22 +3,12 @@ import { readFileSync } from 'node:fs';
 const source = readFileSync(new URL('../src/pages/JarvisControl.jsx', import.meta.url), 'utf8');
 
 const required = [
-  "const JARVIS_LOCAL_URL = 'http://127.0.0.1:8000/control'",
-  "value: 'Available locally'",
-  "value: 'Unavailable'",
-  "value: 'Read-only'",
-  "value: 'No actuation'",
-  'J Console · Public signal available',
+  'JARVIS PRIME',
   'No live JARVIS data',
-  "['Mode', 'Read-only']",
-  "['Authority', 'Human']",
-  "['Boundary', 'Public only']",
-  "['Actuation', 'None']",
+  'Curated examples, not live AI output.',
+  'PRIME runtime: unverified',
   "inquiryType: 'JARVIS / Governed AI Conversation'",
-  'A proposal is not permission.',
-  'No public access to the private JARVIS Control Surface',
-  'The public walkthrough reads no private memory.',
-  'approval, execution and automation remain unavailable',
+  "'/contact?source=jarvis&intent=collaboration'",
   "fetch('/api/jarvis-status'",
 ];
 
@@ -29,6 +19,8 @@ for (const contract of required) {
 const forbidden = [
   /fetch\s*\(\s*(?!['"]\/api\/jarvis-status['"])/,
   /axios/i,
+  /127\.0\.0\.1|localhost|lam-public-jarvis|lam-relationship-console/,
+  /Available locally|Verified on the Dell/,
   /<iframe/i,
   /prime\.lamjarvis\.com/i,
   /\/api\/control-surface/i,
@@ -43,4 +35,4 @@ for (const pattern of forbidden) {
   if (pattern.test(source)) throw new Error(`JARVIS launcher violates the no-proxy boundary: ${pattern}`);
 }
 
-console.log('PASS: JARVIS public surface remains local-only, read-only, no-proxy and no-actuation.');
+console.log('PASS: JARVIS public surface keeps illustrative demos, contextual enquiries and an unverified private-runtime boundary.');
