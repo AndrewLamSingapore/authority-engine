@@ -145,7 +145,6 @@ export default function SoundControl() {
   };
 
   useEffect(() => {
-    const audio = audioRef.current;
     const handlePlayRequest = () => playTheme({ restart: true });
     const handleVisibility = () => {
       if (document.hidden) stopTheme(true);
@@ -155,10 +154,19 @@ export default function SoundControl() {
     return () => {
       window.removeEventListener(PLAY_EVENT, handlePlayRequest);
       document.removeEventListener('visibilitychange', handleVisibility);
-      cancelAnimationFrame(fadeFrameRef.current);
-      audio?.pause();
     };
   }, [playTheme, stopTheme]);
+
+  // Preference changes resubscribe handlers; only unmount tears playback down.
+  useEffect(() => {
+    const audio = audioRef.current;
+    return () => {
+      cancelAnimationFrame(fadeFrameRef.current);
+      audio?.pause();
+      cueContextRef.current?.close().catch(() => {});
+      cueContextRef.current = null;
+    };
+  }, []);
 
   const label = unavailable ? 'SOUND UNAVAILABLE' : playing ? 'PLAYING' : ready ? 'SOUND READY' : 'SOUND OFF';
 
@@ -167,6 +175,7 @@ export default function SoundControl() {
       <button
         type="button"
         className={`authority-sound-control${ready ? ' is-enabled' : ''}${playing ? ' is-playing' : ''}`}
+        aria-label={playing ? 'Turn website sound off' : 'Play website sound'}
         aria-pressed={playing}
         aria-describedby="authority-sound-status"
         disabled={unavailable}
