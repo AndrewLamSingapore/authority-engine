@@ -36,29 +36,26 @@ export default async function handler(req, res) {
   }
   const portal = await portalSignal();
   const expectedPortal = process.env.EXPECTED_PORTAL_REVISION || null;
-  const primeSource = process.env.PRIME_SOURCE_REVISION || 'daeeb30b631954211d30d838821aaca5c72fe037';
-  const primeRuntime = process.env.PRIME_RUNTIME_REVISION || 'daeeb30';
+  // Canonical PRIME 1bd2be98: no independently accepted ABEX receipt.
+  // Legacy environment values and historical Dell identities cannot establish one.
+  const prime = primeSignal();
   const drift = [];
   if (portal.state !== 'ready') drift.push({ component: 'portal', kind: 'availability', state: portal.state });
   if (expectedPortal && portal.revision && !portal.revision.startsWith(expectedPortal)) drift.push({ component: 'portal', kind: 'revision', expected: expectedPortal, actual: portal.revision });
-  if (!primeSource.startsWith(primeRuntime) && !primeRuntime.startsWith(primeSource)) drift.push({ component: 'prime', kind: 'runtime_revision', expected: primeSource, actual: primeRuntime });
+  drift.push({ component: 'prime', kind: 'runtime_receipt', state: 'unverified' });
   return res.status(200).json({
     ok: true,
     generated_at: new Date().toISOString(),
     self: { state: 'ready', revision: process.env.VERCEL_GIT_COMMIT_SHA || null },
     portal,
-    prime: {
-      state: 'last_verified',
-      source_revision: primeSource,
-      runtime_revision: primeRuntime,
-      accelerator: 'Intel Iris Xe / Vulkan',
-      models: ['gemma3:1b', 'embeddinggemma:300m-qat-q4_0'],
-      private_network_exposure: false,
-      verified_at: process.env.PRIME_VERIFIED_AT || '2026-09-02T06:27:00Z',
-    },
-    drift: { state: drift.length ? 'attention' : 'aligned', items: drift },
+    prime,
+    drift: { state: 'unverified', items: drift },
     boundary: 'sanitized public operational metadata only',
   });
 }
 
-export { portalSignal };
+function primeSignal() {
+  return { state: 'unverified', source_revision: '1bd2be98adf91df3bc4df22d7a2348848181b8b8', source_observation: 'pinned_canonical_record', runtime_revision: null, runtime_host: 'ABEX', verified_at: null, private_network_exposure: false, note: 'Current ABEX deployment requires independent host evidence. Historical Dell data is superseded for current status.' };
+}
+
+export { portalSignal, primeSignal };

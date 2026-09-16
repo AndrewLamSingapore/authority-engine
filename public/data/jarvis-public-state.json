@@ -1,0 +1,19 @@
+{
+  "name": "JARVIS PRIME",
+  "record_type": "public_safe_source_projection",
+  "source_revision": "1bd2be98adf91df3bc4df22d7a2348848181b8b8",
+  "source_observed_on": "2026-09-16",
+  "registered_logical_roles": 21,
+  "intended_runtime_host": "ABEX",
+  "clients": [
+    "Dell",
+    "PWA",
+    "PWA voice"
+  ],
+  "runtime_acceptance": "UNVERIFIED",
+  "verified_runtime_revision": null,
+  "public_demo": "Curated illustrative examples; not model inference or live execution.",
+  "scope": "Public source summary only; not a live operational SSOT. Runtime acceptance requires independent host evidence.",
+  "current_public_entrypoint": "https://authority-engine-app.vercel.app/jarvis",
+  "contact": "https://authority-engine-app.vercel.app/contact?source=jarvis&intent=collaboration"
+}

@@ -1,431 +1,107 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Activity,
-  ArrowDown,
-  ArrowRight,
-  ArrowUpRight,
-  BrainCircuit,
-  Check,
-  CircleOff,
-  Database,
-  FileSearch,
-  Fingerprint,
-  GitPullRequestArrow,
-  HardDrive,
-  LockKeyhole,
-  MessageSquareText,
-  Network,
-  Radar,
-  ScanSearch,
-  ShieldCheck,
-  Sparkles,
-} from 'lucide-react';
+import { ArrowRight, ArrowUpRight, BrainCircuit, Check, FileSearch, Network, ShieldCheck } from 'lucide-react';
 import SEO from '../components/SEO';
 
-const JARVIS_LOCAL_URL = 'http://127.0.0.1:8000/control';
-const JARVIS_PUBLIC_URL = 'https://lam-public-jarvis.five12345.chatgpt.site';
-const RELATIONSHIP_CONSOLE_URL = 'https://lam-relationship-console.five12345.chatgpt.site';
-const LINKEDIN_URL = 'https://www.linkedin.com/in/lam-teck-sing-andrew-79886719';
-
-const publicViews = [
-  {
-    id: 'conversation',
-    label: 'Conversation',
-    Icon: MessageSquareText,
-    signal: 'Intent framed',
-    title: 'Start with the decision, not the model.',
-    text: 'JARVIS separates the question, operating context and requested outcome before any answer is treated as a proposal.',
-    evidence: ['Question clarified', 'Memory writes off', 'No action implied'],
-  },
-  {
-    id: 'evidence',
-    label: 'Evidence',
-    Icon: FileSearch,
-    signal: 'Sources visible',
-    title: 'Claims earn their confidence.',
-    text: 'Evidence, provenance and uncertainty stay visible so a polished answer cannot quietly become an unsupported fact.',
-    evidence: ['Source path shown', 'Confidence bounded', 'Gaps retained'],
-  },
-  {
-    id: 'memory',
-    label: 'Memory',
-    Icon: Database,
-    signal: 'Boundaries explicit',
-    title: 'Memory is separated by purpose.',
-    text: 'Session, episodic, durable and evidence layers remain distinct. The public walkthrough reads no private memory.',
-    evidence: ['Layer identified', 'Retention visible', 'Protected reads only'],
-  },
-  {
-    id: 'system',
-    label: 'System',
-    Icon: Activity,
-    signal: 'Route inspectable',
-    title: 'The reasoning route stays legible.',
-    text: 'Local-first reasoning, confidence gates and frontier escalation are treated as governed routes—not invisible magic.',
-    evidence: ['Local-first default', 'Escalation bounded', 'Integrity observed'],
-  },
-  {
-    id: 'actions',
-    label: 'Actions',
-    Icon: GitPullRequestArrow,
-    signal: 'Proposal only',
-    title: 'A proposal is not permission.',
-    text: 'Risk, reversibility and expected effect can be inspected while approval, execution and automation remain unavailable.',
-    evidence: ['Risk stated', 'Authority withheld', 'No actuation'],
-  },
-  {
-    id: 'audit',
-    label: 'Audit',
-    Icon: ScanSearch,
-    signal: 'Trace preserved',
-    title: 'Every decision should leave a trail.',
-    text: 'The audit view connects the request, evidence, reasoning route, policy and result so decisions can be challenged later.',
-    evidence: ['Request linked', 'Route recorded', 'Review possible'],
-  },
+const CANONICAL_URL = '/data/jarvis-public-state.json';
+const CONTACT_URL = '/contact?source=jarvis&intent=collaboration';
+const scenarios = [
+  { id: 'operations', label: 'An operating decision', question: 'The handover is unclear. What needs attention first?', context: 'A shift note mentions a late delivery. The plan still shows the original arrival time.', evidence: 'Compare the dated handover note with the latest carrier update. An old plan cannot confirm a new arrival time.', gap: 'The current arrival time and the person responsible for the next update are missing.', next: 'Confirm those two facts, then write a short handover with an owner and next checkpoint.', message: 'I explored the JARVIS handover example. I’d like to discuss an operating decision or handover challenge.' },
+  { id: 'research', label: 'A research question', question: 'Two sources disagree. Which claim can you use?', context: 'A polished summary states a finding with certainty. The underlying source describes a limited experiment.', evidence: 'Follow the claim back to the original source. Compare its methods, date and stated limits.', gap: 'The result has not been shown to apply to your setting.', next: 'Keep the finding and its limits together. Identify what additional evidence would justify the decision.', message: 'I explored the JARVIS research example. I’d like to discuss evidence handling or a research collaboration.' },
+  { id: 'build', label: 'A project idea', question: 'A useful idea. What would make it testable?', context: 'A team wants an AI assistant to reduce time spent preparing routine updates.', evidence: 'Map one real workflow, its inputs, who uses the output and how they judge whether it is useful.', gap: 'There is no measured baseline or agreed acceptance criterion yet.', next: 'Choose one bounded prototype. Measure the existing process and compare reviewed outputs before expanding.', message: 'I explored the JARVIS project example. I’d like to discuss a practical AI prototype or collaboration.' },
 ];
-
-const states = [
-  {
-    Icon: HardDrive,
-    label: 'Availability',
-    value: 'Available locally',
-    detail: 'Verified on the Dell host. Open it from that device while PRIME is running.',
-    tone: 'emerald',
-  },
-  {
-    Icon: CircleOff,
-    label: 'Off-host state',
-    value: 'Unavailable',
-    detail: 'Expected from phones and other computers. The private interface is not internet-exposed.',
-    tone: 'slate',
-  },
-  {
-    Icon: LockKeyhole,
-    label: 'Operating mode',
-    value: 'Read-only',
-    detail: 'The surface presents state and proposals. Memory writes and approval mutations are disabled.',
-    tone: 'emerald',
-  },
-  {
-    Icon: ShieldCheck,
-    label: 'Safety boundary',
-    value: 'No actuation',
-    detail: 'No automation, orchestration, physical control or VELYQUA action is available here.',
-    tone: 'amber',
-  },
+const principles = [
+  [FileSearch, 'Evidence you can inspect', 'Follow a claim back to its source. Keep missing information visible.'],
+  [BrainCircuit, 'Work shaped around the task', 'The intended architecture routes bounded work through deterministic, qualified local and cloud paths.'],
+  [ShieldCheck, 'Actions with accountability', 'Keep permissions, task results and review evidence connected. Consequential actions retain specific controls.'],
 ];
-
-const trustPrinciples = [
-  {
-    Icon: FileSearch,
-    number: '01',
-    title: 'Evidence before confidence',
-    text: 'The interface keeps sources, uncertainty and evidence gaps close to every consequential claim.',
-  },
-  {
-    Icon: Fingerprint,
-    number: '02',
-    title: 'Authority stays human',
-    text: 'JARVIS can frame and propose. It does not quietly convert a recommendation into permission.',
-  },
-  {
-    Icon: ScanSearch,
-    number: '03',
-    title: 'Review after the moment',
-    text: 'Reasoning routes and decisions remain inspectable when the outcome needs to be explained or challenged.',
-  },
-];
-
-const conversationPaths = [
-  {
-    Icon: Radar,
-    label: 'Operations leaders',
-    title: 'Apply governed AI to a real operating decision.',
-    text: 'Explore where evidence-grounded reasoning could improve visibility without creating hidden authority.',
-    message: 'I would like to discuss how governed AI could support a real operations or supply-chain decision.',
-  },
-  {
-    Icon: BrainCircuit,
-    label: 'Hiring & collaboration',
-    title: 'Discuss the thinking behind the system.',
-    text: 'Start a focused conversation about operations intelligence, applied AI and decision-system design.',
-    message: 'I would like to discuss JARVIS, your operations-intelligence work and a possible role or collaboration.',
-  },
-  {
-    Icon: Sparkles,
-    label: 'Builders & researchers',
-    title: 'Exchange approaches to trustworthy AI.',
-    text: 'Compare local-first reasoning, memory boundaries, confidence gates and auditability without the hype.',
-    message: 'I would like to exchange ideas about local-first reasoning, evidence handling and auditable AI systems.',
-  },
+const projects = [
+  ['Authority Engine', 'Meet Andrew and inspect the operating evidence.', '/'],
+  ['The Portal', 'Explore connections, sources and ideas.', '/portal'],
+  ['VELYQUA', 'Explore evidence-led living-water software.', '/velyqua'],
+  ['Living Worlds', 'Experience choices inside an interactive world.', '/game-platform'],
+  ['Sky Tablet', 'Explore an ancient city beneath a living sky.', '/sky-tablet'],
 ];
 
 export default function JarvisControl() {
-  const [activeView, setActiveView] = useState(publicViews[0].id);
+  const [selected, setSelected] = useState('operations');
+  const [showReasoning, setShowReasoning] = useState(false);
   const [systemSignal, setSystemSignal] = useState(null);
+  const scenario = scenarios.find(item => item.id === selected);
   useEffect(() => {
-    let active = true;
-    fetch('/api/jarvis-status', { headers: { accept: 'application/json' } })
-      .then((response) => response.ok ? response.json() : null)
-      .then((value) => { if (active) setSystemSignal(value); })
+    const controller = new AbortController();
+    fetch('/api/jarvis-status', { headers: { accept: 'application/json' }, signal: controller.signal })
+      .then(response => response.ok ? response.json() : null)
+      .then(value => { if (!controller.signal.aborted) setSystemSignal(value); })
       .catch(() => {});
-    return () => { active = false; };
+    return () => controller.abort();
   }, []);
-  const view = publicViews.find((item) => item.id === activeView) || publicViews[0];
-  const ActiveIcon = view.Icon;
-
   return <>
-    <SEO
-      title="JARVIS — Governed AI Decision System"
-      description="Explore Andrew Lam's public-safe JARVIS walkthrough: evidence-grounded reasoning, explicit memory boundaries, human authority and an inspectable audit trail."
-    />
-
-    <div className="jarvis-public overflow-hidden">
-      <section className="jarvis-hero relative min-h-[calc(100svh-5rem)] pt-28 pb-16 flex items-center">
+    <SEO title="JARVIS PRIME — See the reasoning. Find your next move." description="Explore Andrew Lam’s JARVIS PRIME: try an illustrative decision walkthrough, inspect the approach and discuss your own AI or operations use case." />
+    <div className="jarvis-public overflow-hidden pb-20 sm:pb-0">
+      <section className="jarvis-hero relative pt-28 sm:pt-36 pb-20">
         <div className="jarvis-grid absolute inset-0 pointer-events-none" aria-hidden="true" />
         <div className="jarvis-orb jarvis-orb-one" aria-hidden="true" />
-        <div className="jarvis-orb jarvis-orb-two" aria-hidden="true" />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid xl:grid-cols-[.88fr_1.12fr] gap-12 xl:gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center gap-3 rounded-full border border-lime-300/20 bg-lime-300/[.055] px-4 py-2 text-[10px] font-black uppercase tracking-[.17em] text-lime-200">
-                <span className="h-2 w-2 rounded-full bg-lime-300 shadow-[0_0_16px_rgba(190,242,100,.9)]" />
-                J Console · Public signal available
-              </div>
-              <h1 className="mt-7 text-5xl sm:text-6xl lg:text-7xl font-black tracking-[-0.065em] leading-[.92] text-white">
-                Meet the public face of JARVIS.
-                <span className="block mt-3 text-gradient">The J Console.</span>
-              </h1>
-              <p className="mt-7 max-w-2xl text-lg sm:text-xl leading-relaxed text-slate-300">
-                A public, read-only signal from a private, local-first intelligence system. J Console makes the operating boundary visible: human authority, public information only and zero actuation.
-              </p>
-
-              <div className="mt-9 flex flex-col sm:flex-row gap-3">
-                <a
-                  href={JARVIS_PUBLIC_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="premium-button signal-cta inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold"
-                >
-                  Open J Console <ArrowUpRight className="w-4 h-4" />
-                </a>
-                <a href="#public-walkthrough" className="ghost-button inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold">
-                  Inspect the boundary <ArrowDown className="w-4 h-4" />
-                </a>
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-xs font-bold uppercase tracking-[.12em] text-slate-500">
-                {['Public only', 'Human authority', 'No actuation'].map((item) => <span key={item} className="inline-flex items-center gap-2"><Check className="w-3.5 h-3.5 text-lime-300" /> {item}</span>)}
-              </div>
-            </div>
-
-            <a href={JARVIS_PUBLIC_URL} target="_blank" rel="noopener noreferrer" aria-label="Open the public J Console" className="j-console-feature group relative block rounded-[2rem] border border-white/10 bg-[#111512]/95 p-5 sm:p-7 shadow-[0_40px_120px_rgba(0,0,0,.58)]" data-tilt>
-              <div className="signal-border-trace" aria-hidden="true" />
-              <div className="relative min-h-[520px] overflow-hidden rounded-[1.55rem] border border-white/[.08] bg-[#151916] p-6 sm:p-8">
-                <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-[.18em]">
-                  <span className="text-slate-300">Public signal</span>
-                  <span className="inline-flex items-center gap-2 text-lime-300"><span className="h-2 w-2 rounded-full border-2 border-lime-300" /> Available</span>
-                </div>
-                <div className="relative mx-auto mt-9 flex h-60 max-w-sm items-center justify-center" aria-hidden="true">
-                  <div className="absolute h-60 w-60 rounded-full border border-white/[.07]" />
-                  <div className="absolute h-44 w-44 rounded-full border border-white/[.13]" />
-                  <div className="absolute right-[19%] top-[20%] h-2.5 w-2.5 rounded-full bg-slate-500 shadow-[0_0_16px_rgba(148,163,184,.7)]" />
-                  <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-lime-300 text-5xl font-serif text-[#18200d] shadow-[0_0_45px_rgba(190,242,100,.3)] transition-transform duration-500 group-hover:scale-105">J</div>
-                </div>
-                <div className="mt-8 grid grid-cols-2 border border-white/[.1]">
-                  {[
-                    ['Mode', 'Read-only'],
-                    ['Authority', 'Human'],
-                    ['Boundary', 'Public only'],
-                    ['Actuation', 'None'],
-                  ].map(([label, value]) => <div key={label} className="min-h-24 border-b border-r border-white/[.08] p-4 last:border-b-0 even:border-r-0 [&:nth-child(3)]:border-b-0">
-                    <div className="text-[10px] font-bold uppercase tracking-[.16em] text-slate-500">{label}</div>
-                    <div className="mt-3 text-lg font-black text-white">{value}</div>
-                  </div>)}
-                </div>
-                <div className="mt-5 flex items-center justify-between text-xs font-bold text-slate-500">
-                  <span>J Console / public presentation layer</span>
-                  <span className="inline-flex items-center gap-1 text-lime-300 transition-transform group-hover:translate-x-1">Enter <ArrowUpRight className="h-3.5 w-3.5" /></span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section id="public-walkthrough" className="border-y border-white/[.07] bg-white/[.012]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
-          <div className="max-w-3xl">
-            <div className="eyebrow">Inside the public model</div>
-            <h2 className="mt-5 text-4xl sm:text-5xl font-black tracking-[-0.05em] text-white">Inspect the logic without exposing the system.</h2>
-            <p className="mt-5 text-lg leading-relaxed text-slate-400">Six redacted views show how JARVIS separates intent, evidence, memory, reasoning, proposals and audit. No private runtime data crosses this boundary.</p>
-          </div>
-          <div className="jarvis-console relative mt-12 rounded-[2rem] border border-white/10 bg-[#07100f]/90 p-3 sm:p-4 shadow-[0_40px_120px_rgba(0,0,0,.45)]">
-            <div className="rounded-[1.55rem] border border-white/[.08] bg-[#07100f] overflow-hidden">
-              <div className="flex items-center justify-between gap-4 px-5 py-4 border-b border-white/[.07] bg-white/[.018]">
-                <div className="text-[9px] sm:text-[10px] font-black uppercase tracking-[.16em] text-slate-500">J Console evidence model · redacted</div>
-                <div className="text-[9px] font-black uppercase tracking-[.14em] text-emerald-300">No live JARVIS data</div>
-              </div>
-              <div className="grid lg:grid-cols-[180px_1fr] min-h-[430px]">
-                <div className="border-b lg:border-b-0 lg:border-r border-white/[.07] p-3">
-                  <div className="flex lg:grid gap-1 overflow-x-auto" role="tablist" aria-label="Public JARVIS views">
-                    {publicViews.map(({ id, label, Icon }) => {
-                      const selected = id === activeView;
-                      return <button key={id} type="button" role="tab" id={`jarvis-tab-${id}`} aria-selected={selected} aria-controls="jarvis-public-panel" onClick={() => setActiveView(id)} className={`jarvis-view-tab shrink-0 lg:w-full flex items-center gap-2.5 rounded-xl px-3 py-3 text-left text-xs font-bold ${selected ? 'is-active' : ''}`}>
-                        <Icon className="w-4 h-4" /> {label}
-                      </button>;
-                    })}
-                  </div>
-                </div>
-                <div key={view.id} id="jarvis-public-panel" role="tabpanel" aria-labelledby={`jarvis-tab-${view.id}`} className="jarvis-view-panel p-6 sm:p-8 flex flex-col">
-                  <div className="flex items-start justify-between gap-5">
-                    <div className="h-12 w-12 rounded-2xl border border-emerald-300/20 bg-emerald-300/[.07] flex items-center justify-center text-emerald-300"><ActiveIcon className="w-6 h-6" /></div>
-                    <span className="rounded-full border border-emerald-300/15 bg-emerald-300/[.04] px-3 py-1.5 text-[9px] font-black uppercase tracking-[.14em] text-emerald-300">{view.signal}</span>
-                  </div>
-                  <div className="mt-10 text-[10px] font-black uppercase tracking-[.18em] text-slate-600">{view.label} / public model</div>
-                  <h3 className="mt-3 max-w-xl text-2xl sm:text-3xl font-black tracking-[-0.035em] leading-tight text-white">{view.title}</h3>
-                  <p className="mt-4 max-w-xl leading-relaxed text-slate-400">{view.text}</p>
-                  <div className="mt-auto pt-8 grid sm:grid-cols-3 gap-2">
-                    {view.evidence.map((item) => <div key={item} className="rounded-xl border border-white/[.07] bg-white/[.02] px-3 py-3 text-[10px] font-bold uppercase tracking-[.08em] text-slate-400"><Check className="inline w-3.5 h-3.5 mr-1.5 text-emerald-300" />{item}</div>)}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-white/[.07] bg-white/[.012]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="eyebrow">Verified system signal</div>
-          <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-3" aria-live="polite">
-            {[
-              ['Authority', systemSignal?.self?.state || 'checking'],
-              ['Portal', systemSignal?.portal?.state || 'checking'],
-              ['PRIME', systemSignal?.prime?.state || 'checking'],
-              ['Runtime drift', systemSignal?.drift?.state || 'checking'],
-            ].map(([label, value]) => <article key={label} className="rounded-2xl border border-white/[.08] bg-black/15 p-5">
-              <div className="text-[9px] font-black uppercase tracking-[.14em] text-slate-600">{label}</div>
-              <div className={`mt-3 text-lg font-black ${value === 'ready' || value === 'aligned' ? 'text-emerald-300' : value === 'checking' ? 'text-slate-400' : 'text-amber-300'}`}>{value}</div>
-            </article>)}
-          </div>
-          <p className="mt-4 text-xs leading-relaxed text-slate-500">Sanitized availability, revision and queue signals only. No private PRIME endpoint, credential, prompt or memory is exposed.</p>
-        </div>
-      </section>
-
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
-        <div className="grid lg:grid-cols-[.65fr_1.35fr] gap-12 lg:gap-20 items-start">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid xl:grid-cols-[.9fr_1.1fr] gap-12 xl:gap-16 items-center">
           <div>
-            <div className="eyebrow">Why it earns attention</div>
-            <h2 className="mt-5 text-4xl sm:text-5xl font-black tracking-[-0.05em] leading-[.98] text-white">Trust is part of the interface.</h2>
-            <p className="mt-5 text-lg leading-relaxed text-slate-400">The most valuable AI decision is not always the fastest one. It is the one a person can inspect, challenge and own.</p>
+            <div className="eyebrow">JARVIS PRIME · By Andrew Lam</div>
+            <h1 className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-black tracking-[-.065em] leading-[.98] text-white">A clearer next move.<span className="block mt-3 text-gradient">With the reasoning in view.</span></h1>
+            <p className="mt-7 max-w-xl text-lg sm:text-xl leading-relaxed text-slate-300">What would you ask an AI system you could actually inspect? I’m building JARVIS PRIME to connect questions, evidence and accountable work. Start with a familiar decision.</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="#try-jarvis" className="premium-button inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold">Try a decision walkthrough <ArrowRight className="w-4 h-4" /></a>
+              <Link to={CONTACT_URL} className="ghost-button inline-flex items-center justify-center px-6 py-3.5 rounded-full font-bold">Discuss your use case</Link>
+            </div>
+            <p className="mt-5 text-sm text-slate-400">No account needed · Interactive examples · No private data</p>
+            <Link to="/jarvis/agents" className="mt-7 inline-flex items-center gap-2 text-sm text-emerald-300 font-semibold"><Network className="w-4 h-4" /> Explore the 21-role agent registry <ArrowUpRight className="w-4 h-4" /></Link>
           </div>
-          <div className="grid md:grid-cols-3 gap-4">
-            {trustPrinciples.map(({ Icon, number, title, text }) => <article key={title} className="system-card rounded-3xl p-6 sm:p-7" data-tilt>
-              <div className="flex items-center justify-between"><Icon className="w-6 h-6 text-emerald-300" /><span className="font-mono text-xs text-slate-600">{number}</span></div>
-              <h3 className="mt-12 text-xl font-black text-white">{title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-400">{text}</p>
-            </article>)}
-          </div>
+          <section id="try-jarvis" aria-label="Try a JARVIS decision walkthrough" className="scroll-mt-28 rounded-[2rem] border border-emerald-300/25 bg-[#081613]/95 p-5 sm:p-8 shadow-[0_35px_110px_#0008]">
+            <div className="flex justify-between gap-3 items-center"><span className="text-xs font-bold tracking-[.15em] text-emerald-300">QUESTION → EVIDENCE → NEXT STEP</span><BrainCircuit className="w-7 h-7 shrink-0 text-emerald-300" /></div>
+            <p className="mt-4 text-xs leading-relaxed text-slate-400">Illustrative walkthrough · Curated examples, not live AI output.</p>
+            <div className="flex flex-wrap gap-2 mt-6" role="group" aria-label="Choose a decision example">
+              {scenarios.map(item => <button type="button" key={item.id} aria-pressed={selected === item.id} onClick={() => { setSelected(item.id); setShowReasoning(false); }} className={`rounded-full border px-3 py-2.5 text-xs font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 ${selected === item.id ? 'bg-emerald-200 text-[#07110f] border-emerald-200' : 'border-white/15 text-slate-300 hover:border-emerald-300/60'}`}>{item.label}</button>)}
+            </div>
+            <div className="mt-7" aria-live="polite" aria-atomic="true">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">{scenario.question}</h2>
+              <p className="mt-4 text-sm leading-relaxed text-slate-300">{scenario.context}</p>
+            </div>
+            <button type="button" aria-expanded={showReasoning} aria-controls="decision-reasoning" onClick={() => setShowReasoning(!showReasoning)} className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-emerald-300 py-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300">{showReasoning ? 'Hide the reasoning' : 'See how to approach it'} <ArrowRight className={`w-4 h-4 transition-transform ${showReasoning ? 'rotate-90' : ''}`} /></button>
+            <div id="decision-reasoning" hidden={!showReasoning} className="mt-3 space-y-4 border-t border-white/10 pt-5">
+              {[["01 · Check the evidence", scenario.evidence], ["02 · Name what is missing", scenario.gap], ["03 · Define a next step", scenario.next]].map(([label, text]) => <div key={label}><h3 className="text-xs uppercase tracking-wide font-bold text-emerald-200">{label}</h3><p className="mt-2 text-sm leading-relaxed text-slate-300">{text}</p></div>)}
+              <Link to={CONTACT_URL} state={{ inquiryType: 'JARVIS / Governed AI Conversation', message: scenario.message }} className="inline-flex gap-2 items-center rounded-xl bg-emerald-200 px-4 py-3 text-sm font-bold text-[#07110f]">Explore a challenge like this with Andrew <ArrowUpRight className="w-4 h-4" /></Link>
+            </div>
+          </section>
         </div>
       </section>
 
-      <section className="border-y border-white/[.07] bg-white/[.012]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
-          <div className="max-w-3xl">
-            <div className="eyebrow">Evidence boundary</div>
-            <h2 className="mt-5 text-4xl sm:text-5xl font-black tracking-[-0.05em] text-white">What the current evidence supports.</h2>
-            <p className="mt-5 text-lg leading-relaxed text-slate-400">JARVIS is stronger when the claims are narrower than the ambition.</p>
-          </div>
-          <div className="mt-12 grid lg:grid-cols-2 gap-5">
-            <article className="rounded-[2rem] border border-emerald-300/15 bg-emerald-300/[.035] p-7 sm:p-9">
-              <div className="flex items-center gap-3 text-sm font-black uppercase tracking-[.13em] text-emerald-300"><ShieldCheck className="w-5 h-5" /> Supported</div>
-              <ul className="mt-7 space-y-4 text-slate-300">
-                {[
-                  'A six-view Control Surface is implemented and verified on the local PRIME runtime.',
-                  'Evidence, memory, system state, proposals and audit records are presented as read-only views.',
-                  'The public walkthrough explains the interaction model without reading private runtime data.',
-                  'Authority Engine remains a public evidence and launch surface—not a second control plane.',
-                ].map((item) => <li key={item} className="flex gap-3"><Check className="w-5 h-5 shrink-0 text-emerald-300" /><span>{item}</span></li>)}
-              </ul>
-            </article>
-            <article className="rounded-[2rem] border border-amber-300/15 bg-amber-300/[.025] p-7 sm:p-9">
-              <div className="flex items-center gap-3 text-sm font-black uppercase tracking-[.13em] text-amber-300"><LockKeyhole className="w-5 h-5" /> Not claimed</div>
-              <ul className="mt-7 space-y-4 text-slate-400">
-                {[
-                  'No public access to the private JARVIS Control Surface or its protected APIs.',
-                  'No autonomous approval, execution, scheduling, physical control or hidden actuation.',
-                  'No dependency on VELYQUA and no authority over aquarium, livestock or mains-power actions.',
-                  'No claim that a working prototype proves adoption, commercial impact or decision quality at scale.',
-                ].map((item) => <li key={item} className="flex gap-3"><CircleOff className="w-5 h-5 shrink-0 text-amber-300" /><span>{item}</span></li>)}
-              </ul>
-            </article>
-          </div>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <div className="max-w-2xl"><div className="eyebrow">The approach</div><h2 className="mt-4 text-3xl sm:text-5xl font-black tracking-[-.04em] text-white">From a good question to work you can inspect.</h2><p className="mt-5 text-lg leading-relaxed text-slate-400">My operations background shapes the questions: what changed, what can we trust, who owns the next step, and how will we know it helped?</p></div>
+        <div className="mt-10 grid md:grid-cols-3 gap-4">{principles.map(([Icon, title, text]) => <article key={title} className="system-card rounded-3xl p-7"><Icon className="w-7 h-7 text-emerald-300" /><h3 className="mt-8 text-xl font-bold text-white">{title}</h3><p className="mt-3 text-sm leading-relaxed text-slate-400">{text}</p></article>)}</div>
+      </section>
+
+      <section className="border-y border-white/10 bg-white/[.02]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 grid lg:grid-cols-2 gap-12">
+          <div><div className="eyebrow">One connected body of work</div><h2 className="mt-4 text-3xl sm:text-5xl font-black tracking-[-.04em] text-white">Different worlds.<br />A shared curiosity.</h2><p className="mt-5 text-lg leading-relaxed text-slate-400">Each project explores a different question. JARVIS PRIME is the intended coordination layer; each app keeps its own product purpose and data. Explore a project, then bring me the connection you see.</p><Link to={CONTACT_URL} className="mt-7 inline-flex items-center gap-2 font-bold text-emerald-300">What could we build together? <ArrowRight className="w-4 h-4" /></Link></div>
+          <nav aria-label="Explore Andrew’s connected work" className="divide-y divide-white/10">{projects.map(([name, text, to]) => <Link key={name} to={to} className="group flex justify-between gap-5 py-5 first:pt-0"><div><h3 className="font-bold text-xl text-white group-hover:text-emerald-200">{name}</h3><p className="mt-1 text-sm text-slate-400">{text}</p></div><ArrowUpRight className="w-5 h-5 shrink-0 text-emerald-300" /></Link>)}</nav>
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
-        <div className="text-center max-w-3xl mx-auto">
-          <div className="eyebrow">From attention to relationship</div>
-          <h2 className="mt-5 text-4xl sm:text-5xl font-black tracking-[-0.05em] leading-[.98] text-white">Choose the conversation worth having.</h2>
-          <p className="mt-5 text-lg text-slate-400">Start with a real decision, opportunity or technical question. The contact page will carry your chosen context forward.</p>
-        </div>
-        <div className="mt-12 grid lg:grid-cols-3 gap-5">
-          {conversationPaths.map(({ Icon, label, title, text, message }) => <Link
-            key={label}
-            to="/contact"
-            state={{ inquiryType: 'JARVIS / Governed AI Conversation', message }}
-            className="system-card group rounded-[2rem] p-7 sm:p-8"
-            data-tilt
-          >
-            <div className="flex items-center justify-between gap-4"><Icon className="w-7 h-7 text-emerald-300" /><ArrowUpRight className="w-5 h-5 text-slate-600 group-hover:text-emerald-300 transition-colors" /></div>
-            <div className="mt-12 text-[10px] font-black uppercase tracking-[.16em] text-amber-300">{label}</div>
-            <h3 className="mt-3 text-2xl font-black tracking-[-0.03em] text-white">{title}</h3>
-            <p className="mt-4 leading-relaxed text-slate-400">{text}</p>
-            <div className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-emerald-300">Start with this <ArrowRight className="w-4 h-4" /></div>
-          </Link>)}
-        </div>
-        <div className="mt-8 text-center">
-          <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="ghost-button inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold">
-            <Network className="w-4 h-4" /> Connect on LinkedIn
-          </a>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <div className="rounded-3xl border border-white/10 p-6 sm:p-9">
+          <div className="eyebrow">Inspect the evidence</div><h2 className="mt-4 text-3xl font-bold tracking-tight text-white">Ambition, source and runtime are different things.</h2>
+          <p className="mt-4 max-w-3xl leading-relaxed text-slate-400">The published architecture names ABEX as PRIME’s intended host, with Dell, mobile PWA and voice as clients. The canonical record does not yet verify the current ABEX deployment. The 21 registered roles describe the design, not 21 confirmed concurrent workers.</p>
+          <div className="mt-6 flex flex-wrap gap-3 text-sm"><span className="rounded-full border border-emerald-300/20 px-4 py-2 text-emerald-200">Public walkthrough available</span><span className="rounded-full border border-amber-300/20 px-4 py-2 text-amber-200">PRIME runtime: unverified</span></div>
+          <p className="mt-5 text-xs leading-relaxed text-slate-500">No live JARVIS data. This page reads no private memory and provides no public execution or physical control. Live public-service availability: Authority {systemSignal?.self?.state || 'unavailable'} · Portal {systemSignal?.portal?.state || 'unavailable'}. These signals do not establish PRIME runtime acceptance.</p>
+          <a href={CANONICAL_URL} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-emerald-300">Read the source record used here <ArrowUpRight className="w-4 h-4" /></a>
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 sm:pb-28">
-        <div className="rounded-[2.2rem] border border-white/10 bg-gradient-to-br from-emerald-400/[.075] via-white/[.02] to-amber-300/[.045] p-7 sm:p-10 lg:p-12">
-          <div className="max-w-3xl">
-            <div className="eyebrow">JARVIS system boundaries</div>
-            <h2 className="mt-4 text-3xl sm:text-4xl font-black tracking-[-0.04em] text-white">One authority layer, three explicit boundaries.</h2>
-            <p className="mt-4 leading-relaxed text-slate-400">Authority Engine launches each surface and states its role. It never proxies private JARVIS data or becomes a second control plane.</p>
-          </div>
-          <div className="mt-9 grid lg:grid-cols-3 gap-4">
-            <a href={JARVIS_PUBLIC_URL} target="_blank" rel="noopener noreferrer" className="system-card group rounded-3xl p-6 sm:p-7">
-              <div className="flex items-center justify-between"><Network className="w-6 h-6 text-emerald-300" /><span className="rounded-full border border-emerald-300/20 px-3 py-1 text-[9px] font-black uppercase tracking-[.13em] text-emerald-300">Public</span></div>
-              <h3 className="mt-10 text-xl font-black text-white">J Console</h3><p className="mt-3 text-sm leading-relaxed text-slate-400">The public presentation layer for approved knowledge, evidence and qualified enquiries. No private PRIME access.</p>
-              <div className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-emerald-300">Open J Console <ArrowUpRight className="w-4 h-4" /></div>
-            </a>
-            <a href={RELATIONSHIP_CONSOLE_URL} target="_blank" rel="noopener noreferrer" className="system-card group rounded-3xl p-6 sm:p-7">
-              <div className="flex items-center justify-between"><Radar className="w-6 h-6 text-amber-300" /><span className="rounded-full border border-amber-300/20 px-3 py-1 text-[9px] font-black uppercase tracking-[.13em] text-amber-300">Owner only</span></div>
-              <h3 className="mt-10 text-xl font-black text-white">Relationship Console</h3><p className="mt-3 text-sm leading-relaxed text-slate-400">Review enquiries, qualify relationships, record follow-up notes and monitor conversion signals.</p>
-              <div className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-amber-300">Open owner console <ArrowUpRight className="w-4 h-4" /></div>
-            </a>
-            <a href={JARVIS_LOCAL_URL} target="_blank" rel="noopener noreferrer" className="system-card group rounded-3xl p-6 sm:p-7">
-              <div className="flex items-center justify-between"><HardDrive className="w-6 h-6 text-slate-300" /><span className="rounded-full border border-white/10 px-3 py-1 text-[9px] font-black uppercase tracking-[.13em] text-slate-400">Local only</span></div>
-              <h3 className="mt-10 text-xl font-black text-white">Private JARVIS Control</h3><p className="mt-3 text-sm leading-relaxed text-slate-400">Read-only PRIME operating picture on the Dell. No internet exposure and no actuation.</p>
-              <div className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-slate-300">Open local control <ArrowUpRight className="w-4 h-4" /></div>
-            </a>
-          </div>
-          <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {states.map(({ Icon, label, value, detail, tone }) => <article key={label} className="rounded-2xl border border-white/[.08] bg-black/15 p-5">
-              <div className="flex items-start justify-between gap-3"><Icon className={`w-5 h-5 ${tone === 'amber' ? 'text-amber-300' : tone === 'emerald' ? 'text-emerald-300' : 'text-slate-500'}`} /><span className="text-[9px] font-black tracking-[.14em] uppercase text-slate-600">{label}</span></div>
-              <h3 className="mt-6 text-lg font-black text-white">{value}</h3><p className="mt-2 text-xs leading-relaxed text-slate-500">{detail}</p>
-            </article>)}
-          </div>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+        <div className="rounded-[2rem] border border-emerald-300/20 bg-gradient-to-br from-emerald-400/10 to-transparent p-7 sm:p-12 text-center">
+          <div className="eyebrow">Start with your question</div><h2 className="mt-5 text-4xl sm:text-5xl font-black tracking-[-.04em] text-white">What would you like to make clearer?</h2><p className="mt-5 max-w-2xl mx-auto text-lg leading-relaxed text-slate-300">An operating challenge, a role, a research question or something you want to build. Tell me where you are starting. We can explore the next step together.</p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3"><Link to={CONTACT_URL} className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold">Talk with Andrew <ArrowRight className="w-4 h-4" /></Link><a href="https://www.linkedin.com/in/lam-teck-sing-andrew-79886719" target="_blank" rel="noopener noreferrer" className="ghost-button inline-flex items-center px-6 py-3.5 rounded-full font-bold">Connect on LinkedIn</a></div>
         </div>
       </section>
+      <aside aria-label="Discuss JARVIS with Andrew" className="sm:hidden fixed bottom-0 inset-x-0 z-40 border-t border-emerald-300/20 bg-[#07110f]/95 backdrop-blur-xl px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))] flex items-center justify-between gap-3"><span className="text-xs text-slate-300">A question worth exploring?</span><Link to={CONTACT_URL} className="rounded-full bg-emerald-200 text-[#07110f] text-sm font-bold px-4 py-3">Talk with Andrew ↗</Link></aside>
     </div>
   </>;
 }

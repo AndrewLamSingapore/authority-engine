@@ -1,12 +1,23 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { sanitizeEvent, sanitizeGate, sanitizeProof, sanitizeSummary, DEFAULT_TRACE_SOURCE } from '../api/jarvis-agent-trace.js';
+import { classifyTrace, sanitizeEvent, sanitizeGate, sanitizeProof, sanitizeSummary, DEFAULT_TRACE_SOURCE } from '../api/jarvis-agent-trace.js';
 
 test('trace sanitizer exposes only allowlisted metadata',()=>{const event=sanitizeEvent({trace_id:'trace-1',timestamp:'2026-09-03T12:00:00Z',agent_id:'A19',stage:'verification',status:'complete',sequence:2,prompt:'secret',endpoint:'http://private',credentials:'secret',result:'sensitive'});assert.deepEqual(event,{trace_id:'trace-1',timestamp:'2026-09-03T12:00:00Z',agent_id:'A19',stage:'verification',status:'complete',sequence:2});});
 test('release gate strips private text',()=>{const gate=sanitizeGate({decision:'withheld',score:.514321,blocking_metrics:['source_coverage','required_evidence','invented_metric'],evidence_gap_count:2,unsupported_claim_count:1,contradiction_count:0,evaluator_valid:true,evaluation_version:'2.1',rationale:'PRIVATE',prompt:'SECRET'});assert.deepEqual(gate,{decision:'withheld',score:.5143,blocking_metrics:['required_evidence','source_coverage'],evidence_gap_count:2,unsupported_claim_count:1,contradiction_count:0,evaluator_valid:true,evaluation_version:'2.1'});assert.equal(JSON.stringify(gate).includes('PRIVATE'),false);});
 test('runtime proof is bounded and strips private provenance',()=>{assert.deepEqual(sanitizeProof({prime_commit:'9D26EC81187417523A4CE88E8916DACFE7A9F021',schema_version:'1.0',external_action:false,repository:'PRIVATE',filesystem_path:'C:/secret',token:'SECRET'}),{prime_commit:'9d26ec81187417523a4ce88e8916dacfe7a9f021',schema_version:'1.0',external_action:false});assert.equal(sanitizeProof({prime_commit:'not a sha',repository:'secret'}),null);});
 test('trace sanitizer nests valid gate and proof',()=>{const event=sanitizeEvent({trace_id:'trace-2',timestamp:'2026-09-03T12:00:00Z',agent_id:'A17',stage:'reasoning',status:'withheld',sequence:4,gate:{decision:'withheld',score:.5,blocking_metrics:['task_success'],evaluator_valid:true,evaluation_version:'2.1'},proof:{prime_commit:'9d26ec8',schema_version:'1',external_action:false}});assert.equal(event.gate.decision,'withheld');assert.equal(event.proof.external_action,false);});
 test('trace sanitizer rejects incomplete events',()=>{assert.equal(sanitizeEvent({trace_id:'trace-1',agent_id:'A19'}),null);assert.equal(sanitizeEvent(null),null);});
-test('summary sanitizer is bounded and strips private fields',()=>{assert.deepEqual(sanitizeSummary({registered_agents:999,active_agents:4,executions_today:8,withheld_executions_today:3,denied_handoffs_today:2,average_latency_ms:12.5,active_window_seconds:99999,prompt:'secret'}),{registered_agents:29,active_agents:4,executions_today:8,withheld_executions_today:3,denied_handoffs_today:2,average_latency_ms:12.5,active_window_seconds:3600});});
-test('empty summary reports truthful zero runtime activity',()=>{const s=sanitizeSummary(null);assert.equal(s.registered_agents,29);assert.equal(s.active_agents,0);assert.equal(s.executions_today,0);});
+test('summary sanitizer is bounded and strips private fields',()=>{assert.deepEqual(sanitizeSummary({registered_agents:999,active_agents:4,executions_today:8,withheld_executions_today:3,denied_handoffs_today:2,average_latency_ms:12.5,active_window_seconds:99999,prompt:'secret'}),{registered_agents:21,active_agents:4,executions_today:8,withheld_executions_today:3,denied_handoffs_today:2,average_latency_ms:12.5,active_window_seconds:3600});});
+test('empty summary preserves unknown runtime activity',()=>{const s=sanitizeSummary(null);assert.equal(s.registered_agents,21);assert.equal(s.active_agents,null);assert.equal(s.executions_today,null);});
 test('default trace source is durable and credential-free',()=>{assert.equal(DEFAULT_TRACE_SOURCE,'https://bksyjvppcwfgwoelnyvp.supabase.co/functions/v1/jarvis-trace-relay');assert.ok(DEFAULT_TRACE_SOURCE.startsWith('https://'));assert.equal(DEFAULT_TRACE_SOURCE.includes('@'),false);assert.equal(DEFAULT_TRACE_SOURCE.includes('token='),false);});
+
+test('relay event presence cannot establish ABEX acceptance',()=>{
+ const now=Date.parse('2026-09-16T12:00:00Z');
+ for (const state of ['verified_events','connected_idle','disabled']) {
+  assert.equal(classifyTrace({state,source_generated_at:'2026-09-16T11:59:00Z',events:[{status:'complete'}]},now).state,'unverified_source');
+ }
+ for (const source_generated_at of [null,'invalid','2026-09-02T12:00:00Z','2027-09-16T12:00:00Z']) {
+  assert.equal(classifyTrace({source_generated_at},now).state,'stale');
+ }
+ assert.equal(classifyTrace({},now).runtime_acceptance,'unverified');
+});

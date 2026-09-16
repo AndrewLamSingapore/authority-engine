@@ -39,14 +39,15 @@ function sanitizeEvent(value) {
 }
 
 function sanitizeSummary(value) {
-  const defaults = { registered_agents:29, active_agents:0, executions_today:0, withheld_executions_today:0, denied_handoffs_today:0, average_latency_ms:null, active_window_seconds:300 };
+  const defaults = { registered_agents:21, active_agents:null, executions_today:null, withheld_executions_today:null, denied_handoffs_today:null, average_latency_ms:null, active_window_seconds:300 };
   if (!value || typeof value !== 'object') return defaults;
   const out = { ...defaults };
   for (const key of SUMMARY_FIELDS) {
+    if (key === 'registered_agents') continue; // Public registry is the canonical 21-role design.
     const val = value[key];
     if (val === null && key === 'average_latency_ms') { out[key] = null; continue; }
     if (typeof val !== 'number' || !Number.isFinite(val)) continue;
-    if (key === 'registered_agents' || key === 'active_agents') out[key] = Math.max(0, Math.min(29, Math.trunc(val)));
+    if (key === 'registered_agents' || key === 'active_agents') out[key] = Math.max(0, Math.min(21, Math.trunc(val)));
     else if (key === 'active_window_seconds') out[key] = Math.max(1, Math.min(3600, Math.trunc(val)));
     else out[key] = Math.max(0, val);
   }
@@ -63,13 +64,18 @@ export default async function handler(req, res) {
     if(!response.ok) throw new Error(`trace source ${response.status}`);
     const body = await response.json();
     const events = Array.isArray(body.events) ? body.events.map(sanitizeEvent).filter(Boolean).slice(-100) : [];
-    const summary = sanitizeSummary(body.summary); let state = ALLOWED_STATES.has(body.state) ? body.state : 'no_public_trace';
-    if(events.length && state !== 'stale') state='verified_events';
-    if(!events.length && state==='verified_events') state=body.source_generated_at?'connected_idle':'no_public_trace';
-    return res.status(200).json({ ok:true,state,generated_at:new Date().toISOString(),source_generated_at:typeof body.source_generated_at==='string'?body.source_generated_at:null,summary,events,boundary:'sanitized runtime authority and aggregate release-gate metadata only; no prompts, results, rationale, claim text, evidence text, credentials or private endpoints' });
+    const observation = classifyTrace(body);
+    return res.status(200).json({ ok:true, ...observation, generated_at:new Date().toISOString(), summary:emptySummary, events, boundary:'Reported relay metadata only; current ABEX runtime and activity are unverified. Historical events do not establish current execution.' });
   } catch {
     return res.status(200).json({ ok:true,state:'source_unavailable',generated_at:new Date().toISOString(),source_generated_at:null,summary:emptySummary,events:[],boundary:'Trace source unavailable; no synthetic events substituted.' });
   } finally { clearTimeout(timer); }
 }
 
-export { sanitizeEvent, sanitizeGate, sanitizeProof, sanitizeSummary, ALLOWED_EVENT_FIELDS, SUMMARY_FIELDS, PROOF_FIELDS, GATE_METRICS, DEFAULT_TRACE_SOURCE, ALLOWED_STATES };
+function classifyTrace(body, now = Date.now()) {
+  const raw = typeof body.source_generated_at === 'string' ? body.source_generated_at : null;
+  const timestamp = raw ? Date.parse(raw) : NaN;
+  const fresh = Number.isFinite(timestamp) && timestamp <= now + 30000 && now - timestamp <= 300000;
+  return { state: fresh ? 'unverified_source' : 'stale', source_generated_at: Number.isFinite(timestamp) ? new Date(timestamp).toISOString() : null, runtime_acceptance: 'unverified' };
+}
+
+export { classifyTrace, sanitizeEvent, sanitizeGate, sanitizeProof, sanitizeSummary, ALLOWED_EVENT_FIELDS, SUMMARY_FIELDS, PROOF_FIELDS, GATE_METRICS, DEFAULT_TRACE_SOURCE, ALLOWED_STATES };

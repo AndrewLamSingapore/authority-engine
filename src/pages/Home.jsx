@@ -156,8 +156,8 @@ const evidence = [
   {
     Icon: ShieldEllipsis,
     tag: 'GOVERNED AI · E2 PROTOTYPE',
-    title: 'JARVIS Control',
-    text: 'Explore a public-safe walkthrough of evidence-grounded reasoning, memory boundaries, human authority and auditability. Private controls stay on the Dell.',
+    title: 'JARVIS PRIME',
+    text: 'Try a decision walkthrough, follow the evidence and explore how accountable AI could support your next project.',
     label: 'Explore JARVIS',
     to: '/jarvis',
   },
