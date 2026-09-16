@@ -17,3 +17,14 @@ test('untrusted query strings cannot inject copy, destinations or unsupported in
 test('existing question handoffs remain intact', () => {
   assert.equal(contactContext('', {inquiryType:'Professional Inquiry',message:'A specific question'}).message,'A specific question');
 });
+test('relationship intents preserve the originating project and reject unknown intent values', () => {
+  for (const source of ['portal','velyqua','game-platform','sky-tablet']) {
+    const plain=contactContext(`?source=${source}`),intent=contactContext(`?source=${source}&intent=collaboration`);
+    assert.equal(intent.source,plain.source);
+    assert.equal(intent.inquiryType,plain.inquiryType);
+    assert.ok(intent.message.length>0);
+  }
+  assert.equal(contactContext('?source=authority-engine&intent=role').inquiryType,'Operations Excellence Opportunity');
+  assert.equal(contactContext('?source=sky-tablet&intent=research').inquiryType,'Sky Tablet / Research Conversation');
+  assert.equal(contactContext('?intent=toString').inquiryType,'Operations Excellence Opportunity');
+});
