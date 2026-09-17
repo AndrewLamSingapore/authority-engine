@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { ArrowRight, ExternalLink, Network, Search, Sparkles } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 const portalUrl = 'https://the-portal-ten.vercel.app/';
+const evidenceLabUrl = new URL('evidence-lab', portalUrl).href;
 
 const nodes = [
   { id: 'operations', label: 'Operations', x: 50, y: 47, color: 'emerald', note: 'The operating reality: people, process, constraints and decisions.' },
@@ -33,17 +33,34 @@ export default function Portal() {
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-10 lg:gap-16 items-end">
           <div>
-            <div className="eyebrow">Flagship knowledge system · Portal 4.1</div>
+            <div className="eyebrow">Discovery · Connections · Evidence</div>
             <h1 className="mt-5 text-[clamp(3.2rem,7vw,6.5rem)] leading-[.86] font-black tracking-[-.065em] text-white">THE<br /><span className="text-gradient">PORTAL.</span></h1>
           </div>
           <div className="max-w-xl lg:pb-2">
             <p className="text-lg sm:text-xl leading-relaxed text-slate-300">A living knowledge graph for turning encounters, evidence and unfinished questions into connected intelligence.</p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a href={portalUrl} target="_blank" rel="noreferrer" className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Enter the live Portal <ExternalLink className="w-4 h-4" /></a>
-              <Link to="/insights" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Inspect my evidence <ArrowRight className="w-4 h-4" /></Link>
+              <a href="#evidence-lab" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Discover Evidence Lab <ArrowRight className="w-4 h-4" /></a>
             </div>
           </div>
         </div>
+
+        <section id="evidence-lab" className="portal-evidence-feature" aria-labelledby="evidence-lab-title">
+          <div className="portal-evidence-orbit" aria-hidden="true"><span /><span /><span /></div>
+          <div className="portal-evidence-content">
+            <div className="portal-evidence-kicker"><span /> THE PORTAL · EVIDENCE LAB</div>
+            <h2 id="evidence-lab-title">Follow the signal.<br /><em>Inspect the evidence.</em></h2>
+            <p className="portal-evidence-intro">A quiet laboratory for a noisy chain. Compare an existing Sepolia transaction with your declaration, inspect what matches, and preserve a report you can check again.</p>
+            <a href={evidenceLabUrl} className="portal-evidence-enter">Enter Evidence Lab <ArrowRight aria-hidden="true" size={20} /></a>
+            <p className="portal-evidence-boundary">Ethereum Sepolia · Read-only · No wallet required</p>
+          </div>
+          <div className="portal-evidence-footer">
+            <div><span>01 / OBSERVE</span><p>Read public transaction evidence.</p></div>
+            <div><span>02 / COMPARE</span><p>See matches, differences and unknowns.</p></div>
+            <div><span>03 / PRESERVE</span><p>Download a reproducible JSON report.</p></div>
+          </div>
+          <p className="portal-evidence-note">A match compares supplied expectations with observed data. It does not establish prior authorization or prove the intended real-world outcome.</p>
+        </section>
 
         <section className="mt-16 rounded-[2rem] border border-white/[0.09] bg-white/[0.025] overflow-hidden shadow-2xl shadow-black/30" aria-label="Interactive Portal preview">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.08] px-5 sm:px-7 py-4">
