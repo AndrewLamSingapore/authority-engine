@@ -584,3 +584,25 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:2px solid
 @media(max-width:1100px) { .portfolio-desktop-nav { display:none; }.portfolio-menu-toggle { display:block; }.portfolio-wordmark small { display:none; }.ecosystem-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:640px) { .portfolio-nav-inner { padding:0 1rem;gap:.6rem; }.portfolio-nav-controls { gap:.25rem; }.portfolio-wordmark strong { font-size:.75rem; }.ecosystem-section { padding:3rem 1rem; }.ecosystem-heading,.ecosystem-conversation { align-items:start;flex-direction:column;gap:1.25rem; }.ecosystem-grid { grid-template-columns:1fr; }.ecosystem-project { min-height:220px; }.hero-atmosphere-art { width:100%;opacity:.28; }.authority-hero { padding-top:7.5rem; }.hero-status-badge { letter-spacing:.06em;font-size:.75rem; } }
 @media(prefers-reduced-motion:reduce) { .ecosystem-project:hover { transform:none; } }
+
+/* Portal Evidence Lab: a discoverable, read-only doorway. */
+.portal-evidence-feature { position:relative; isolation:isolate; margin-top:3.5rem; scroll-margin-top:7rem; overflow:hidden; border:1px solid #c8ad694d; border-radius:2rem; background:radial-gradient(ellipse at 85% 25%,#397d7040,transparent 55%),radial-gradient(ellipse at 20% 100%,#92733c24,transparent 60%),#080e0d; box-shadow:0 24px 100px #0008,inset 0 1px #e6ce9120; }
+.portal-evidence-content { position:relative; z-index:1; padding:clamp(1.5rem,5vw,4rem); max-width:850px; }
+.portal-evidence-kicker { display:flex; align-items:center; gap:12px; color:#dec487; font:600 11px/1.7 monospace; letter-spacing:.18em; }
+.portal-evidence-kicker > span { width:7px; height:7px; flex-shrink:0; border-radius:50%; background:#9dd5c7; box-shadow:0 0 18px #9dd5c7; }
+.portal-evidence-content h2 { margin:1.6rem 0; color:#efe5cf; font:400 clamp(2.4rem,5.4vw,5rem)/1.06 Georgia,serif; letter-spacing:-.04em; }
+.portal-evidence-content h2 em { color:#a4cfc3; font-weight:400; }
+.portal-evidence-intro { max-width:540px; color:#c1c6bc; font-size:clamp(1rem,1.6vw,1.15rem); line-height:1.85; }
+.portal-evidence-enter { display:inline-flex; align-items:center; justify-content:center; gap:24px; margin-top:1.8rem; min-height:54px; padding:14px 24px; background:#e0c58a; color:#111a16; border:1px solid #efdbb0; border-radius:6px; font-weight:700; box-shadow:0 0 35px #d6b77420; transition:background .2s,box-shadow .2s; }
+.portal-evidence-enter:hover { background:#f3dfb1; box-shadow:0 0 45px #d6b77440; }
+.portal-evidence-enter:focus-visible { outline:3px solid #b6e9de; outline-offset:5px; }
+.portal-evidence-boundary { margin-top:18px; color:#a2c4b9; font:11px/1.8 monospace; letter-spacing:.04em; }
+.portal-evidence-orbit { position:absolute; z-index:-1; width:650px; height:650px; right:-170px; top:-90px; border:1px solid #a9d3c522; border-radius:50%; background:radial-gradient(circle,#9ad9c412,transparent 60%); }
+.portal-evidence-orbit span { position:absolute; inset:12%; border:1px solid #b5d4c51c; border-radius:50%; }
+.portal-evidence-orbit span:nth-child(2) { inset:25%; border-color:#ddc58c30; }
+.portal-evidence-orbit span:nth-child(3) { inset:38%; box-shadow:0 0 70px #9ad9c41a; }
+.portal-evidence-footer { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; margin:0 clamp(1.5rem,5vw,4rem); padding:26px 0; border-top:1px solid #b5c5b925; }
+.portal-evidence-footer span { color:#d9c187; font:11px/1.7 monospace; letter-spacing:.12em; }
+.portal-evidence-footer p { color:#adbcb5; font-size:13px; margin-top:8px; line-height:1.6; }
+.portal-evidence-note { margin:0; padding:18px clamp(1.5rem,5vw,4rem); background:#0003; color:#9ea9a1; font-size:12px; line-height:1.8; border-top:1px solid #b5c5b918; }
+@media(max-width:600px) { .portal-evidence-footer { grid-template-columns:1fr; gap:16px; } .portal-evidence-feature { border-radius:1.25rem; } .portal-evidence-orbit { right:-420px; opacity:.65; } .portal-evidence-enter { width:100%; gap:16px; } }
