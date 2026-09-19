@@ -1,6 +1,8 @@
 import { createHash } from 'node:crypto';
 import { assertContract } from './generated/portfolio-contracts.js';
 
+const DEFAULT_RELAY_TIMEOUT_MS = 10_000;
+
 function normalizePortfolioEvent(event, candidate, payload = {}) {
   const base = event && typeof event === 'object' ? event : {};
   const inputPayload = base.payload && typeof base.payload === 'object' ? base.payload : {};
@@ -42,7 +44,10 @@ export function authorityEvent(eventType, candidate, payload = {}) {
   }, candidateMeta, payload));
 }
 
-export async function publishAuthorityEvent(event, { fetchImpl = fetch } = {}) {
+export async function publishAuthorityEvent(
+  event,
+  { fetchImpl = fetch, timeoutMs = DEFAULT_RELAY_TIMEOUT_MS } = {},
+) {
   const safeEvent = event && typeof event === 'object' ? normalizePortfolioEvent(event, event, {}) : {};
   const url = String(process.env.PORTFOLIO_RELAY_URL || '').trim();
   const token = String(process.env.PORTFOLIO_RELAY_TOKEN || '').trim();
@@ -53,7 +58,7 @@ export async function publishAuthorityEvent(event, { fetchImpl = fetch } = {}) {
     method: 'POST',
     headers: { authorization: `Bearer ${token}`, 'content-type': 'application/json' },
     body: JSON.stringify({ action: 'publish', event: safeEvent }),
-    signal: AbortSignal.timeout(10000),
+    signal: AbortSignal.timeout(timeoutMs),
   });
 
   if (!response.ok) throw new Error(`portfolio relay failed: ${response.status}`);
