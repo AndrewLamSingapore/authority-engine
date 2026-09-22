@@ -296,9 +296,20 @@ for (const width of [1440, 1024, 768, 390, 360, 320]) {
 if (axeSource) {
   for (const colorScheme of ['light', 'dark']) {
     const { context, page } = await openPage({ viewport: { width: 1440, height: 1000 }, colorScheme });
+    // The deployed site sends `script-src 'self'`, which blocks both inline
+    // scripts and the axe CDN. Serving the bundle from the site's own origin
+    // through a request route keeps the audit honest without weakening the CSP.
+    await page.route('**/v2-a11y-probe.js', (route) =>
+      route.fulfill({ status: 200, contentType: 'application/javascript', body: axeSource }),
+    );
     for (const route of ['/', '/about', '/evidence']) {
       await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' });
-      await page.addScriptTag({ content: axeSource });
+      await page.addScriptTag({ url: '/v2-a11y-probe.js' });
+      const loaded = await page.evaluate(() => typeof window.axe?.run === 'function');
+      if (!loaded) {
+        record(`axe-core (${colorScheme}) could not be loaded on ${route}`, false, 'the audit bundle did not execute');
+        continue;
+      }
       const report = await page.evaluate(async () => window.axe.run(document, { resultTypes: ['violations'] }));
       const violations = report.violations.map((violation) => ({
         id: violation.id,
