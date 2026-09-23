@@ -5,7 +5,7 @@ export default function SEO({ title, description, image, canonical, noindex = fa
   const location = useLocation();
   const baseUrl = 'https://authority-engine-app.vercel.app';
   const cleanPath = location.pathname === '/' ? '' : location.pathname.replace(/\/$/, '');
-  const currentUrl = canonical || `${baseUrl}${cleanPath}`;
+  const currentUrl = canonical || `${baseUrl}${cleanPath || '/'}`;
   const defaultTitle = 'Andrew Lam | Authority Engine';
   const defaultDescription = "Andrew Lam's public evidence system for operations leadership, analytics, applied AI and inspectable experiments.";
   const defaultImage = `${baseUrl}/og-preview.png`;
@@ -25,6 +25,7 @@ export default function SEO({ title, description, image, canonical, noindex = fa
       if (!element) { element = document.createElement('link'); element.rel = rel; document.head.appendChild(element); }
       element.href = href;
     };
+    setMeta('meta[name="title"]', 'name', 'title', metaTitle);
     setMeta('meta[name="description"]', 'name', 'description', metaDescription);
     setMeta('meta[name="robots"]', 'name', 'robots', noindex ? 'noindex,nofollow' : 'index,follow,max-image-preview:large');
     setLink('canonical', currentUrl);

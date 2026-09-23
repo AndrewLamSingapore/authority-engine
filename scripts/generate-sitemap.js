@@ -1,52 +1,27 @@
-import fs from 'fs';
-import path from 'path';
-import { createClient } from '@sanity/client';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fetchPublishedContent, publishedPostFilter, validInsightSlug } from '../src/lib/insights.js';
 
-const client = createClient({
-  projectId: 'h3pl1rfx',
-  dataset: 'production',
-  useCdn: false,
-  apiVersion: '2024-01-01',
-});
+const baseUrl = 'https://authority-engine-app.vercel.app';
+const staticPages = ['', '/about', '/evidence', '/frameworks', '/portal', '/jarvis', '/jarvis/agents', '/velyqua', '/game-platform', '/sky-tablet', '/insights', '/maxwell-excel', '/demo', '/contact'];
+const escapeXml = (value) => String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' })[character]);
 
-async function generateSitemap() {
-  const baseUrl = 'https://authority-engine-app.vercel.app';
-  const staticPages = ['', '/about', '/evidence', '/portal', '/jarvis', '/velyqua', '/insights', '/maxwell-excel', '/contact'];
-
-  try {
-    const query = `*[_type == "post" && defined(slug.current)]{ "slug": slug.current, _updatedAt }`;
-    const posts = await client.fetch(query);
-
-    const staticUrls = staticPages.map(page => `
-  <url>
-    <loc>${baseUrl}${page}</loc>
-    <changefreq>weekly</changefreq>
-    <priority>${page === '' ? '1.0' : '0.8'}</priority>
-  </url>`).join('');
-
-    const dynamicUrls = posts.map(post => `
-  <url>
-    <loc>${baseUrl}/insights/${post.slug}</loc>
-    <lastmod>${new Date(post._updatedAt || Date.now()).toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>`).join('');
-
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemap.xml.org/schemas/sitemap/0.9">
-${staticUrls}
-${dynamicUrls}
-</urlset>`;
-
-    const publicDir = path.resolve('public');
-    if (!fs.existsSync(publicDir)) {
-      fs.mkdirSync(publicDir);
-    }
-    fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), xml);
-    console.log('✅ Dynamic sitemap.xml generated successfully with', posts.length, 'article slugs.');
-  } catch (error) {
-    console.error('❌ Failed to generate sitemap:', error);
-  }
+let posts = [];
+try {
+  const result = await fetchPublishedContent(`*[${publishedPostFilter} && defined(slug.current)]{"slug":slug.current,_updatedAt}`, {}, { useCdn: false });
+  if (!Array.isArray(result)) throw new Error('Invalid article list');
+  posts = result.filter((post) => post && validInsightSlug(post.slug));
+} catch (error) {
+  console.warn(`Sitemap content service unavailable (${error.message}); generating all public static routes.`);
 }
 
-generateSitemap();
+const staticUrls = staticPages.map((page) => `  <url><loc>${baseUrl}${page || '/'}</loc><changefreq>weekly</changefreq><priority>${page ? '0.8' : '1.0'}</priority></url>`);
+const dynamicUrls = posts.map((post) => {
+  const date = post._updatedAt ? new Date(post._updatedAt) : null;
+  const lastmod = date && !Number.isNaN(date.getTime()) ? `<lastmod>${date.toISOString()}</lastmod>` : '';
+  return `  <url><loc>${escapeXml(`${baseUrl}/insights/${encodeURIComponent(post.slug)}`)}</loc>${lastmod}<changefreq>monthly</changefreq><priority>0.7</priority></url>`;
+});
+const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[...staticUrls, ...dynamicUrls].join('\n')}\n</urlset>\n`;
+await fs.mkdir(path.resolve('public'), { recursive: true });
+await fs.writeFile(path.resolve('public/sitemap.xml'), xml);
+console.log(`Sitemap generated: ${staticPages.length} public routes, ${posts.length} published articles.`);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { MapPin, Send, ShieldCheck, CheckCircle2, Loader2, ArrowUpRight } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { contactContext, inquiryTypes } from '../lib/contact-context';
@@ -6,6 +6,10 @@ import { contactContext, inquiryTypes } from '../lib/contact-context';
 export default function Contact() {
   const location = useLocation();
   const context = contactContext(location.search, location.state);
+  return <ContactForm key={location.key} context={context} />;
+}
+
+function ContactForm({ context }) {
   const [formData, setFormData] = useState(() => ({
     name: '',
     email: '',
@@ -16,38 +20,62 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
+  const requestRef = useRef(null);
+  const successRef = useRef(null);
+
+  useEffect(() => () => requestRef.current?.abort(), []);
+  useEffect(() => {
+    if (submitted) successRef.current?.focus();
+  }, [submitted]);
 
   const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || 'xljrreep';
   const linkedinUrl = 'https://www.linkedin.com/in/lam-teck-sing-andrew-79886719';
 
-  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e) => setFormData((previous) => ({ ...previous, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isSubmitting) return;
+    if (requestRef.current) return;
+    if (!formData.name.trim() || !formData.message.trim()) {
+      setError('Please add your name and a message before sending.');
+      return;
+    }
+    const controller = new AbortController();
+    requestRef.current = controller;
+    let timedOut = false;
+    const timeout = setTimeout(() => {
+      timedOut = true;
+      controller.abort();
+    }, 20000);
     setIsSubmitting(true);
     setError(null);
     try {
       const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        signal: AbortSignal.timeout(20000),
-        body: JSON.stringify({ ...formData, source: context.source, _subject: `Authority Engine: ${formData.inquiryType}` })
+        signal: controller.signal,
+        body: JSON.stringify({ ...formData, name: formData.name.trim(), email: formData.email.trim(), message: formData.message.trim(), source: context.source, _subject: `Authority Engine: ${formData.inquiryType}` })
       });
       if (!response.ok) {
         let message = 'Your message could not be sent. Please try again.';
         try {
           const data = await response.json();
-          message = data?.errors?.map((item) => item.message).filter(Boolean).join(' ') || data?.error || message;
+          const details = Array.isArray(data?.errors) ? data.errors.map((item) => item?.message).filter((item) => typeof item === 'string').join(' ') : '';
+          message = details || (typeof data?.error === 'string' ? data.error : message);
         } catch { /* keep safe fallback */ }
         throw new Error(message);
       }
-      setSubmitted(true);
-      setFormData({ name: '', email: '', company: '', inquiryType: 'Operations Excellence Opportunity', message: '' });
+      if (!controller.signal.aborted) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', company: '', inquiryType: context.inquiryType, message: '' });
+      }
     } catch (err) {
-      setError(err.name === 'TimeoutError' ? 'Confirmation took too long. Your message may have arrived. You can also reach me on LinkedIn below.' : err.message || 'A network error occurred. Please try again.');
+      if (timedOut) setError('Confirmation took too long. Your message may have arrived. You can also reach me on LinkedIn below.');
+      else if (!controller.signal.aborted) setError(err instanceof TypeError ? 'The connection was interrupted. Your draft is still here; try again or reach me on LinkedIn.' : err.message || 'Your message could not be sent. Please try again.');
     } finally {
-      setIsSubmitting(false);
+      clearTimeout(timeout);
+      requestRef.current = null;
+      if (!controller.signal.aborted || timedOut) setIsSubmitting(false);
     }
   };
 
@@ -71,13 +99,13 @@ export default function Contact() {
             {submitted ? (
               <div className="min-h-[480px] flex flex-col items-center justify-center text-center">
                 <div className="h-16 w-16 rounded-full border border-emerald-400/20 bg-emerald-400/[0.08] flex items-center justify-center"><CheckCircle2 className="w-8 h-8 text-emerald-300"/></div>
-                <h2 className="mt-7 text-3xl font-black text-white">Message received.</h2>
+                <h2 ref={successRef} tabIndex="-1" className="mt-7 text-3xl font-black text-white">Message submitted.</h2>
                 <p className="mt-3 text-slate-400 max-w-md">Thank you for reaching out. Your message has been submitted. We can continue the conversation by email, or connect on LinkedIn.</p>
                 <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="premium-button mt-6 px-6 py-3 rounded-full font-semibold">Connect on LinkedIn</a>
                 <button onClick={() => setSubmitted(false)} className="ghost-button mt-8 px-6 py-3 rounded-full font-semibold">Send another message</button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} aria-busy={isSubmitting} className="space-y-6">
                 <div><div className="text-xs uppercase tracking-[.18em] text-slate-500">{context.source} · Direct inquiry</div><h2 className="mt-2 text-3xl font-black text-white">What would you like to discuss?</h2><p className="mt-2 text-sm leading-relaxed text-slate-500">Just your name, email and a few lines. Your topic is already selected; you can change it below.</p></div>
                 <div><label htmlFor="name" className="block text-sm font-semibold uppercase tracking-wider text-slate-400 mb-2">Full name *</label><input type="text" id="name" name="name" autoComplete="name" required value={formData.name} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60" placeholder="Your name"/></div>
                 <div className="grid sm:grid-cols-2 gap-4">

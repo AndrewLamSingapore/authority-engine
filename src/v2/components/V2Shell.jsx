@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { Suspense, useCallback, useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { applyShell, applyTheme, preferredTheme } from '../theme';
 import { scrollToTalk } from '../scroll-to-talk';
@@ -8,6 +8,7 @@ const navItems = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Evidence', to: '/evidence' },
+  { label: 'Frameworks', to: '/frameworks' },
 ];
 
 function ContainerEndMark() {
@@ -120,7 +121,7 @@ function V2Footer() {
                 </li>
               ))}
               <li>
-                <Link to="/insights">Earlier evidence hub</Link>
+                <Link to="/insights">Insights and case studies</Link>
               </li>
             </ul>
           </div>
@@ -157,8 +158,10 @@ export default function V2Shell() {
         Skip to main content
       </a>
       <V2Header theme={theme} onToggle={onToggle} />
-      <main id="v2-main">
-        <Outlet context={{ theme }} />
+      <main id="v2-main" tabIndex={-1}>
+        <Suspense fallback={<div className="v2-wrap v2-section" role="status">Loading page…</div>}>
+          <Outlet context={{ theme }} />
+        </Suspense>
       </main>
       <V2Footer />
     </div>
