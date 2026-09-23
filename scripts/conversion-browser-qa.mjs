@@ -12,7 +12,7 @@ const axePath = process.env.QA_AXE || require.resolve('axe-core/axe.min.js');
 const output = process.env.QA_OUTPUT || '/tmp/authority-conversion-qa';
 mkdirSync(output, { recursive: true });
 const server = await preview({ preview: { host: '127.0.0.1', port: 4179, strictPort: true } });
-const browser = await chromium.launch({ executablePath: process.env.QA_BROWSER || undefined, headless: true, args: ['--no-sandbox', '--disable-dev-shm-usage', '--no-zygote', '--single-process'] });
+const browser = await chromium.launch({ executablePath: process.env.QA_BROWSER || undefined, headless: true, args: process.env.QA_BROWSER ? ['--no-sandbox', '--disable-dev-shm-usage', '--no-zygote', '--single-process'] : [] });
 const results = [];
 const errors = [];
 const check = (name, pass, detail = '') => { results.push({ name, pass, detail }); console.log(`${pass ? 'PASS' : 'FAIL'} ${name}${detail ? `: ${detail}` : ''}`); };
@@ -62,7 +62,7 @@ try {
   await page.route('https://formspree.io/**', async route => { submissions++; await new Promise(resolve => setTimeout(resolve, 200)); await route.fulfill({ status: 500, contentType: 'text/plain', body: 'Temporary error' }); });
   await page.locator('input[name="name"]').fill('QA Visitor');
   await page.locator('input[name="email"]').fill('qa@example.com');
-  await page.getByRole('button', { name: 'Start the conversation', exact: true }).click();
+  await page.getByRole('button', { name: 'Start the conversation', exact: true }).evaluate(button => { button.click(); button.click(); });
   await page.getByRole('alert').waitFor();
   check('Contact failure preserves message', (await page.locator('textarea[name="message"]').inputValue()) === message && submissions === 1);
   await page.unroute('https://formspree.io/**');
@@ -79,6 +79,8 @@ try {
       await open(path);
       const current = await page.locator('html').getAttribute('data-theme');
       if (current !== theme) await page.getByRole('button', { name: `Switch to ${theme} theme` }).click();
+      await page.waitForFunction(value => document.documentElement.dataset.theme === value, theme);
+      await page.evaluate(async () => { await document.fonts.ready; await Promise.all(document.getAnimations().map(animation => animation.finished.catch(() => {}))); });
       await page.addScriptTag({ content: readFileSync(axePath, 'utf8') });
       const violations = await page.evaluate(async () => (await window.axe.run()).violations.filter(item => ['serious', 'critical'].includes(item.impact)).map(item => ({ id: item.id, nodes: item.nodes.map(node => node.target) })));
       check(`Accessibility ${theme} ${path}`, violations.length === 0, JSON.stringify(violations));
@@ -86,6 +88,7 @@ try {
   }
   await page.setViewportSize({ width: 1440, height: 1000 });
   await open('/');
+  await page.evaluate(async () => { await document.fonts.ready; await Promise.all(document.getAnimations().map(animation => animation.finished.catch(() => {}))); });
   await page.screenshot({ path: `${output}/home-desktop.png`, fullPage: true });
   await open('/frameworks');
   await page.screenshot({ path: `${output}/frameworks-desktop.png`, fullPage: true });
