@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import SoundControl from './SoundControl';
+import { projects as publicProjects } from '../data/projects';
 
-const projects = [['The Portal','/portal'],['JARVIS PRIME','/jarvis'],['VELYQUA','/velyqua'],['Living Worlds','/game-platform'],['Sky Tablet','/sky-tablet'],['Maxwell Excel','/maxwell-excel']];
-const primary = [['About','/about'],['Evidence','/insights']];
+const projects = [...publicProjects.map(({ name, path }) => [name, path]), ['Maxwell Excel', '/maxwell-excel']];
+const primary = [['About','/about'],['Evidence','/evidence'],['Frameworks','/frameworks']];
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const loc = useLocation();

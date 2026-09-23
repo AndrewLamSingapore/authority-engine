@@ -36,7 +36,7 @@ export default async function handler(req, res) {
   }
   const portal = await portalSignal();
   const expectedPortal = process.env.EXPECTED_PORTAL_REVISION || null;
-  // Canonical PRIME 1bd2be98: no independently accepted ABEX receipt.
+  // A source revision cannot establish an independently accepted ABEX receipt.
   // Legacy environment values and historical Dell identities cannot establish one.
   const prime = primeSignal();
   const drift = [];
@@ -55,7 +55,7 @@ export default async function handler(req, res) {
 }
 
 function primeSignal() {
-  return { state: 'unverified', source_revision: '1bd2be98adf91df3bc4df22d7a2348848181b8b8', source_observation: 'pinned_canonical_record', runtime_revision: null, runtime_host: 'ABEX', verified_at: null, private_network_exposure: false, note: 'Current ABEX deployment requires independent host evidence. Historical Dell data is superseded for current status.' };
+  return { state: 'unverified', source_revision: null, source_observation: 'independent_runtime_receipt_required', runtime_revision: null, runtime_host: 'ABEX', verified_at: null, private_network_exposure: false, note: 'Current ABEX deployment requires independent host evidence. Historical Dell data is superseded for current status.' };
 }
 
 export { portalSignal, primeSignal };

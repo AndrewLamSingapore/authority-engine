@@ -10,9 +10,7 @@ import V2Shell from './v2/components/V2Shell';
 const HomeV2 = lazy(() => import('./v2/pages/HomeV2'));
 const AboutV2 = lazy(() => import('./v2/pages/AboutV2'));
 const EvidenceV2 = lazy(() => import('./v2/pages/EvidenceV2'));
-
-const Home = lazy(() => import('./pages/Home'));
-const About = lazy(() => import('./pages/About'));
+const FrameworksV2 = lazy(() => import('./v2/pages/FrameworksV2'));
 const Insights = lazy(() => import('./pages/Insights'));
 const SingleInsight = lazy(() => import('./pages/SingleInsight'));
 const Contact = lazy(() => import('./pages/Contact'));
@@ -41,7 +39,7 @@ function NotFound() {
 }
 
 function Loading() {
-  return <div className="min-h-[60vh] flex items-center justify-center bg-[#050807] text-slate-500 text-sm tracking-widest uppercase">Loading Authority Engine...</div>;
+  return <div role="status" className="min-h-[60vh] flex items-center justify-center bg-[#050807] text-slate-500 text-sm tracking-widest uppercase">Loading Authority Engine...</div>;
 }
 
 /** Legacy product shell: the existing dark product experience is unchanged. */
@@ -74,6 +72,7 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route element={<V2Shell />}>
+          <Route path="frameworks" element={<><SEO title="Decision frameworks that turn signals into action" description="Explore practical frameworks, mental models and unconventional strategies for finding bottlenecks, testing assumptions and making better operational decisions." /><FrameworksV2 /></>} />
           <Route
             index
             element={

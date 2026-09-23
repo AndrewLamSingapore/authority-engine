@@ -1,63 +1,52 @@
-import fs from 'fs';
-import path from 'path';
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
+import { articleQuery, fetchPublishedContent, normalizeArticle, validInsightSlug } from '../src/lib/insights.js';
 
-export default async function handler(req, res) {
-  const { slug } = req.query;
+const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
 
-  if (!slug) {
-    return res.redirect(301, '/insights');
-  }
-
-  const projectId = 'h3pl1rfx';
-  const dataset = 'production';
-  const params = new URLSearchParams({
-    query: '*[_type == "post" && slug.current == $slug][0]._id',
-    '$slug': JSON.stringify(String(slug)),
-  });
-  const sanityUrl = `https://${projectId}.api.sanity.io/v2024-01-01/data/query/${dataset}?${params}`;
-
-  try {
-    const sanityRes = await fetch(sanityUrl);
-    const data = await sanityRes.json();
-
-    if (!data.result) {
-      res.setHeader('Content-Type', 'text/html; charset=utf-8');
-      res.setHeader('X-Robots-Tag', 'noindex');
-      return res.status(404).send(`
-        <!DOCTYPE html>
-        <html lang="en">
-          <head>
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>404 | Article Not Found</title>
-            <style>
-              body { background: #080F0E; color: #fff; font-family: system-ui, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; }
-              h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #f43f5e; }
-              p { color: #9CA3AF; margin-bottom: 1.5rem; }
-              a { color: #10B981; text-decoration: none; font-weight: 600; border: 1px solid #10B981; padding: 0.6rem 1.2rem; border-radius: 0.5rem; }
-            </style>
-          </head>
-          <body>
-            <div>
-              <h1>404 — Article Not Found</h1>
-              <p>The requested article standard could not be located on Sanity CMS.</p>
-              <a href="/insights">Back to Insights</a>
-            </div>
-          </body>
-        </html>
-      `);
-    }
-
-    const indexPath = path.join(process.cwd(), 'dist', 'index.html');
-    if (fs.existsSync(indexPath)) {
-      const html = fs.readFileSync(indexPath, 'utf8');
-      res.setHeader('Content-Type', 'text/html; charset=utf-8');
-      return res.status(200).send(html);
-    }
-
-    return res.status(500).send('Application shell unavailable.');
-  } catch (err) {
-    console.error('Sanity validation error:', err);
-    return res.status(502).send('Unable to validate the requested insight.');
-  }
+export function articleMetadata(html, article, slug) {
+  const title = escapeHtml(`${article.title} | Andrew Lam`);
+  const description = escapeHtml(article.overview);
+  const url = escapeHtml(`https://authority-engine-app.vercel.app/insights/${encodeURIComponent(slug)}`);
+  return html
+    .replace(/<title>[\s\S]*?<\/title>/i, () => `<title>${title}</title>`)
+    .replace(/(<meta\s+name="(?:title|twitter:title)"\s+content=")[^"]*("\s*\/?>)/gi, (_, start, end) => `${start}${title}${end}`)
+    .replace(/(<meta\s+property="og:title"\s+content=")[^"]*("\s*\/?>)/i, (_, start, end) => `${start}${title}${end}`)
+    .replace(/(<meta\s+(?:name="(?:description|twitter:description)"|property="og:description")\s+content=")[^"]*("\s*\/?>)/gi, (_, start, end) => `${start}${description}${end}`)
+    .replace(/(<meta\s+property="og:url"\s+content=")[^"]*("\s*\/?>)/i, (_, start, end) => `${start}${url}${end}`)
+    .replace(/(<link\s+rel="canonical"\s+href=")[^"]*("\s*\/?>)/i, (_, start, end) => `${start}${url}${end}`)
+    .replace(/(<meta\s+property="og:type"\s+content=")[^"]*("\s*\/?>)/i, (_, start, end) => `${start}article${end}`);
 }
+
+function errorPage(title, message) {
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} | Andrew Lam</title></head><body><main><h1>${title}</h1><p>${message}</p><a href="/insights">Back to Insights</a></main></body></html>`;
+}
+
+export function createInsightsHandler({ fetchContent = fetchPublishedContent, readShell = () => readFile(path.join(process.cwd(), 'dist', 'index.html'), 'utf8') } = {}) {
+  return async function handler(req, res) {
+    if (req.method && !['GET', 'HEAD'].includes(req.method)) {
+      res.setHeader('Allow', 'GET, HEAD');
+      return res.status(405).send('Method not allowed.');
+    }
+    const { slug } = req.query || {};
+    if (!slug) return res.redirect(301, '/insights');
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.setHeader('Cache-Control', 'no-store');
+    try {
+      const data = validInsightSlug(slug) ? await fetchContent(articleQuery, { slug }, { useCdn: false }) : null;
+      const article = normalizeArticle(data, slug);
+      if (!article) {
+        res.setHeader('X-Robots-Tag', 'noindex');
+        return res.status(404).send(errorPage('Article not found', 'This article may have moved or is no longer published.'));
+      }
+      const html = await readShell();
+      res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=60, stale-while-revalidate=300');
+      return res.status(200).send(req.method === 'HEAD' ? '' : articleMetadata(html, article, slug));
+    } catch {
+      res.setHeader('Retry-After', '30');
+      return res.status(503).send(errorPage('Article temporarily unavailable', 'Please try again shortly. You can still explore the other evidence.'));
+    }
+  };
+}
+
+export default createInsightsHandler();

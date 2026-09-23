@@ -1,3 +1,5 @@
+import { projects } from '../../data/projects.js';
+
 /**
  * Authority Engine V2 content.
  *
@@ -34,41 +36,7 @@ export const homeEvidence = {
   link: "See what it supports and what it doesn't",
 };
 
-export const buildItems = [
-  {
-    id: 'portal',
-    name: 'The Portal',
-    description:
-      'A discovery app for knowledge and artifacts, deployed as a working prototype.',
-    status: 'Live prototype',
-    statusGrade: 'real',
-    linkLabel: 'Open the prototype',
-    href: 'https://the-portal-ten.vercel.app',
-    external: true,
-  },
-  {
-    id: 'jarvis',
-    name: 'JARVIS PRIME',
-    description:
-      'A personal AI system designed so every action leaves a record you can inspect.',
-    status: 'In development',
-    statusGrade: 'synth',
-    linkLabel: 'Read the walkthrough',
-    href: '/jarvis',
-    external: false,
-  },
-  {
-    id: 'velyqua',
-    name: 'VELYQUA',
-    description:
-      'Water intelligence for aquariums, where each sensor reading carries a label for how far it can be trusted.',
-    status: 'Early hardware bring-up',
-    statusGrade: 'concept',
-    linkLabel: 'See the code',
-    href: 'https://github.com/AndrewLamSingapore/velyqua',
-    external: true,
-  },
-];
+export const buildItems = projects;
 
 export const about = {
   h1: 'Experience on the floor. Intelligence above it.',
@@ -231,11 +199,7 @@ export const talk = {
 };
 
 export const products = [
-  { name: 'The Portal', to: '/portal' },
-  { name: 'JARVIS PRIME', to: '/jarvis' },
-  { name: 'VELYQUA', to: '/velyqua' },
-  { name: 'Living Worlds', to: '/game-platform' },
-  { name: 'Sky Tablet', to: '/sky-tablet' },
+  ...projects.map(({ name, path }) => ({ name, to: path })),
   { name: 'Maxwell Excel', to: '/maxwell-excel' },
 ];
 

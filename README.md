@@ -70,6 +70,16 @@ The Sky Tablet is an interactive exploration of Mesopotamian astronomy and cunei
 - **Vercel** — hosting and deployment
 - **GitHub Actions** — lint + production build quality gate
 
+### Public experience and code structure
+
+- `/frameworks` provides practical decision models and an interactive framework finder; its content lives in `src/v2/data/frameworks.js`.
+- `src/data/projects.js` is the shared public project registry. Navigation and enquiry links connect independent products without merging their accounts, data or runtime authority.
+- `src/lib/insights.js` owns public Sanity reads, bounded request cancellation, article normalisation and controlled evidence wording. Browser routes use native fetch; write credentials and publication authority remain server-side.
+- Article outages show a retry state. Missing articles return a real HTTP 404; upstream failures return HTTP 503. Direct article responses include escaped title, description and canonical metadata.
+- Unused legacy homepage components and starter assets are removed; the active homepage, about and evidence routes use `src/v2`.
+
+Run `npm run lint`, `npm run check:server`, `npm run test:authority` and `npm run build` before release. The build generates all public sitemap routes and adds published article URLs when the content service is reachable; a failed content request produces an explicit static-route fallback. Browser acceptance and a deployment receipt remain separate checks from a successful local build.
+
 ## Portfolio architecture
 
 | Layer | Purpose | Destination |

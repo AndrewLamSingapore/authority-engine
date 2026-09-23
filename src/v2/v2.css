@@ -789,3 +789,47 @@ body[data-shell='v2'] {
   }
   .v2-yard-link { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
+
+/* Practical decision workshop and shared project presentation. */
+.v2-kicker { font-family: var(--font-display); font-size: 0.875rem; font-weight: 620; color: var(--ink2); margin-bottom: 14px !important; }
+.v2-framework-intro .v2-lede { margin-block: 24px 16px; max-width: 54ch; }
+.v2-framework-preview { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 38px; border-block: 1px solid var(--line); }
+.v2-framework-teaser { display: flex; flex-direction: column; align-items: start; gap: 18px; padding: 28px 24px; text-decoration: none; border-right: 1px solid var(--line); }
+.v2-framework-teaser:first-child { padding-left: 0; }
+.v2-framework-teaser:last-child { border: 0; }
+.v2-framework-teaser p { color: var(--ink2); }
+.v2-framework-teaser .v2-link { margin-top: auto; }
+.v2-framework-teaser:hover h3 { color: var(--accent); }
+.v2-build-boundary { margin-top: 12px !important; }
+.v2-build-detail { margin-top: 12px !important; font-size: 0.95rem; }
+.v2-workshop { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
+.v2-model-picker h2 { font-size: 1.35rem; }
+.v2-model-options { display: grid; margin-block: 20px; border-top: 1px solid var(--line); }
+.v2-model-options button { display: flex; gap: 14px; padding: 18px 12px; text-align: left; background: transparent; border: 0; border-bottom: 1px solid var(--line); color: var(--ink); font: 550 1rem/1.4 var(--font-display); cursor: pointer; min-height: 56px; }
+.v2-model-options button[aria-pressed='true'] { background: var(--ink); color: var(--bg); }
+.v2-model-options button:hover { text-decoration: underline; text-underline-offset: 4px; }
+.v2-model-number { font-variant-numeric: tabular-nums; opacity: 0.8; }
+.v2-model-detail { min-width: 0; display: grid; gap: 24px; }
+.v2-model-detail .v2-lede { margin-top: 18px; }
+.v2-insight { margin: 0; border-left: 3px solid var(--accent); padding: 10px 0 10px 22px; font-size: 1.35rem; line-height: 1.45; }
+.v2-question-set { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; gap: 20px; }
+.v2-question-set legend { font: 650 1.2rem var(--font-display); margin-bottom: 20px; }
+.v2-question-set label { display: block; margin-bottom: 9px; }
+.v2-question-set textarea { width: 100%; min-height: 88px; resize: vertical; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); color: var(--ink); font: 1.05rem/1.5 var(--font-body); padding: 12px 14px; }
+.v2-question-set textarea::placeholder { color: var(--ink2); }
+.v2-experiment { padding: 22px; border: 1px solid var(--line); background: var(--surface); }
+.v2-experiment p { margin-top: 12px; }
+.v2-worked-example { border-block: 1px solid var(--line); padding-block: 16px; }
+.v2-worked-example summary { font: 620 1rem/1.5 var(--font-display); cursor: pointer; min-height: 28px; }
+.v2-worked-example p, .v2-worked-example .v2-link { display: block; margin-top: 16px; }
+.v2-brief { white-space: pre-wrap; overflow-wrap: anywhere; font: 1rem/1.6 var(--font-body); margin-top: 20px; }
+.v2-talk h2 { color: var(--on-band); }
+@media (max-width: 900px) { .v2-workshop { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 720px) {
+  .v2-framework-preview { grid-template-columns: minmax(0, 1fr); }
+  .v2-framework-teaser { padding: 24px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .v2-nav a { padding-inline: 9px; font-size: 0.95rem; }
+}
+
+.v2-hero-framework { margin-top: 22px !important; font-size: 1rem; color: var(--bk-ink2); }
+#talk, #builds { scroll-margin-top: 150px; }

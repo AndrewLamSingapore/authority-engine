@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { talk } from '../data/content';
 
@@ -15,16 +15,14 @@ export default function TalkSection() {
   const tabRefs = useRef([]);
 
   const active = talk.tabs.find((tab) => tab.id === activeId) || talk.tabs[0];
-  const [message, setMessage] = useState(active.message);
-
-  useEffect(() => {
-    setMessage(active.message);
-    setCopyStatus('');
-  }, [active]);
+  const [drafts, setDrafts] = useState({});
+  const message = drafts[activeId] ?? active.message;
+  const setMessage = (value) => setDrafts((current) => ({ ...current, [activeId]: value }));
+  const activate = (id) => { setActiveId(id); setCopyStatus(''); };
 
   const selectTab = (index) => {
     const next = (index + talk.tabs.length) % talk.tabs.length;
-    setActiveId(talk.tabs[next].id);
+    activate(talk.tabs[next].id);
     tabRefs.current[next]?.focus();
   };
 
@@ -76,7 +74,7 @@ export default function TalkSection() {
               ref={(node) => {
                 tabRefs.current[index] = node;
               }}
-              onClick={() => setActiveId(tab.id)}
+              onClick={() => activate(tab.id)}
             >
               {tab.label}
             </button>
@@ -100,8 +98,9 @@ export default function TalkSection() {
           <textarea
             id="talk-message"
             value={message}
-            onChange={(event) => setMessage(event.target.value)}
+            onChange={(event) => { setMessage(event.target.value); setCopyStatus(''); }}
             rows={5}
+            maxLength={4000}
           />
           <div className="v2-panel-actions">
             <Link
@@ -109,7 +108,7 @@ export default function TalkSection() {
               to="/contact"
               state={{ inquiryType: inquiryFor(active.id), message }}
             >
-              Open in the contact form
+              Continue to contact form
             </Link>
             <button type="button" className="v2-btn v2-btn-onband" onClick={copyMessage}>
               Copy message

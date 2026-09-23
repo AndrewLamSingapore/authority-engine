@@ -24,6 +24,8 @@ assert.equal(prime.state, 'unverified');
 assert.equal(prime.runtime_host, 'ABEX');
 assert.equal(prime.runtime_revision, null);
 assert.equal(prime.verified_at, null);
+assert.equal(prime.source_revision, null);
+assert.equal(prime.source_observation, 'independent_runtime_receipt_required');
 assert.equal('accelerator' in prime, false);
 for (const [key, value] of Object.entries({ PRIME_SOURCE_REVISION: previous.source, PRIME_RUNTIME_REVISION: previous.runtime, PRIME_VERIFIED_AT: previous.verified })) {
   if (value === undefined) delete process.env[key]; else process.env[key] = value;

@@ -39,16 +39,17 @@ test('the home evidence band states the recorded figures and its own limit', () 
   assert.equal(homeEvidence.link, "See what it supports and what it doesn't");
 });
 
-test('the three builds keep their supplied statuses, unchanged', () => {
-  const statuses = Object.fromEntries(buildItems.map((item) => [item.name, item.status]));
-  assert.deepEqual(statuses, {
-    'The Portal': 'Live prototype',
-    'JARVIS PRIME': 'In development',
-    VELYQUA: 'Early hardware bring-up',
-  });
-  assert.equal(buildItems[0].href, 'https://the-portal-ten.vercel.app');
-  assert.equal(buildItems[1].href, '/jarvis');
-  assert.equal(buildItems[2].href, 'https://github.com/AndrewLamSingapore/velyqua');
+test('all five public builds have distinct, safe destinations and explicit evidence boundaries', () => {
+  assert.deepEqual(buildItems.map((item) => item.id), ['jarvis', 'portal', 'velyqua', 'game-platform', 'sky-tablet']);
+  assert.equal(new Set(buildItems.map((item) => item.path)).size, 5);
+  for (const item of buildItems) {
+    assert.ok(item.path.startsWith('/'));
+    assert.ok(item.boundary.length > 30, `${item.id} explains its evidence limit`);
+    assert.ok(item.external ? item.href.startsWith('https://') : item.href.startsWith('/'));
+  }
+  assert.equal(buildItems[0].external, false, 'JARVIS remains a local public walkthrough');
+  assert.match(buildItems[0].boundary, /does not execute private/);
+  assert.match(buildItems[2].boundary, /unvalidated/);
 });
 
 test('about copy matches the supplied brief and only links LinkedIn when configured', () => {
