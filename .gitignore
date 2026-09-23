@@ -8,3 +8,12 @@ dist/
 !.env.example
 *.log
 .DS_Store
+
+# Generated build outputs. Neither can be reproduced faithfully across
+# environments, so committing them guaranteed a dirty tree after every build:
+#   public/sitemap.xml   - derived from live Sanity content and updated_at values
+#   public/og-preview.png - rendered by node-canvas, whose font rasterisation
+#                           differs between machines and library versions
+# `npm run build` regenerates both. `npm run check:clean-build` guards this.
+public/sitemap.xml
+public/og-preview.png

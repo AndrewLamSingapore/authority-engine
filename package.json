@@ -16,6 +16,7 @@
     "check:portfolio-contracts": "node scripts/portfolio-contract-integrity.mjs",
     "smoke:production": "node scripts/production-smoke.mjs",
     "lint": "eslint .",
+    "check:clean-build": "node scripts/check-clean-build.mjs",
     "verify:sound": "node scripts/verify-sound.js",
     "preview": "vite preview"
   },
