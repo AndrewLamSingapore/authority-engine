@@ -4,9 +4,11 @@ const source = readFileSync(new URL('../src/pages/JarvisControl.jsx', import.met
 
 const required = [
   'JARVIS PRIME',
-  'No live JARVIS data',
   'Curated examples, not live AI output.',
-  'PRIME runtime: unverified',
+  "const PRIME_WORKSPACE_URL = 'https://192.168.1.23:8443/pwa/'",
+  'PRIME—not this website—verifies identity, session and authority.',
+  'Owner and Member roles remain server-authoritative.',
+  'This public page reads no private memory, accepts no credentials and provides no public execution or physical control.',
   "inquiryType: 'JARVIS / Governed AI Conversation'",
   "'/contact?source=jarvis&intent=collaboration'",
   "fetch('/api/jarvis-status'",
@@ -20,7 +22,7 @@ const forbidden = [
   /fetch\s*\(\s*(?!['"]\/api\/jarvis-status['"])/,
   /axios/i,
   /127\.0\.0\.1|localhost|lam-public-jarvis|lam-relationship-console/,
-  /Available locally|Verified on the Dell/,
+  /Available locally|Verified on the Dell|access_token|refresh_token|enrollment-code/,
   /<iframe/i,
   /prime\.lamjarvis\.com/i,
   /\/api\/control-surface/i,
@@ -35,4 +37,4 @@ for (const pattern of forbidden) {
   if (pattern.test(source)) throw new Error(`JARVIS launcher violates the no-proxy boundary: ${pattern}`);
 }
 
-console.log('PASS: JARVIS public surface keeps illustrative demos, contextual enquiries and an unverified private-runtime boundary.');
+console.log('PASS: JARVIS public surface launches the governed ABEX workspace without proxying execution, credentials or authority.');
