@@ -5,6 +5,7 @@ import SEO from '../components/SEO';
 
 const CANONICAL_URL = '/data/jarvis-public-state.json';
 const CONTACT_URL = '/contact?source=jarvis&intent=collaboration';
+const PRIME_WORKSPACE_URL = 'https://192.168.1.23:8443/pwa/';
 const scenarios = [
   { id: 'operations', label: 'An operating decision', question: 'The handover is unclear. What needs attention first?', context: 'A shift note mentions a late delivery. The plan still shows the original arrival time.', evidence: 'Compare the dated handover note with the latest carrier update. An old plan cannot confirm a new arrival time.', gap: 'The current arrival time and the person responsible for the next update are missing.', next: 'Confirm those two facts, then write a short handover with an owner and next checkpoint.', message: 'I explored the JARVIS handover example. I’d like to discuss an operating decision or handover challenge.' },
   { id: 'research', label: 'A research question', question: 'Two sources disagree. Which claim can you use?', context: 'A polished summary states a finding with certainty. The underlying source describes a limited experiment.', evidence: 'Follow the claim back to the original source. Compare its methods, date and stated limits.', gap: 'The result has not been shown to apply to your setting.', next: 'Keep the finding and its limits together. Identify what additional evidence would justify the decision.', message: 'I explored the JARVIS research example. I’d like to discuss evidence handling or a research collaboration.' },
@@ -48,10 +49,11 @@ export default function JarvisControl() {
             <h1 className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-black tracking-[-.065em] leading-[.98] text-white">A clearer next move.<span className="block mt-3 text-gradient">With the reasoning in view.</span></h1>
             <p className="mt-7 max-w-xl text-lg sm:text-xl leading-relaxed text-slate-300">What would you ask an AI system you could actually inspect? I’m building JARVIS PRIME to connect questions, evidence and accountable work. Start with a familiar decision.</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#try-jarvis" className="premium-button inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold">Try a decision walkthrough <ArrowRight className="w-4 h-4" /></a>
+              <a href={PRIME_WORKSPACE_URL} target="_blank" rel="noopener noreferrer" className="premium-button inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold">Open my JARVIS workspace <ArrowUpRight className="w-4 h-4" /></a>
+              <a href="#try-jarvis" className="ghost-button inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold">Try the public walkthrough <ArrowRight className="w-4 h-4" /></a>
               <Link to={CONTACT_URL} className="ghost-button inline-flex items-center justify-center px-6 py-3.5 rounded-full font-bold">Discuss your use case</Link>
             </div>
-            <p className="mt-5 text-sm text-slate-400">No account needed · Interactive examples · No private data</p>
+            <p className="mt-5 text-sm text-slate-400">Workspace access requires an enrolled device on the same private network as ABEX. PRIME—not this website—verifies identity, session and authority.</p>
             <Link to="/jarvis/agents" className="mt-7 inline-flex items-center gap-2 text-sm text-emerald-300 font-semibold"><Network className="w-4 h-4" /> Explore the 21-role agent registry <ArrowUpRight className="w-4 h-4" /></Link>
           </div>
           <section id="try-jarvis" aria-label="Try a JARVIS decision walkthrough" className="scroll-mt-28 rounded-[2rem] border border-emerald-300/25 bg-[#081613]/95 p-5 sm:p-8 shadow-[0_35px_110px_#0008]">
@@ -73,6 +75,18 @@ export default function JarvisControl() {
         </div>
       </section>
 
+      <section aria-labelledby="workspace-heading" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24">
+        <div className="rounded-[2rem] border border-emerald-300/25 bg-emerald-300/[.06] p-7 sm:p-10 grid lg:grid-cols-[1fr_auto] gap-7 items-center">
+          <div>
+            <div className="eyebrow">Private production workspace</div>
+            <h2 id="workspace-heading" className="mt-4 text-3xl sm:text-4xl font-black tracking-[-.04em] text-white">Continue with JARVIS PRIME on ABEX.</h2>
+            <p className="mt-4 max-w-3xl leading-relaxed text-slate-300">Submit objectives, follow real task status, read results, download artifacts and revisit recent task references in the existing authenticated workspace. An expired session stays expired; an unavailable ABEX host stays unavailable; neither condition is presented as success.</p>
+            <p className="mt-3 text-sm leading-relaxed text-slate-400">Owner and Member roles remain server-authoritative. Opening this link cannot enroll a device, change a role or grant authority.</p>
+          </div>
+          <a href={PRIME_WORKSPACE_URL} target="_blank" rel="noopener noreferrer" className="premium-button inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full font-bold whitespace-nowrap">Open JARVIS PRIME <ArrowUpRight className="w-4 h-4" /></a>
+        </div>
+      </section>
+
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         <div className="max-w-2xl"><div className="eyebrow">The approach</div><h2 className="mt-4 text-3xl sm:text-5xl font-black tracking-[-.04em] text-white">From a good question to work you can inspect.</h2><p className="mt-5 text-lg leading-relaxed text-slate-400">My operations background shapes the questions: what changed, what can we trust, who owns the next step, and how will we know it helped?</p></div>
         <div className="mt-10 grid md:grid-cols-3 gap-4">{principles.map(([Icon, title, text]) => <article key={title} className="system-card rounded-3xl p-7"><Icon className="w-7 h-7 text-emerald-300" /><h3 className="mt-8 text-xl font-bold text-white">{title}</h3><p className="mt-3 text-sm leading-relaxed text-slate-400">{text}</p></article>)}</div>
@@ -88,9 +102,9 @@ export default function JarvisControl() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         <div className="rounded-3xl border border-white/10 p-6 sm:p-9">
           <div className="eyebrow">Inspect the evidence</div><h2 className="mt-4 text-3xl font-bold tracking-tight text-white">Ambition, source and runtime are different things.</h2>
-          <p className="mt-4 max-w-3xl leading-relaxed text-slate-400">The published architecture names ABEX as PRIME’s intended host, with Dell, mobile PWA and voice as clients. The canonical record does not yet verify the current ABEX deployment. The 21 registered roles describe the design, not 21 confirmed concurrent workers.</p>
-          <div className="mt-6 flex flex-wrap gap-3 text-sm"><span className="rounded-full border border-emerald-300/20 px-4 py-2 text-emerald-200">Public walkthrough available</span><span className="rounded-full border border-amber-300/20 px-4 py-2 text-amber-200">PRIME runtime: unverified</span></div>
-          <p className="mt-5 text-xs leading-relaxed text-slate-500">No live JARVIS data. This page reads no private memory and provides no public execution or physical control. Live public-service availability: Authority {systemSignal?.self?.state || 'unavailable'} · Portal {systemSignal?.portal?.state || 'unavailable'}. These signals do not establish PRIME runtime acceptance.</p>
+          <p className="mt-4 max-w-3xl leading-relaxed text-slate-400">ABEX hosts the commissioned PRIME runtime. Dell and enrolled mobile PWAs are authenticated clients. The 21 registered roles describe governed responsibilities, not 21 simultaneous workers.</p>
+          <div className="mt-6 flex flex-wrap gap-3 text-sm"><span className="rounded-full border border-emerald-300/20 px-4 py-2 text-emerald-200">Public walkthrough available</span><span className="rounded-full border border-emerald-300/20 px-4 py-2 text-emerald-200">Private ABEX workspace available</span></div>
+          <p className="mt-5 text-xs leading-relaxed text-slate-500">This public page reads no private memory, accepts no credentials and provides no public execution or physical control. The workspace link opens PRIME’s separate LAN-only HTTPS origin, where PRIME independently resolves the device session and role. Public-service availability: Authority {systemSignal?.self?.state || 'unavailable'} · Portal {systemSignal?.portal?.state || 'unavailable'}.</p>
           <a href={CANONICAL_URL} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-emerald-300">Read the source record used here <ArrowUpRight className="w-4 h-4" /></a>
         </div>
       </section>
