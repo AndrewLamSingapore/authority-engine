@@ -6,6 +6,8 @@ const REDACT_KEYS = /(^|_)(account|user|customer|email|phone|address|tank|device
 const REJECT_KEYS = /(^|_)(password|passwd|secret|token|api_?key|private_?key|credential|authorization)$/i;
 const EMAIL = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi;
 const PHONE = /(?<!\d)(?:\+?\d[\s().-]*){8,15}(?!\d)/g;
+const CREDENTIAL_TEXT = /(?:\b(?:password|passwd|secret|token|api[_-]?key|private[_-]?key|credential|authorization)\b["']?\s*(?:=|:|%3[da])\s*["']?[^\s&#"']+|\bbearer\s+[a-z0-9._~+/-]+|https?:\/\/[^\s/@:]+:[^\s/@]+@)/i;
+const PRIVATE_IDENTIFIER = /\b(?:account|user|customer|device|tank|address|ip|coordinates?|latitude|longitude)(?:[_-]?id)?\s*[:=]\s*[^\s&]+/gi;
 
 function scrub(value, path = '', redactions = [], rejected = []) {
   if (Array.isArray(value)) return value.map((item, index) => scrub(item, `${path}/${index}`, redactions, rejected));
@@ -18,9 +20,16 @@ function scrub(value, path = '', redactions = [], rejected = []) {
     }));
   }
   if (typeof value !== 'string') return value;
-  if (!path.startsWith('/payload')) return value;
+  if (!path.startsWith('/payload') && !path.startsWith('/provenance/')) return value;
+  if (path.startsWith('/provenance/') && CREDENTIAL_TEXT.test(value)) {
+    rejected.push(path);
+    return '[REJECTED_CREDENTIAL]';
+  }
   let result = value.replace(EMAIL, () => { redactions.push(path); return '[REDACTED_EMAIL]'; });
   result = result.replace(PHONE, () => { redactions.push(path); return '[REDACTED_PHONE]'; });
+  if (path.startsWith('/provenance/')) {
+    result = result.replace(PRIVATE_IDENTIFIER, () => { redactions.push(path); return '[REDACTED_IDENTIFIER]'; });
+  }
   return result;
 }
 
@@ -70,7 +79,10 @@ export function decideCandidate(candidate, decision, reviewerNotes = '') {
 
 export function draftFromCandidate(candidate, input = {}) {
   if (candidate?.status !== 'approved_for_draft') throw new Error('Candidate requires an explicit approval before draft creation.');
-  const event = candidate.event || JSON.parse(candidate.eventJson);
+  // Stored candidates may predate the ingestion scrubber; never trust them at the draft boundary.
+  const assessment = assessPortfolioEvent(candidate.event || JSON.parse(candidate.eventJson));
+  if (!assessment.reviewable) throw new Error('Candidate evidence failed publication privacy review.');
+  const event = assessment.event;
   const title = String(input.title || `${event.event_type}: evidence review`).trim().slice(0, 160);
   const slug = String(input.slug || `${event.event_type}-${event.event_id}`).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 96);
   return {
