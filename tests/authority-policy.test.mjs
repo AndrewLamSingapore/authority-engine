@@ -31,3 +31,34 @@ test('publication adapter only creates an unpublished draft after approval', () 
   assert.match(draft._id, /^drafts\./);
   assert.equal('publishedAt' in draft, false);
 });
+
+test('credential-bearing provenance is rejected before storage and legacy drafts fail closed', () => {
+  const unsafe = event();
+  unsafe.provenance = ['https://evidence.example.test/run?api_key=private-token-value'];
+  const assessment = assessPortfolioEvent(unsafe);
+  assert.equal(assessment.accepted, false);
+  assert.deepEqual(assessment.rejected_paths, ['/provenance/0']);
+  assert.equal(JSON.stringify(assessment).includes('private-token-value'), false);
+  assert.throws(() => draftFromCandidate({
+    _id: candidateId(unsafe.event_id), _type: 'portfolioEvidenceCandidate',
+    status: 'approved_for_draft', event: unsafe,
+  }), /privacy review/);
+});
+
+test('private provenance identifiers are scrubbed at ingestion and draft creation', () => {
+  const unsafe = event();
+  unsafe.provenance = ['scenario:owner@example.com', 'account_id=private-account'];
+  const assessment = assessPortfolioEvent(unsafe);
+  assert.equal(assessment.accepted, true);
+  assert.deepEqual(assessment.redactions.sort(), ['/payload/account_id', '/payload/email', '/provenance/0', '/provenance/1']);
+  assert.equal(JSON.stringify(assessment.event).includes('owner@example.com'), false);
+  assert.equal(JSON.stringify(assessment.event).includes('private-account'), false);
+  const draft = draftFromCandidate({
+    _id: candidateId(unsafe.event_id), _type: 'portfolioEvidenceCandidate',
+    status: 'approved_for_draft', event: unsafe,
+  });
+  assert.equal(draft.content.includes('owner@example.com'), false);
+  assert.equal(draft.content.includes('private-account'), false);
+  assert.match(draft.content, /REDACTED_EMAIL/);
+  assert.match(draft.content, /REDACTED_IDENTIFIER/);
+});
