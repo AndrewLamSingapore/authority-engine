@@ -9,7 +9,7 @@ test('trace sanitizer nests valid gate and proof',()=>{const event=sanitizeEvent
 test('trace sanitizer rejects incomplete events',()=>{assert.equal(sanitizeEvent({trace_id:'trace-1',agent_id:'A19'}),null);assert.equal(sanitizeEvent(null),null);});
 test('summary sanitizer is bounded and strips private fields',()=>{assert.deepEqual(sanitizeSummary({registered_agents:999,active_agents:4,executions_today:8,withheld_executions_today:3,denied_handoffs_today:2,average_latency_ms:12.5,active_window_seconds:99999,prompt:'secret'}),{registered_agents:21,active_agents:4,executions_today:8,withheld_executions_today:3,denied_handoffs_today:2,average_latency_ms:12.5,active_window_seconds:3600});});
 test('empty summary preserves unknown runtime activity',()=>{const s=sanitizeSummary(null);assert.equal(s.registered_agents,21);assert.equal(s.active_agents,null);assert.equal(s.executions_today,null);});
-test('default trace source is durable and credential-free',()=>{assert.equal(DEFAULT_TRACE_SOURCE,'https://bksyjvppcwfgwoelnyvp.supabase.co/functions/v1/jarvis-trace-relay');assert.ok(DEFAULT_TRACE_SOURCE.startsWith('https://'));assert.equal(DEFAULT_TRACE_SOURCE.includes('@'),false);assert.equal(DEFAULT_TRACE_SOURCE.includes('token='),false);});
+test('default trace source is durable and credential-free',()=>{assert.equal(DEFAULT_TRACE_SOURCE,'https://bksyjvppcwfgwoelnyvp.supabase.co/functions/v1/orqevia-trace-relay');assert.ok(DEFAULT_TRACE_SOURCE.startsWith('https://'));assert.equal(DEFAULT_TRACE_SOURCE.includes('@'),false);assert.equal(DEFAULT_TRACE_SOURCE.includes('token='),false);});
 
 test('relay event presence cannot establish ABEX acceptance',()=>{
  const now=Date.parse('2026-09-16T12:00:00Z');
