@@ -22,7 +22,7 @@ export default function AgentNetwork() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('/data/jarvis-agent-registry.json')
+    fetch('/data/orqevia-agent-registry.json')
       .then((response) => {
         if (!response.ok) throw new Error('Registry unavailable');
         return response.json();
@@ -37,7 +37,7 @@ export default function AgentNetwork() {
   useEffect(() => {
     if (mode !== 'Execution') return undefined;
     let active = true;
-    const load = () => fetch('/api/jarvis-agent-trace', { cache: 'no-store' })
+    const load = () => fetch('/api/orqevia-agent-trace', { cache: 'no-store' })
       .then((response) => response.json())
       .then((data) => {
         if (active) setTrace(data);

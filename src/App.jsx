@@ -20,7 +20,7 @@ const GatedDemo = lazy(() => import('./pages/GatedDemo'));
 const Portal = lazy(() => import('./pages/Portal'));
 const Velyqua = lazy(() => import('./pages/Velyqua'));
 const GamePlatform = lazy(() => import('./pages/GamePlatform'));
-const JarvisControl = lazy(() => import('./pages/JarvisControl'));
+const OrqeviaControl = lazy(() => import('./pages/OrqeviaControl'));
 const AgentNetwork = lazy(() => import('./pages/AgentNetwork'));
 const SkyTablet = lazy(() => import('./pages/SkyTablet'));
 
@@ -145,7 +145,7 @@ export default function App() {
               </>
             }
           />
-          <Route path="orqevia" element={<JarvisControl />} />
+          <Route path="orqevia" element={<OrqeviaControl />} />
           <Route path="orqevia/agents" element={<AgentNetwork />} />
           <Route path="jarvis" element={<Navigate to="/orqevia" replace />} />
           <Route path="jarvis/agents" element={<Navigate to="/orqevia/agents" replace />} />

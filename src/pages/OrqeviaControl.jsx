@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, BrainCircuit, Check, FileSearch, Network, ShieldCheck } from 'lucide-react';
 import SEO from '../components/SEO';
 
-const CANONICAL_URL = '/data/jarvis-public-state.json';
+const CANONICAL_URL = '/data/orqevia-public-state.json';
 const CONTACT_URL = '/contact?source=orqevia&intent=collaboration';
 const PRIME_WORKSPACE_URL = 'https://192.168.1.23:8443/pwa/';
 const scenarios = [
@@ -24,14 +24,14 @@ const projects = [
   ['Sky Tablet', 'Explore an ancient city beneath a living sky.', '/sky-tablet'],
 ];
 
-export default function JarvisControl() {
+export default function OrqeviaControl() {
   const [selected, setSelected] = useState('operations');
   const [showReasoning, setShowReasoning] = useState(false);
   const [systemSignal, setSystemSignal] = useState(null);
   const scenario = scenarios.find(item => item.id === selected);
   useEffect(() => {
     const controller = new AbortController();
-    fetch('/api/jarvis-status', { headers: { accept: 'application/json' }, signal: controller.signal })
+    fetch('/api/orqevia-status', { headers: { accept: 'application/json' }, signal: controller.signal })
       .then(response => response.ok ? response.json() : null)
       .then(value => { if (!controller.signal.aborted) setSystemSignal(value); })
       .catch(() => {});
@@ -39,10 +39,10 @@ export default function JarvisControl() {
   }, []);
   return <>
     <SEO title="ORQEVIA — See the reasoning. Find your next move." description="Explore Andrew Lam’s ORQEVIA: try an illustrative decision walkthrough, inspect the approach and discuss your own AI or operations use case." />
-    <div className="jarvis-public overflow-hidden pb-20 sm:pb-0">
-      <section className="jarvis-hero relative pt-28 sm:pt-36 pb-20">
-        <div className="jarvis-grid absolute inset-0 pointer-events-none" aria-hidden="true" />
-        <div className="jarvis-orb jarvis-orb-one" aria-hidden="true" />
+    <div className="orqevia-public overflow-hidden pb-20 sm:pb-0">
+      <section className="orqevia-hero relative pt-28 sm:pt-36 pb-20">
+        <div className="orqevia-grid absolute inset-0 pointer-events-none" aria-hidden="true" />
+        <div className="orqevia-orb orqevia-orb-one" aria-hidden="true" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid xl:grid-cols-[.9fr_1.1fr] gap-12 xl:gap-16 items-center">
           <div>
             <div className="eyebrow">ORQEVIA · By Andrew Lam</div>

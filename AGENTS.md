@@ -1,15 +1,15 @@
-# Shared JARVIS source of truth
+# Shared ORQEVIA source of truth
 
-For JARVIS/PRIME and portfolio work, begin with STATUS.md, the single current
-status and evidence authority: https://github.com/AndrewLamSingapore/prime/blob/main/STATUS.md
+For ORQEVIA and portfolio work, begin with STATUS.md, the single current
+status and evidence authority: https://github.com/AndrewLamSingapore/orqevia/blob/main/STATUS.md
 No parallel status pointer or reconciler is maintained. For architecture and
 component references, resolve
-the latest canonical PRIME main commit and read
+the latest canonical ORQEVIA main commit and read
 governance/operational-manifest.json and governance/CHANNEL_CONTRACT.md at that
-same commit. On PRIME itself, a clean checkout of current main provides the same
+same commit. On ORQEVIA itself, a clean checkout of current main provides the same
 files. A working branch is a candidate, never a second current version.
 
-Machine-readable component reference: https://github.com/AndrewLamSingapore/prime/blob/main/governance/operational-manifest.json
+Machine-readable component reference: https://github.com/AndrewLamSingapore/orqevia/blob/main/governance/operational-manifest.json
 
 This applies equally to ChatGPT, Codex, Sol, Astra and other assistants. Prior
 chat, memory, exported documents, screenshots, old branches and model identity
@@ -31,4 +31,4 @@ mutate the sealed ABEX baseline to make a status record look current.
 
 ## Gate Zero — Owner operating doctrine (3 October 2026)
 
-Default to useful execution. Classify `BLOCKER` only with concrete current evidence that a **specific** requested operation is prevented, or would create material risk that cannot reasonably be contained or reversed; stop only that operation. A failed probe, unknown, historical incident, optional check, backlog item or unavailable auxiliary peer is not a global failure or blocker. Continue independent work. Preserve authentication, secrets, data integrity, recoverability and known-good production; do not disable functioning tools, agents, models or probes merely to make status clean. The fuller shared rule is in PRIME's `AGENTS.md`; `STATUS.md` remains status authority, and a candidate/CI result is not live deployment proof.
+Default to useful execution. Classify `BLOCKER` only with concrete current evidence that a **specific** requested operation is prevented, or would create material risk that cannot reasonably be contained or reversed; stop only that operation. A failed probe, unknown, historical incident, optional check, backlog item or unavailable auxiliary peer is not a global failure or blocker. Continue independent work. Preserve authentication, secrets, data integrity, recoverability and known-good production; do not disable functioning tools, agents, models or probes merely to make status clean. The fuller shared rule is in ORQEVIA's `AGENTS.md`; `STATUS.md` remains status authority, and a candidate/CI result is not live deployment proof.

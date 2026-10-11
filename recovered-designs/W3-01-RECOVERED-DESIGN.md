@@ -3,7 +3,7 @@
 **Status:** PARKED / DO NOT EXECUTE  
 **Recovery date:** 2026-09-16  
 **Funds:** Zero real funds; testnet only  
-**Purpose:** Prove JARVIS/PRIME can govern a blockchain transaction lifecycle while PRIME retains exclusive economic authority.
+**Purpose:** Prove ORQEVIA can govern a blockchain transaction lifecycle while PRIME retains exclusive economic authority.
 
 ## Recovered invariants
 

@@ -13,7 +13,7 @@
   "runtime_acceptance": "UNVERIFIED",
   "verified_runtime_revision": null,
   "public_demo": "Curated illustrative examples; not model inference or live execution.",
-  "scope": "Public source summary only; not a live operational SSOT. Runtime acceptance requires independent host evidence.",
+  "scope": "Public source summary only; not a live operational status authority. Runtime acceptance requires independent host evidence.",
   "current_public_entrypoint": "https://authority-engine-app.vercel.app/orqevia",
   "contact": "https://authority-engine-app.vercel.app/contact?source=orqevia&intent=collaboration"
 }

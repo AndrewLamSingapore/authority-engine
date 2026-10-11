@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 
-const path = new URL('../public/data/jarvis-agent-registry.json', import.meta.url);
+const path = new URL('../public/data/orqevia-agent-registry.json', import.meta.url);
 const registry = JSON.parse(fs.readFileSync(path, 'utf8'));
 const forbidden = new Set(['system_prompt','credentials','endpoint','filesystem_path','tool_secrets','internal_instructions','receives','produces']);
 
