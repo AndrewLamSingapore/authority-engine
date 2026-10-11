@@ -3,7 +3,7 @@ const SUMMARY_FIELDS = new Set(['registered_agents','active_agents','executions_
 const PROOF_FIELDS = new Set(['prime_commit','schema_version','external_action']);
 const GATE_METRICS = new Set(['source_coverage','supported_claims','contradiction_resistance','uncertainty_calibration','required_evidence','policy_conformance','task_success']);
 const GATE_DECISIONS = new Set(['released','withheld']);
-const DEFAULT_TRACE_SOURCE = 'https://bksyjvppcwfgwoelnyvp.supabase.co/functions/v1/jarvis-trace-relay';
+const DEFAULT_TRACE_SOURCE = 'https://bksyjvppcwfgwoelnyvp.supabase.co/functions/v1/orqevia-trace-relay';
 const ALLOWED_STATES = new Set(['verified_events','connected_idle','stale','disabled','no_public_trace']);
 
 function sanitizeGate(value) {
