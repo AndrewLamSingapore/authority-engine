@@ -1,4 +1,4 @@
-> Portfolio authority: [STATUS.md](https://github.com/AndrewLamSingapore/prime/blob/main/STATUS.md) is the single current status source of truth; the [machine-readable operational reference](https://github.com/AndrewLamSingapore/prime/blob/main/governance/operational-manifest.json) describes components only. This document describes this repository only; it cannot override STATUS.md, the canonical architecture, or establish live deployment status.
+> Portfolio authority: [STATUS.md](https://github.com/AndrewLamSingapore/orqevia/blob/main/STATUS.md) is the single current status source of truth; the [machine-readable operational reference](https://github.com/AndrewLamSingapore/orqevia/blob/main/governance/operational-manifest.json) describes components only. This document describes this repository only; it cannot override STATUS.md, the canonical architecture, or establish live deployment status.
 
 # Andrew Lam — Operations Intelligence Evidence Hub
 
@@ -8,9 +8,9 @@
 
 ## Connected work
 
-[**Explore JARVIS PRIME**](https://authority-engine-app.vercel.app/jarvis) · [**Meet Andrew**](https://authority-engine-app.vercel.app/about) · [**Start a conversation**](https://authority-engine-app.vercel.app/contact?source=authority-engine&intent=collaboration)
+[**Explore ORQEVIA**](https://authority-engine-app.vercel.app/orqevia) · [**Meet Andrew**](https://authority-engine-app.vercel.app/about) · [**Start a conversation**](https://authority-engine-app.vercel.app/contact?source=authority-engine&intent=collaboration)
 
-JARVIS PRIME’s public walkthrough connects this project to Andrew’s wider work. Public navigation and enquiries do not merge accounts, data or runtime authority. Current operational evidence comes from the canonical portfolio record; this README describes source capabilities.
+ORQEVIA’s public walkthrough connects this project to Andrew’s wider work. Public navigation and enquiries do not merge accounts, data or runtime authority. Current operational evidence comes from the canonical portfolio record; this README describes source capabilities.
 
 ## Operations intelligence, backed by inspectable evidence.
 

@@ -25,7 +25,7 @@ await page.route('**/api/jarvis-status', route => route.fulfill({ json: { prime:
 const overflow = () => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1);
 const open = async path => { await page.goto(base + path, { waitUntil: 'domcontentloaded' }); await page.locator('h1').first().waitFor(); };
 try {
-  for (const path of ['/', '/about', '/evidence', '/frameworks', '/contact', '/jarvis', '/jarvis/agents', '/portal', '/velyqua', '/game-platform', '/sky-tablet', '/maxwell-excel', '/insights', '/demo', '/locked-demo', '/missing-route']) {
+  for (const path of ['/', '/about', '/evidence', '/frameworks', '/contact', '/orqevia', '/orqevia/agents', '/portal', '/velyqua', '/game-platform', '/sky-tablet', '/maxwell-excel', '/insights', '/demo', '/locked-demo', '/missing-route']) {
     await open(path);
     check(`Route ${path}`, await page.locator('h1').count() === 1 && await overflow());
   }

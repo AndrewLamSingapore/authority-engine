@@ -126,5 +126,5 @@ export default function TalkSection() {
 function inquiryFor(id) {
   if (id === 'hiring') return 'Operations Excellence Opportunity';
   if (id === 'operations') return 'Supply Chain or Analytics Collaboration';
-  return 'JARVIS / Governed AI Conversation';
+  return 'ORQEVIA / Governed AI Conversation';
 }

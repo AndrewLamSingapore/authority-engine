@@ -1,10 +1,10 @@
 /** Public navigation only. This registry does not assert private runtime health. */
 export const projects = [
   {
-    id: 'jarvis', name: 'JARVIS PRIME', category: 'Decisions with a record',
+    id: 'orqevia', name: 'ORQEVIA', category: 'Decisions with a record',
     description: 'Follow how a question becomes a reasoned decision, with assumptions and evidence made visible.',
     status: 'Illustrative walkthrough', boundary: 'The public walkthrough does not execute private AI tasks.',
-    path: '/jarvis', href: '/jarvis', external: false, linkLabel: 'Explore the walkthrough',
+    path: '/orqevia', href: '/orqevia', external: false, linkLabel: 'Explore the walkthrough',
   },
   {
     id: 'portal', name: 'The Portal', category: 'Unexpected connections',

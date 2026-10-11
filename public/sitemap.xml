@@ -5,8 +5,8 @@
   <url><loc>https://authority-engine-app.vercel.app/evidence</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://authority-engine-app.vercel.app/frameworks</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://authority-engine-app.vercel.app/portal</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://authority-engine-app.vercel.app/jarvis</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://authority-engine-app.vercel.app/jarvis/agents</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://authority-engine-app.vercel.app/orqevia</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://authority-engine-app.vercel.app/orqevia/agents</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://authority-engine-app.vercel.app/velyqua</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://authority-engine-app.vercel.app/game-platform</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://authority-engine-app.vercel.app/sky-tablet</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>

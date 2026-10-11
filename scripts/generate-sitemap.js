@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fetchPublishedContent, publishedPostFilter, validInsightSlug } from '../src/lib/insights.js';
 
 const baseUrl = 'https://authority-engine-app.vercel.app';
-const staticPages = ['', '/about', '/evidence', '/frameworks', '/portal', '/jarvis', '/jarvis/agents', '/velyqua', '/game-platform', '/sky-tablet', '/insights', '/maxwell-excel', '/demo', '/contact'];
+const staticPages = ['', '/about', '/evidence', '/frameworks', '/portal', '/orqevia', '/orqevia/agents', '/velyqua', '/game-platform', '/sky-tablet', '/insights', '/maxwell-excel', '/demo', '/contact'];
 const escapeXml = (value) => String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' })[character]);
 
 let posts = [];
