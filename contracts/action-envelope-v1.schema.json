@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/AndrewLamSingapore/AndrewLamSingapore/main/portfolio-contracts/schemas/action-envelope-v1.schema.json",
-  "title": "JARVIS Shared Action Envelope v1",
+  "title": "ORQEVIA Shared Action Envelope v1",
   "type": "object",
   "additionalProperties": false,
   "required": ["tenant_id", "actor_id", "actor_type", "action", "parameters", "context", "correlation_id", "idempotency_key", "schema_version", "timestamp"],

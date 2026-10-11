@@ -1,18 +1,18 @@
 {
-  "contract_version": "2.0.0",
+  "contract_version": "3.0.0",
   "schema_version_convention": "Semantic Versioning 2.0.0 strings",
   "schemas": {
-    "action-envelope-v1.schema.json": "40aed571fa40823ae90e067bc5da6b1f3a69c9a60e92c8163c73e2ebdca7a37d",
-    "event-envelope-v1.schema.json": "ad33816fd4301f95fb28ffcc89fe72aac986b99f4fa250bb8692a52acca31cad",
-    "policy-state-v1.schema.json": "4c7666ae8060ed1640c2f3134d2a10d95192fb4551a2c4df9d55e9510d9b0e1b",
-    "portfolio-event-v1.schema.json": "59fd09162a69dd577a05547261b3408edf1e12de720a940508d2e9895ecb794e",
-    "reasoning-output-v1.schema.json": "46fb16bf5e95b78791c50095829ecc0b07cf2b91ed128ffcb3f2d70a22c5f41c",
-    "verification-v1.schema.json": "205d0cd0529cda21bfff0351cdec576b26e44bca2097a3b616df57c91b63ad54"
+    "action-envelope-v1.schema.json": "4288300c8022ed985de74dccc7d9bf68468e99666a9c464e920b7044a23736b9",
+    "event-envelope-v1.schema.json": "1a78c9eea31b324381a6f5bedcb07c6bc60224d8055c01af3485a56f8036dc90",
+    "policy-state-v1.schema.json": "be17eac79ebfa6bd0c99516b10bd86e09341e514fb525fa64d3ee1e3590228e7",
+    "portfolio-event-v1.schema.json": "5ada9bed9baa92d7cb31b714162af243a0e3ef0c0f169c90f64cf687cc4cd238",
+    "reasoning-output-v1.schema.json": "f63410e3de04ed436d548e323f852c98bc5d2f156a010aafc36569fd84be89aa",
+    "verification-v1.schema.json": "251c87027b1621e84b9c575dfc6de0d882e5c68859455dffa174811550b06b31"
   },
   "generated": {
-    "generated/javascript/validators.js": "9c6ae4881d3d8bfbdf28a0916f95225e8400f1ebacbcac6464fa63f69de396a7",
-    "generated/javascript/validators.cjs": "db479b5cd4e79e3013d5ac9f72db8cd722b38c1c513fc9720395cc2acd975ef1",
-    "generated/typescript/validators.ts": "607b3b557b5bf7d91932afa35c5e10079b507d2d0dd5f071fa70fd96289a2899",
-    "generated/python/portfolio_contracts.py": "0e646c9acdc68076209d5e761326f5ea10873eb4b22faba4c9d625b929e230d6"
+    "generated/javascript/validators.js": "954393c61d324e837afa173597f0f7ca9032834eb3b40d7d91a4553b1e1e9e67",
+    "generated/javascript/validators.cjs": "bae56c8b6690c3fe07c1833f9abc5ff8fc2d36953adbc90668acfe82796191ed",
+    "generated/typescript/validators.ts": "94efc1905718cd0287bd95aaa7a51e093315c5e67fc4782f290a6cc9bc5a1ed1",
+    "generated/python/portfolio_contracts.py": "794cb5d9c11ddad878e0c47ac3e9a64094793e9581a139a07a90e70beba2670c"
   }
 }
