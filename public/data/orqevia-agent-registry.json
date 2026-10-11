@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0",
   "last_updated": "2026-09-13",
-  "registry_id": "jarvis-prime-agent-registry",
+  "registry_id": "orqevia-agent-registry",
   "orchestrator": {
     "id": "prime",
     "name": "ORQEVIA",

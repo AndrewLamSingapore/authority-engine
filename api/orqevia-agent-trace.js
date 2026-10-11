@@ -57,7 +57,7 @@ function sanitizeSummary(value) {
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store'); res.setHeader('X-Robots-Tag', 'noindex, nofollow');
   if (req.method !== 'GET') { res.setHeader('Allow','GET'); return res.status(405).json({ error:'Method not allowed.' }); }
-  const emptySummary = sanitizeSummary(null); const source = process.env.JARVIS_PUBLIC_TRACE_URL || DEFAULT_TRACE_SOURCE;
+  const emptySummary = sanitizeSummary(null); const source = process.env.ORQEVIA_PUBLIC_TRACE_URL || DEFAULT_TRACE_SOURCE;
   const controller = new AbortController(); const timer = setTimeout(()=>controller.abort(),4000);
   try {
     const response = await fetch(source,{headers:{accept:'application/json'},signal:controller.signal});

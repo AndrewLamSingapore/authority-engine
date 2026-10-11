@@ -21,7 +21,7 @@ const context = await browser.newContext({ viewport: { width: 1440, height: 1000
 const page = await context.newPage();
 page.setDefaultTimeout(7000);
 page.on('pageerror', error => errors.push(error.message));
-await page.route('**/api/jarvis-status', route => route.fulfill({ json: { prime: { state: 'unverified' } } }));
+await page.route('**/api/orqevia-status', route => route.fulfill({ json: { prime: { state: 'unverified' } } }));
 const overflow = () => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1);
 const open = async path => { await page.goto(base + path, { waitUntil: 'domcontentloaded' }); await page.locator('h1').first().waitFor(); };
 try {

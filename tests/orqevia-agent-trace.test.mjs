@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { classifyTrace, sanitizeEvent, sanitizeGate, sanitizeProof, sanitizeSummary, DEFAULT_TRACE_SOURCE } from '../api/jarvis-agent-trace.js';
+import { classifyTrace, sanitizeEvent, sanitizeGate, sanitizeProof, sanitizeSummary, DEFAULT_TRACE_SOURCE } from '../api/orqevia-agent-trace.js';
 
 test('trace sanitizer exposes only allowlisted metadata',()=>{const event=sanitizeEvent({trace_id:'trace-1',timestamp:'2026-09-03T12:00:00Z',agent_id:'A19',stage:'verification',status:'complete',sequence:2,prompt:'secret',endpoint:'http://private',credentials:'secret',result:'sensitive'});assert.deepEqual(event,{trace_id:'trace-1',timestamp:'2026-09-03T12:00:00Z',agent_id:'A19',stage:'verification',status:'complete',sequence:2});});
 test('release gate strips private text',()=>{const gate=sanitizeGate({decision:'withheld',score:.514321,blocking_metrics:['source_coverage','required_evidence','invented_metric'],evidence_gap_count:2,unsupported_claim_count:1,contradiction_count:0,evaluator_valid:true,evaluation_version:'2.1',rationale:'PRIVATE',prompt:'SECRET'});assert.deepEqual(gate,{decision:'withheld',score:.5143,blocking_metrics:['required_evidence','source_coverage'],evidence_gap_count:2,unsupported_claim_count:1,contradiction_count:0,evaluator_valid:true,evaluation_version:'2.1'});assert.equal(JSON.stringify(gate).includes('PRIVATE'),false);});

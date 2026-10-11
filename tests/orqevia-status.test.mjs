@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { portalSignal, primeSignal } from '../api/jarvis-status.js';
+import { portalSignal, primeSignal } from '../api/orqevia-status.js';
 
 const ready = await portalSignal(async () => ({ ok: true, json: async () => ({
   ok: true, revision: 'abc', portfolio_relay: true, portfolio_outbox_schema: true,
@@ -12,7 +12,7 @@ assert.equal(ready.relay, true);
 const unavailable = await portalSignal(async () => ({ ok: false, status: 503 }));
 assert.equal(unavailable.state, 'unavailable');
 assert.equal(unavailable.status, 503);
-console.log('Sanitized JARVIS status: PASS');
+console.log('Sanitized ORQEVIA status: PASS');
 
 // Even old deployment env variables must not promote a historical Dell runtime.
 const previous = { source: process.env.PRIME_SOURCE_REVISION, runtime: process.env.PRIME_RUNTIME_REVISION, verified: process.env.PRIME_VERIFIED_AT };

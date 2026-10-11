@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
-const source = await readFile(new URL('../src/pages/JarvisControl.jsx', import.meta.url), 'utf8');
+const source = await readFile(new URL('../src/pages/OrqeviaControl.jsx', import.meta.url), 'utf8');
 
 test('the canonical ORQEVIA page launches the governed ABEX HTTPS workspace', () => {
   assert.match(source, /const PRIME_WORKSPACE_URL = 'https:\/\/192\.168\.1\.23:8443\/pwa\/';/);
