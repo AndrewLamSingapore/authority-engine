@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { contactContext, inquiryTypes } from '../src/lib/contact-context.js';
 test('external project links carry a valid, relevant enquiry and source', () => {
-  for (const source of ['github','portal','velyqua','game-platform','sky-tablet','maxwell-excel','jarvis']) {
+  for (const source of ['github','portal','velyqua','game-platform','sky-tablet','maxwell-excel','orqevia']) {
     const result = contactContext(`?source=${source}`);
     assert.ok(inquiryTypes.includes(result.inquiryType));
     assert.notEqual(result.source,'Authority Engine');

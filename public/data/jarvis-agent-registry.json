@@ -4,7 +4,7 @@
   "registry_id": "jarvis-prime-agent-registry",
   "orchestrator": {
     "id": "prime",
-    "name": "JARVIS PRIME",
+    "name": "ORQEVIA",
     "role": "Cognitive Control Plane / Orchestrator",
     "public_description": "Receives the objective, governs execution, routes work and coordinates all specialist agents."
   },

@@ -75,9 +75,9 @@ export default function AgentNetwork() {
   }
 
   return <>
-    <SEO title="JARVIS PRIME — Agent Roles and Reported Evidence" description="Inspect the 21-role JARVIS PRIME registry and clearly scoped reported evidence. Current ABEX runtime acceptance remains unverified." />
+    <SEO title="ORQEVIA — Agent Roles and Reported Evidence" description="Inspect the 21-role ORQEVIA registry and clearly scoped reported evidence. Current ABEX runtime acceptance remains unverified." />
     <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
-      <div className="eyebrow">JARVIS PRIME / AGENT REGISTRY</div>
+      <div className="eyebrow">ORQEVIA / AGENT REGISTRY</div>
       <div className="mt-5 grid lg:grid-cols-[1fr_auto] gap-8 items-end">
         <div>
           <h1 className="text-4xl sm:text-6xl font-black tracking-tight">{registry.agents.length} registered agents.<br /><span className="text-emerald-400">One governed hierarchy.</span></h1>
@@ -89,7 +89,7 @@ export default function AgentNetwork() {
           <div className="text-slate-400 mt-1">Updated {new Date(registry.last_updated).toLocaleString()}</div>
         </div>
       </div>
-      <div className="mt-6 flex flex-wrap gap-4 text-sm font-bold text-emerald-300"><Link to="/jarvis">← Explore JARVIS PRIME</Link><Link to="/contact?source=jarvis&intent=collaboration">Discuss the system with Andrew ↗</Link></div>
+      <div className="mt-6 flex flex-wrap gap-4 text-sm font-bold text-emerald-300"><Link to="/orqevia">← Explore ORQEVIA</Link><Link to="/contact?source=orqevia&intent=collaboration">Discuss the system with Andrew ↗</Link></div>
       <div className="mt-10 flex gap-2 flex-wrap">
         {MODES.map((item) => <button key={item} onClick={() => setMode(item)} className={`px-5 py-2.5 rounded-full border text-sm font-semibold transition ${mode === item ? 'border-emerald-400 bg-emerald-400/10 text-emerald-300' : 'border-white/10 text-slate-400 hover:border-white/30'}`}>{item}</button>)}
       </div>
@@ -159,7 +159,7 @@ function Network({ registry, relationships, setSelected }) {
     <div className="border border-emerald-500/20 bg-emerald-500/[.04] rounded-3xl p-6">
       <div className="text-[10px] tracking-[.2em] uppercase text-emerald-400">Enforced relationship policy</div>
       <h2 className="text-2xl font-black mt-3">Bounded hand-offs, not a free mesh.</h2>
-      <p className="text-slate-400 mt-3">PRIME delegates to registered leads; leads delegate only to direct children. Agents may consult their own lead; leads may consult peer leads. Consequential external action still requires owner approval.</p>
+      <p className="text-slate-400 mt-3">ORQEVIA delegates to registered leads; leads delegate only to direct children. Agents may consult their own lead; leads may consult peer leads. Consequential external action still requires owner approval.</p>
       <div className="grid grid-cols-2 gap-3 mt-6"><Info label="Delegation edges" value={String(delegation.length)} /><Info label="Consult edges" value={String(consult.length)} /></div>
     </div>
     <div className="border border-white/10 rounded-3xl p-5 max-h-[620px] overflow-auto">
@@ -239,7 +239,7 @@ function TraceProof({ group }) {
       </div>
     </div>
     {group.proof && <div className="grid sm:grid-cols-3 gap-2 mt-5">
-      <Info label="PRIME commit" value={group.proof.prime_commit ? group.proof.prime_commit.slice(0, 12) : '—'} />
+      <Info label="ORQEVIA commit" value={group.proof.prime_commit ? group.proof.prime_commit.slice(0, 12) : '—'} />
       <Info label="Trace schema" value={group.proof.schema_version || '—'} />
       <Info label="External action" value={group.proof.external_action === false ? 'False · none executed' : group.proof.external_action === true ? 'True' : '—'} />
     </div>}

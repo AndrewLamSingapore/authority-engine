@@ -40,14 +40,14 @@ test('the home evidence band states the recorded figures and its own limit', () 
 });
 
 test('all five public builds have distinct, safe destinations and explicit evidence boundaries', () => {
-  assert.deepEqual(buildItems.map((item) => item.id), ['jarvis', 'portal', 'velyqua', 'game-platform', 'sky-tablet']);
+  assert.deepEqual(buildItems.map((item) => item.id), ['orqevia', 'portal', 'velyqua', 'game-platform', 'sky-tablet']);
   assert.equal(new Set(buildItems.map((item) => item.path)).size, 5);
   for (const item of buildItems) {
     assert.ok(item.path.startsWith('/'));
     assert.ok(item.boundary.length > 30, `${item.id} explains its evidence limit`);
     assert.ok(item.external ? item.href.startsWith('https://') : item.href.startsWith('/'));
   }
-  assert.equal(buildItems[0].external, false, 'JARVIS remains a local public walkthrough');
+  assert.equal(buildItems[0].external, false, 'ORQEVIA remains a local public walkthrough');
   assert.match(buildItems[0].boundary, /does not execute private/);
   assert.match(buildItems[2].boundary, /unvalidated/);
 });
@@ -219,8 +219,8 @@ test('every existing public route still resolves in the redesigned app', () => {
     'velyqua',
     'game-platform',
     'sky-tablet',
-    'jarvis',
-    'jarvis/agents',
+    'orqevia',
+    'orqevia/agents',
     'locked-demo',
   ]) {
     assert.ok(app.includes(`path="${path}"`), `${path} remains routed`);

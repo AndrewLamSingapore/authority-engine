@@ -1,4 +1,4 @@
-export const inquiryTypes = ['Operations Excellence Opportunity','Supply Chain or Analytics Collaboration','JARVIS / Governed AI Conversation','VELYQUA / Water Intelligence','The Portal / Discovery Collaboration','Living Worlds / Creative Collaboration','Sky Tablet / Research Conversation','Professional Inquiry','Maxwell Container Service'];
+export const inquiryTypes = ['Operations Excellence Opportunity','Supply Chain or Analytics Collaboration','ORQEVIA / Governed AI Conversation','VELYQUA / Water Intelligence','The Portal / Discovery Collaboration','Living Worlds / Creative Collaboration','Sky Tablet / Research Conversation','Professional Inquiry','Maxwell Container Service'];
 const sources = {
   'authority-engine': ['Authority Engine','Operations Excellence Opportunity',''],
   github: ['GitHub','Professional Inquiry',''],
@@ -7,7 +7,7 @@ const sources = {
   'game-platform': ['Living Worlds','Living Worlds / Creative Collaboration','I’d like to discuss Living Worlds, world-building or a creative collaboration.'],
   'sky-tablet': ['The Sky Tablet','Sky Tablet / Research Conversation','I’d like to share a question, source or collaboration idea about The Sky Tablet.'],
   'maxwell-excel': ['Maxwell Excel','Maxwell Container Service','I’d like to discuss a container-handling requirement.'],
-  jarvis: ['JARVIS','JARVIS / Governed AI Conversation','I’d like to discuss a practical governed-AI use case.'],
+  orqevia: ['ORQEVIA','ORQEVIA / Governed AI Conversation','I’d like to discuss a practical governed-AI use case.'],
 };
 const intents = {
   role: ['Operations Excellence Opportunity', 'I’d like to discuss an operations or analytics opportunity with you.'],

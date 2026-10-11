@@ -42,7 +42,7 @@ export const frameworks = [
     experiment: 'Set a time limit, a rollback path and a success threshold before starting. Keep original records and test that they can be recovered.',
     example: 'A hypothetical team pilots an assistant on draft recommendations before allowing changes to operational records.',
     limit: 'Reversibility has a cost. A small experiment still needs clear ownership and boundaries.',
-    related: '/jarvis', relatedLabel: 'Follow a JARVIS decision walkthrough',
+    related: '/orqevia', relatedLabel: 'Follow an ORQEVIA decision walkthrough',
   },
   {
     id: 'signals', situation: 'The dashboard says green', name: 'Look for the missing signal',
