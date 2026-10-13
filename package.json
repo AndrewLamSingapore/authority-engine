@@ -44,6 +44,9 @@
     "tailwindcss": "^3.4.19",
     "vite": "^8.3.0"
   },
+  "overrides": {
+    "postcss-selector-parser": "7.1.6"
+  },
   "deployment_baseline": {
     "date": "2026-09-02",
     "scope": "non-velyqua",
