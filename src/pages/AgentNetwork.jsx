@@ -67,15 +67,16 @@ export default function AgentNetwork() {
     return registry.agents.map((agent) => ({ source: agent.reports_to, target: agent.id, type: 'reports_to' }));
   }, [registry]);
 
+  const metadata = <SEO title="ORQEVIA — Agent Roles and Reported Evidence" description="Inspect the 21-role ORQEVIA registry and clearly scoped reported evidence. Current ABEX runtime acceptance remains unverified." image="https://authority-engine-app.vercel.app/brands/orqevia/generated-original.png" favicon="/brands/orqevia/generated-original.png" />;
   if (error) {
-    return <Shell><h1 className="text-4xl font-black">Agent registry unavailable</h1><p className="text-slate-400 mt-4">{error}</p></Shell>;
+    return <>{metadata}<Shell><h1 className="text-4xl font-black">Agent registry unavailable</h1><p className="text-slate-400 mt-4">{error}</p></Shell></>;
   }
   if (!registry) {
-    return <div className="min-h-[70vh] flex items-center justify-center text-slate-500 uppercase tracking-[.25em] text-xs">Loading canonical registry…</div>;
+    return <>{metadata}<div className="min-h-[70vh] flex items-center justify-center text-slate-500 uppercase tracking-[.25em] text-xs">Loading canonical registry…</div></>;
   }
 
   return <>
-    <SEO title="ORQEVIA — Agent Roles and Reported Evidence" description="Inspect the 21-role ORQEVIA registry and clearly scoped reported evidence. Current ABEX runtime acceptance remains unverified." />
+    {metadata}
     <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
       <div className="eyebrow">ORQEVIA / AGENT REGISTRY</div>
       <div className="mt-5 grid lg:grid-cols-[1fr_auto] gap-8 items-end">

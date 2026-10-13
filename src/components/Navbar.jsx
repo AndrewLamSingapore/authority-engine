@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import SoundControl from './SoundControl';
+import OrqeviaLogo from './OrqeviaLogo';
 import { projects as publicProjects } from '../data/projects';
 
 const projects = [...publicProjects.map(({ name, path }) => [name, path]), ['Maxwell Excel', '/maxwell-excel']];
@@ -9,11 +10,14 @@ const primary = [['About','/about'],['Evidence','/evidence'],['Frameworks','/fra
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const loc = useLocation();
+  const isOrqevia = loc.pathname === '/orqevia' || loc.pathname.startsWith('/orqevia/');
   const close = () => setOpen(false);
   const link = ([name, path]) => <Link key={path} to={path} onClick={close} aria-current={loc.pathname === path ? 'page' : undefined} className="nav-link">{name}</Link>;
   return <nav className="portfolio-nav" aria-label="Main Navigation">
     <div className="portfolio-nav-inner">
-      <Link to="/" onClick={close} className="portfolio-wordmark"><span className="portfolio-monogram">A</span><span><strong>ANDREW LAM</strong><small>Operations · Analytics · Applied AI</small></span></Link>
+      {isOrqevia
+        ? <Link to="/orqevia" onClick={close} className="portfolio-wordmark" aria-label="ORQEVIA · 奥启维亚 home"><OrqeviaLogo /><span><strong>ORQEVIA</strong><span className="block text-xs text-slate-400">奥启维亚</span></span></Link>
+        : <Link to="/" onClick={close} className="portfolio-wordmark"><span className="portfolio-monogram">A</span><span><strong>ANDREW LAM</strong><small>Operations · Analytics · Applied AI</small></span></Link>}
       <div className="portfolio-desktop-nav">
         {primary.map(link)}
         <details className="project-menu" onKeyDown={e => { if (e.key === 'Escape') e.currentTarget.removeAttribute('open'); }}>
