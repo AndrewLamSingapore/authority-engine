@@ -38,7 +38,7 @@ export default function OrqeviaControl() {
     return () => controller.abort();
   }, []);
   return <>
-    <SEO title="ORQEVIA — See the reasoning. Find your next move." description="Explore Andrew Lam’s ORQEVIA: try an illustrative decision walkthrough, inspect the approach and discuss your own AI or operations use case." />
+    <SEO title="ORQEVIA — See the reasoning. Find your next move." description="Explore Andrew Lam’s ORQEVIA: try an illustrative decision walkthrough, inspect the approach and discuss your own AI or operations use case." image="https://authority-engine-app.vercel.app/brands/orqevia/generated-original.png" favicon="/brands/orqevia/generated-original.png" />
     <div className="orqevia-public overflow-hidden pb-20 sm:pb-0">
       <section className="orqevia-hero relative pt-28 sm:pt-36 pb-20">
         <div className="orqevia-grid absolute inset-0 pointer-events-none" aria-hidden="true" />
