@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Outlet, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Navigate, Outlet, Route, Routes, Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -145,6 +145,8 @@ export default function App() {
               </>
             }
           />
+          <Route path="jarvis" element={<Navigate to="/orqevia" replace />} />
+          <Route path="jarvis/agents" element={<Navigate to="/orqevia/agents" replace />} />
           <Route path="orqevia" element={<OrqeviaControl />} />
           <Route path="orqevia/agents" element={<AgentNetwork />} />
           <Route path="locked-demo" element={<GatedDemo />} />
