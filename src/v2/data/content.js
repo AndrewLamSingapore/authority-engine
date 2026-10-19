@@ -19,6 +19,7 @@ export const home = {
   h1: "I've run the operation. Now I build the analytics that see trouble sooner.",
   lede: 'Andrew Lam. Twenty-plus years across logistics, warehousing, distribution and container operations, now paired with analytics and applied AI.',
   meta: 'Singapore. Open to operations excellence and operational-analytics roles.',
+  credential: 'BCG RISE Capstone Top 2 · Python Expert · Machine Learning Expert',
   primaryAction: 'Start a conversation',
   secondaryAction: 'Inspect the evidence',
 };
@@ -69,7 +70,8 @@ export const about = {
     'Logistics, warehousing, distribution, container operations and supply-chain execution.',
   bandText: [
     'That work taught me to ask one question first: where will this go wrong, and how do we see it sooner? Analytics and applied AI are how I now answer it.',
-    "I'm completing the BCG RISE Business Data Analytics programme, and I share the projects that come out of it publicly as I build them.",
+    'I completed Applied AI and Data Analytics under RISE by BCG U in October 2026. My credentials include BCG RISE Capstone Top 2 (Business and Data Analytics), Python Expert and Machine Learning Expert.',
+    'I use Power BI, SQL, Python and Excel to investigate performance gaps, explain operational risk and support better decisions. I share my independent projects publicly as I build them.',
   ],
   openH2: "What I'm open to",
   openLede: 'Based in Singapore.',
@@ -80,6 +82,14 @@ export const about = {
     'Consulting',
   ],
 };
+
+export const credentials = [
+  { name: 'Applied AI and Data Analytics', issuer: 'RISE by BCG U', date: 'October 2026', href: 'https://accredify.io/verify?id=462f1532-0ed6-4ceb-9d23-9a04f2893e4f', platform: 'Accredify' },
+  { name: 'BCG RISE Capstone Top 2 (Business and Data Analytics)', issuer: 'Boston Consulting Group', date: 'October 2026', href: 'https://www.credly.com/badges/2e0b4f50-24af-4d42-839d-b77b1b0f9231', platform: 'Credly' },
+  { name: 'BCG RISE Python Expert', issuer: 'Boston Consulting Group', date: 'October 2026', href: 'https://www.credly.com/badges/434cbaa4-5aee-4066-b7c8-9895a6a5e24d', platform: 'Credly' },
+  { name: 'BCG RISE Machine Learning Expert', issuer: 'Boston Consulting Group', date: 'October 2026', href: 'https://www.credly.com/badges/281a8911-39cd-4716-a987-1d0580e0f732', platform: 'Credly' },
+  { name: 'WSQ Essential Drone Flying Technologies for Business Operations', issuer: 'NTUC LearningHub', date: 'July 2026', href: 'https://www.ntuclearninghub.com/verify?id=cd1307a0-5409-4188-84a6-ae56c9bfbbe1', platform: 'NTUC LearningHub' },
+];
 
 export const evidencePage = {
   h1: "What each piece of evidence supports, and what it doesn't.",
