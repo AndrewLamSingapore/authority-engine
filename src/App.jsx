@@ -79,7 +79,7 @@ export default function App() {
               <>
                 <SEO
                   title="Operations, analytics and applied AI"
-                  description="Andrew Lam: twenty-plus years across logistics, warehousing, distribution and container operations, now paired with analytics and applied AI. Evidence is graded by what it actually is."
+                  description="Andrew Lam combines 20+ years in supply chain and logistics with Power BI, SQL, Python and applied AI. BCG RISE Capstone Top 2. Explore projects and verified credentials."
                 />
                 <HomeV2 />
               </>
@@ -91,7 +91,7 @@ export default function App() {
               <>
                 <SEO
                   title="About Andrew Lam"
-                  description="Experience on the floor, intelligence above it: more than two decades of operational work across logistics, warehousing, distribution and container operations."
+                  description="Meet Andrew Lam: 20+ years in operations, BCG RISE Applied AI and Data Analytics graduate, Capstone Top 2, Python Expert and Machine Learning Expert."
                 />
                 <AboutV2 />
               </>
