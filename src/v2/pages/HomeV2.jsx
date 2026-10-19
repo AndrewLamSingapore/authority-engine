@@ -17,6 +17,9 @@ export default function HomeV2() {
             <h1 id="home-title">{home.h1}</h1>
             <p className="v2-lede">{home.lede}</p>
             <p className="v2-hero-meta">{home.meta}</p>
+            <p className="v2-note" style={{ marginTop: '16px', maxWidth: '52ch' }}>
+              {home.credential} · <Link className="v2-link" to="/about">View credentials →</Link>
+            </p>
             <div className="v2-hero-actions">
               <button type="button" className="v2-btn v2-btn-accent" onClick={() => scrollToTalk(navigate)}>
                 {home.primaryAction}
