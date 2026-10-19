@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import TalkSection from '../components/TalkSection';
-import { about } from '../data/content';
+import { about, credentials } from '../data/content';
 
 export default function AboutV2() {
   return (
@@ -55,6 +55,32 @@ export default function AboutV2() {
               </p>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="v2-section" id="credentials" aria-labelledby="credentials-title">
+        <div className="v2-wrap">
+          <p className="v2-kicker">Learning put into practice</p>
+          <h2 id="credentials-title">Credentials you can verify.</h2>
+          <p className="v2-lede" style={{ marginTop: '20px' }}>
+            Completed training in applied AI and data analytics, backed by issuer-linked certificates and badges.
+          </p>
+          <dl className="v2-defs" style={{ marginTop: '28px' }}>
+            {credentials.map((credential) => (
+              <div key={credential.href}>
+                <dt>{credential.name}</dt>
+                <dd>
+                  <p className="v2-prose">{credential.issuer} · {credential.date}</p>
+                  <a className="v2-link" href={credential.href} target="_blank" rel="noreferrer">
+                    Verify on {credential.platform} ↗
+                  </a>
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <p className="v2-note" style={{ marginTop: '28px' }}>
+            Next learning step: Temasek Polytechnic’s Cloud Support &amp; DevOps programme, beginning November 2026.
+          </p>
         </div>
       </section>
 
