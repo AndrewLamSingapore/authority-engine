@@ -55,7 +55,7 @@ export default function Velyqua() {
           <div className="signal-card rounded-[2rem] p-7 sm:p-9">
             <div className="flex items-start justify-between gap-6">
               <div>
-                <div className="text-[10px] tracking-[.2em] uppercase text-emerald-300">Inspectable concept evidence</div>
+                <div className="text-sm tracking-[.2em] uppercase text-emerald-300">Inspectable concept evidence</div>
                 <h2 className="mt-3 text-2xl font-black">A working governed browser prototype</h2>
               </div>
               <Waves className="w-8 h-8 text-emerald-300" />
@@ -69,7 +69,7 @@ export default function Velyqua() {
               ].map(([value, label]) => (
                 <div key={label} className="rounded-2xl border border-white/[0.07] bg-black/20 p-4">
                   <div className="text-xl font-black text-white">{value}</div>
-                  <div className="mt-1 text-xs text-slate-500">{label}</div>
+                  <div className="mt-1 text-sm text-slate-500">{label}</div>
                 </div>
               ))}
             </div>
@@ -81,7 +81,7 @@ export default function Velyqua() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.08] px-5 sm:px-7 py-4">
             <div>
               <div className="text-sm font-bold text-white">Interactive VELYQUA</div>
-              <div className="mt-1 text-xs text-slate-500">Complete onboarding, explore Aqua Now, Tank Memory, Quiet Plan and Quick Update.</div>
+              <div className="mt-1 text-sm text-slate-500">Complete onboarding, explore Aqua Now, Tank Memory, Quiet Plan and Quick Update.</div>
             </div>
             <a href={velyquaUrl} target="_blank" rel="noreferrer" className="text-sm font-bold text-emerald-300 inline-flex items-center gap-2">
               Open full screen <ExternalLink className="w-4 h-4" />
@@ -109,7 +109,7 @@ export default function Velyqua() {
 
         <section className="mt-14 rounded-[2rem] border border-amber-300/15 bg-amber-300/[0.035] p-8 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div>
-            <div className="text-[10px] tracking-[.2em] uppercase text-amber-300">Public-preview boundary</div>
+            <div className="text-sm tracking-[.2em] uppercase text-amber-300">Public-preview boundary</div>
             <p className="mt-3 max-w-3xl leading-relaxed text-slate-300">Preview records stay in the visitor’s browser. Private accounts and cloud synchronisation activate only after production identity and cloud configuration are completed.</p>
           </div>
           <Link to="/insights" className="shrink-0 text-sm font-bold text-emerald-300 inline-flex items-center gap-2">

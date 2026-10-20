@@ -407,7 +407,7 @@ body[data-shell='v2'] {
   font-family: var(--font-display);
   font-stretch: 82%;
   font-weight: 560;
-  font-size: 0.82rem;
+  font-size: .875rem;
   color: var(--bk-ink2);
 }
 .v2-key-mark { width: 26px; height: 12px; border-radius: 2px; flex: 0 0 auto; }
@@ -625,7 +625,7 @@ body[data-shell='v2'] {
   font-family: var(--font-display);
   font-stretch: 82%;
   font-weight: 620;
-  font-size: 0.82rem;
+  font-size: .875rem;
   letter-spacing: 0.01em;
   color: var(--ink2);
 }
@@ -726,7 +726,7 @@ body[data-shell='v2'] {
 }
 .v2-footer h4 {
   color: var(--bk-ink2);
-  font-size: 0.85rem;
+  font-size: .875rem;
   font-weight: 620;
   letter-spacing: -0.005em;
   margin-bottom: 12px;
@@ -833,3 +833,9 @@ body[data-shell='v2'] {
 
 .v2-hero-framework { margin-top: 22px !important; font-size: 1rem; color: var(--bk-ink2); }
 #talk, #builds { scroll-margin-top: 150px; }
+
+/* Readable controls and long evidence labels at narrow widths and browser zoom. */
+.v2-root input,.v2-root select,.v2-root textarea{font-size:1rem}
+.v2-root button,.v2-root .v2-btn{min-height:44px}
+.v2-row>*,.v2-hero-inner>*{min-width:0}
+.v2-root p,.v2-root a{overflow-wrap:break-word}

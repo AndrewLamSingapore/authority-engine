@@ -92,7 +92,7 @@ export default function SingleInsight() {
           </Link>
 
           <header className="mb-10 border-b border-gray-800 pb-8">
-            <div className="flex flex-wrap items-center gap-3 mb-4 text-xs font-semibold uppercase tracking-wider text-emerald-400">
+            <div className="flex flex-wrap items-center gap-3 mb-4 text-sm font-semibold uppercase tracking-wider text-emerald-400">
               <span className="bg-emerald-950/60 border border-emerald-800/50 px-3 py-1 rounded-full flex items-center gap-1.5">
                 <ShieldAlert className="w-3.5 h-3.5" />
                 {insight.category}

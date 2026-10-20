@@ -66,7 +66,7 @@ export default function Portal() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.08] px-5 sm:px-7 py-4">
             <div className="flex items-center gap-3">
               <Network className="w-5 h-5 text-emerald-300" />
-              <div><div className="text-sm font-bold text-white">Living Knowledge Graph</div><div className="text-[10px] tracking-[.14em] uppercase text-slate-500">Interactive preview</div></div>
+              <div><div className="text-sm font-bold text-white">Living Knowledge Graph</div><div className="text-sm tracking-[.14em] uppercase text-slate-500">Interactive preview</div></div>
             </div>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
@@ -82,17 +82,17 @@ export default function Portal() {
               {nodes.map((node) => {
                 const visible = matches.some((match) => match.id === node.id);
                 const selected = active.id === node.id;
-                return <button key={node.id} onClick={() => setActive(node)} style={{ left: node.x + '%', top: node.y + '%' }} className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-emerald-300/60 ${selected ? 'scale-110 border-emerald-300 bg-emerald-300 text-[#04100c] shadow-[0_0_40px_rgba(52,211,153,.28)]' : visible ? 'border-white/15 bg-[#0b110f] text-slate-200 hover:border-emerald-300/45 hover:scale-105' : 'opacity-20 border-white/5 bg-black text-slate-600'} ${node.id === 'operations' ? 'w-28 h-28 sm:w-32 sm:h-32 font-black' : 'w-20 h-20 sm:w-24 sm:h-24 text-xs sm:text-sm font-bold'}`} aria-pressed={selected}>{node.label}</button>;
+                return <button key={node.id} onClick={() => setActive(node)} style={{ left: node.x + '%', top: node.y + '%' }} className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-emerald-300/60 ${selected ? 'scale-110 border-emerald-300 bg-emerald-300 text-[#04100c] shadow-[0_0_40px_rgba(52,211,153,.28)]' : visible ? 'border-white/15 bg-[#0b110f] text-slate-200 hover:border-emerald-300/45 hover:scale-105' : 'opacity-20 border-white/5 bg-black text-slate-600'} ${node.id === 'operations' ? 'w-28 h-28 sm:w-32 sm:h-32 font-black' : 'w-20 h-20 sm:w-24 sm:h-24 text-sm sm:text-sm font-bold'}`} aria-pressed={selected}>{node.label}</button>;
               })}
-              <div className="absolute left-5 bottom-5 text-[10px] tracking-[.15em] uppercase text-slate-600">Select any node to traverse</div>
+              <div className="absolute left-5 bottom-5 text-sm tracking-[.15em] uppercase text-slate-600">Select any node to traverse</div>
             </div>
 
             <div className="p-7 sm:p-10 flex flex-col">
-              <div className="text-[10px] tracking-[.2em] uppercase text-amber-300">Selected node</div>
+              <div className="text-sm tracking-[.2em] uppercase text-amber-300">Selected node</div>
               <h2 className="mt-4 text-3xl font-black text-white">{active.label}</h2>
               <p className="mt-4 text-slate-400 leading-relaxed">{active.note}</p>
               <div className="mt-8 space-y-3">
-                {['Trace its relationships', 'Open evidence-aware artifacts', 'Preserve the encounter in memory'].map((item, index) => <div key={item} className="rounded-2xl border border-white/[0.07] bg-black/20 p-4 flex items-center gap-3"><span className="text-xs font-black text-emerald-300">0{index + 1}</span><span className="text-sm text-slate-300">{item}</span></div>)}
+                {['Trace its relationships', 'Open evidence-aware artifacts', 'Preserve the encounter in memory'].map((item, index) => <div key={item} className="rounded-2xl border border-white/[0.07] bg-black/20 p-4 flex items-center gap-3"><span className="text-sm font-black text-emerald-300">0{index + 1}</span><span className="text-sm text-slate-300">{item}</span></div>)}
               </div>
               <button onClick={surpriseMe} className="mt-auto pt-8 inline-flex items-center gap-2 text-sm font-bold text-amber-300 hover:text-amber-200"><Sparkles className="w-4 h-4" /> Follow a serendipitous connection</button>
             </div>
@@ -100,7 +100,7 @@ export default function Portal() {
         </section>
 
         <div className="mt-14 grid md:grid-cols-3 gap-4">
-          {[['Encounter creation','Capture what happened before its meaning disappears.'],['Evidence-aware artifacts','Keep sources, claims and uncertainty visible together.'],['Browser-private cabinet','Let useful context compound without turning memory into surveillance.']].map(([title,text]) => <div key={title} className="system-card rounded-3xl p-7"><div className="text-[10px] tracking-[.18em] uppercase text-emerald-300">Portal principle</div><h3 className="mt-8 text-xl font-black text-white">{title}</h3><p className="mt-3 text-sm leading-relaxed text-slate-400">{text}</p></div>)}
+          {[['Encounter creation','Capture what happened before its meaning disappears.'],['Evidence-aware artifacts','Keep sources, claims and uncertainty visible together.'],['Browser-private cabinet','Let useful context compound without turning memory into surveillance.']].map(([title,text]) => <div key={title} className="system-card rounded-3xl p-7"><div className="text-sm tracking-[.18em] uppercase text-emerald-300">Portal principle</div><h3 className="mt-8 text-xl font-black text-white">{title}</h3><p className="mt-3 text-sm leading-relaxed text-slate-400">{text}</p></div>)}
         </div>
       </div>
     </div>

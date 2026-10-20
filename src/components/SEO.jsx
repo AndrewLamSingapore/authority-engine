@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-export default function SEO({ title, description, image, canonical, noindex = false, type = 'website' }) {
+export default function SEO({ title, description, image, favicon, canonical, noindex = false, type = 'website' }) {
   const location = useLocation();
   const baseUrl = 'https://authority-engine-app.vercel.app';
   const cleanPath = location.pathname === '/' ? '' : location.pathname.replace(/\/$/, '');
@@ -14,6 +14,27 @@ export default function SEO({ title, description, image, canonical, noindex = fa
   const metaImage = image || defaultImage;
 
   useEffect(() => {
+    if (!favicon) return undefined;
+    const previous = document.querySelector('link[rel="icon"]');
+    const attributes = previous ? [...previous.attributes].map(({ name, value }) => [name, value]) : null;
+    const icon = previous || document.createElement('link');
+    icon.setAttribute('rel', 'icon');
+    icon.setAttribute('href', favicon);
+    icon.setAttribute('type', 'image/png');
+    if (!previous) document.head.appendChild(icon);
+    return () => {
+      if (icon.getAttribute('href') !== favicon) return;
+      if (!previous) { icon.remove(); return; }
+      for (const attribute of [...icon.attributes]) icon.removeAttribute(attribute.name);
+      for (const [name, value] of attributes) icon.setAttribute(name, value);
+    };
+  }, [favicon]);
+
+  useEffect(() => {
+    const imageSnapshots = image ? ['meta[property="og:image"]', 'meta[name="twitter:image"]'].map(selector => {
+      const element = document.querySelector(selector);
+      return { selector, existed: Boolean(element), content: element?.getAttribute('content') ?? null };
+    }) : [];
     document.title = metaTitle;
     const setMeta = (selector, attr, key, content) => {
       let element = document.querySelector(selector);
@@ -39,6 +60,15 @@ export default function SEO({ title, description, image, canonical, noindex = fa
     setMeta('meta[name="twitter:title"]', 'name', 'twitter:title', metaTitle);
     setMeta('meta[name="twitter:description"]', 'name', 'twitter:description', metaDescription);
     setMeta('meta[name="twitter:image"]', 'name', 'twitter:image', metaImage);
-  }, [metaTitle, metaDescription, metaImage, currentUrl, noindex, type]);
+    return () => {
+      for (const snapshot of imageSnapshots) {
+        const element = document.querySelector(snapshot.selector);
+        if (element?.getAttribute('content') !== metaImage) continue;
+        if (!snapshot.existed) element.remove();
+        else if (snapshot.content === null) element.removeAttribute('content');
+        else element.setAttribute('content', snapshot.content);
+      }
+    };
+  }, [metaTitle, metaDescription, metaImage, currentUrl, noindex, type, image]);
   return null;
 }

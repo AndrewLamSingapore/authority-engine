@@ -20,7 +20,7 @@ export default function SkyTablet(){
      </div>
     </div>
     <div className="rounded-[2rem] border border-white/[0.09] bg-white/[0.025] p-7 sm:p-9">
-     <div className="text-[10px] font-bold tracking-[.18em] text-amber-300">WHAT IS INSPECTABLE</div>
+     <div className="text-sm font-bold tracking-[.18em] text-amber-300">WHAT IS INSPECTABLE</div>
      <div className="mt-7 space-y-6">
       <div className="flex gap-4"><Orbit className="w-6 h-6 shrink-0 text-emerald-300"/><div><h2 className="font-bold">A city you can explore</h2><p className="mt-1 text-sm text-slate-400">A guided camera journey and free exploration through an interpreted Mesopotamian setting.</p></div></div>
       <div className="flex gap-4"><Star className="w-6 h-6 shrink-0 text-emerald-300"/><div><h2 className="font-bold">The night sky</h2><p className="mt-1 text-sm text-slate-400">A naturalistic star field and an educational Three Paths reveal. The sky is artistic, not a dated astronomical reconstruction.</p></div></div>
@@ -32,7 +32,7 @@ export default function SkyTablet(){
     <div className="eyebrow">A conversation beyond the screen</div><h2 className="mt-3 text-3xl font-black">What would you like to bring to life?</h2><p className="mt-4 max-w-2xl text-slate-300 leading-relaxed">A research question, a learning experience or an idea for a useful tool. Tell me what caught your interest and what you have in mind.</p><Link to="/contact?source=sky-tablet&intent=collaboration" className="premium-button mt-6 inline-flex rounded-full px-6 py-3 font-semibold">Discuss an idea with Andrew ↗</Link>
    </section>
    <section className="mt-16 rounded-[2rem] border border-emerald-300/15 bg-emerald-300/[0.035] p-7 sm:p-10">
-    <div className="text-[10px] font-bold tracking-[.18em] text-amber-300">EVIDENCE BOUNDARY</div>
+    <div className="text-sm font-bold tracking-[.18em] text-amber-300">EVIDENCE BOUNDARY</div>
     <h2 className="mt-3 text-2xl sm:text-3xl font-black">A working interface is not automatically a scholarly source.</h2>
     <p className="mt-4 max-w-4xl text-slate-400 leading-relaxed">The prototype is public and functional, so the software itself is E2 evidence. Historical mappings and astronomical simplifications remain educational until individually verified against credible editions and scholarship. The live experience keeps that limitation visible.</p>
    </section>

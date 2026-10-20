@@ -52,7 +52,7 @@ export default function Insights() {
         <div className="mt-16 grid lg:grid-cols-3 gap-4">
           {flagship.map((project) => (
             <Link key={project.title} to={project.to} className="system-card rounded-3xl p-7">
-              <div className="flex justify-between gap-4"><FlaskConical className="w-6 h-6 text-emerald-300 shrink-0" /><span className="text-[9px] leading-relaxed text-right font-bold tracking-[.12em] text-amber-300">{project.tag}</span></div>
+              <div className="flex justify-between gap-4"><FlaskConical className="w-6 h-6 text-emerald-300 shrink-0" /><span className="text-sm leading-relaxed text-right font-bold tracking-[.12em] text-amber-300">{project.tag}</span></div>
               <h2 className="mt-12 text-2xl font-black">{project.title}</h2>
               <p className="mt-3 min-h-[120px] text-slate-400 leading-relaxed">{project.text}</p>
               <div className="mt-6 text-sm font-bold text-emerald-300 inline-flex gap-2 items-center">Inspect evidence <ArrowRight className="w-4 h-4" /></div>
@@ -86,7 +86,7 @@ export default function Insights() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filtered.map((article) => (
                   <article key={article._id} className="system-card rounded-3xl p-7 flex flex-col">
-                    <div className="flex justify-between gap-3 text-[10px] tracking-wider uppercase"><span className="text-emerald-300">{article.category}</span><span className="text-slate-500 inline-flex items-center gap-1"><Clock className="w-3 h-3" />{article.readTime}</span></div>
+                    <div className="flex justify-between gap-3 text-sm tracking-wider uppercase"><span className="text-emerald-300">{article.category}</span><span className="text-slate-500 inline-flex items-center gap-1"><Clock className="w-3 h-3" />{article.readTime}</span></div>
                     <h3 className="mt-8 text-xl font-black"><Link to={`/insights/${encodeURIComponent(article.slug)}`} className="hover:text-emerald-300">{article.title}</Link></h3>
                     <p className="mt-3 text-sm leading-relaxed text-slate-400 flex-1">{article.excerpt}</p>
                     <Link to={`/insights/${encodeURIComponent(article.slug)}`} aria-label={`Read ${article.title}`} className="mt-7 text-sm font-bold text-amber-300 inline-flex gap-2 items-center">Read evidence <ArrowRight className="w-4 h-4" /></Link>

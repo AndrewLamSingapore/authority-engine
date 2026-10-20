@@ -38,7 +38,7 @@ export default function OrqeviaControl() {
     return () => controller.abort();
   }, []);
   return <>
-    <SEO title="ORQEVIA — See the reasoning. Find your next move." description="Explore Andrew Lam’s ORQEVIA: try an illustrative decision walkthrough, inspect the approach and discuss your own AI or operations use case." />
+    <SEO title="ORQEVIA — See the reasoning. Find your next move." description="Explore Andrew Lam’s ORQEVIA: try an illustrative decision walkthrough, inspect the approach and discuss your own AI or operations use case." image="https://authority-engine-app.vercel.app/brands/orqevia/generated-original.png" favicon="/brands/orqevia/generated-original.png" />
     <div className="orqevia-public overflow-hidden pb-20 sm:pb-0">
       <section className="orqevia-hero relative pt-28 sm:pt-36 pb-20">
         <div className="orqevia-grid absolute inset-0 pointer-events-none" aria-hidden="true" />
@@ -57,10 +57,10 @@ export default function OrqeviaControl() {
             <Link to="/orqevia/agents" className="mt-7 inline-flex items-center gap-2 text-sm text-emerald-300 font-semibold"><Network className="w-4 h-4" /> Explore the 21-role agent registry <ArrowUpRight className="w-4 h-4" /></Link>
           </div>
           <section id="try-orqevia" aria-label="Try an ORQEVIA decision walkthrough" className="scroll-mt-28 rounded-[2rem] border border-emerald-300/25 bg-[#081613]/95 p-5 sm:p-8 shadow-[0_35px_110px_#0008]">
-            <div className="flex justify-between gap-3 items-center"><span className="text-xs font-bold tracking-[.15em] text-emerald-300">QUESTION → EVIDENCE → NEXT STEP</span><BrainCircuit className="w-7 h-7 shrink-0 text-emerald-300" /></div>
-            <p className="mt-4 text-xs leading-relaxed text-slate-400">Illustrative walkthrough · Curated examples, not live AI output.</p>
+            <div className="flex justify-between gap-3 items-center"><span className="text-sm font-bold tracking-[.15em] text-emerald-300">QUESTION → EVIDENCE → NEXT STEP</span><BrainCircuit className="w-7 h-7 shrink-0 text-emerald-300" /></div>
+            <p className="mt-4 text-sm leading-relaxed text-slate-400">Illustrative walkthrough · Curated examples, not live AI output.</p>
             <div className="flex flex-wrap gap-2 mt-6" role="group" aria-label="Choose a decision example">
-              {scenarios.map(item => <button type="button" key={item.id} aria-pressed={selected === item.id} onClick={() => { setSelected(item.id); setShowReasoning(false); }} className={`rounded-full border px-3 py-2.5 text-xs font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 ${selected === item.id ? 'bg-emerald-200 text-[#07110f] border-emerald-200' : 'border-white/15 text-slate-300 hover:border-emerald-300/60'}`}>{item.label}</button>)}
+              {scenarios.map(item => <button type="button" key={item.id} aria-pressed={selected === item.id} onClick={() => { setSelected(item.id); setShowReasoning(false); }} className={`rounded-full border px-3 py-2.5 text-sm font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300 ${selected === item.id ? 'bg-emerald-200 text-[#07110f] border-emerald-200' : 'border-white/15 text-slate-300 hover:border-emerald-300/60'}`}>{item.label}</button>)}
             </div>
             <div className="mt-7" aria-live="polite" aria-atomic="true">
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">{scenario.question}</h2>
@@ -68,7 +68,7 @@ export default function OrqeviaControl() {
             </div>
             <button type="button" aria-expanded={showReasoning} aria-controls="decision-reasoning" onClick={() => setShowReasoning(!showReasoning)} className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-emerald-300 py-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300">{showReasoning ? 'Hide the reasoning' : 'See how to approach it'} <ArrowRight className={`w-4 h-4 transition-transform ${showReasoning ? 'rotate-90' : ''}`} /></button>
             <div id="decision-reasoning" hidden={!showReasoning} className="mt-3 space-y-4 border-t border-white/10 pt-5">
-              {[["01 · Check the evidence", scenario.evidence], ["02 · Name what is missing", scenario.gap], ["03 · Define a next step", scenario.next]].map(([label, text]) => <div key={label}><h3 className="text-xs uppercase tracking-wide font-bold text-emerald-200">{label}</h3><p className="mt-2 text-sm leading-relaxed text-slate-300">{text}</p></div>)}
+              {[["01 · Check the evidence", scenario.evidence], ["02 · Name what is missing", scenario.gap], ["03 · Define a next step", scenario.next]].map(([label, text]) => <div key={label}><h3 className="text-sm uppercase tracking-wide font-bold text-emerald-200">{label}</h3><p className="mt-2 text-sm leading-relaxed text-slate-300">{text}</p></div>)}
               <Link to={CONTACT_URL} state={{ inquiryType: 'ORQEVIA / Governed AI Conversation', message: scenario.message }} className="inline-flex gap-2 items-center rounded-xl bg-emerald-200 px-4 py-3 text-sm font-bold text-[#07110f]">Explore a challenge like this with Andrew <ArrowUpRight className="w-4 h-4" /></Link>
             </div>
           </section>
@@ -104,7 +104,7 @@ export default function OrqeviaControl() {
           <div className="eyebrow">Inspect the evidence</div><h2 className="mt-4 text-3xl font-bold tracking-tight text-white">Ambition, source and runtime are different things.</h2>
           <p className="mt-4 max-w-3xl leading-relaxed text-slate-400">ABEX hosts the commissioned ORQEVIA runtime. Dell and enrolled mobile PWAs are authenticated clients. The 21 registered roles describe governed responsibilities, not 21 simultaneous workers.</p>
           <div className="mt-6 flex flex-wrap gap-3 text-sm"><span className="rounded-full border border-emerald-300/20 px-4 py-2 text-emerald-200">Public walkthrough available</span><span className="rounded-full border border-emerald-300/20 px-4 py-2 text-emerald-200">Private ABEX workspace available</span></div>
-          <p className="mt-5 text-xs leading-relaxed text-slate-500">This public page reads no private memory, accepts no credentials and provides no public execution or physical control. The workspace link opens ORQEVIA’s separate LAN-only HTTPS origin, where ORQEVIA independently resolves the device session and role. Public-service availability: Authority {systemSignal?.self?.state || 'unavailable'} · Portal {systemSignal?.portal?.state || 'unavailable'}.</p>
+          <p className="mt-5 text-sm leading-relaxed text-slate-500">This public page reads no private memory, accepts no credentials and provides no public execution or physical control. The workspace link opens ORQEVIA’s separate LAN-only HTTPS origin, where ORQEVIA independently resolves the device session and role. Public-service availability: Authority {systemSignal?.self?.state || 'unavailable'} · Portal {systemSignal?.portal?.state || 'unavailable'}.</p>
           <a href={CANONICAL_URL} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-emerald-300">Read the source record used here <ArrowUpRight className="w-4 h-4" /></a>
         </div>
       </section>
@@ -115,7 +115,7 @@ export default function OrqeviaControl() {
           <div className="mt-8 flex flex-wrap justify-center gap-3"><Link to={CONTACT_URL} className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-bold">Talk with Andrew <ArrowRight className="w-4 h-4" /></Link><a href="https://www.linkedin.com/in/lam-teck-sing-andrew-79886719" target="_blank" rel="noopener noreferrer" className="ghost-button inline-flex items-center px-6 py-3.5 rounded-full font-bold">Connect on LinkedIn</a></div>
         </div>
       </section>
-      <aside aria-label="Discuss ORQEVIA with Andrew" className="sm:hidden fixed bottom-0 inset-x-0 z-40 border-t border-emerald-300/20 bg-[#07110f]/95 backdrop-blur-xl px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))] flex items-center justify-between gap-3"><span className="text-xs text-slate-300">A question worth exploring?</span><Link to={CONTACT_URL} className="rounded-full bg-emerald-200 text-[#07110f] text-sm font-bold px-4 py-3">Talk with Andrew ↗</Link></aside>
+      <aside aria-label="Discuss ORQEVIA with Andrew" className="sm:hidden fixed bottom-0 inset-x-0 z-40 border-t border-emerald-300/20 bg-[#07110f]/95 backdrop-blur-xl px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))] flex items-center justify-between gap-3"><span className="text-sm text-slate-300">A question worth exploring?</span><Link to={CONTACT_URL} className="rounded-full bg-emerald-200 text-[#07110f] text-sm font-bold px-4 py-3">Talk with Andrew ↗</Link></aside>
     </div>
   </>;
 }
