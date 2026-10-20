@@ -839,3 +839,6 @@ body[data-shell='v2'] {
 .v2-root button,.v2-root .v2-btn{min-height:44px}
 .v2-row>*,.v2-hero-inner>*{min-width:0}
 .v2-root p,.v2-root a{overflow-wrap:break-word}
+
+/* The dark hero uses its own contrast palette in both light and dark themes. */
+.v2-hero .v2-note,.v2-hero .v2-note .v2-link{color:var(--bk-ink2)}
