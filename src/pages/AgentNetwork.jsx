@@ -67,15 +67,16 @@ export default function AgentNetwork() {
     return registry.agents.map((agent) => ({ source: agent.reports_to, target: agent.id, type: 'reports_to' }));
   }, [registry]);
 
+  const metadata = <SEO title="ORQEVIA — Agent Roles and Reported Evidence" description="Inspect the 21-role ORQEVIA registry and clearly scoped reported evidence. Current ABEX runtime acceptance remains unverified." image="https://authority-engine-app.vercel.app/brands/orqevia/generated-original.png" favicon="/brands/orqevia/generated-original.png" />;
   if (error) {
-    return <Shell><h1 className="text-4xl font-black">Agent registry unavailable</h1><p className="text-slate-400 mt-4">{error}</p></Shell>;
+    return <>{metadata}<Shell><h1 className="text-4xl font-black">Agent registry unavailable</h1><p className="text-slate-400 mt-4">{error}</p></Shell></>;
   }
   if (!registry) {
-    return <div className="min-h-[70vh] flex items-center justify-center text-slate-500 uppercase tracking-[.25em] text-xs">Loading canonical registry…</div>;
+    return <>{metadata}<div className="min-h-[70vh] flex items-center justify-center text-slate-500 uppercase tracking-[.25em] text-sm">Loading canonical registry…</div></>;
   }
 
   return <>
-    <SEO title="ORQEVIA — Agent Roles and Reported Evidence" description="Inspect the 21-role ORQEVIA registry and clearly scoped reported evidence. Current ABEX runtime acceptance remains unverified." />
+    {metadata}
     <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
       <div className="eyebrow">ORQEVIA / AGENT REGISTRY</div>
       <div className="mt-5 grid lg:grid-cols-[1fr_auto] gap-8 items-end">
@@ -84,7 +85,7 @@ export default function AgentNetwork() {
           <p className="mt-5 text-slate-400 max-w-3xl text-lg">Registered roles are not simultaneous inference jobs. Execution View shows sanitized relay reports. Their presence does not verify the current ABEX runtime.</p>
         </div>
         <div className="border border-emerald-500/20 bg-emerald-500/5 rounded-2xl p-4 text-sm">
-          <div className="text-slate-500 uppercase tracking-widest text-[10px]">Canonical registry</div>
+          <div className="text-slate-500 uppercase tracking-widest text-sm">Canonical registry</div>
           <div className="font-bold mt-1">Schema v{registry.schema_version}</div>
           <div className="text-slate-400 mt-1">Updated {new Date(registry.last_updated).toLocaleString()}</div>
         </div>
@@ -97,7 +98,7 @@ export default function AgentNetwork() {
       {mode === 'Network' && <Network registry={registry} relationships={relationships} setSelected={setSelected} />}
       {mode === 'Execution' && <Execution trace={trace} />}
       <div className="mt-10 border border-white/10 rounded-3xl p-6">
-        <div className="text-[10px] tracking-[.2em] uppercase text-slate-500">Disclosure boundary</div>
+        <div className="text-sm tracking-[.2em] uppercase text-slate-500">Disclosure boundary</div>
         <h3 className="font-black text-xl mt-3">Public projection only</h3>
         <p className="text-slate-400 mt-3 leading-relaxed">{registry.disclosure}</p>
         <p className="text-slate-500 text-sm mt-4">No prompts, answers, evaluator rationale, claim text, evidence text, credentials, private endpoints, filesystem paths or internal instructions are rendered. Missing proof is shown as missing; synthetic runtime activity is never substituted.</p>
@@ -118,7 +119,7 @@ function Hierarchy({ registry, divisions, division, setDivision, visible, select
       {divisions.map((item) => <button key={item} onClick={() => setDivision(item)} className={`px-4 py-2 rounded-full border text-sm transition ${division === item ? 'border-emerald-400 bg-emerald-400/10 text-emerald-300' : 'border-white/10 text-slate-400 hover:border-white/30'}`}>{item}</button>)}
     </div>
     <button onClick={() => setSelected(registry.orchestrator)} className="mt-10 w-full max-w-xl mx-auto block text-left border border-emerald-400/40 bg-emerald-400/[.06] rounded-3xl p-6 shadow-[0_0_50px_rgba(16,185,129,.08)]">
-      <div className="text-[10px] tracking-[.25em] text-emerald-400 uppercase">Orchestrator</div>
+      <div className="text-sm tracking-[.25em] text-emerald-400 uppercase">Orchestrator</div>
       <div className="text-2xl font-black mt-2">{registry.orchestrator.name}</div>
       <div className="text-slate-400 mt-1">{registry.orchestrator.role}</div>
     </button>
@@ -132,10 +133,10 @@ function Hierarchy({ registry, divisions, division, setDivision, visible, select
       </div>)}
     </div>
     <div className="mt-10 border border-white/10 rounded-3xl p-6 bg-white/[.02]">
-      <div className="text-[10px] tracking-[.2em] uppercase text-slate-500">Selected node</div>
+      <div className="text-sm tracking-[.2em] uppercase text-slate-500">Selected node</div>
       <div className="flex items-start justify-between gap-4 mt-3">
         <div><h2 className="text-3xl font-black">{details.name}</h2><p className="text-emerald-400 mt-1">{details.role}</p></div>
-        {details.id && <span className="font-mono text-xs text-slate-500">{details.id}</span>}
+        {details.id && <span className="font-mono text-sm text-slate-500">{details.id}</span>}
       </div>
       <p className="text-slate-300 mt-5 leading-relaxed">{details.public_description}</p>
       {details.division && <div className="grid sm:grid-cols-3 gap-3 mt-6 text-sm"><Info label="Division" value={details.division} /><Info label="Authority" value={details.authority} /><Info label="State" value={details.status} /></div>}
@@ -145,8 +146,8 @@ function Hierarchy({ registry, divisions, division, setDivision, visible, select
 
 function Node({ agent, onClick }) {
   return <button onClick={onClick} className="w-full text-left rounded-xl border border-white/[.07] p-3 hover:border-emerald-400/30 transition">
-    <div className="flex justify-between gap-3"><span className="font-semibold">{agent.name}</span><span className="text-[10px] text-slate-600">{agent.id}</span></div>
-    <div className="text-xs text-slate-500 mt-1">{agent.role}</div>
+    <div className="flex justify-between gap-3"><span className="font-semibold">{agent.name}</span><span className="text-sm text-slate-600">{agent.id}</span></div>
+    <div className="text-sm text-slate-500 mt-1">{agent.role}</div>
   </button>;
 }
 
@@ -157,7 +158,7 @@ function Network({ registry, relationships, setSelected }) {
   const consult = relationships.filter((edge) => edge.type === 'may_consult');
   return <div className="mt-10 grid lg:grid-cols-[.8fr_1.2fr] gap-6">
     <div className="border border-emerald-500/20 bg-emerald-500/[.04] rounded-3xl p-6">
-      <div className="text-[10px] tracking-[.2em] uppercase text-emerald-400">Enforced relationship policy</div>
+      <div className="text-sm tracking-[.2em] uppercase text-emerald-400">Enforced relationship policy</div>
       <h2 className="text-2xl font-black mt-3">Bounded hand-offs, not a free mesh.</h2>
       <p className="text-slate-400 mt-3">ORQEVIA delegates to registered leads; leads delegate only to direct children. Agents may consult their own lead; leads may consult peer leads. Consequential external action still requires owner approval.</p>
       <div className="grid grid-cols-2 gap-3 mt-6"><Info label="Delegation edges" value={String(delegation.length)} /><Info label="Consult edges" value={String(consult.length)} /></div>
@@ -165,7 +166,7 @@ function Network({ registry, relationships, setSelected }) {
     <div className="border border-white/10 rounded-3xl p-5 max-h-[620px] overflow-auto">
       <div className="grid gap-2">
         {relationships.filter((edge) => edge.type !== 'reports_to').map((edge, index) => <button key={`${edge.type}-${edge.source}-${edge.target}-${index}`} onClick={() => setSelected(registry.agents.find((agent) => agent.id === edge.target) || registry.orchestrator)} className="text-left border border-white/[.07] rounded-xl p-3 hover:border-emerald-400/30 transition">
-          <span className="text-[10px] uppercase tracking-widest text-slate-500">{String(edge.type).replaceAll('_', ' ')}</span>
+          <span className="text-sm uppercase tracking-widest text-slate-500">{String(edge.type).replaceAll('_', ' ')}</span>
           <div className="mt-1 text-sm"><strong>{names[edge.source] || edge.source}</strong><span className="text-slate-600 mx-2">→</span>{names[edge.target] || edge.target}</div>
         </button>)}
       </div>
@@ -193,17 +194,17 @@ function Execution({ trace }) {
     <div className="border border-white/10 rounded-3xl p-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <div className="text-[10px] uppercase tracking-[.2em] text-slate-500">Reported relay metadata</div>
+          <div className="text-sm uppercase tracking-[.2em] text-slate-500">Reported relay metadata</div>
           <h2 className="text-2xl font-black mt-2">Current ABEX execution remains unverified</h2>
-          {trace.source_generated_at && <div className="text-xs text-slate-500 mt-2">Relay observation {new Date(trace.source_generated_at).toLocaleString()}</div>}
+          {trace.source_generated_at && <div className="text-sm text-slate-500 mt-2">Relay observation {new Date(trace.source_generated_at).toLocaleString()}</div>}
         </div>
-        <span className={`text-xs px-3 py-1.5 rounded-full border ${healthy ? 'border-emerald-500/30 text-emerald-300' : 'border-white/10 text-slate-500'}`}>{trace.state}</span>
+        <span className={`text-sm px-3 py-1.5 rounded-full border ${healthy ? 'border-emerald-500/30 text-emerald-300' : 'border-white/10 text-slate-500'}`}>{trace.state}</span>
       </div>
       {groups.length ? <div className="mt-6 grid lg:grid-cols-[.38fr_.62fr] gap-5">
         <div className="space-y-2">
           {groups.map((group) => <button key={group.trace_id} onClick={() => setSelectedId(group.trace_id)} className={`w-full text-left rounded-xl border p-3 ${selected?.trace_id === group.trace_id ? 'border-emerald-400/40 bg-emerald-400/[.05]' : 'border-white/[.07]'}`}>
-            <div className="font-mono text-xs truncate">{group.trace_id}</div>
-            <div className="text-xs text-slate-500 mt-1">{group.events.length} sanitized event{group.events.length === 1 ? '' : 's'} · {group.decision || 'in progress'}</div>
+            <div className="font-mono text-sm truncate">{group.trace_id}</div>
+            <div className="text-sm text-slate-500 mt-1">{group.events.length} sanitized event{group.events.length === 1 ? '' : 's'} · {group.decision || 'in progress'}</div>
           </button>)}
         </div>
         {selected && <TraceProof group={selected} />}
@@ -229,13 +230,13 @@ function groupTraces(events) {
 function TraceProof({ group }) {
   const path = [...new Set(group.events.map((event) => event.agent_id))];
   return <div className="rounded-2xl border border-emerald-500/20 bg-black/20 p-5">
-    <div className="text-[10px] uppercase tracking-[.2em] text-emerald-400">Reported execution · not current runtime acceptance</div>
+    <div className="text-sm uppercase tracking-[.2em] text-emerald-400">Reported execution · not current runtime acceptance</div>
     <div className="font-mono text-sm mt-2 break-all">{group.trace_id}</div>
     <div className="mt-5">
-      <div className="text-[10px] uppercase tracking-widest text-slate-600">Reported event path</div>
+      <div className="text-sm uppercase tracking-widest text-slate-600">Reported event path</div>
       <div className="flex flex-wrap items-center gap-2 mt-2">
-        {path.map((id, index) => <React.Fragment key={id}><span className="px-3 py-1.5 rounded-full border border-emerald-500/25 text-emerald-300 text-xs">{id}</span>{index < path.length - 1 && <span className="text-slate-600">→</span>}</React.Fragment>)}
-        {group.gate && <><span className="text-slate-600">→</span><span className="px-3 py-1.5 rounded-full border border-amber-500/25 text-amber-300 text-xs">Historical evaluation</span><span className="text-slate-600">→</span><span className="px-3 py-1.5 rounded-full border border-white/10 text-slate-300 text-xs">Authority Engine</span></>}
+        {path.map((id, index) => <React.Fragment key={id}><span className="px-3 py-1.5 rounded-full border border-emerald-500/25 text-emerald-300 text-sm">{id}</span>{index < path.length - 1 && <span className="text-slate-600">→</span>}</React.Fragment>)}
+        {group.gate && <><span className="text-slate-600">→</span><span className="px-3 py-1.5 rounded-full border border-amber-500/25 text-amber-300 text-sm">Historical evaluation</span><span className="text-slate-600">→</span><span className="px-3 py-1.5 rounded-full border border-white/10 text-slate-300 text-sm">Authority Engine</span></>}
       </div>
     </div>
     {group.proof && <div className="grid sm:grid-cols-3 gap-2 mt-5">
@@ -245,12 +246,12 @@ function TraceProof({ group }) {
     </div>}
     <div className="mt-5 space-y-2">
       {group.events.map((event, index) => <div key={`${event.sequence ?? index}-${event.stage}`} className="rounded-xl border border-white/[.06] p-3">
-        <div className="flex justify-between gap-3 text-xs"><span><strong>{event.agent_id}</strong> · {event.stage}</span><span className="text-slate-500">{event.status}</span></div>
-        <div className="text-[10px] text-slate-600 mt-1">{new Date(event.timestamp).toLocaleString()}</div>
+        <div className="flex justify-between gap-3 text-sm"><span><strong>{event.agent_id}</strong> · {event.stage}</span><span className="text-slate-500">{event.status}</span></div>
+        <div className="text-sm text-slate-600 mt-1">{new Date(event.timestamp).toLocaleString()}</div>
         {event.gate && <ReleaseGate gate={event.gate} />}
       </div>)}
     </div>
-    <p className="text-[11px] text-slate-600 mt-4">This card is assembled only from sanitized runtime events returned by the public trace boundary. Absence of a field is rendered as absence, never inferred.</p>
+    <p className="text-sm text-slate-600 mt-4">This card is assembled only from sanitized runtime events returned by the public trace boundary. Absence of a field is rendered as absence, never inferred.</p>
   </div>;
 }
 
@@ -259,16 +260,16 @@ function ReleaseGate({ gate }) {
   const blocked = gate.blocking_metrics || [];
   return <div className={`mt-4 rounded-xl border p-4 ${withheld ? 'border-amber-500/20 bg-amber-500/[.04]' : 'border-emerald-500/20 bg-emerald-500/[.04]'}`}>
     <div className="flex flex-wrap items-center justify-between gap-3">
-      <div><div className="text-[10px] uppercase tracking-[.2em] text-slate-500">Historical evaluation release gate</div><div className={`font-black mt-1 ${withheld ? 'text-amber-300' : 'text-emerald-300'}`}>{withheld ? 'Withheld' : 'Released'} · {Math.round((gate.score || 0) * 100)}%</div></div>
-      <span className="text-[10px] uppercase tracking-widest text-slate-500">Evaluator v{gate.evaluation_version || 'unknown'} · {gate.evaluator_valid ? 'valid' : 'invalid'}</span>
+      <div><div className="text-sm uppercase tracking-[.2em] text-slate-500">Historical evaluation release gate</div><div className={`font-black mt-1 ${withheld ? 'text-amber-300' : 'text-emerald-300'}`}>{withheld ? 'Withheld' : 'Released'} · {Math.round((gate.score || 0) * 100)}%</div></div>
+      <span className="text-sm uppercase tracking-widest text-slate-500">Evaluator v{gate.evaluation_version || 'unknown'} · {gate.evaluator_valid ? 'valid' : 'invalid'}</span>
     </div>
-    {blocked.length > 0 && <div className="mt-3"><div className="text-[10px] uppercase tracking-widest text-slate-600">Blocking checks</div><div className="mt-2 flex flex-wrap gap-2">{blocked.map((item) => <span key={item} className="text-xs px-2.5 py-1 rounded-full border border-amber-500/20 text-amber-200">{prettyMetric(item)}</span>)}</div></div>}
+    {blocked.length > 0 && <div className="mt-3"><div className="text-sm uppercase tracking-widest text-slate-600">Blocking checks</div><div className="mt-2 flex flex-wrap gap-2">{blocked.map((item) => <span key={item} className="text-sm px-2.5 py-1 rounded-full border border-amber-500/20 text-amber-200">{prettyMetric(item)}</span>)}</div></div>}
     <div className="grid grid-cols-3 gap-2 mt-4 text-center"><GateCount label="Evidence gaps" value={gate.evidence_gap_count} /><GateCount label="Unsupported" value={gate.unsupported_claim_count} /><GateCount label="Contradictions" value={gate.contradiction_count} /></div>
-    <p className="text-[11px] text-slate-600 mt-3">Only aggregate gate classifications are public. Evaluator rationale, evidence text, claims, prompts and model output remain private.</p>
+    <p className="text-sm text-slate-600 mt-3">Only aggregate gate classifications are public. Evaluator rationale, evidence text, claims, prompts and model output remain private.</p>
   </div>;
 }
 
 function prettyMetric(value) { return String(value || '').replaceAll('_', ' ').replace(/\b\w/g, (character) => character.toUpperCase()); }
-function GateCount({ label, value }) { return <div className="rounded-lg border border-white/[.06] bg-black/10 px-2 py-2"><div className="text-lg font-black">{value ?? '—'}</div><div className="text-[9px] uppercase tracking-wider text-slate-600">{label}</div></div>; }
-function Metric({ label, value }) { return <div className="border border-white/10 bg-white/[.025] rounded-2xl p-4"><div className="text-[10px] uppercase tracking-widest text-slate-600">{label}</div><div className="text-2xl font-black mt-2">{value}</div></div>; }
-function Info({ label, value }) { return <div className="rounded-xl bg-black/20 border border-white/[.06] p-3"><div className="text-[10px] uppercase tracking-widest text-slate-600">{label}</div><div className="mt-1 capitalize">{value}</div></div>; }
+function GateCount({ label, value }) { return <div className="rounded-lg border border-white/[.06] bg-black/10 px-2 py-2"><div className="text-lg font-black">{value ?? '—'}</div><div className="text-sm uppercase tracking-wider text-slate-600">{label}</div></div>; }
+function Metric({ label, value }) { return <div className="border border-white/10 bg-white/[.025] rounded-2xl p-4"><div className="text-sm uppercase tracking-widest text-slate-600">{label}</div><div className="text-2xl font-black mt-2">{value}</div></div>; }
+function Info({ label, value }) { return <div className="rounded-xl bg-black/20 border border-white/[.06] p-3"><div className="text-sm uppercase tracking-widest text-slate-600">{label}</div><div className="mt-1 capitalize">{value}</div></div>; }

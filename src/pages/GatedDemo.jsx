@@ -36,7 +36,7 @@ export default function GatedDemo() {
         {/* Header */}
         <div className="border-b border-slate-800 pb-6 flex items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-semibold uppercase tracking-wider mb-3">
               Prototype 2 of 2
             </div>
             <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
@@ -48,7 +48,7 @@ export default function GatedDemo() {
           </div>
           <button 
             onClick={() => setIsFormLocked(true)} 
-            className="text-emerald-400 hover:text-emerald-300 text-xs flex items-center gap-1.5 whitespace-nowrap bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg"
+            className="text-emerald-400 hover:text-emerald-300 text-sm flex items-center gap-1.5 whitespace-nowrap bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg"
           >
             Reset Demo
           </button>
@@ -61,30 +61,30 @@ export default function GatedDemo() {
           <div className="md:col-span-1 space-y-6">
             <div className="p-6 rounded-xl bg-slate-900 border border-slate-800">
               <h3 className="text-lg font-semibold text-white mb-2">Recruiter Access Request</h3>
-              <p className="text-slate-400 text-xs leading-relaxed mb-6">
+              <p className="text-slate-400 text-sm leading-relaxed mb-6">
                 To view technical architecture models and unredacted operational data, hiring managers and partners must submit professional contact information.
               </p>
 
               {isFormLocked ? (
                 <form onSubmit={handleSubmitLead} className="space-y-5">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-medium text-slate-300">Full Name</label>
+                    <label className="text-sm font-medium text-slate-300">Full Name</label>
                     <input type="text" name="name" placeholder="E.g., John Smith" value={formData.name} onChange={handleInputChange} required className="w-full px-3.5 py-2.5 bg-slate-800 rounded-lg border border-slate-700 text-sm text-white placeholder-slate-600 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition"/>
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-xs font-medium text-slate-300">Professional Email Address</label>
+                    <label className="text-sm font-medium text-slate-300">Professional Email Address</label>
                     <input type="email" name="email" placeholder="john.smith@company.com" value={formData.email} onChange={handleInputChange} required className="w-full px-3.5 py-2.5 bg-slate-800 rounded-lg border border-slate-700 text-sm text-white placeholder-slate-600 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition"/>
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-xs font-medium text-slate-300">Company / Recruiting Firm</label>
+                    <label className="text-sm font-medium text-slate-300">Company / Recruiting Firm</label>
                     <input type="text" name="company" placeholder="E.g., Global Logistics Partners" value={formData.company} onChange={handleInputChange} required className="w-full px-3.5 py-2.5 bg-slate-800 rounded-lg border border-slate-700 text-sm text-white placeholder-slate-600 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition"/>
                   </div>
-                  {showError && <p className="text-rose-400 text-xs">Please complete all fields to proceed.</p>}
+                  {showError && <p className="text-rose-400 text-sm">Please complete all fields to proceed.</p>}
                   
                   <button type="submit" className="w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-3 rounded-lg transition duration-200">
                     Submit Access Request & View Content
                   </button>
-                  <p className="text-[11px] text-slate-600 text-center px-4">
+                  <p className="text-sm text-slate-600 text-center px-4">
                     Data handling protocol: Information collected here will simulate triggering automated CRM / Lead notifications.
                   </p>
                 </form>
@@ -95,7 +95,7 @@ export default function GatedDemo() {
                   <p className="text-sm text-emerald-400/90 leading-relaxed px-1">
                     Contact data validated for <strong>{formData.name || 'John Smith'}</strong> ({formData.email || 'john@company.com'}) at <strong>{formData.company || 'Logistics Co'}</strong>.
                   </p>
-                  <p className="text-xs text-slate-500 pt-2 border-t border-emerald-800">
+                  <p className="text-sm text-slate-500 pt-2 border-t border-emerald-800">
                     In production, this triggers automated SendGrid & CRM notifications directly to your email.
                   </p>
                 </div>
@@ -111,19 +111,19 @@ export default function GatedDemo() {
               
               <div className={isFormLocked ? 'opacity-20 blur-sm pointer-events-none' : ''}>
                 <div className="flex items-center gap-3 mb-5 border-b border-slate-800 pb-4">
-                  <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded">Locked Operational Excellence Assets</span>
+                  <span className="text-sm font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded">Locked Operational Excellence Assets</span>
                   <span className="text-sm text-slate-300 font-semibold">{technicalArchitectureData.model}</span>
                 </div>
                 
-                <h4 className="text-xs uppercase tracking-wider text-slate-400 font-medium mb-3">Unredacted Data Points & Specifications</h4>
+                <h4 className="text-sm uppercase tracking-wider text-slate-400 font-medium mb-3">Unredacted Data Points & Specifications</h4>
                 <div className="space-y-3">
                   {technicalArchitectureData.sensitiveDataPoints.map((item, index) => (
                     <div key={index} className="p-4 rounded-lg bg-slate-800 border border-slate-700/50 space-y-1">
                       <div className="flex items-center justify-between gap-4">
                         <span className="text-sm font-semibold text-white">{item.key}</span>
-                        {item.baseline && <span className="text-xs text-slate-400 font-mono">Baseline: {item.baseline}</span>}
+                        {item.baseline && <span className="text-sm text-slate-400 font-mono">Baseline: {item.baseline}</span>}
                       </div>
-                      <div className="flex items-center justify-between text-xs pt-1 border-t border-slate-700">
+                      <div className="flex items-center justify-between text-sm pt-1 border-t border-slate-700">
                         <span className="font-mono text-emerald-400 bg-emerald-500/5 px-2 py-0.5 rounded">{item.raw || item.equation}</span>
                         <span className="text-slate-500 italic">{item.justification}</span>
                       </div>
@@ -131,7 +131,7 @@ export default function GatedDemo() {
                   ))}
                 </div>
                 
-                <div className="mt-6 pt-5 border-t border-slate-800 text-xs text-slate-500 font-mono leading-relaxed">
+                <div className="mt-6 pt-5 border-t border-slate-800 text-sm text-slate-500 font-mono leading-relaxed">
                   [Technical Stack Overview]: {technicalArchitectureData.infrastructure}
                 </div>
               </div>
@@ -153,7 +153,7 @@ export default function GatedDemo() {
         </div>
 
         {/* Value Proposition Box */}
-        <div className="p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 text-xs text-slate-400 space-y-2">
+        <div className="p-5 rounded-xl bg-slate-900/60 border border-slate-800/80 text-sm text-slate-400 space-y-2">
           <div className="font-semibold text-slate-300 uppercase tracking-wider mb-1">
             Lead Capture System Proposition (Phase 2 Development)
           </div>

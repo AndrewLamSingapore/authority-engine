@@ -106,7 +106,7 @@ function ContactForm({ context }) {
               </div>
             ) : (
               <form onSubmit={handleSubmit} aria-busy={isSubmitting} className="space-y-6">
-                <div><div className="text-xs uppercase tracking-[.18em] text-slate-500">{context.source} · Direct inquiry</div><h2 className="mt-2 text-3xl font-black text-white">What would you like to discuss?</h2><p className="mt-2 text-sm leading-relaxed text-slate-500">Just your name, email and a few lines. Your topic is already selected; you can change it below.</p></div>
+                <div><div className="text-sm uppercase tracking-[.18em] text-slate-500">{context.source} · Direct inquiry</div><h2 className="mt-2 text-3xl font-black text-white">What would you like to discuss?</h2><p className="mt-2 text-sm leading-relaxed text-slate-500">Just your name, email and a few lines. Your topic is already selected; you can change it below.</p></div>
                 <div><label htmlFor="name" className="block text-sm font-semibold uppercase tracking-wider text-slate-400 mb-2">Full name *</label><input type="text" id="name" name="name" autoComplete="name" required value={formData.name} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60" placeholder="Your name"/></div>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div><label htmlFor="email" className="block text-sm font-semibold uppercase tracking-wider text-slate-400 mb-2">Email *</label><input type="email" id="email" name="email" autoComplete="email" required value={formData.email} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60" placeholder="name@company.com"/></div>
@@ -116,7 +116,7 @@ function ContactForm({ context }) {
                 <div><label htmlFor="message" className="block text-sm font-semibold uppercase tracking-wider text-slate-400 mb-2">Message *</label><textarea id="message" name="message" required rows="5" maxLength="4000" value={formData.message} onChange={handleChange} className="w-full bg-[#080F0E] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-emerald-400/60 resize-y" placeholder="The situation, challenge, opportunity or decision you are working through..."/></div>
                 {error && <div role="alert" className="text-rose-300 text-sm bg-rose-950/30 p-4 rounded-xl border border-rose-900/60">{error}</div>}
                 <button type="submit" disabled={isSubmitting} className="premium-button w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 disabled:opacity-50">{isSubmitting ? <><Loader2 className="w-5 h-5 animate-spin"/> Sending…</> : <><Send className="w-4 h-4"/> Start the conversation</>}</button>
-                <p className="text-center text-xs text-slate-600">This form uses Formspree to deliver your enquiry. Your details are used to respond and continue this conversation; this does not subscribe you to marketing.</p>
+                <p className="text-center text-sm text-slate-600">This form uses Formspree to deliver your enquiry. Your details are used to respond and continue this conversation; this does not subscribe you to marketing.</p>
               </form>
             )}
           </div>

@@ -1,0 +1,27 @@
+{
+  "schema": "authority.orqevia-official-logo-provenance.v1",
+  "product": "ORQEVIA · 奥启维亚",
+  "asset": "/brands/orqevia/generated-original.png",
+  "sha256": "b3bdd53cc38b24c8be2896f1174b4d5f083be20f94f2042770224c72e2501844",
+  "bytes": 1531581,
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "transformation": "NONE_EXACT_ORIGINAL_BINARY",
+  "source": {
+    "repository": "AndrewLamSingapore/orqevia",
+    "revision": "f03ce95d1752f316bca92257b0f7349a48863472",
+    "branch": "brand-master-register-2026-10-10",
+    "path": "assets/brands/orqevia/generated-original.png",
+    "url": "https://github.com/AndrewLamSingapore/orqevia/blob/f03ce95d1752f316bca92257b0f7349a48863472/assets/brands/orqevia/generated-original.png"
+  },
+  "approval": {
+    "register_url": "https://github.com/AndrewLamSingapore/orqevia/blob/f03ce95d1752f316bca92257b0f7349a48863472/governance/BRAND_MASTER_REGISTER.md",
+    "register_approval_revision": "f70f85ea547f1b2fa8f62e0d741344d4435df048",
+    "original_upload_revision": "f03ce95d1752f316bca92257b0f7349a48863472",
+    "upload_commit_subject": "chore(brand): add approved ORQEVIA logo binary",
+    "note": "The earlier register upload-status sentence is superseded by the original binary upload; no vector master is asserted."
+  },
+  "scope": "ORQ-facing public landing/agent header only; other product logos remain independently owned."
+}
