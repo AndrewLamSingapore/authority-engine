@@ -230,3 +230,13 @@ test('every existing public route still resolves in the redesigned app', () => {
   }
   assert.match(app, /<Route\s+index/);
 });
+
+test('SVG container link names begin with their visible title and detail for speech input', () => {
+  const normalize = value => value.toLocaleLowerCase('en').replace(/\s+/g, ' ').trim();
+  for (const container of yardContainers) {
+    assert.ok(
+      normalize(container.ariaLabel).startsWith(normalize(`${container.title} ${container.detail}`)),
+      `${container.id} includes the complete visible link label in reading order`,
+    );
+  }
+});
