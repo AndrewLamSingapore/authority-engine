@@ -62,3 +62,76 @@ test('private provenance identifiers are scrubbed at ingestion and draft creatio
   assert.match(draft.content, /REDACTED_EMAIL/);
   assert.match(draft.content, /REDACTED_IDENTIFIER/);
 });
+
+
+const credentialTextFixtures = [
+  ['authorization header', 'Authorization: Bearer fixture_credential_marker'],
+  ['nested bearer', 'See diagnostic: bearer fixture_credential_marker'],
+  ['JSON credential', '{"api_key":"fixture_credential_marker"}'],
+  ['query credential', 'https://evidence.example.test/run?token=fixture_credential_marker'],
+  ['URL user info', 'https://fixture-user:fixture_credential_marker@evidence.example.test/run'],
+];
+
+for (const [label, text] of credentialTextFixtures) {
+  test(`credential-bearing payload text is rejected: ${label}`, () => {
+    const unsafe = event();
+    unsafe.payload.details = { notes: ['ordinary context', text] };
+    const assessment = assessPortfolioEvent(unsafe);
+    assert.equal(assessment.accepted, false);
+    assert.equal(assessment.status, 'rejected');
+    assert.ok(assessment.reasons.includes('credential_material_prohibited'));
+    assert.deepEqual(assessment.rejected_paths, ['/payload/details/notes/1']);
+    assert.equal(JSON.stringify(assessment).includes('fixture_credential_marker'), false);
+    const legacyCandidate = {
+      _id: candidateId(unsafe.event_id), _type: 'portfolioEvidenceCandidate',
+      status: 'approved_for_draft', eventJson: JSON.stringify(unsafe),
+    };
+    assert.throws(() => draftFromCandidate(legacyCandidate), /privacy review/);
+  });
+}
+
+test('ordinary payload discussion about security concepts remains reviewable', () => {
+  const safe = event();
+  safe.payload.summary = 'Use a token budget; review password policies and credential handling.';
+  assert.equal(assessPortfolioEvent(safe).reviewable, true);
+});
+
+
+for (const key of ['accessToken', 'api-key', 'credentials', 'clientSecret', 'refresh_token', 'api%5Fkey', 'api-key ', ' accessToken ', 'credentials.']) {
+  test(`credential key spelling is rejected before storage or draft: ${key}`, () => {
+    const unsafe = event(); unsafe.payload.details = { [key]: 'fixture_credential_marker' };
+    const assessment = assessPortfolioEvent(unsafe);
+    assert.equal(assessment.accepted, false);
+    assert.equal(JSON.stringify(assessment).includes('fixture_credential_marker'), false);
+    assert.throws(() => draftFromCandidate({ _id: candidateId(unsafe.event_id), status: 'approved_for_draft', event: unsafe }), /privacy review/);
+  });
+}
+for (const text of [
+  'https://evidence.example.test/?api%5Fkey=fixture_credential_marker',
+  'https://evidence.example.test/?api%255Fkey=fixture_credential_marker',
+  'Malformed %ZZ followed by api%5Fkey=fixture_credential_marker',
+  'OPENAI_API_KEY=fixture_credential_marker',
+  'accessToken=fixture_credential_marker',
+]) {
+  test(`encoded or compound payload credential is rejected: ${text.split('=')[0]}`, () => {
+    const unsafe = event(); unsafe.payload.summary = text;
+    const assessment = assessPortfolioEvent(unsafe);
+    assert.equal(assessment.reviewable, false);
+    assert.equal(JSON.stringify(assessment).includes('fixture_credential_marker'), false);
+    assert.throws(() => draftFromCandidate({ _id: candidateId(unsafe.event_id), status: 'approved_for_draft', event: unsafe }), /privacy review/);
+  });
+}
+test('credential material in a property name is rejected without leaking through diagnostics', () => {
+  const unsafe = event(); unsafe.payload['token=fixture_credential_marker'] = 'metadata';
+  const assessment = assessPortfolioEvent(unsafe);
+  assert.equal(assessment.accepted, false);
+  assert.equal(JSON.stringify(assessment).includes('fixture_credential_marker'), false);
+});
+test('private identifiers in payload text and camel-case fields are redacted at both boundaries', () => {
+  const unsafe = event(); unsafe.payload.summary = 'account_id=fixture-private-marker'; unsafe.payload.customerId = 'fixture-private-marker';
+  const assessment = assessPortfolioEvent(unsafe);
+  assert.equal(assessment.reviewable, true);
+  assert.equal(JSON.stringify(assessment.event).includes('fixture-private-marker'), false);
+  const draft = draftFromCandidate({ _id: candidateId(unsafe.event_id), status: 'approved_for_draft', event: unsafe });
+  assert.equal(draft.content.includes('fixture-private-marker'), false);
+});
