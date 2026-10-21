@@ -226,7 +226,7 @@ export const yardContainers = [
     detail: '391 jobs, 7 periods',
     href: '/evidence?grade=real',
     ariaLabel:
-      'Container operations. Real operating evidence: 391 anonymised container jobs across 7 reporting periods.',
+      'Container operations 391 jobs, 7 periods. Real operating evidence: anonymised container jobs across 7 reporting periods.',
   },
   {
     id: 'synth',
@@ -238,7 +238,7 @@ export const yardContainers = [
     detail: '1,800 synthetic records',
     href: '/evidence?grade=synth',
     ariaLabel:
-      'Cold-chain risk. Synthetic prototype: 1,800 AI-assisted synthetic records across six warehouse zones.',
+      'Cold-chain risk 1,800 synthetic records. AI-assisted synthetic prototype across six warehouse zones.',
   },
   {
     id: 'concept',
@@ -250,7 +250,7 @@ export const yardContainers = [
     detail: 'Concept only',
     href: '/evidence?grade=concept',
     ariaLabel:
-      'Supply chain control tower. Concept only: an AI-assisted synthetic concept, not a shipped capability.',
+      'Control tower Concept only. Supply chain control tower: an AI-assisted synthetic concept, not a shipped capability.',
   },
 ];
 

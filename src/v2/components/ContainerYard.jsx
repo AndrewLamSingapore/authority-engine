@@ -75,7 +75,7 @@ function Container({ container, index }) {
           />
         ))}
         <text className="v2-yard-title" x={x + 16} y={y + 44} fill={ink}>
-          {title}
+          {title}{' '}
         </text>
         <text className="v2-yard-detail" x={x + 16} y={y + 66} fill={ink} fillOpacity="0.82">
           {detail}
