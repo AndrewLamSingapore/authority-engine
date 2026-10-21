@@ -24,7 +24,7 @@ function decodedText(value) {
 }
 function normalizedKey(key) {
   return decodedText(key).replace(/([a-z0-9])([A-Z])/g, '$1_$2')
-    .replace(/([A-Z])([A-Z][a-z])/g, '$1_$2').replace(/[^a-z0-9]+/gi, '_');
+    .replace(/([A-Z])([A-Z][a-z])/g, '$1_$2').replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '');
 }
 function containsCredentialText(value) {
   return CREDENTIAL_TEXT.test(value) || CREDENTIAL_TEXT.test(decodedText(value));

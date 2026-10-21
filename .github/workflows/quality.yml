@@ -31,6 +31,7 @@ jobs:
       - run: npm run check:agent-registry
       - run: npm run check:portfolio-contracts
       - run: npm run test:authority
+      - run: npm run test:decision-kernel
       - run: npm run build
 
   production-smoke:

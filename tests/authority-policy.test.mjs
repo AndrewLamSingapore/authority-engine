@@ -97,7 +97,7 @@ test('ordinary payload discussion about security concepts remains reviewable', (
 });
 
 
-for (const key of ['accessToken', 'api-key', 'credentials', 'clientSecret', 'refresh_token', 'api%5Fkey']) {
+for (const key of ['accessToken', 'api-key', 'credentials', 'clientSecret', 'refresh_token', 'api%5Fkey', 'api-key ', ' accessToken ', 'credentials.']) {
   test(`credential key spelling is rejected before storage or draft: ${key}`, () => {
     const unsafe = event(); unsafe.payload.details = { [key]: 'fixture_credential_marker' };
     const assessment = assessPortfolioEvent(unsafe);
