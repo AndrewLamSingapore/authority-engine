@@ -3,33 +3,54 @@ import { validatePortfolioEvent } from './generated/portfolio-contracts.js';
 
 const MATURITY = Object.freeze({ E0: 0, E1: 1, E2: 2, E3: 3, E4: 4, E5: 5 });
 const REDACT_KEYS = /(^|_)(account|user|customer|email|phone|address|tank|device|ip|coordinates?|latitude|longitude)(_?id)?$/i;
-const REJECT_KEYS = /(^|_)(password|passwd|secret|token|api_?key|private_?key|credential|authorization)$/i;
+const REJECT_KEYS = /(^|_)(passwords?|passwds?|secrets?|tokens?|api_?keys?|private_?keys?|credentials?|authorization)$/i;
 const EMAIL = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi;
 const PHONE = /(?<!\d)(?:\+?\d[\s().-]*){8,15}(?!\d)/g;
-const CREDENTIAL_TEXT = /(?:\b(?:password|passwd|secret|token|api[_-]?key|private[_-]?key|credential|authorization)\b["']?\s*(?:=|:|%3[da])\s*["']?[^\s&#"']+|\bbearer\s+[a-z0-9._~+/-]+|https?:\/\/[^\s/@:]+:[^\s/@]+@)/i;
+const CREDENTIAL_TEXT = /(?:^|[^a-z0-9])(?:(?:passwords?|passwds?|(?:client[_-]?)?secrets?|(?:(?:access|refresh)[_-]?)?tokens?|api[_-]?keys?|private[_-]?keys?|credentials?|authorization)["']?\s*(?:=|:)\s*["']?[^\s&#"']+|bearer\s+[a-z0-9._~+/-]+|https?:\/\/[^\s/@:]+:[^\s/@]+@)/i;
 const PRIVATE_IDENTIFIER = /\b(?:account|user|customer|device|tank|address|ip|coordinates?|latitude|longitude)(?:[_-]?id)?\s*[:=]\s*[^\s&]+/gi;
+
+// Decode valid escapes without letting an unrelated malformed escape bypass inspection.
+// Two rounds cover a URL parameter and one additional encoding layer; this is pattern-based screening.
+function decodedText(value) {
+  let decoded = value;
+  for (let round = 0; round < 2; round++) {
+    const next = decoded.replace(/(?:%[0-9a-f]{2})+/gi, encoded => {
+      try { return decodeURIComponent(encoded); } catch { return encoded; }
+    });
+    if (next === decoded) break;
+    decoded = next;
+  }
+  return decoded;
+}
+function normalizedKey(key) {
+  return decodedText(key).replace(/([a-z0-9])([A-Z])/g, '$1_$2')
+    .replace(/([A-Z])([A-Z][a-z])/g, '$1_$2').replace(/[^a-z0-9]+/gi, '_');
+}
+function containsCredentialText(value) {
+  return CREDENTIAL_TEXT.test(value) || CREDENTIAL_TEXT.test(decodedText(value));
+}
 
 function scrub(value, path = '', redactions = [], rejected = []) {
   if (Array.isArray(value)) return value.map((item, index) => scrub(item, `${path}/${index}`, redactions, rejected));
   if (value && typeof value === 'object') {
     return Object.fromEntries(Object.entries(value).map(([key, child]) => {
-      const childPath = `${path}/${key}`;
-      if (REJECT_KEYS.test(key)) { rejected.push(childPath); return [key, '[REJECTED_CREDENTIAL]']; }
-      if (REDACT_KEYS.test(key)) { redactions.push(childPath); return [key, '[REDACTED]']; }
+      const unsafeKey = containsCredentialText(key);
+      const safeKey = unsafeKey ? '[REJECTED_CREDENTIAL_FIELD]' : key;
+      const childPath = `${path}/${safeKey.replaceAll('~', '~0').replaceAll('/', '~1')}`;
+      if (unsafeKey || REJECT_KEYS.test(normalizedKey(key))) { rejected.push(childPath); return [safeKey, '[REJECTED_CREDENTIAL]']; }
+      if (REDACT_KEYS.test(normalizedKey(key))) { redactions.push(childPath); return [safeKey, '[REDACTED]']; }
       return [key, scrub(child, childPath, redactions, rejected)];
     }));
   }
   if (typeof value !== 'string') return value;
   if (!path.startsWith('/payload') && !path.startsWith('/provenance/')) return value;
-  if (path.startsWith('/provenance/') && CREDENTIAL_TEXT.test(value)) {
+  if (containsCredentialText(value)) {
     rejected.push(path);
     return '[REJECTED_CREDENTIAL]';
   }
   let result = value.replace(EMAIL, () => { redactions.push(path); return '[REDACTED_EMAIL]'; });
   result = result.replace(PHONE, () => { redactions.push(path); return '[REDACTED_PHONE]'; });
-  if (path.startsWith('/provenance/')) {
-    result = result.replace(PRIVATE_IDENTIFIER, () => { redactions.push(path); return '[REDACTED_IDENTIFIER]'; });
-  }
+  result = result.replace(PRIVATE_IDENTIFIER, () => { redactions.push(path); return '[REDACTED_IDENTIFIER]'; });
   return result;
 }
 
