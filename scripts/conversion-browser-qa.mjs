@@ -1,6 +1,6 @@
 /** Optional browser regression suite. Install playwright + axe-core separately.
  * QA_BROWSER may point to an installed Chromium executable.
- * This runs a local production preview and intercepts contact delivery.
+ * This runs a local production preview or QA_BASE deployment and intercepts contact delivery.
  */
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
@@ -11,14 +11,16 @@ const { chromium } = require('playwright');
 const axePath = process.env.QA_AXE || require.resolve('axe-core/axe.min.js');
 const output = process.env.QA_OUTPUT || '/tmp/authority-conversion-qa';
 mkdirSync(output, { recursive: true });
-const server = await preview({ preview: { host: '127.0.0.1', port: 4179, strictPort: true } });
+const base = process.env.QA_BASE || 'http://127.0.0.1:4179';
+const server = process.env.QA_BASE ? null : await preview({ preview: { host: '127.0.0.1', port: 4179, strictPort: true } });
 const browser = await chromium.launch({ executablePath: process.env.QA_BROWSER || undefined, headless: true, args: process.env.QA_BROWSER ? ['--no-sandbox', '--disable-dev-shm-usage', '--no-zygote', '--single-process'] : [] });
 const results = [];
 const errors = [];
 const check = (name, pass, detail = '') => { results.push({ name, pass, detail }); console.log(`${pass ? 'PASS' : 'FAIL'} ${name}${detail ? `: ${detail}` : ''}`); };
-const base = 'http://127.0.0.1:4179';
 const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
 const page = await context.newPage();
+const axeFixtureUrl = new URL('/__abex_acceptance_axe_fixture__.js', base).href;
+await page.route(axeFixtureUrl, route => route.fulfill({ contentType: 'text/javascript', body: readFileSync(axePath, 'utf8') }));
 page.setDefaultTimeout(7000);
 page.on('pageerror', error => errors.push(error.message));
 await page.route('**/api/orqevia-status', route => route.fulfill({ json: { prime: { state: 'unverified' } } }));
@@ -81,7 +83,7 @@ try {
       if (current !== theme) await page.getByRole('button', { name: `Switch to ${theme} theme` }).click();
       await page.waitForFunction(value => document.documentElement.dataset.theme === value, theme);
       await page.evaluate(async () => { await document.fonts.ready; await Promise.all(document.getAnimations().map(animation => animation.finished.catch(() => {}))); });
-      await page.addScriptTag({ content: readFileSync(axePath, 'utf8') });
+      await page.addScriptTag({ url: axeFixtureUrl });
       const violations = await page.evaluate(async () => (await window.axe.run()).violations.filter(item => ['serious', 'critical'].includes(item.impact)).map(item => ({ id: item.id, nodes: item.nodes.map(node => node.target) })));
       check(`Accessibility ${theme} ${path}`, violations.length === 0, JSON.stringify(violations));
     }
@@ -101,6 +103,6 @@ try {
 } finally {
   writeFileSync(`${output}/results.json`, JSON.stringify(results, null, 2));
   await browser.close();
-  await server.httpServer.close();
+  if (server) await server.httpServer.close();
 }
 assert.equal(results.filter(result => !result.pass).length, 0, 'Browser regression failures');
