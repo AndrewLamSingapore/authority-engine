@@ -1,8 +1,20 @@
+[![ANDREW LAM — From operating records to explainable decisions.](docs/repository-banner.svg)](https://authority-engine-app.vercel.app/)
+
 # Andrew Lam — Operations Intelligence Evidence Hub
 
 [**Open Authority Engine ↗**](https://authority-engine-app.vercel.app/) · [**Discuss this project**](https://authority-engine-app.vercel.app/contact?source=github) · [**Meet Andrew Lam**](https://authority-engine-app.vercel.app/about)
 
 > Repository slug: `authority-engine`
+
+## Start here
+
+| You want to… | Go to |
+| --- | --- |
+| Explore the work | [Public portfolio](https://authority-engine-app.vercel.app/) and [evidence](https://authority-engine-app.vercel.app/evidence) |
+| Understand the implementation | [Technical implementation](#technical-implementation) and [public claims](#standard-for-public-claims) |
+| Contribute | [Contribution guide](CONTRIBUTING.md) and [security boundaries](SECURITY.md) |
+
+[Browse all six projects and their source](https://github.com/AndrewLamSingapore/AndrewLamSingapore#selected-work) · [About Andrew](https://authority-engine-app.vercel.app/about)
 
 ## Connected work
 
