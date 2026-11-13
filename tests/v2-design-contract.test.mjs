@@ -14,13 +14,13 @@ const shellSource = read('src/v2/components/V2Shell.jsx');
 const talkSource = read('src/v2/components/TalkSection.jsx');
 const indexHtml = read('index.html');
 
-test('V2 home copy matches the supplied brief word for word', () => {
+test('V2 home copy reflects the current professional profile', () => {
   assert.equal(home.h1, "I've run the operation. Now I build the analytics that see trouble sooner.");
   assert.equal(
     home.lede,
-    'Andrew Lam. Twenty-plus years across logistics, warehousing, distribution and container operations, now paired with analytics and applied AI.',
+    'I bring 20+ years in supply chain and logistics to operations analytics and process improvement. I use Power BI, SQL, Excel and Python to investigate delays, inventory discrepancies and service risks.',
   );
-  assert.equal(home.meta, 'Singapore. Open to operations excellence and operational-analytics roles.');
+  assert.equal(home.meta, 'Singapore. Open to operations transformation, operational analytics and process improvement roles.');
   assert.equal(home.primaryAction, 'Start a conversation');
   assert.equal(home.secondaryAction, 'Inspect the evidence');
 });

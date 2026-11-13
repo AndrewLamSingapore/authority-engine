@@ -17,8 +17,8 @@ export const profile = {
 
 export const home = {
   h1: "I've run the operation. Now I build the analytics that see trouble sooner.",
-  lede: 'Andrew Lam. Twenty-plus years across logistics, warehousing, distribution and container operations, now paired with analytics and applied AI.',
-  meta: 'Singapore. Open to operations excellence and operational-analytics roles.',
+  lede: 'I bring 20+ years in supply chain and logistics to operations analytics and process improvement. I use Power BI, SQL, Excel and Python to investigate delays, inventory discrepancies and service risks.',
+  meta: 'Singapore. Open to operations transformation, operational analytics and process improvement roles.',
   credential: 'BCG RISE Capstone Top 2 · Python Expert · Machine Learning Expert',
   primaryAction: 'Start a conversation',
   secondaryAction: 'Inspect the evidence',
@@ -69,9 +69,11 @@ export const about = {
   bandLede:
     'Logistics, warehousing, distribution, container operations and supply-chain execution.',
   bandText: [
+    'At Maxwell Excel Service, I work part-time as Partner & Director. I plan skilled-labour deployment and container job schedules, coordinate service delivery, and review pricing, invoicing and cash flow.',
     'That work taught me to ask one question first: where will this go wrong, and how do we see it sooner? Analytics and applied AI are how I now answer it.',
     'I completed Applied AI and Data Analytics under RISE by BCG U in October 2026. My credentials include BCG RISE Capstone Top 2 (Business and Data Analytics), Python Expert and Machine Learning Expert.',
     'I use Power BI, SQL, Python and Excel to investigate performance gaps, explain operational risk and support better decisions. I share my independent projects publicly as I build them.',
+    'I am currently studying Cloud Support & DevOps through the SkillsFuture Career Transition Programme delivered by Generation Singapore in partnership with Temasek Polytechnic. The training covers Linux, Python, Microsoft Azure and automation.',
   ],
   openH2: "What I'm open to",
   openLede: 'Based in Singapore.',
