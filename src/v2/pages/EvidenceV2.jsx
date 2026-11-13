@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import TalkSection from '../components/TalkSection';
 import { evidenceItems, evidencePage } from '../data/content';
@@ -19,21 +19,14 @@ function Chevron() {
 
 export default function EvidenceV2() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [grade, setGrade] = useState(() => normaliseGrade(searchParams.get('grade')));
-
-  useEffect(() => {
-    setGrade(normaliseGrade(searchParams.get('grade')));
-  }, [searchParams]);
-
-  const visible = useMemo(
-    () => (grade === 'all' ? evidenceItems : evidenceItems.filter((item) => item.grade === grade)),
-    [grade],
-  );
+  const grade = normaliseGrade(searchParams.get('grade'));
+  const visible = grade === 'all' ? evidenceItems : evidenceItems.filter((item) => item.grade === grade);
 
   const selectGrade = (next) => {
-    setGrade(next);
-    // Replace the URL state without letting the router scroll the page.
-    setSearchParams(next === 'all' ? {} : { grade: next }, { replace: true, preventScrollReset: true });
+    const params = new URLSearchParams(searchParams);
+    if (next === 'all') params.delete('grade');
+    else params.set('grade', next);
+    setSearchParams(params, { replace: true, preventScrollReset: true });
   };
 
   return (
