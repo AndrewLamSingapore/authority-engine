@@ -14,6 +14,8 @@
 | Understand the implementation | [Technical implementation](#technical-implementation) and [public claims](#standard-for-public-claims) |
 | Contribute | [Contribution guide](CONTRIBUTING.md) and [security boundaries](SECURITY.md) |
 
+[Report a bug](https://github.com/AndrewLamSingapore/authority-engine/issues) · [Ask a question](https://github.com/AndrewLamSingapore/authority-engine/discussions) · [Wiki](https://github.com/AndrewLamSingapore/authority-engine/wiki)
+
 [Browse all six projects and their source](https://github.com/AndrewLamSingapore/AndrewLamSingapore#selected-work) · [About Andrew](https://authority-engine-app.vercel.app/about)
 
 ## Connected work
