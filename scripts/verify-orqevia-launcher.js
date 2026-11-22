@@ -5,10 +5,11 @@ const source = readFileSync(new URL('../src/pages/OrqeviaControl.jsx', import.me
 const required = [
   'ORQEVIA',
   'Curated examples, not live AI output.',
-  "const PRIME_WORKSPACE_URL = 'https://192.168.1.23:8443/pwa/'",
-  'ORQEVIA—not this website—verifies identity, session and authority.',
-  'Owner and Member roles remain server-authoritative.',
-  'This public page reads no private memory, accepts no credentials and provides no public execution or physical control.',
+  'href="#try-orqevia"',
+  'https://github.com/AndrewLamSingapore/orqevia',
+  'operational workspace uses separate authenticated access.',
+  'does not establish which workers or services are running.',
+  'Private memory and task execution remain in the authenticated workspace.',
   "inquiryType: 'ORQEVIA / Governed AI Conversation'",
   "'/contact?source=orqevia&intent=collaboration'",
   "fetch('/api/orqevia-status'",
@@ -21,7 +22,7 @@ for (const contract of required) {
 const forbidden = [
   /fetch\s*\(\s*(?!['"]\/api\/orqevia-status['"])/,
   /axios/i,
-  /127\.0\.0\.1|localhost|lam-public-jarvis|lam-relationship-console/,
+  /192\.168\.|127\.0\.0\.1|localhost|lam-public-jarvis|lam-relationship-console/,
   /Available locally|Verified on the Dell|access_token|refresh_token|enrollment-code/,
   /<iframe/i,
   /prime\.lamjarvis\.com/i,
@@ -37,4 +38,4 @@ for (const pattern of forbidden) {
   if (pattern.test(source)) throw new Error(`ORQEVIA launcher violates the no-proxy boundary: ${pattern}`);
 }
 
-console.log('PASS: ORQEVIA public surface launches the governed ABEX workspace without proxying execution, credentials or authority.');
+console.log('PASS: ORQEVIA public walkthrough preserves authentication and never proxies private execution, credentials or authority.');
