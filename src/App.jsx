@@ -1,10 +1,7 @@
-import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Navigate, Outlet, Route, Routes, Link } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import React, { lazy } from 'react';
+import { BrowserRouter as Router, Navigate, Route, Routes, Link } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import SEO from './components/SEO';
-import AuthorityMotion from './components/AuthorityMotion';
 import V2Shell from './v2/components/V2Shell';
 
 const HomeV2 = lazy(() => import('./v2/pages/HomeV2'));
@@ -38,32 +35,9 @@ function NotFound() {
   );
 }
 
-function Loading() {
-  return <div role="status" className="min-h-[60vh] flex items-center justify-center bg-[#050807] text-slate-500 text-sm tracking-widest uppercase">Loading Authority Engine...</div>;
-}
-
-/** Legacy product shell: the existing dark product experience is unchanged. */
+/** Product tools retain their behaviour inside the shared portfolio navigation. */
 function LegacyShell() {
-  return (
-    <>
-      <AuthorityMotion />
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-emerald-600 focus:text-white focus:rounded-md"
-      >
-        Skip to main content
-      </a>
-      <div className="bg-[#050807] text-white min-h-screen font-sans antialiased flex flex-col">
-        <Navbar />
-        <main id="main-content" className="flex-grow" tabIndex="-1">
-          <Suspense fallback={<Loading />}>
-            <Outlet />
-          </Suspense>
-        </main>
-        <Footer />
-      </div>
-    </>
-  );
+  return <V2Shell legacy />;
 }
 
 export default function App() {
@@ -78,8 +52,8 @@ export default function App() {
             element={
               <>
                 <SEO
-                  title="Operations, analytics and applied AI"
-                  description="Andrew Lam combines 20+ years in supply chain and logistics with Power BI, SQL, Python and applied AI. BCG RISE Capstone Top 2. Explore projects and verified credentials."
+                  title="Operations Intelligence & Applied AI in Singapore"
+                  description="Andrew Lam connects 20+ years in operations with analytics, cloud training and applied AI. Explore career evidence, verified credentials and the VELYQUA prototype."
                 />
                 <HomeV2 />
               </>
@@ -91,7 +65,7 @@ export default function App() {
               <>
                 <SEO
                   title="About Andrew Lam"
-                  description="Meet Andrew Lam: 20+ years in operations, BCG RISE Applied AI and Data Analytics graduate, Capstone Top 2, Python Expert and Machine Learning Expert."
+                  description="Meet Andrew Lam in Singapore: 20+ years in supply chain and logistics, applied AI credentials, cloud training and an emerging Industrial AI focus."
                 />
                 <AboutV2 />
               </>
@@ -126,15 +100,15 @@ export default function App() {
             path="contact"
             element={
               <>
-                <SEO title="Contact Andrew Lam" description="Start a conversation with Andrew Lam about operations excellence, process improvement, supply chain analytics, logistics and operations intelligence opportunities." />
+                <SEO title="Contact Andrew Lam" description="Discuss Singapore operations intelligence, AI-enabled operations, analytics and cloud roles, or a potential VELYQUA customer pilot with Andrew Lam." />
                 <Contact />
               </>
             }
           />
           <Route path="maxwell-excel" element={<MaxwellExcel />} />
           <Route path="demo" element={<Demo />} />
-          <Route path="portal" element={<Portal />} />
-          <Route path="velyqua" element={<Velyqua />} />
+          <Route path="portal" element={<><SEO title="The Portal — Connected Knowledge & Evidence" description="Explore Andrew Lam's interactive knowledge graph and the Portal Evidence Lab for reading and comparing public transaction evidence." /><Portal /></>} />
+          <Route path="velyqua" element={<><SEO title="VELYQUA — Aquatic Monitoring & Decision Support" description="Explore Andrew Lam's freshwater aquarium prototype, manual water tests and care records, plus development and customer-pilot goals for AI-assisted monitoring." /><Velyqua /></>} />
           <Route path="game-platform" element={<GamePlatform />} />
           <Route
             path="sky-tablet"

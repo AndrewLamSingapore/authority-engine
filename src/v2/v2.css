@@ -2,10 +2,10 @@
  * Authority Engine V2 design system.
  *
  * Everything here is scoped to html[data-shell="v2"] / .v2-* so the existing
- * product pages keep their current styling untouched.
+ * product tools retain their behaviour inside the shared portfolio shell.
  *
  * Structure comes from typography, spacing, hairlines and evidence-grade
- * colour. No gradients, no drop shadows, no card-grid aesthetic.
+ * colour. The refresh layer adds responsive project surfaces and navigation.
  */
 
 html[data-shell='v2'] {
@@ -39,9 +39,9 @@ html[data-shell='v2'] {
   --bk-concept: #9DB8C9;
 
   --font-display: 'Bricolage Grotesque Variable', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
-  --font-body: 'Newsreader Variable', Georgia, serif;
+  --font-body: 'Bricolage Grotesque Variable', 'Segoe UI', system-ui, sans-serif;
 
-  --max: 1120px;
+  --max: 1280px;
   --pad: clamp(20px, 4vw, 40px);
   --r: 6px;
   --r-draw: 3px;

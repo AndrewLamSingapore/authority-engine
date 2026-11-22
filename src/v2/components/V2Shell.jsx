@@ -1,14 +1,17 @@
 import React, { Suspense, useCallback, useEffect, useState } from 'react';
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { applyShell, applyTheme, preferredTheme } from '../theme';
-import { scrollToTalk } from '../scroll-to-talk';
 import { products, profile } from '../data/content';
+import AuthorityMotion from '../../components/AuthorityMotion';
+import SoundControl from '../../components/SoundControl';
+import EcosystemLinks from '../../components/EcosystemLinks';
 
 const navItems = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Evidence', to: '/evidence' },
   { label: 'Frameworks', to: '/frameworks' },
+  { label: 'Insights', to: '/insights' },
 ];
 
 function ContainerEndMark() {
@@ -43,33 +46,46 @@ function ThemeToggle({ theme, onToggle }) {
   );
 }
 
-function V2Header({ theme, onToggle }) {
+function V2Header({ theme, onToggle, legacy }) {
   const location = useLocation();
-  const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
   const isCurrent = (to) => (to === '/' ? location.pathname === '/' : location.pathname.startsWith(to));
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <header className="v2-header">
       <div className="v2-wrap v2-header-inner">
-        <Link className="v2-brand" to="/">
+        <Link className="v2-brand" to="/" onClick={closeMenu}>
           <ContainerEndMark />
-          <span className="v2-brand-name">Andrew Lam</span>
+          <span><span className="v2-brand-name">Andrew Lam</span><span className="v2-brand-detail">Operations intelligence + Applied AI</span></span>
         </Link>
-        <nav className="v2-nav" aria-label="Primary">
+        <nav id="site-navigation" className="v2-nav" aria-label="Primary" data-open={menuOpen} onKeyDown={(event) => { if (event.key === 'Escape') closeMenu(); }}>
           <ul>
             {navItems.map(({ label, to }) => (
               <li key={to}>
-                <Link to={to} aria-current={isCurrent(to) ? 'page' : undefined}>
+                <Link to={to} onClick={closeMenu} aria-current={isCurrent(to) ? 'page' : undefined}>
                   {label}
                 </Link>
               </li>
             ))}
+            <li>
+              <details className="v2-project-menu" onKeyDown={(event) => { if (event.key === 'Escape') event.currentTarget.removeAttribute('open'); }}>
+                <summary>Projects <span aria-hidden="true">⌄</span></summary>
+                <div className="v2-project-menu-panel">
+                  {products.map(({ name, to }) => <Link key={to} to={to} onClick={(event) => { event.currentTarget.closest('details').removeAttribute('open'); closeMenu(); }}>{name}<span aria-hidden="true">↗</span></Link>)}
+                </div>
+              </details>
+            </li>
+            <li className="v2-mobile-contact"><Link to="/contact" onClick={closeMenu}>Contact Andrew</Link></li>
           </ul>
         </nav>
         <div className="v2-header-actions">
-          <ThemeToggle theme={theme} onToggle={onToggle} />
-          <button type="button" className="v2-btn v2-btn-accent" onClick={() => scrollToTalk(navigate)}>
+          {legacy ? <SoundControl /> : <ThemeToggle theme={theme} onToggle={onToggle} />}
+          <Link to="/contact" className="v2-btn v2-btn-accent" onClick={closeMenu}>
             {"Let's talk"}
+          </Link>
+          <button type="button" className="v2-menu-toggle" aria-expanded={menuOpen} aria-controls="site-navigation" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} onClick={() => setMenuOpen((open) => !open)}>
+            <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d={menuOpen ? 'M5 5l10 10M15 5 5 15' : 'M3 5h14M3 10h14M3 15h14'} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" /></svg>
           </button>
         </div>
       </div>
@@ -78,9 +94,14 @@ function V2Header({ theme, onToggle }) {
 }
 
 function V2Footer() {
+  const { pathname } = useLocation();
   return (
     <footer className="v2-footer">
       <div className="v2-wrap">
+        {pathname !== '/contact' && <div className="v2-footer-invitation">
+          <div><p className="v2-kicker">Start a useful conversation</p><h2>Discuss a role or a practical problem.</h2></div>
+          <Link className="v2-btn v2-btn-accent" to="/contact">Connect with Andrew <span aria-hidden="true">↗</span></Link>
+        </div>}
         <div className="v2-footer-grid">
           <div>
             <h4>Andrew Lam</h4>
@@ -100,6 +121,7 @@ function V2Footer() {
                   GitHub
                 </a>
               </li>
+              <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
           <div>
@@ -127,16 +149,15 @@ function V2Footer() {
           </div>
         </div>
         <p className="v2-footer-note">
-          Every item on this site is labelled for what it actually is: real operating records,
-          synthetic prototypes or concepts. Nothing here is presented as a production-impact
-          result, and anonymised operating evidence stays anonymised.
+          Operating records, demonstrations and prototypes are labelled at their actual stage. Anonymised evidence stays anonymised.
         </p>
+        <p className="v2-copyright">© {new Date().getFullYear()} Andrew Lam. Operations Intelligence and Applied AI.</p>
       </div>
     </footer>
   );
 }
 
-export default function V2Shell() {
+export default function V2Shell({ legacy = false }) {
   const [theme, setTheme] = useState(() => preferredTheme());
 
   useEffect(() => {
@@ -153,16 +174,18 @@ export default function V2Shell() {
   }, []);
 
   return (
-    <div className="v2-root">
+    <div className={legacy ? 'portfolio-root' : 'v2-root'}>
+      {legacy && <AuthorityMotion />}
       <a className="v2-skip" href="#v2-main">
         Skip to main content
       </a>
-      <V2Header theme={theme} onToggle={onToggle} />
-      <main id="v2-main" tabIndex={-1}>
+      <V2Header theme={theme} onToggle={onToggle} legacy={legacy} />
+      <main id="v2-main" className={legacy ? 'portfolio-experience' : undefined} tabIndex={-1}>
         <Suspense fallback={<div className="v2-wrap v2-section" role="status">Loading page…</div>}>
           <Outlet context={{ theme }} />
         </Suspense>
       </main>
+      {legacy && <EcosystemLinks />}
       <V2Footer />
     </div>
   );

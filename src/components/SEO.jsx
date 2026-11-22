@@ -6,8 +6,8 @@ export default function SEO({ title, description, image, favicon, canonical, noi
   const baseUrl = 'https://authority-engine-app.vercel.app';
   const cleanPath = location.pathname === '/' ? '' : location.pathname.replace(/\/$/, '');
   const currentUrl = canonical || `${baseUrl}${cleanPath || '/'}`;
-  const defaultTitle = 'Andrew Lam | Authority Engine';
-  const defaultDescription = "Andrew Lam's public evidence system for operations leadership, analytics, applied AI and inspectable experiments.";
+  const defaultTitle = 'Andrew Lam | Operations Intelligence & Applied AI';
+  const defaultDescription = 'Andrew Lam in Singapore: operations experience, analytics, cloud training and applied AI. Explore career evidence, verified credentials and VELYQUA.';
   const defaultImage = `${baseUrl}/og-preview.png`;
   const metaTitle = title ? `${title} | Andrew Lam` : defaultTitle;
   const metaDescription = description || defaultDescription;

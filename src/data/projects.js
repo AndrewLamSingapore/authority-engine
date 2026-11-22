@@ -1,6 +1,12 @@
 /** Public navigation only. This registry does not assert private runtime health. */
 export const projects = [
   {
+    id: 'velyqua', name: 'VELYQUA', category: 'Flagship project · Intelligence for living water',
+    description: 'Develop an aquatic monitoring and decision-support product, starting with manual water tests, observations and care history. The next phase connects applied AI, cloud engineering and customer validation.',
+    status: 'Working software prototype', boundary: 'AI-assisted monitoring, physical sensor performance, early-warning outcomes and commercial demand remain development and validation goals.',
+    path: '/velyqua', href: 'https://velyqua.vercel.app/', external: true, linkLabel: 'Open VELYQUA',
+  },
+  {
     id: 'orqevia', name: 'ORQEVIA', category: 'Decisions with a record',
     description: 'Follow how a question becomes a reasoned decision, with assumptions and evidence made visible.',
     status: 'Illustrative walkthrough', boundary: 'The public walkthrough does not execute private AI tasks.',
@@ -11,12 +17,6 @@ export const projects = [
     description: 'Explore imagined futures and connections between artifacts, ideas and possible experiments.',
     status: 'Working prototype', boundary: 'Generated hypotheses remain separate from established evidence.',
     path: '/portal', href: 'https://the-portal-ten.vercel.app/', external: true, linkLabel: 'Open The Portal',
-  },
-  {
-    id: 'velyqua', name: 'VELYQUA', category: 'Intelligence for living water',
-    description: 'Bring aquarium observations, readings and care decisions into one software prototype.',
-    status: 'Working software prototype', boundary: 'Physical sensor performance and early-warning outcomes remain unvalidated.',
-    path: '/velyqua', href: 'https://velyqua.vercel.app/', external: true, linkLabel: 'Open VELYQUA',
   },
   {
     id: 'game-platform', name: 'Living Worlds / Game Platform', category: 'Decisions with consequences',

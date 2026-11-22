@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { talk } from '../data/content';
+import { careerInquiryType } from '../../lib/contact-context';
 
 /**
  * Shared closing band.
@@ -124,7 +125,7 @@ export default function TalkSection() {
 }
 
 function inquiryFor(id) {
-  if (id === 'hiring') return 'Operations Excellence Opportunity';
+  if (id === 'hiring') return careerInquiryType;
   if (id === 'operations') return 'Supply Chain or Analytics Collaboration';
   return 'ORQEVIA / Governed AI Conversation';
 }

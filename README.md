@@ -1,6 +1,6 @@
 [![ANDREW LAM — From operating records to explainable decisions.](docs/repository-banner.svg)](https://authority-engine-app.vercel.app/)
 
-# Andrew Lam — Operations Intelligence Evidence Hub
+# Andrew Lam — Operations Intelligence & Applied AI
 
 [**Open Authority Engine ↗**](https://authority-engine-app.vercel.app/) · [**Discuss this project**](https://authority-engine-app.vercel.app/contact?source=github) · [**Meet Andrew Lam**](https://authority-engine-app.vercel.app/about)
 
@@ -24,11 +24,17 @@
 
 ORQEVIA’s public walkthrough connects this project to Andrew’s wider work. Public navigation and enquiries do not merge accounts, data or runtime authority. Current operational evidence comes from the canonical portfolio record; this README describes source capabilities.
 
-## Operations intelligence, backed by inspectable evidence.
+## Operations experience. An emerging Industrial AI focus.
 
 **Live:** https://authority-engine-app.vercel.app
 
 This is Andrew Lam's public **PROVE layer**: a recruiter- and decision-maker-facing portfolio connecting more than 20 years of supply-chain and warehouse operations with analytics, data and AI.
+
+The current direction has two connected tracks: build a stronger Singapore career in operations intelligence, AI-enabled operations, analytics or cloud support, while developing **VELYQUA** through customer discovery and a measurable pilot. Industrial AI and AI solutions roles are the direction of development, supported by existing operational experience and completed applied AI training.
+
+VELYQUA currently provides manual aquarium water tests, observations and care history. AI-assisted monitoring, sensor performance and commercial outcomes require further development and validation. The portfolio distinguishes completed credentials, ongoing cloud training and future learning goals.
+
+The refreshed public experience includes shared mobile navigation across all routes, light/dark portfolio themes, a VELYQUA feature, issuer-linked credentials, real operating evidence, interactive decision frameworks and career/pilot enquiry paths. Social previews and machine-readable profile content use the same positioning.
 
 The repository slug is historical; the public identity is deliberately **Andrew Lam — Operations Intelligence** so the work is attributable to a person rather than confused with unrelated businesses using similar names.
 
@@ -89,6 +95,9 @@ The Sky Tablet is an interactive exploration of Mesopotamian astronomy and cunei
 - `src/lib/insights.js` owns public Sanity reads, bounded request cancellation, article normalisation and controlled evidence wording. Browser routes use native fetch; write credentials and publication authority remain server-side.
 - Article outages show a retry state. Missing articles return a real HTTP 404; upstream failures return HTTP 503. Direct article responses include escaped title, description and canonical metadata.
 - Unused legacy homepage components and starter assets are removed; the active homepage, about and evidence routes use `src/v2`.
+- `src/v2/refresh.css` provides the shared responsive presentation; existing dashboards, public walkthroughs, sound controls, article handling and private access boundaries retain their behavior.
+
+Profile refresh source references: ORQEVIA `ced0853b9bd903ea6b2b82bde8a7aca7de73abcb` (status, operational manifest and channel contract), and VELYQUA `f70e8b044755133ac714d19a2e8b88607ca57f93` (owning product source). These are source references, not runtime acceptance claims.
 
 Run `npm run lint`, `npm run check:server`, `npm run test:authority` and `npm run build` before release. The build generates all public sitemap routes and adds published article URLs when the content service is reachable; a failed content request produces an explicit static-route fallback. Browser acceptance and a deployment receipt remain separate checks from a successful local build.
 

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" role="img" aria-labelledby="title description">
-  <title id="title">ANDREW LAM — operations intelligence</title>
-  <desc id="description">From operating records to explainable decisions. Case studies / Evidence / Decision frameworks.</desc>
+  <title id="title">ANDREW LAM — operations intelligence and applied AI</title>
+  <desc id="description">Operations experience. An emerging Industrial AI focus. Singapore career evidence and VELYQUA.</desc>
   <defs>
     <linearGradient id="background" x2="1" y2="1"><stop stop-color="#0b1120"/><stop offset="1" stop-color="#17273c"/></linearGradient>
     <radialGradient id="light"><stop stop-color="#57ded0" stop-opacity=".17"/><stop offset="1" stop-color="#57ded0" stop-opacity="0"/></radialGradient>
@@ -18,10 +18,10 @@
       <circle cx="90" cy="90" r="6" fill="#e9ba71" stroke="none"/>
     </g>
     <g font-family="Segoe UI,Arial,sans-serif">
-      <text x="64" y="68" fill="#57ded0" font-size="15" font-weight="700" letter-spacing="2.6">OPERATIONS INTELLIGENCE</text>
+      <text x="64" y="68" fill="#57ded0" font-size="15" font-weight="700" letter-spacing="2.6">OPERATIONS INTELLIGENCE + APPLIED AI</text>
       <text x="60" y="154" fill="#f4f7fc" font-size="66" font-weight="700" letter-spacing="-1.5">ANDREW LAM</text>
-      <text x="64" y="210" fill="#e0e8f4" font-size="28">From operating records to explainable decisions.</text>
-      <text x="64" y="252" fill="#b9c9de" font-size="19">Case studies / Evidence / Decision frameworks</text>
+      <text x="64" y="210" fill="#e0e8f4" font-size="28">Operations experience. An emerging Industrial AI focus.</text>
+      <text x="64" y="252" fill="#b9c9de" font-size="19">Singapore / Career evidence / VELYQUA / Practical frameworks</text>
       <text x="64" y="320" fill="#e9ba71" font-size="13" font-weight="700" letter-spacing="2.5">ANDREW LAM  /  EXPLORE THE EXPERIENCE + INSPECT THE SOURCE</text>
     </g>
     <rect width="7" height="360" fill="#57ded0"/>

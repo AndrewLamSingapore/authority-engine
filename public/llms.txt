@@ -1,24 +1,34 @@
-# Authority Engine
+# Andrew Lam — Operations Intelligence & Applied AI
 
-> Andrew Lam's public proof-of-work system for Operations Excellence, supply chain, warehousing, business analytics and disciplined operational experimentation.
+> Singapore-based operations professional with 20+ years in supply chain and logistics. Applied AI and analytics credentials, ongoing cloud support and DevOps training, and an emerging Industrial AI focus.
 
 Canonical: https://authority-engine-app.vercel.app/
+LinkedIn: https://www.linkedin.com/in/lam-teck-sing-andrew-79886719
+GitHub: https://github.com/AndrewLamSingapore
+
+## Professional direction
+- Career: operations intelligence, AI-enabled operations, analytics and cloud support opportunities in Singapore, building toward Industrial AI and AI solutions roles.
+- Business development: VELYQUA, an aquatic monitoring and decision-support prototype. Customer discovery and a measurable pilot will guide commercial validation.
+- Current tools: Python, SQL, Power BI and Excel. Developing Linux, Microsoft Azure, deployment and automation skills. IoT, data engineering and MLOps are future learning areas.
 
 ## Core pages
-- / — Operations Excellence, supply chain and analytics authority
-- /about — Background, operating philosophy and credibility
-- /portal — Interactive living knowledge graph
-- /velyqua — Live interactive freshwater aquarium operating system
-- /insights — Evidence, case studies, experiments and decision frameworks
-- /maxwell-excel — Real operating evidence and Singapore container-service scope
-- /contact — Career, collaboration, professional and Maxwell service inquiries
+- / — Career evidence, VELYQUA and selected projects
+- /about — Experience, professional direction and issuer-linked credentials
+- /evidence — Real records, synthetic demonstrations and concepts with clear boundaries
+- /frameworks — Interactive operational decision frameworks
+- /velyqua — Current aquarium software, development milestones and potential pilot enquiries
+- /insights — Published field notes and case studies
+- /maxwell-excel — Anonymised container-service operating records
+- /portal — Interactive knowledge graph and Portal Evidence Lab
+- /orqevia — Public governed-AI walkthrough; private execution remains separate
+- /game-platform — Living Worlds creative prototype
+- /sky-tablet — Educational astronomy and cuneiform prototype
+- /contact — Singapore career, collaboration and project enquiries
 
-## Principles
-- Evidence is distinguished from demonstration.
-- Synthetic experiments are labelled as synthetic.
-- Prototypes are not presented as production systems.
-- Operational claims should be inspectable and decision-relevant.
-- Maxwell Excel evidence is real and anonymised; no unverified profit, savings or expansion claim is made.
-
-## Current frontier
-VELYQUA is a live browser-accessible product for structured aquarium decisions and memory. Its future physical sensing hypothesis remains explicitly unvalidated.
+## Evidence boundaries
+- Maxwell Excel: 391 anonymised jobs, seven reporting periods and S$75,720 recorded revenue. These figures do not establish profit, savings or production impact.
+- Cold-chain demonstration: 1,800 synthetic records, not operational history or a validated predictive model.
+- VELYQUA: working manual water tests, observations and care history. Guest records stay on the current device. Fictional walkthrough readings are synthetic and educational.
+- VELYQUA AI-assisted monitoring, physical sensors, early-warning performance and paying customer outcomes remain development and validation goals.
+- Other industrial applications require their own customer demand and technical validation.
+- ORQEVIA source, curated public demonstrations and private runtime acceptance are separate. A CI pass is not runtime acceptance.

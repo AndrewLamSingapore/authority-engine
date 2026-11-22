@@ -1,19 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import TalkSection from '../components/TalkSection';
+import ProfessionalDirection from '../components/ProfessionalDirection';
 import { about, credentials } from '../data/content';
 
 export default function AboutV2() {
   return (
     <>
       <section className="v2-section" aria-labelledby="about-title">
-        <div className="v2-wrap">
-          <h1 id="about-title">{about.h1}</h1>
-          <p className="v2-lede" style={{ marginTop: '24px', maxWidth: '62ch' }}>
-            {about.lede}
-          </p>
+        <div className="v2-wrap v2-about-intro">
+          <div>
+            <p className="v2-kicker">Andrew Lam · Singapore</p>
+            <h1 id="about-title">{about.h1}</h1>
+            <p className="v2-lede" style={{ marginTop: '24px', maxWidth: '62ch' }}>
+              {about.lede}
+            </p>
+          </div>
+          <figure className="v2-about-portrait">
+            <img src="/andrew-lam-profile.png" alt="Illustrated portrait of Andrew Lam" width="460" height="460" />
+            <figcaption>Lam Teck Sing Andrew · Based in Singapore</figcaption>
+          </figure>
         </div>
       </section>
+
+      <ProfessionalDirection id="about-direction-title" />
 
       <section className="v2-section-tight" aria-labelledby="about-pillars-title">
         <div className="v2-wrap">
@@ -79,7 +89,7 @@ export default function AboutV2() {
             ))}
           </dl>
           <p className="v2-note" style={{ marginTop: '28px' }}>
-            Next learning step: Temasek Polytechnic’s Cloud Support &amp; DevOps programme, beginning November 2026.
+            In progress: Cloud Support &amp; DevOps through Generation Singapore in partnership with Temasek Polytechnic, covering Linux, Python, Microsoft Azure and automation.
           </p>
         </div>
       </section>
