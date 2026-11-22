@@ -1,5 +1,7 @@
 /* Shared November 2026 portfolio refresh. Product interactions stay local. */
 html[data-shell='v2'] { scroll-padding-top: 100px; }
+/* Clipping avoids a nested body scroll container that breaks sticky navigation. */
+html[data-shell='v2'], body[data-shell='v2'] { overflow-x: clip; }
 body[data-shell='v2'], .v2-root { font-size: 1.0625rem; line-height: 1.65; }
 .v2-root h1, .v2-root h2, .v2-root h3, .v2-root h4 { font-stretch: 96%; }
 .v2-root h1 { max-width: 20ch; font-size: clamp(2.6rem, 5.7vw, 4.8rem); line-height: 1.04; }
