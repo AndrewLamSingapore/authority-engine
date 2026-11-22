@@ -67,7 +67,7 @@ export default function AgentNetwork() {
     return registry.agents.map((agent) => ({ source: agent.reports_to, target: agent.id, type: 'reports_to' }));
   }, [registry]);
 
-  const metadata = <SEO title="ORQEVIA — Agent Roles and Reported Evidence" description="Inspect the 21-role ORQEVIA registry and clearly scoped reported evidence. Current ABEX runtime acceptance remains unverified." image="https://authority-engine-app.vercel.app/brands/orqevia/generated-original.png" favicon="/brands/orqevia/generated-original.png" />;
+  const metadata = <SEO title="ORQEVIA — Agent Roles and Reported Evidence" description="Explore the ORQEVIA capability inventory, recorded relationships and scoped execution reports. Source records remain separate from current runtime status." image="https://authority-engine-app.vercel.app/brands/orqevia/generated-original.png" favicon="/brands/orqevia/generated-original.png" />;
   if (error) {
     return <>{metadata}<Shell><h1 className="text-4xl font-black">Agent registry unavailable</h1><p className="text-slate-400 mt-4">{error}</p></Shell></>;
   }
@@ -78,14 +78,14 @@ export default function AgentNetwork() {
   return <>
     {metadata}
     <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
-      <div className="eyebrow">ORQEVIA / AGENT REGISTRY</div>
+      <div className="eyebrow">ORQEVIA / CAPABILITY INVENTORY</div>
       <div className="mt-5 grid lg:grid-cols-[1fr_auto] gap-8 items-end">
         <div>
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight">{registry.agents.length} registered agents.<br /><span className="text-emerald-400">One governed hierarchy.</span></h1>
-          <p className="mt-5 text-slate-400 max-w-3xl text-lg">Registered roles are not simultaneous inference jobs. Execution View shows sanitized relay reports. Their presence does not verify the current ABEX runtime.</p>
+          <h1 className="text-4xl sm:text-6xl font-black tracking-tight">{registry.agents.length} recorded capabilities.<br /><span className="text-emerald-400">Explore their connections.</span></h1>
+          <p className="mt-5 text-slate-400 max-w-3xl text-lg">This dated registry preserves capability identities and recorded relationships. It does not define the current reporting structure or live worker count. Execution View shows scoped relay reports.</p>
         </div>
         <div className="border border-emerald-500/20 bg-emerald-500/5 rounded-2xl p-4 text-sm">
-          <div className="text-slate-500 uppercase tracking-widest text-sm">Canonical registry</div>
+          <div className="text-slate-500 uppercase tracking-widest text-sm">Dated source inventory</div>
           <div className="font-bold mt-1">Schema v{registry.schema_version}</div>
           <div className="text-slate-400 mt-1">Updated {new Date(registry.last_updated).toLocaleString()}</div>
         </div>

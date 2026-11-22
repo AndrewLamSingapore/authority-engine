@@ -17,17 +17,17 @@ export const profile = {
 
 export const home = {
   kicker: 'Andrew Lam · Singapore',
-  h1: 'Operations intelligence.',
-  lede: 'I combine 20+ years in supply chain and logistics with data analytics, cloud training and applied AI. My emerging focus is Industrial AI, with VELYQUA as my flagship project.',
+  h1: 'From operating records to clearer decisions.',
+  lede: 'I’m Andrew Lam. I bring 20+ years in supply chain and operations to practical analytics and applied AI. Explore the evidence, try a project, or bring me a problem worth solving.',
   meta: 'Singapore. Open to operations intelligence, AI-enabled operations, analytics and cloud support roles.',
   credential: 'BCG RISE Capstone Top 2 · Python Expert · Machine Learning Expert',
-  primaryAction: 'Explore career evidence',
+  primaryAction: 'Explore the evidence',
   secondaryAction: 'Explore VELYQUA',
 };
 
 export const homeEvidence = {
   h2: 'Start with the operational evidence.',
-  lede: 'One real operating dataset sits at the base of this portfolio: anonymised records from container operations. Everything built on top of it is labelled by what it actually is.',
+  lede: 'Start with 391 anonymised container jobs. Follow the records into workload, service mix and workforce-planning questions. Synthetic demonstrations and concepts carry separate labels.',
   figures: [
     '391 anonymised container jobs',
     '7 reporting periods',
@@ -65,7 +65,7 @@ export const professionalDirection = {
 };
 
 export const about = {
-  h1: 'Operations experience with an emerging Industrial AI focus',
+  h1: 'Operations experience. A practical path into AI.',
   lede: "I'm Lam Teck Sing Andrew, based in Singapore. I bring more than 20 years across cold-chain warehousing, grocery distribution, container operations and international freight forwarding. My emerging focus is Industrial AI and Operations Intelligence, combining operational judgement with analytics, cloud training and applied AI projects.",
   pillars: [
     {
@@ -120,7 +120,7 @@ export const credentials = [
 
 export const evidencePage = {
   h1: 'Operational evidence you can inspect.',
-  lede: 'Projects, operating analyses and experiments connecting frontline experience with analytics, systems thinking and AI. Each one is graded by what it actually is, not blurred together.',
+  lede: 'Follow the records, inspect the calculations and explore what each project supports. Real operating evidence, synthetic demonstrations and concepts each carry a clear label.',
   filters: [
     { id: 'all', label: 'All' },
     { id: 'real', label: 'Real operating evidence' },

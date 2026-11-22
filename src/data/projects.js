@@ -19,7 +19,7 @@ export const projects = [
     path: '/portal', href: 'https://the-portal-ten.vercel.app/', external: true, linkLabel: 'Open The Portal',
   },
   {
-    id: 'game-platform', name: 'Living Worlds / Game Platform', category: 'Decisions with consequences',
+    id: 'game-platform', name: 'Living Worlds', category: 'Decisions with consequences',
     description: 'Enter an interactive story where choices shape a persistent world and its next turn.',
     status: 'Working prototype', boundary: 'Guest continuity is tied to the browser; this is an evolving preview.',
     path: '/game-platform', href: 'https://game-platform-wine-nine.vercel.app/', external: true, linkLabel: 'Play Living Worlds',

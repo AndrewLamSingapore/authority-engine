@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/verify-react-runtime.mjs && node scripts/verify-sound.js && node scripts/generate-sitemap.js && node scripts/generate-og.js && vite build",
+    "build": "node scripts/verify-react-runtime.mjs && node scripts/verify-sound.js && node scripts/generate-sitemap.js && node scripts/generate-og.js && vite build && node scripts/generate-public-pages.mjs",
     "check:server": "node --check api/health.js && node --check api/orqevia-status.js && node --check api/orqevia-agent-trace.js && node --check api/insights.js && node --check api/_authority-policy.js && node --check api/_sanity.js && node --check api/_portfolio-relay.js && node --check api/portfolio-evidence.js && node --check api/portfolio-publication.js",
     "check:orqevia": "node scripts/verify-orqevia-launcher.js",
     "check:agent-registry": "node scripts/verify-agent-registry.mjs",

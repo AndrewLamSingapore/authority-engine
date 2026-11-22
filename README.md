@@ -73,7 +73,7 @@ Anonymised operational evidence and synthetic demonstrations are deliberately la
 |---|---|---|---|
 | **The Portal** | Public interactive build | https://the-portal-ten.vercel.app/ | https://github.com/AndrewLamSingapore/the-portal |
 | **VELYQUA** | Working public prototype / evolving evidence | https://velyqua.vercel.app/ | https://github.com/AndrewLamSingapore/velyqua |
-| **Game Platform** | **E2 — working prototype** | https://game-platform-wine-nine.vercel.app/ | https://github.com/AndrewLamSingapore/game-platform |
+| **Living Worlds** | **E2 — working prototype** | https://game-platform-wine-nine.vercel.app/ | https://github.com/AndrewLamSingapore/game-platform |
 | **The Sky Tablet** | **E2 — working prototype** | https://sky-tablet.vercel.app/ | https://github.com/AndrewLamSingapore/sky-tablet |
 
 The Sky Tablet is an interactive exploration of Mesopotamian astronomy and cuneiform. Its software is publicly inspectable at E2; its simplified historical mappings remain educational rather than upgraded to scholarly evidence merely because the interface works.

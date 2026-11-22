@@ -36,7 +36,7 @@ export default function VelyquaFeature() {
           <p className="v2-lede">Monitoring and decision support for living water.</p>
           <p className="v2-prose">I am developing an aquatic monitoring prototype and validating where AI-assisted monitoring can improve a measurable operational outcome.</p>
           <dl className="v2-feature-status"><div><dt>Current software</dt><dd>Manual water tests, observations and care history.</dd></div><div><dt>Next validation</dt><dd>Reliable data, useful recommendations and a customer pilot.</dd></div></dl>
-          <div className="v2-hero-actions"><a className="v2-btn v2-btn-accent" href="https://velyqua.vercel.app/" target="_blank" rel="noreferrer">Explore the prototype <span aria-hidden="true">↗</span></a><Link className="v2-link" to="/velyqua">Development and pilot goals →</Link></div>
+          <div className="v2-hero-actions"><a className="v2-btn v2-btn-accent" href="https://velyqua.vercel.app/" target="_blank" rel="noreferrer">Explore the prototype </a><Link className="v2-link" to="/velyqua">Development and pilot goals</Link></div>
         </div>
       </div>
     </section>

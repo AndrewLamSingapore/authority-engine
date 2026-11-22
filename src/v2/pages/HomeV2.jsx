@@ -22,7 +22,7 @@ export default function HomeV2() {
             <div className="v2-hero-actions">
               <Link to="/evidence?grade=real" className="v2-btn v2-btn-accent">
                 {home.primaryAction}
-                <span aria-hidden="true">↗</span>
+
               </Link>
               <Link className="v2-btn v2-btn-ghost" to="/velyqua">
                 {home.secondaryAction}
@@ -30,12 +30,12 @@ export default function HomeV2() {
             </div>
             <p className="v2-hero-meta">{home.meta}</p>
             <p className="v2-note v2-hero-credentials">
-              {home.credential} · <Link className="v2-link" to="/about#credentials">View credentials →</Link>
+              {home.credential} · <Link className="v2-link" to="/about#credentials">View credentials</Link>
             </p>
-            <button className="v2-hero-conversation" type="button" onClick={() => scrollToTalk(navigate)}>Discuss an opportunity <span aria-hidden="true">→</span></button>
+            <button className="v2-hero-conversation" type="button" onClick={() => scrollToTalk(navigate)}>Discuss an opportunity </button>
           </div>
           <div className="v2-evidence-display">
-            <div className="v2-display-heading"><span>Built on operational evidence</span><span>01—03</span></div>
+            <div className="v2-display-heading"><span>Operations · Analytics · Applied AI</span></div>
             <ContainerYard />
           </div>
         </div>
@@ -75,12 +75,12 @@ export default function HomeV2() {
           <h2 id="home-framework-title">The insight starts with a better question.</h2>
           <p className="v2-lede" style={{ marginTop: '20px' }}>Find the constraint. Challenge the assumption. Test the smallest useful change.</p>
           <div className="v2-framework-preview">
-            {frameworks.slice(0, 3).map((item, index) => (
+            {frameworks.slice(0, 3).map((item) => (
               <Link className="v2-framework-teaser" to={`/frameworks?model=${item.id}`} key={item.id}>
-                <span className="v2-kicker">0{index + 1} / {item.model}</span>
+                <span className="v2-kicker">{item.model}</span>
                 <h3>{item.name}</h3>
                 <p>{item.insight}</p>
-                <span className="v2-link">Try this framework <span aria-hidden="true">↗</span></span>
+                <span className="v2-link">Try this framework </span>
               </Link>
             ))}
           </div>
@@ -89,15 +89,15 @@ export default function HomeV2() {
 
       <section className="v2-section" id="builds" aria-labelledby="home-building-title">
         <div className="v2-wrap">
-          <h2 id="home-building-title">{"Five ways to explore the work."}</h2>
+          <h2 id="home-building-title">Find your next question.</h2>
           <p className="v2-lede" style={{ marginTop: '16px' }}>
             Follow the question that interests you. Each project has a clear purpose and an honest evidence boundary.
           </p>
           <div className="v2-project-grid">
-            {buildItems.map((item, index) => (
+            {buildItems.map((item) => (
               <article className={`v2-project-card v2-project-${item.id}`} key={item.id}>
-                <div className="v2-project-heading"><span className="v2-project-number">0{index + 1}</span><p className="v2-kicker">{item.category}</p></div>
-                <h3><Link to={item.path}>{item.name} <span aria-hidden="true">↗</span></Link></h3>
+                <div className="v2-project-heading"><p className="v2-kicker">{item.category}</p></div>
+                <h3><Link to={item.path}>{item.name} </Link></h3>
                 <p className="v2-prose">{item.description}</p>
                 <div className="v2-project-meta">
                   <p className="v2-row-status">
