@@ -4,24 +4,21 @@ import test from 'node:test';
 
 const source = await readFile(new URL('../src/pages/OrqeviaControl.jsx', import.meta.url), 'utf8');
 
-test('the canonical ORQEVIA page launches the governed ABEX HTTPS workspace', () => {
-  assert.match(source, /const PRIME_WORKSPACE_URL = 'https:\/\/192\.168\.1\.23:8443\/pwa\/';/);
-  assert.match(source, /Open my ORQEVIA workspace/);
-  assert.match(source, /Open ORQEVIA/);
-  assert.match(source, /target="_blank" rel="noopener noreferrer"/);
+test('the public ORQEVIA page offers an illustrative walkthrough and its owning source', () => {
+  assert.match(source, /href="#try-orqevia"/);
+  assert.match(source, /https:\/\/github\.com\/AndrewLamSingapore\/orqevia/);
+  assert.match(source, /Curated examples, not live AI output/);
+  assert.doesNotMatch(source, /192\.168\.|127\.0\.0\.1|localhost|PRIME_WORKSPACE_URL/);
 });
 
-test('the public gateway cannot claim or grant client authority', () => {
-  assert.match(source, /ORQEVIA—not this website—verifies identity, session and authority/);
-  assert.match(source, /Owner and Member roles remain server-authoritative/);
-  assert.match(source, /cannot enroll a device, change a role or grant authority/);
+test('the public page neither accepts credentials nor grants private authority', () => {
+  assert.match(source, /operational workspace uses separate authenticated access/);
+  assert.match(source, /Private memory and task execution remain in the authenticated workspace/);
   assert.doesNotMatch(source, /localStorage|sessionStorage|Authorization|enrollment-code|access_token|refresh_token/);
 });
 
-test('availability and outcome copy remains truthful', () => {
-  assert.match(source, /An expired session stays expired/);
-  assert.match(source, /an unavailable ABEX host stays unavailable/);
-  assert.match(source, /neither condition is presented as success/);
-  assert.match(source, /reads no private memory, accepts no credentials and provides no public execution/);
-  assert.match(source, /LAN-only HTTPS origin/);
+test('public availability does not establish a live worker count or private runtime status', () => {
+  assert.match(source, /does not establish which workers or services are running/);
+  assert.match(source, /not observed/);
+  assert.doesNotMatch(source, /Private ABEX workspace available|21-role|21 registered roles/);
 });

@@ -17,7 +17,7 @@ export default function ProfessionalDirection({ id = 'professional-direction' })
               <dd>
                 <p className="v2-prose">{track.description}</p>
                 {track.links.map((link) => (
-                  <Link className="v2-link" key={link.to} to={link.to}>{link.label} →</Link>
+                  <Link className="v2-link" key={link.to} to={link.to}>{link.label}</Link>
                 ))}
               </dd>
             </div>

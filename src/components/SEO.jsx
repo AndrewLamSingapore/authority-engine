@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import publicPages from '../data/public-pages.json';
 
 export default function SEO({ title, description, image, favicon, canonical, noindex = false, type = 'website' }) {
   const location = useLocation();
@@ -9,8 +10,10 @@ export default function SEO({ title, description, image, favicon, canonical, noi
   const defaultTitle = 'Andrew Lam | Operations Intelligence & Applied AI';
   const defaultDescription = 'Andrew Lam in Singapore: operations experience, analytics, cloud training and applied AI. Explore career evidence, verified credentials and VELYQUA.';
   const defaultImage = `${baseUrl}/og-preview.png`;
-  const metaTitle = title ? `${title} | Andrew Lam` : defaultTitle;
-  const metaDescription = description || defaultDescription;
+  const page = publicPages[cleanPath || '/'];
+  const pageTitle = page?.title || title;
+  const metaTitle = pageTitle ? `${pageTitle} | Andrew Lam` : defaultTitle;
+  const metaDescription = page?.description || description || defaultDescription;
   const metaImage = image || defaultImage;
 
   useEffect(() => {

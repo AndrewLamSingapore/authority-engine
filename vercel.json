@@ -21,29 +21,122 @@
       ],
       "destination": "https://authority-engine-app.vercel.app/$1",
       "permanent": true
+    },
+    {
+      "source": "/jarvis",
+      "destination": "/orqevia",
+      "permanent": true
+    },
+    {
+      "source": "/jarvis/:path*",
+      "destination": "/orqevia/:path*",
+      "permanent": true
     }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self'; connect-src 'self' https:; frame-src https://andrewlamsingapore.github.io https://velyqua.vercel.app; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https:; object-src 'none'; upgrade-insecure-requests" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self'; connect-src 'self' https:; frame-src https://andrewlamsingapore.github.io https://velyqua.vercel.app; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https:; object-src 'none'; upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
       ]
     },
     {
       "source": "/authority-theme-v1.mp3",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     }
   ],
   "rewrites": [
-    { "source": "/insights/:slug", "destination": "/api/insights?slug=:slug" },
-    { "source": "/((?!api/.*).*)", "destination": "/index.html" }
+    {
+      "source": "/insights/:slug",
+      "destination": "/api/insights?slug=:slug"
+    },
+    {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/evidence",
+      "destination": "/evidence.html"
+    },
+    {
+      "source": "/frameworks",
+      "destination": "/frameworks.html"
+    },
+    {
+      "source": "/insights",
+      "destination": "/insights.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/maxwell-excel",
+      "destination": "/maxwell-excel.html"
+    },
+    {
+      "source": "/demo",
+      "destination": "/demo.html"
+    },
+    {
+      "source": "/portal",
+      "destination": "/portal.html"
+    },
+    {
+      "source": "/velyqua",
+      "destination": "/velyqua.html"
+    },
+    {
+      "source": "/game-platform",
+      "destination": "/game-platform.html"
+    },
+    {
+      "source": "/sky-tablet",
+      "destination": "/sky-tablet.html"
+    },
+    {
+      "source": "/orqevia",
+      "destination": "/orqevia.html"
+    },
+    {
+      "source": "/orqevia/agents",
+      "destination": "/orqevia/agents.html"
+    },
+    {
+      "source": "/locked-demo",
+      "destination": "/locked-demo.html"
+    },
+    {
+      "source": "/((?!api/.*).*)",
+      "destination": "/index.html"
+    }
   ]
 }

@@ -72,7 +72,7 @@ function V2Header({ theme, onToggle, legacy }) {
               <details className="v2-project-menu" onKeyDown={(event) => { if (event.key === 'Escape') event.currentTarget.removeAttribute('open'); }}>
                 <summary>Projects <span aria-hidden="true">⌄</span></summary>
                 <div className="v2-project-menu-panel">
-                  {products.map(({ name, to }) => <Link key={to} to={to} onClick={(event) => { event.currentTarget.closest('details').removeAttribute('open'); closeMenu(); }}>{name}<span aria-hidden="true">↗</span></Link>)}
+                  {products.map(({ name, to }) => <Link key={to} to={to} onClick={(event) => { event.currentTarget.closest('details').removeAttribute('open'); closeMenu(); }}>{name}</Link>)}
                 </div>
               </details>
             </li>
@@ -100,7 +100,7 @@ function V2Footer() {
       <div className="v2-wrap">
         {pathname !== '/contact' && <div className="v2-footer-invitation">
           <div><p className="v2-kicker">Start a useful conversation</p><h2>Discuss a role or a practical problem.</h2></div>
-          <Link className="v2-btn v2-btn-accent" to="/contact">Connect with Andrew <span aria-hidden="true">↗</span></Link>
+          <Link className="v2-btn v2-btn-accent" to="/contact">Connect with Andrew </Link>
         </div>}
         <div className="v2-footer-grid">
           <div>

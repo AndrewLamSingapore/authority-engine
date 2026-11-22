@@ -1,0 +1,63 @@
+{
+  "/": {
+    "title": "Operations Intelligence & Applied AI in Singapore",
+    "description": "Explore Andrew Lam’s operations portfolio: supply chain analytics, interactive dashboards and applied AI projects shaped by 20+ years of operating experience."
+  },
+  "/about": {
+    "title": "About Andrew Lam — Operations, Analytics & Applied AI",
+    "description": "Meet Andrew Lam in Singapore. Explore his supply chain experience, applied AI credentials, ongoing cloud training and the questions behind his projects."
+  },
+  "/evidence": {
+    "title": "Supply Chain Analytics & Operational Evidence",
+    "description": "Inspect real container-operation records, synthetic cold-chain demonstrations and practical decision frameworks. Follow each claim back to its evidence."
+  },
+  "/frameworks": {
+    "title": "Decision Frameworks for Practical Operations",
+    "description": "Find a useful framework for your operating problem. Explore constraints, feedback loops, root causes and small experiments that inform the next decision."
+  },
+  "/insights": {
+    "title": "Operations, Analytics & AI — Insights",
+    "description": "Read Andrew Lam’s published insights on operations, analytics and applied AI. Explore the evidence and questions behind practical decisions."
+  },
+  "/contact": {
+    "title": "Contact Andrew Lam — Opportunities & Collaboration",
+    "description": "Discuss an operations challenge, a Singapore career opportunity, an AI project or a potential VELYQUA pilot with Andrew Lam."
+  },
+  "/maxwell-excel": {
+    "title": "Maxwell Excel — Container Operations & Analytics",
+    "description": "Explore Maxwell Excel Service in Singapore and a dashboard built from 391 anonymised container jobs across seven reporting periods."
+  },
+  "/demo": {
+    "title": "Cold-Chain Risk Intelligence — Analytics Demo",
+    "description": "Explore an illustrative cold-chain risk analysis using synthetic records. Inspect temperature trends, processing delays and the questions they raise."
+  },
+  "/portal": {
+    "title": "THE PORTAL — Ideas, Connections & Evidence",
+    "description": "Follow an idea into unexpected connections. Explore THE PORTAL’s AI-assisted archive, knowledge graph, source trails and cloud deployment guide."
+  },
+  "/velyqua": {
+    "title": "VELYQUA — Intelligence for Living Water",
+    "description": "Record aquarium water tests, observations and care history. Explore VELYQUA’s working freshwater prototype and its research direction for aquatic monitoring."
+  },
+  "/game-platform": {
+    "title": "Living Worlds — A World That Remembers",
+    "description": "Explore an AI-assisted RPG prototype with persistent campaigns, living characters and choices that shape the story. Discover three illustrated story openings."
+  },
+  "/sky-tablet": {
+    "title": "The Sky Tablet — An Ancient City, An Open Sky",
+    "description": "Journey from an ancient Mesopotamian city into an interactive sky. Explore cuneiform, astronomy and the interpretation behind this 3D storytelling experiment."
+  },
+  "/orqevia": {
+    "title": "ORQEVIA — Work You Can Inspect",
+    "description": "Explore ORQEVIA, an AI orchestration workspace for traceable work, durable memory and recoverable missions. Try a public decision walkthrough."
+  },
+  "/orqevia/agents": {
+    "title": "ORQEVIA — Capabilities & Reported Evidence",
+    "description": "Explore ORQEVIA’s recorded capability inventory, relationships and execution evidence. Source records remain separate from current runtime status."
+  },
+  "/locked-demo": {
+    "title": "Private Demonstration",
+    "description": "This demonstration requires authorised access.",
+    "noindex": true
+  }
+}

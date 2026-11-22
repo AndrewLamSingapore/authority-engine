@@ -15,13 +15,13 @@ const talkSource = read('src/v2/components/TalkSection.jsx');
 const indexHtml = read('index.html');
 
 test('V2 home copy reflects the current professional profile', () => {
-  assert.equal(home.h1, 'Operations intelligence.');
+  assert.match(home.h1, /operating records.*clearer decisions/i);
   assert.equal(
     home.lede,
-    'I combine 20+ years in supply chain and logistics with data analytics, cloud training and applied AI. My emerging focus is Industrial AI, with VELYQUA as my flagship project.',
+    'I’m Andrew Lam. I bring 20+ years in supply chain and operations to practical analytics and applied AI. Explore the evidence, try a project, or bring me a problem worth solving.',
   );
   assert.equal(home.meta, 'Singapore. Open to operations intelligence, AI-enabled operations, analytics and cloud support roles.');
-  assert.equal(home.primaryAction, 'Explore career evidence');
+  assert.equal(home.primaryAction, 'Explore the evidence');
   assert.equal(home.secondaryAction, 'Explore VELYQUA');
 });
 
@@ -53,7 +53,7 @@ test('all five public builds have distinct, safe destinations and explicit evide
 });
 
 test('about copy matches the supplied brief and only links LinkedIn when configured', () => {
-  assert.equal(about.h1, 'Operations experience with an emerging Industrial AI focus');
+  assert.match(about.h1, /Operations experience.*practical path into AI/);
   assert.ok(about.lede.startsWith("I'm Lam Teck Sing Andrew, based in Singapore."));
   assert.deepEqual(about.pillars.map((pillar) => pillar.word), ['Think', 'Prove', 'Build']);
   const linkedin = about.pillars.find((pillar) => pillar.linkLabel === 'Read on LinkedIn');
