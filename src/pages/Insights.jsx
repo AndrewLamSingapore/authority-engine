@@ -5,7 +5,7 @@ import { articleListQuery, fetchPublishedContent, normalizeArticleList } from '.
 
 const flagship = [
   { title: 'Container Operations Evidence', tag: 'REAL OPERATING EVIDENCE', text: 'Anonymised Maxwell Excel records covering 391 container jobs across seven reporting periods. Dataset figures are factual; no unverified profit, savings or production-impact claim is made.', to: '/maxwell-excel' },
-  { title: 'VELYQUA 维澜', tag: 'E2 PRODUCT · E0/E1 PHYSICAL HYPOTHESIS', text: 'A live freshwater operating-system prototype plus a governed experiment asking whether low-cost continuous signals can provide useful earlier warning. The physical hypothesis is not yet scientifically validated.', to: '/velyqua' },
+  { title: 'VELYQUA 维澜', tag: 'WORKING PROTOTYPE · VALIDATION AHEAD', text: 'Manual aquarium water tests, observations and care history. AI-assisted monitoring, physical sensors and customer outcomes are the next development and validation goals.', to: '/velyqua' },
   { title: 'Multi-Signal Risk Simulator', tag: 'E1 SYNTHETIC DEMONSTRATION', text: 'An inspectable weighted-rule environment for exploring how multiple signals can combine. It is not presented as a trained or validated predictive model.', to: '/demo' },
 ];
 
@@ -43,8 +43,8 @@ export default function Insights() {
     <div className="bg-[#050807] min-h-screen pt-32 pb-24 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl">
-          <div className="eyebrow">Evidence hub</div>
-          <h1 className="mt-5 text-5xl sm:text-7xl font-black tracking-[-0.055em] leading-[.92]">Claims are easy.<br /><span className="text-gradient">Evidence compounds.</span></h1>
+          <div className="eyebrow">Field notes · Case studies · Experiments</div>
+          <h1 className="mt-5 text-5xl sm:text-7xl font-black tracking-[-0.055em] leading-[.92]">From the operation.<br /><span className="text-gradient">Into the evidence.</span></h1>
           <p className="mt-7 max-w-3xl text-lg text-slate-400 leading-relaxed">Projects, operating analyses and experiments connecting frontline experience with analytics, systems thinking and AI. Evidence types and maturity are identified rather than blurred together.</p>
           <Link to="/frameworks" className="mt-6 inline-flex items-center gap-2 font-semibold text-amber-300">Explore the decision frameworks <ArrowRight className="w-4 h-4" /></Link>
         </div>

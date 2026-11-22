@@ -10,7 +10,7 @@ const principles = [
   {
     Icon: Activity,
     title: 'Decision before dashboard',
-    text: 'VELYQUA turns observations and water tests into one calm next action instead of flooding the owner with metrics.',
+    text: 'Bring manual water tests, observations and care actions into one useful record. Begin with the decision an owner needs to make.',
   },
   {
     Icon: ShieldCheck,
@@ -20,7 +20,7 @@ const principles = [
   {
     Icon: Database,
     title: 'Memory that compounds',
-    text: 'Tank history, concerns and outcomes accumulate into a durable operating record while the public preview remains browser-local.',
+    text: 'Review care history and follow up on outcomes. Guest records stay on the current device; account-based workflows are documented in the source.',
   },
 ];
 
@@ -35,12 +35,12 @@ export default function Velyqua() {
               alt="VELYQUA 维澜 logo"
               className="mb-7 h-24 w-24 rounded-[1.45rem] shadow-2xl shadow-cyan-950/50 ring-1 ring-cyan-200/20 sm:h-28 sm:w-28"
             />
-            <div className="eyebrow">Controlled public exploration · VELYQUA 维澜</div>
+            <div className="eyebrow">Flagship project · VELYQUA 维澜 · In development</div>
             <h1 className="mt-5 text-5xl sm:text-7xl font-black tracking-[-0.055em] leading-[.92]">
-              Aquarium care,<br /><span className="text-gradient">without the noise.</span>
+              Living water.<br /><span className="text-gradient">Clearer decisions.</span>
             </h1>
             <p className="mt-7 max-w-3xl text-lg leading-relaxed text-slate-300">
-              An iPhone-first browser concept exploring how imperfect observations could become safer, explainable decisions—and how a tank could remember what happened next.
+              A working freshwater aquarium prototype for manual water tests, observations and care history. I am developing it toward AI-assisted monitoring and decision support, beginning with real aquatic care problems.
             </p>
             <p className="mt-4 text-base font-semibold tracking-wide text-emerald-300">洞察微澜，守护水境。</p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -55,17 +55,17 @@ export default function Velyqua() {
           <div className="signal-card rounded-[2rem] p-7 sm:p-9">
             <div className="flex items-start justify-between gap-6">
               <div>
-                <div className="text-sm tracking-[.2em] uppercase text-emerald-300">Inspectable concept evidence</div>
-                <h2 className="mt-3 text-2xl font-black">A working governed browser prototype</h2>
+                <div className="text-sm tracking-[.2em] uppercase text-emerald-300">Current stage</div>
+                <h2 className="mt-3 text-2xl font-black">Working software. A product hypothesis to test.</h2>
               </div>
               <Waves className="w-8 h-8 text-emerald-300" />
             </div>
             <div className="mt-8 grid grid-cols-2 gap-3 text-sm">
               {[
                 ['Live', 'Public browser build'],
-                ['63', 'Automated tests'],
-                ['Local', 'Preview data boundary'],
-                ['Explicit', 'Evidence + uncertainty'],
+                ['Manual', 'Water tests + observations'],
+                ['History', 'Care records + follow-up'],
+                ['Pilot', 'Next validation goal'],
               ].map(([value, label]) => (
                 <div key={label} className="rounded-2xl border border-white/[0.07] bg-black/20 p-4">
                   <div className="text-xl font-black text-white">{value}</div>
@@ -73,7 +73,7 @@ export default function Velyqua() {
                 </div>
               ))}
             </div>
-            <p className="mt-6 text-sm leading-relaxed text-slate-500">The browser concept can be inspected. Physical sensor integration, implementation and market claims remain hypotheses until independently validated.</p>
+            <p className="mt-6 text-sm leading-relaxed text-slate-500">AI monitoring, physical sensor performance, early-warning outcomes and commercial demand still require development and validation. The fictional walkthrough uses synthetic educational readings.</p>
           </div>
         </section>
 
@@ -81,7 +81,7 @@ export default function Velyqua() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.08] px-5 sm:px-7 py-4">
             <div>
               <div className="text-sm font-bold text-white">Interactive VELYQUA</div>
-              <div className="mt-1 text-sm text-slate-500">Complete onboarding, explore Aqua Now, Tank Memory, Quiet Plan and Quick Update.</div>
+              <div className="mt-1 text-sm text-slate-500">Explore the software. Guest records stay on this device; walkthrough readings are illustrative.</div>
             </div>
             <a href={velyquaUrl} target="_blank" rel="noreferrer" className="text-sm font-bold text-emerald-300 inline-flex items-center gap-2">
               Open full screen <ExternalLink className="w-4 h-4" />
@@ -89,7 +89,7 @@ export default function Velyqua() {
           </div>
           <iframe
             src={velyquaUrl}
-            title="Interactive VELYQUA browser concept"
+            title="Interactive VELYQUA aquarium prototype"
             className="block w-full h-[760px] bg-[#f4f8f8]"
             loading="eager"
             referrerPolicy="strict-origin-when-cross-origin"
@@ -107,13 +107,28 @@ export default function Velyqua() {
           ))}
         </section>
 
-        <section className="mt-14 rounded-[2rem] border border-amber-300/15 bg-amber-300/[0.035] p-8 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
+        <section className="mt-16" aria-labelledby="velyqua-validation-title">
+          <div className="eyebrow">From prototype to a measurable pilot</div>
+          <h2 id="velyqua-validation-title" className="mt-4 text-3xl sm:text-4xl font-bold">Build the evidence for the next step.</h2>
+          <p className="mt-5 max-w-3xl text-slate-300">The goal is to discover whether AI-assisted monitoring improves a useful operational outcome. Customer interviews and a bounded pilot should guide investment and product scope.</p>
+          <ol className="mt-8 grid md:grid-cols-2 gap-4">
+            {[
+              ['Reliable data', 'Make ingestion, cloud monitoring and data quality dependable.'],
+              ['Traceable recommendations', 'Show the observations and uncertainty behind each suggestion.'],
+              ['Human intervention records', 'Record what a person chose to do and why.'],
+              ['Outcome measurement', 'Compare a meaningful baseline with follow-up results in a real pilot.'],
+            ].map(([title, text], index) => <li key={title} className="system-card p-7"><p className="text-sm text-emerald-300">0{index + 1} / Development goal</p><h3 className="mt-4 text-xl">{title}</h3><p className="mt-3 text-sm text-slate-300">{text}</p></li>)}
+          </ol>
+        </section>
+
+        <section className="mt-14 signal-card p-8 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div>
-            <div className="text-sm tracking-[.2em] uppercase text-amber-300">Public-preview boundary</div>
-            <p className="mt-3 max-w-3xl leading-relaxed text-slate-300">Preview records stay in the visitor’s browser. Private accounts and cloud synchronisation activate only after production identity and cloud configuration are completed.</p>
+            <div className="eyebrow">Aquarium or aquaculture monitoring problem?</div>
+            <h2 className="mt-4 text-2xl font-bold">Help define a useful pilot.</h2>
+            <p className="mt-3 max-w-3xl leading-relaxed text-slate-300">I welcome discovery conversations with owners and operators. We can start with the problem, available data and an outcome worth measuring. Expansion to other industrial applications will need its own customer and technical validation.</p>
           </div>
-          <Link to="/insights" className="shrink-0 text-sm font-bold text-emerald-300 inline-flex items-center gap-2">
-            Inspect the evidence <ArrowRight className="w-4 h-4" />
+          <Link to="/contact?source=velyqua&intent=collaboration" className="premium-button shrink-0 text-sm font-bold inline-flex items-center gap-2 px-6 py-3.5">
+            Discuss a potential pilot <ArrowRight className="w-4 h-4" />
           </Link>
         </section>
       </div>

@@ -87,7 +87,7 @@ function ContactForm({ context }) {
           <div className="lg:sticky lg:top-32">
             <div className="eyebrow">Start a conversation</div>
             <h1 className="mt-5 text-4xl sm:text-6xl font-black tracking-[-0.055em] leading-[.94] text-white">Let’s find a <span className="text-gradient">useful connection.</span></h1>
-            <p className="mt-6 text-lg leading-relaxed text-slate-400 max-w-xl">Have an opportunity, a practical problem or an idea worth exploring? Tell me what you have in mind. I’m open to operations and analytics roles, project collaborations and thoughtful connections.</p>
+            <p className="mt-6 text-lg leading-relaxed text-slate-400 max-w-xl">I’m open to Singapore-based operations intelligence, AI-enabled operations, analytics and cloud support opportunities. I also welcome conversations with aquarium and aquaculture operators about monitoring problems and potential VELYQUA pilots.</p>
             <div className="mt-9 hidden lg:grid gap-3">
               <div className="signal-card rounded-2xl p-5 flex gap-4"><MapPin className="w-5 h-5 text-amber-300 shrink-0 mt-0.5"/><div><div className="font-semibold text-white">Singapore</div><div className="text-sm text-slate-500 mt-1">On-site, hybrid and remote opportunities</div></div></div>
               <div className="signal-card rounded-2xl p-5 flex gap-4"><ShieldCheck className="w-5 h-5 text-emerald-300 shrink-0 mt-0.5"/><div><div className="font-semibold text-white">20+ years in operations</div><div className="text-sm text-slate-500 mt-1">Frontline experience combined with analytics and AI</div></div></div>

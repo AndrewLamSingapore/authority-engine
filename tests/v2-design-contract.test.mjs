@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
-import { about, buildItems, evidenceItems, evidencePage, home, homeEvidence, talk, yardContainers } from '../src/v2/data/content.js';
+import { about, buildItems, evidenceItems, evidencePage, home, homeEvidence, professionalDirection, talk, yardContainers } from '../src/v2/data/content.js';
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 
@@ -15,18 +15,18 @@ const talkSource = read('src/v2/components/TalkSection.jsx');
 const indexHtml = read('index.html');
 
 test('V2 home copy reflects the current professional profile', () => {
-  assert.equal(home.h1, "I've run the operation. Now I build the analytics that see trouble sooner.");
+  assert.equal(home.h1, 'Operations intelligence.');
   assert.equal(
     home.lede,
-    'I bring 20+ years in supply chain and logistics to operations analytics and process improvement. I use Power BI, SQL, Excel and Python to investigate delays, inventory discrepancies and service risks.',
+    'I combine 20+ years in supply chain and logistics with data analytics, cloud training and applied AI. My emerging focus is Industrial AI, with VELYQUA as my flagship project.',
   );
-  assert.equal(home.meta, 'Singapore. Open to operations transformation, operational analytics and process improvement roles.');
-  assert.equal(home.primaryAction, 'Start a conversation');
-  assert.equal(home.secondaryAction, 'Inspect the evidence');
+  assert.equal(home.meta, 'Singapore. Open to operations intelligence, AI-enabled operations, analytics and cloud support roles.');
+  assert.equal(home.primaryAction, 'Explore career evidence');
+  assert.equal(home.secondaryAction, 'Explore VELYQUA');
 });
 
 test('the home evidence band states the recorded figures and its own limit', () => {
-  assert.equal(homeEvidence.h2, 'Claims are easy. Evidence compounds.');
+  assert.equal(homeEvidence.h2, 'Start with the operational evidence.');
   assert.deepEqual(homeEvidence.figures, [
     '391 anonymised container jobs',
     '7 reporting periods',
@@ -40,21 +40,21 @@ test('the home evidence band states the recorded figures and its own limit', () 
 });
 
 test('all five public builds have distinct, safe destinations and explicit evidence boundaries', () => {
-  assert.deepEqual(buildItems.map((item) => item.id), ['orqevia', 'portal', 'velyqua', 'game-platform', 'sky-tablet']);
+  assert.deepEqual(buildItems.map((item) => item.id), ['velyqua', 'orqevia', 'portal', 'game-platform', 'sky-tablet']);
   assert.equal(new Set(buildItems.map((item) => item.path)).size, 5);
   for (const item of buildItems) {
     assert.ok(item.path.startsWith('/'));
     assert.ok(item.boundary.length > 30, `${item.id} explains its evidence limit`);
     assert.ok(item.external ? item.href.startsWith('https://') : item.href.startsWith('/'));
   }
-  assert.equal(buildItems[0].external, false, 'ORQEVIA remains a local public walkthrough');
-  assert.match(buildItems[0].boundary, /does not execute private/);
-  assert.match(buildItems[2].boundary, /unvalidated/);
+  assert.equal(buildItems[1].external, false, 'ORQEVIA remains a local public walkthrough');
+  assert.match(buildItems[1].boundary, /does not execute private/);
+  assert.match(buildItems[0].boundary, /development and validation goals/);
 });
 
 test('about copy matches the supplied brief and only links LinkedIn when configured', () => {
-  assert.equal(about.h1, 'Experience on the floor. Intelligence above it.');
-  assert.ok(about.lede.startsWith("I'm Lam Teck Sing Andrew."));
+  assert.equal(about.h1, 'Operations experience with an emerging Industrial AI focus');
+  assert.ok(about.lede.startsWith("I'm Lam Teck Sing Andrew, based in Singapore."));
   assert.deepEqual(about.pillars.map((pillar) => pillar.word), ['Think', 'Prove', 'Build']);
   const linkedin = about.pillars.find((pillar) => pillar.linkLabel === 'Read on LinkedIn');
   assert.ok(linkedin, 'the Think row offers the LinkedIn link when configured');
@@ -63,22 +63,22 @@ test('about copy matches the supplied brief and only links LinkedIn when configu
   assert.equal(about.bandH2, 'Where the twenty years come from.');
   assert.equal(about.openH2, "What I'm open to");
   assert.deepEqual(about.openList, [
-    'Operations excellence',
-    'Operational analytics',
-    'Analytics-enabled supply chain',
-    'Consulting',
+    'Operations intelligence and AI-enabled operations',
+    'Operations and supply-chain analytics',
+    'Cloud support and deployment opportunities',
+    'VELYQUA customer discovery and potential pilots',
   ]);
 });
 
 test('evidence page grades, filters and claim rules match the brief', () => {
-  assert.equal(evidencePage.h1, "What each piece of evidence supports, and what it doesn't.");
+  assert.equal(evidencePage.h1, "Operational evidence you can inspect.");
   assert.deepEqual(evidencePage.filters.map((filter) => filter.label), [
     'All',
     'Real operating evidence',
     'Synthetic prototypes',
     'Concepts',
   ]);
-  assert.equal(evidencePage.rulesHeading, 'The rules I hold my own claims to.');
+  assert.equal(evidencePage.rulesHeading, 'How I classify the work');
   assert.deepEqual(evidencePage.rules, [
     'Synthetic data is not presented as operational history.',
     'Anonymised operational evidence stays anonymised.',
@@ -95,7 +95,7 @@ test('evidence page grades, filters and claim rules match the brief', () => {
   assert.equal(evidenceItems[2].doesNotClaim, 'A shipped capability. It is a design, and it is described as one.');
 });
 
-test('the talk band keeps the three supplied options and the truncated sentence stays flagged', () => {
+test('the talk band keeps the three enquiry paths and current hiring direction', () => {
   assert.equal(talk.h2, 'Start with what brought you here.');
   assert.deepEqual(talk.tabs.map((tab) => tab.label), [
     "I'm hiring",
@@ -104,10 +104,12 @@ test('the talk band keeps the three supplied options and the truncated sentence 
   ]);
   assert.equal(talk.tabs[0].title, 'Start with the container records.');
   assert.ok(
-    talk.tabs[0].body.startsWith('For operations excellence and operational-analytics roles, the quickest read is one real operating dataset and two prototypes that are'),
-    'the specified sentence start is preserved',
+    talk.tabs[0].body.includes('operations intelligence'),
+    'the hiring path reflects the emerging professional direction',
   );
-  assert.match(read('src/v2/data/content.js'), /brief was truncated/);
+  assert.equal(professionalDirection.tracks.length, 2);
+  assert.match(professionalDirection.tracks[1].description, /customer|Customer/);
+  assert.match(professionalDirection.foundation, /next areas to develop/);
 });
 
 test('the container yard keeps the specified geometry and accessible links', () => {

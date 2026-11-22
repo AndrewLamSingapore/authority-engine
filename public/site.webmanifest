@@ -1,9 +1,9 @@
 {
-  "name": "Authority Engine — Andrew Lam",
-  "short_name": "Authority Engine",
-  "description": "Operations intelligence, evidence, experiments and working systems by Andrew Lam.",
+  "name": "Andrew Lam — Operations Intelligence & Applied AI",
+  "short_name": "Andrew Lam",
+  "description": "Singapore operations experience, analytics, applied AI and the VELYQUA flagship project.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#050807",
-  "theme_color": "#050807"
+  "background_color": "#0B1A25",
+  "theme_color": "#0B1A25"
 }

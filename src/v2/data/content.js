@@ -16,16 +16,17 @@ export const profile = {
 };
 
 export const home = {
-  h1: "I've run the operation. Now I build the analytics that see trouble sooner.",
-  lede: 'I bring 20+ years in supply chain and logistics to operations analytics and process improvement. I use Power BI, SQL, Excel and Python to investigate delays, inventory discrepancies and service risks.',
-  meta: 'Singapore. Open to operations transformation, operational analytics and process improvement roles.',
+  kicker: 'Andrew Lam · Singapore',
+  h1: 'Operations intelligence.',
+  lede: 'I combine 20+ years in supply chain and logistics with data analytics, cloud training and applied AI. My emerging focus is Industrial AI, with VELYQUA as my flagship project.',
+  meta: 'Singapore. Open to operations intelligence, AI-enabled operations, analytics and cloud support roles.',
   credential: 'BCG RISE Capstone Top 2 · Python Expert · Machine Learning Expert',
-  primaryAction: 'Start a conversation',
-  secondaryAction: 'Inspect the evidence',
+  primaryAction: 'Explore career evidence',
+  secondaryAction: 'Explore VELYQUA',
 };
 
 export const homeEvidence = {
-  h2: 'Claims are easy. Evidence compounds.',
+  h2: 'Start with the operational evidence.',
   lede: 'One real operating dataset sits at the base of this portfolio: anonymised records from container operations. Everything built on top of it is labelled by what it actually is.',
   figures: [
     '391 anonymised container jobs',
@@ -39,9 +40,33 @@ export const homeEvidence = {
 
 export const buildItems = projects;
 
+export const professionalDirection = {
+  h2: 'Developing a career and a product',
+  lede: 'My next phase connects a Singapore career in Industrial AI and Operations Intelligence with VELYQUA product development. Each practical milestone should strengthen both.',
+  tracks: [
+    {
+      name: 'Career in Singapore',
+      description: 'Apply operations experience, analytics, cloud engineering and AI to measurable business problems. I am targeting operations intelligence, AI-enabled operations, analytics and cloud support opportunities while building toward Industrial AI and AI solutions roles.',
+      links: [
+        { label: 'Review my operational evidence', to: '/evidence?grade=real' },
+        { label: 'Discuss a career opportunity', to: '/contact?source=authority-engine&intent=role' },
+      ],
+    },
+    {
+      name: 'Developing VELYQUA',
+      description: 'Build an AI-assisted monitoring and decision-support product, beginning with aquatic environments. Customer discovery, reliable engineering and a measurable pilot will guide progress toward a paid pilot or paying customer. Other industrial applications will need their own demand and technical validation.',
+      links: [
+        { label: 'Explore VELYQUA and its development goals', to: '/velyqua' },
+        { label: 'Discuss a potential pilot', to: '/contact?source=velyqua&intent=collaboration' },
+      ],
+    },
+  ],
+  foundation: 'My current tools are Python, SQL, Power BI and Excel, backed by completed applied AI training. I am strengthening Linux, Microsoft Azure, deployment and automation skills, with IoT, data engineering and MLOps as the next areas to develop.',
+};
+
 export const about = {
-  h1: 'Experience on the floor. Intelligence above it.',
-  lede: "I'm Lam Teck Sing Andrew. My foundation is not theory: it is more than two decades of operational work. Today I combine that experience with analytics, data and AI to build better ways of seeing risk, understanding systems and acting earlier.",
+  h1: 'Operations experience with an emerging Industrial AI focus',
+  lede: "I'm Lam Teck Sing Andrew, based in Singapore. I bring more than 20 years across cold-chain warehousing, grocery distribution, container operations and international freight forwarding. My emerging focus is Industrial AI and Operations Intelligence, combining operational judgement with analytics, cloud training and applied AI projects.",
   pillars: [
     {
       word: 'Think',
@@ -69,19 +94,19 @@ export const about = {
   bandLede:
     'Logistics, warehousing, distribution, container operations and supply-chain execution.',
   bandText: [
-    'At Maxwell Excel Service, I work part-time as Partner & Director. I plan skilled-labour deployment and container job schedules, coordinate service delivery, and review pricing, invoicing and cash flow.',
-    'That work taught me to ask one question first: where will this go wrong, and how do we see it sooner? Analytics and applied AI are how I now answer it.',
+    'At Maxwell Excel Service, I provide occasional oversight as Partner & Director. A designated manager handles daily operations. I support crew deployment planning and review resourcing, pricing, invoicing and cash flow, while remaining available for full-time employment.',
+    'At Jurong Cold Store, I coordinated temperature-controlled warehouse and production work around vessel arrivals and investigated inventory discrepancies. Earlier roles covered grocery distribution and international freight forwarding.',
     'I completed Applied AI and Data Analytics under RISE by BCG U in October 2026. My credentials include BCG RISE Capstone Top 2 (Business and Data Analytics), Python Expert and Machine Learning Expert.',
     'I use Power BI, SQL, Python and Excel to investigate performance gaps, explain operational risk and support better decisions. I share my independent projects publicly as I build them.',
     'I am currently studying Cloud Support & DevOps through the SkillsFuture Career Transition Programme delivered by Generation Singapore in partnership with Temasek Polytechnic. The training covers Linux, Python, Microsoft Azure and automation.',
   ],
   openH2: "What I'm open to",
-  openLede: 'Based in Singapore.',
+  openLede: 'Based in Singapore and building toward Industrial AI and AI solutions roles, with operations experience as my foundation.',
   openList: [
-    'Operations excellence',
-    'Operational analytics',
-    'Analytics-enabled supply chain',
-    'Consulting',
+    'Operations intelligence and AI-enabled operations',
+    'Operations and supply-chain analytics',
+    'Cloud support and deployment opportunities',
+    'VELYQUA customer discovery and potential pilots',
   ],
 };
 
@@ -94,7 +119,7 @@ export const credentials = [
 ];
 
 export const evidencePage = {
-  h1: "What each piece of evidence supports, and what it doesn't.",
+  h1: 'Operational evidence you can inspect.',
   lede: 'Projects, operating analyses and experiments connecting frontline experience with analytics, systems thinking and AI. Each one is graded by what it actually is, not blurred together.',
   filters: [
     { id: 'all', label: 'All' },
@@ -102,7 +127,7 @@ export const evidencePage = {
     { id: 'synth', label: 'Synthetic prototypes' },
     { id: 'concept', label: 'Concepts' },
   ],
-  rulesHeading: 'The rules I hold my own claims to.',
+  rulesHeading: 'How I classify the work',
   rules: [
     'Synthetic data is not presented as operational history.',
     'Anonymised operational evidence stays anonymised.',
@@ -168,11 +193,8 @@ export const evidenceItems = [
 /**
  * Talk-section copy.
  *
- * The supplied brief was truncated inside the "I'm hiring" body sentence and
- * stopped before the remaining two panels were specified. The hiring sentence
- * is completed with the most conservative reading of its own start, and the
- * other two panels keep to the same evidence discipline. Recorded as an
- * "Unverified or changed" item on the V2 pull request.
+ * Career enquiries start with inspectable operational evidence. Product-pilot
+ * enquiries use the VELYQUA source context so the contact form retains intent.
  */
 export const talk = {
   h2: 'Start with what brought you here.',
@@ -181,11 +203,11 @@ export const talk = {
       id: 'hiring',
       label: "I'm hiring",
       title: 'Start with the container records.',
-      body: 'For operations excellence and operational-analytics roles, the quickest read is one real operating dataset and two prototypes that are labelled by what they actually are.',
+      body: 'For operations intelligence, AI-enabled operations, analytics or cloud support roles, start with my operational evidence and developing technical portfolio. Industrial AI is my emerging focus, grounded in 20+ years of supply chain and logistics experience.',
       linkLabel: 'Inspect the evidence',
       to: '/evidence?grade=real',
       message:
-        "I'm hiring for an operations excellence or operational-analytics role, and I'd like to start with the container records.",
+        "I'm hiring for an operations intelligence, AI-enabled operations, analytics or cloud support role in Singapore. I'd like to discuss your operations experience and technical portfolio.",
     },
     {
       id: 'operations',
