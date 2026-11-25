@@ -24,11 +24,10 @@ export default function Navbar() {
           <summary>Explore projects</summary>
           <div className="project-menu-panel">{projects.map(([name,path]) => <Link key={path} to={path} onClick={e => e.currentTarget.closest('details').removeAttribute('open')}>{name}<ArrowUpRight size={16}/></Link>)}</div>
         </details>
-        <a className="nav-link" href="https://velyqua-website.vercel.app" target="_blank" rel="noopener noreferrer">VELYQUA site <ArrowUpRight size={16}/></a>
         <Link to="/contact" className="premium-button nav-conversation">Let’s talk <ArrowUpRight size={16}/></Link>
       </div>
       <div className="portfolio-nav-controls"><SoundControl /><button type="button" className="portfolio-menu-toggle" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? 'Close navigation' : 'Open navigation'}>{open ? <X/> : <Menu/>}</button></div>
     </div>
-    {open && <div id="mobile-navigation" className="portfolio-mobile-nav" onKeyDown={e => { if(e.key === 'Escape') close(); }}>{[['Home','/'],...primary,...projects,['Let’s talk','/contact']].map(link)}<a className="nav-link" href="https://velyqua-website.vercel.app" target="_blank" rel="noopener noreferrer">VELYQUA site ↗</a><a className="nav-link" href="https://github.com/AndrewLamSingapore">GitHub</a></div>}
+    {open && <div id="mobile-navigation" className="portfolio-mobile-nav" onKeyDown={e => { if(e.key === 'Escape') close(); }}>{[['Home','/'],...primary,...projects,['Let’s talk','/contact']].map(link)}<a className="nav-link" href="https://github.com/AndrewLamSingapore">GitHub</a></div>}
   </nav>;
 }
