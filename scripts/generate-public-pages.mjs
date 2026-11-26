@@ -27,4 +27,5 @@ for (const [route, page] of Object.entries(pages)) {
   await fs.mkdir(path.dirname(file), { recursive: true });
   await fs.writeFile(file, html);
 }
-console.log(`Published page metadata and fallback content for ${Object.keys(pages).length} routes.`);
+await fs.copyFile('llms.txt', 'dist/llms.txt');
+console.log(`Published page metadata and fallback content for ${Object.keys(pages).length} routes, plus the canonical public profile.`);
