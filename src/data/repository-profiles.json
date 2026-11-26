@@ -1,0 +1,74 @@
+[
+  {
+    "slug": "AndrewLamSingapore",
+    "name": "Andrew Lam · GitHub profile",
+    "kind": "Profile and shared contracts",
+    "site": "https://authority-engine-app.vercel.app/",
+    "details": "/about",
+    "description": "Andrew Lam | Operations intelligence, analytics and applied AI. Project directory, live experiences and source shaped by 20+ years in supply chain and operations in Singapore.",
+    "repository": "https://github.com/AndrewLamSingapore/AndrewLamSingapore"
+  },
+  {
+    "slug": "authority-engine",
+    "name": "Authority Engine",
+    "kind": "Portfolio and evidence hub",
+    "site": "https://authority-engine-app.vercel.app/",
+    "details": "/",
+    "description": "Authority Engine | Andrew Lam's operations intelligence and applied AI portfolio. Inspect operating evidence, analytical case studies and public profiles for all eight GitHub repositories.",
+    "repository": "https://github.com/AndrewLamSingapore/authority-engine"
+  },
+  {
+    "slug": "velyqua",
+    "name": "VELYQUA · Application",
+    "kind": "Aquarium software",
+    "site": "https://velyqua.vercel.app/",
+    "details": "/velyqua",
+    "description": "VELYQUA | Intelligence for living water. Manual aquarium water tests, observations and care history with local-first records and private cloud sync. Animal–environment intelligence is a research direction.",
+    "repository": "https://github.com/AndrewLamSingapore/velyqua"
+  },
+  {
+    "slug": "velyqua-website",
+    "name": "VELYQUA · Product website",
+    "kind": "Product introduction",
+    "site": "https://velyqua-website.vercel.app/",
+    "details": "/velyqua",
+    "description": "VELYQUA's cinematic product website. Explore the aquarium-care workflow, clearly labelled research direction and direct route into the working app. Next.js, TypeScript, Tailwind CSS, GSAP and Three.js.",
+    "repository": "https://github.com/AndrewLamSingapore/velyqua-website"
+  },
+  {
+    "slug": "the-portal",
+    "name": "THE PORTAL",
+    "kind": "Discovery and research prototype",
+    "site": "https://the-portal-ten.vercel.app/",
+    "details": "/portal",
+    "description": "THE PORTAL | From ideas to cumulative discovery. Guided solo discovery, collective discussion rooms, hybrid retrieval and an open Observatory for inspecting evidence, hypotheses and living-engine runs. Research prototype.",
+    "repository": "https://github.com/AndrewLamSingapore/the-portal"
+  },
+  {
+    "slug": "orqevia",
+    "name": "ORQEVIA",
+    "kind": "AI orchestration workspace",
+    "site": "https://authority-engine-app.vercel.app/orqevia",
+    "details": "/orqevia",
+    "description": "ORQEVIA | Local intelligence, useful tools and recoverable missions. An AI orchestration workspace with direct task dispatch, durable memory and a shared authenticated PWA. Explore the public walkthrough and Python source.",
+    "repository": "https://github.com/AndrewLamSingapore/orqevia"
+  },
+  {
+    "slug": "game-platform",
+    "name": "Living Worlds",
+    "kind": "Persistent role-playing prototype",
+    "site": "https://game-platform-wine-nine.vercel.app/",
+    "details": "/game-platform",
+    "description": "Living Worlds: a world that remembers your choices. Explore an AI-assisted RPG prototype with persistent campaigns, living characters, deterministic rules and server-authoritative game state.",
+    "repository": "https://github.com/AndrewLamSingapore/game-platform"
+  },
+  {
+    "slug": "sky-tablet",
+    "name": "The Sky Tablet",
+    "kind": "Interactive cultural storytelling",
+    "site": "https://sky-tablet.vercel.app/",
+    "details": "/sky-tablet",
+    "description": "The Sky Tablet: journey from an ancient Mesopotamian city into a sky of stars and cuneiform. An interactive 3D storytelling experiment built with Three.js/WebGL, with clearly labelled historical interpretation.",
+    "repository": "https://github.com/AndrewLamSingapore/sky-tablet"
+  }
+]

@@ -4,6 +4,7 @@ import ContainerYard from '../components/ContainerYard';
 import TalkSection from '../components/TalkSection';
 import ProfessionalDirection from '../components/ProfessionalDirection';
 import VelyquaFeature from '../components/VelyquaFeature';
+import RepositoryDirectory from '../components/RepositoryDirectory';
 import { buildItems, home, homeEvidence } from '../data/content';
 import { scrollToTalk } from '../scroll-to-talk';
 import { frameworks } from '../data/frameworks';
@@ -125,6 +126,7 @@ export default function HomeV2() {
         </div>
       </section>
 
+      <RepositoryDirectory />
       <TalkSection />
     </>
   );

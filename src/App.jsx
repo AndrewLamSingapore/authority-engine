@@ -107,8 +107,8 @@ export default function App() {
           />
           <Route path="maxwell-excel" element={<MaxwellExcel />} />
           <Route path="demo" element={<Demo />} />
-          <Route path="portal" element={<><SEO title="The Portal — Connected Knowledge & Evidence" description="Explore Andrew Lam's interactive knowledge graph and the Portal Evidence Lab for reading and comparing public transaction evidence." /><Portal /></>} />
-          <Route path="velyqua" element={<><SEO title="VELYQUA — Aquatic Monitoring & Decision Support" description="Explore Andrew Lam's freshwater aquarium prototype, manual water tests and care records, plus development and customer-pilot goals for AI-assisted monitoring." /><Velyqua /></>} />
+          <Route path="portal" element={<><SEO title="THE PORTAL — From Ideas to Cumulative Discovery" description="Explore guided solo discovery, collective discussion rooms and the Open Intelligence Observatory. Inspect hypotheses, sources and evidence." /><Portal /></>} />
+          <Route path="velyqua" element={<><SEO title="VELYQUA — Aquatic Monitoring & Decision Support" description="Explore the VELYQUA product website, working aquarium app, Architecture Studio and research direction for animal–environment intelligence." /><Velyqua /></>} />
           <Route path="game-platform" element={<GamePlatform />} />
           <Route
             path="sky-tablet"

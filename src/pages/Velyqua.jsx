@@ -5,6 +5,7 @@ import velyquaLogo from '../assets/velyqua-logo.svg';
 
 const velyquaUrl = 'https://velyqua.vercel.app/';
 const repositoryUrl = 'https://github.com/AndrewLamSingapore/velyqua';
+const productWebsiteUrl = 'https://velyqua-website.vercel.app/';
 
 const principles = [
   {
@@ -40,10 +41,11 @@ export default function Velyqua() {
               Living water.<br /><span className="text-gradient">Clearer decisions.</span>
             </h1>
             <p className="mt-7 max-w-3xl text-lg leading-relaxed text-slate-300">
-              A working freshwater aquarium prototype for manual water tests, observations and care history. I am developing it toward AI-assisted monitoring and decision support, beginning with real aquatic care problems.
+              One VELYQUA experience: a cinematic product introduction and a working freshwater aquarium app for manual water tests, observations, care history and private account sync. The research direction connects aquatic observations, environmental change, keeper interventions and measured outcomes.
             </p>
             <p className="mt-4 text-base font-semibold tracking-wide text-emerald-300">洞察微澜，守护水境。</p>
             <div className="mt-8 flex flex-wrap gap-3">
+              <a href={productWebsiteUrl} target="_blank" rel="noreferrer" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Explore the product website</a>
               <a href={velyquaUrl} target="_blank" rel="noreferrer" className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">
                 Explore VELYQUA 维澜 <ExternalLink className="w-4 h-4" />
               </a>
@@ -51,6 +53,7 @@ export default function Velyqua() {
                 Inspect the source <ExternalLink className="w-4 h-4" />
               </a>
             </div>
+            <p className="mt-5 text-base leading-relaxed text-slate-400"><a className="font-semibold text-emerald-300" href="https://velyqua-workspace.five12345.chatgpt.site/" target="_blank" rel="noreferrer">Architecture Studio</a> · <a className="font-semibold text-emerald-300" href="https://github.com/AndrewLamSingapore/velyqua-website" target="_blank" rel="noreferrer">Product website source</a></p>
           </div>
           <div className="signal-card rounded-[2rem] p-7 sm:p-9">
             <div className="flex items-start justify-between gap-6">

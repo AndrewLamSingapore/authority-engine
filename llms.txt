@@ -1,27 +1,38 @@
-# Authority Engine
+# Andrew Lam · Authority Engine
 
-> Andrew Lam's public proof-of-work system for Operations Excellence, supply chain, warehousing, business analytics and disciplined operational experimentation.
+> Operations intelligence, supply-chain analytics and applied AI, grounded in more than 20 years of operating experience in Singapore.
 
 Canonical: https://authority-engine-app.vercel.app/
+Public profile review: 26 November 2026.
 
 ## Core pages
-- / — Operations Excellence, supply chain and analytics authority
-- /about — Background, operating philosophy and credibility
-- /portal — Interactive living knowledge graph
-- /orqevia — Public-safe governed AI walkthrough; private controls remain local-only
-- /velyqua — Live interactive freshwater aquarium operating system
-- /insights — Evidence, case studies, experiments and decision frameworks
-- /maxwell-excel — Real operating evidence and Singapore container-service scope
-- /contact — Career, collaboration, professional and Maxwell service inquiries
+- / — Operating evidence, project introductions and all eight public repository profiles at #repositories.
+- /about — Background, completed credentials, ongoing cloud training and repository directory.
+- /evidence — Anonymised operating records, synthetic demonstrations and concepts with separate evidence labels.
+- /portal — THE PORTAL: guided solo discovery, collective discussion rooms, hybrid retrieval and the Open Intelligence Observatory.
+- /orqevia — Curated public decision walkthrough; operational work uses the authenticated ORQEVIA workspace.
+- /velyqua — VELYQUA product website, working aquarium app, Architecture Studio and research goals.
+- /game-platform — Living Worlds: AI-assisted persistent role-playing prototype with deterministic game authority.
+- /sky-tablet — Interactive 3D interpretation of ancient Mesopotamia, cuneiform and astronomy.
+- /contact — Career opportunities, practical operating problems and project collaboration.
 
-## Principles
-- Evidence is distinguished from demonstration.
-- Synthetic experiments are labelled as synthetic.
-- Prototypes are not presented as production systems.
-- Operational claims should be inspectable and decision-relevant.
-- Maxwell Excel evidence is real and anonymised; no unverified profit, savings or expansion claim is made.
+## Evidence boundaries
+- Maxwell Excel: 391 anonymised container jobs, seven reporting periods and S$75,720 recorded revenue. Business impact is not established by those figures.
+- Cold-chain analysis: 1,800 synthetic records across six zones, not operational history.
+- VELYQUA: manual tests, observations, care history and local-first/private-sync software. Animal–environment intelligence, individual histories and intervention outcomes remain research goals.
+- THE PORTAL: a working research prototype. Persistence, model generations and internal benchmarks do not prove scientific discovery, superiority or independently validated collaboration. Current run and budget states are available at the owning live site.
+- ORQEVIA: public illustrations do not execute private tasks or establish private runtime health. ORQEVIA-CURRENT-STATE.md is the source-state pointer reached through STATUS.md; the operational manifest is historical context.
+- Living Worlds: guest continuity is browser-bound; commercial outcomes and complete multi-user acceptance are separate validation questions.
+- The Sky Tablet: historical interpretation and illustrative astronomy, not a surveyed reconstruction or date-accurate sky chart.
 
-## Current frontier
-ORQEVIA is an E2 working prototype with a verified local-only, read-only Control Surface. The public walkthrough contains no live runtime data, private memory or actuation.
+Each product owns its source, configuration, contracts and domain data. Source, CI, deployment and runtime acceptance are separate evidence.
 
-VELYQUA is a live browser-accessible product for structured aquarium decisions and memory. Its future physical sensing hypothesis remains explicitly unvalidated.
+## Public source directory
+- AndrewLamSingapore: https://github.com/AndrewLamSingapore/AndrewLamSingapore — https://authority-engine-app.vercel.app/
+- authority-engine: https://github.com/AndrewLamSingapore/authority-engine — https://authority-engine-app.vercel.app/
+- velyqua: https://github.com/AndrewLamSingapore/velyqua — https://velyqua.vercel.app/
+- velyqua-website: https://github.com/AndrewLamSingapore/velyqua-website — https://velyqua-website.vercel.app/
+- the-portal: https://github.com/AndrewLamSingapore/the-portal — https://the-portal-ten.vercel.app/
+- orqevia: https://github.com/AndrewLamSingapore/orqevia — https://authority-engine-app.vercel.app/orqevia
+- game-platform: https://github.com/AndrewLamSingapore/game-platform — https://game-platform-wine-nine.vercel.app/
+- sky-tablet: https://github.com/AndrewLamSingapore/sky-tablet — https://sky-tablet.vercel.app/

@@ -192,6 +192,13 @@ body[data-shell='v2'], .v2-root { font-size: 1.0625rem; line-height: 1.65; }
 }
 
 /* Public refresh: clearer reading order, generous type and a compact project directory. */
+.v2-repository-list { margin-top: 32px; border-top: 1px solid var(--line); }
+.v2-repository-entry { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.3fr); gap: 16px 36px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+.v2-repository-entry h3 { margin-top: 8px; font-size: 1.5rem; }
+.v2-repository-entry .v2-prose { margin-top: 0; }
+.v2-repository-slug { overflow-wrap: anywhere; margin-top: 8px; }
+.v2-repository-links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 16px; }
+@media (max-width: 600px) { .v2-repository-entry { grid-template-columns: minmax(0, 1fr); } }
 .v2-hero { background: radial-gradient(ellipse at 85% 15%, #24536533, transparent 65%), var(--bk-bg); }
 .v2-hero-inner { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); padding-block: clamp(56px, 7vw, 100px); }
 .v2-hero h1 { max-width: 16ch; font-size: clamp(3rem, 5.6vw, 4.7rem); letter-spacing: -.045em; }

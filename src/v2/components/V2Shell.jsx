@@ -122,6 +122,7 @@ function V2Footer() {
                 </a>
               </li>
               <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/#repositories">All repository profiles</Link></li>
             </ul>
           </div>
           <div>
