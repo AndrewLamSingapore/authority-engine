@@ -1,0 +1,49 @@
+name: Repository profile consistency
+on:
+  schedule:
+    - cron: '17 2 * * *'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - src/data/repository-profiles.json
+      - .github/workflows/repository-profiles.yml
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare directory with public GitHub profiles
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api --paginate '/users/AndrewLamSingapore/repos?type=owner&per_page=100' --slurp > "$RUNNER_TEMP/repos.json"
+          python3 - "$RUNNER_TEMP/repos.json" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          profiles = json.loads(Path("src/data/repository-profiles.json").read_text())
+          directory = {row["slug"]: row for row in profiles}
+          repos = {repo["name"]: repo for page in json.loads(Path(sys.argv[1]).read_text()) for repo in page}
+          differences = []
+          if len(directory) != len(profiles):
+              differences.append("Duplicate repository slug in the directory")
+          for name in sorted(directory.keys() | repos.keys()):
+              if name not in directory or name not in repos:
+                  missing = "directory" if name not in directory else "public GitHub inventory"
+                  differences.append(f"{name} is missing from the {missing}")
+                  continue
+              for local, remote in [("description", "description"), ("site", "homepage")]:
+                  expected = directory[name][local]
+                  actual = repos[name][remote] or ""
+                  if local == "site":
+                      expected, actual = expected.rstrip("/"), actual.rstrip("/")
+                  if actual != expected:
+                      differences.append(f"{name} {remote}: GitHub={actual!r}, directory={expected!r}")
+          if differences:
+              sys.exit("\n".join(differences))
+          print(f"Verified descriptions and homepages for {len(directory)} repositories.")
+          PY
