@@ -33,7 +33,7 @@ export default function Portal() {
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-10 lg:gap-16 items-end">
           <div>
-            <div className="eyebrow">Open evolutionary discovery intelligence</div>
+            <div className="eyebrow">Open Collective Evolutionary Intelligence</div>
             <h1 className="mt-5 text-[clamp(3.2rem,7vw,6.5rem)] leading-[.86] font-black tracking-[-.065em] text-white">THE<br /><span className="text-gradient">PORTAL.</span></h1>
           </div>
           <div className="max-w-xl lg:pb-2">
