@@ -16,13 +16,13 @@
 
 [Report a bug](https://github.com/AndrewLamSingapore/authority-engine/issues) · [Ask a question](https://github.com/AndrewLamSingapore/authority-engine/discussions) · [Wiki](https://github.com/AndrewLamSingapore/authority-engine/wiki)
 
-[Browse all six projects and their source](https://github.com/AndrewLamSingapore/AndrewLamSingapore#selected-work) · [About Andrew](https://authority-engine-app.vercel.app/about)
+[Browse the project and source directory](https://github.com/AndrewLamSingapore/AndrewLamSingapore#selected-work) · [About Andrew](https://authority-engine-app.vercel.app/about)
 
 ## Connected work
 
 [**Explore ORQEVIA**](https://authority-engine-app.vercel.app/orqevia) · [**Meet Andrew**](https://authority-engine-app.vercel.app/about) · [**Start a conversation**](https://authority-engine-app.vercel.app/contact?source=authority-engine&intent=collaboration)
 
-ORQEVIA’s public walkthrough connects this project to Andrew’s wider work. Public navigation and enquiries do not merge accounts, data or runtime authority. Current operational evidence comes from the canonical portfolio record; this README describes source capabilities.
+ORQEVIA’s public walkthrough connects this project to Andrew’s wider work. Public navigation and enquiries do not merge accounts, data or runtime authority. Each product owns its source and domain records. Current operation requires its own deployment and runtime evidence; this README describes source capabilities.
 
 ## Operations experience. An emerging Industrial AI focus.
 
@@ -67,14 +67,18 @@ Anonymised operational evidence and synthetic demonstrations are deliberately la
 
 **OBSERVE → CONNECT → ANTICIPATE → DECIDE → ACT → LEARN**
 
-## Public builds
+## Public projects and source
 
-| Build | Evidence status | Public destination | Source |
-|---|---|---|---|
-| **The Portal** | Public interactive build | https://the-portal-ten.vercel.app/ | https://github.com/AndrewLamSingapore/the-portal |
-| **VELYQUA** | Working public prototype / evolving evidence | https://velyqua.vercel.app/ | https://github.com/AndrewLamSingapore/velyqua |
-| **Living Worlds** | **E2 — working prototype** | https://game-platform-wine-nine.vercel.app/ | https://github.com/AndrewLamSingapore/game-platform |
-| **The Sky Tablet** | **E2 — working prototype** | https://sky-tablet.vercel.app/ | https://github.com/AndrewLamSingapore/sky-tablet |
+| Repository | Purpose | Public destination | Source |
+| --- | --- | --- | --- |
+| **Andrew Lam · GitHub profile** | Profile and shared contracts | https://authority-engine-app.vercel.app/ | https://github.com/AndrewLamSingapore/AndrewLamSingapore |
+| **Authority Engine** | Portfolio and evidence hub | https://authority-engine-app.vercel.app/ | https://github.com/AndrewLamSingapore/authority-engine |
+| **VELYQUA · Application** | Aquarium software | https://velyqua.vercel.app/ | https://github.com/AndrewLamSingapore/velyqua |
+| **VELYQUA · Product website** | Product introduction | https://velyqua-website.vercel.app/ | https://github.com/AndrewLamSingapore/velyqua-website |
+| **THE PORTAL** | Discovery and research prototype | https://the-portal-ten.vercel.app/ | https://github.com/AndrewLamSingapore/the-portal |
+| **ORQEVIA** | AI orchestration workspace | https://authority-engine-app.vercel.app/orqevia | https://github.com/AndrewLamSingapore/orqevia |
+| **Living Worlds** | Persistent role-playing prototype | https://game-platform-wine-nine.vercel.app/ | https://github.com/AndrewLamSingapore/game-platform |
+| **The Sky Tablet** | Interactive cultural storytelling | https://sky-tablet.vercel.app/ | https://github.com/AndrewLamSingapore/sky-tablet |
 
 The Sky Tablet is an interactive exploration of Mesopotamian astronomy and cuneiform. Its software is publicly inspectable at E2; its simplified historical mappings remain educational rather than upgraded to scholarly evidence merely because the interface works.
 
@@ -97,7 +101,7 @@ The Sky Tablet is an interactive exploration of Mesopotamian astronomy and cunei
 - Unused legacy homepage components and starter assets are removed; the active homepage, about and evidence routes use `src/v2`.
 - `src/v2/refresh.css` provides the shared responsive presentation; existing dashboards, public walkthroughs, sound controls, article handling and private access boundaries retain their behavior.
 
-Profile refresh source references: ORQEVIA `ced0853b9bd903ea6b2b82bde8a7aca7de73abcb` (status, operational manifest and channel contract), and VELYQUA `f70e8b044755133ac714d19a2e8b88607ca57f93` (owning product source). These are source references, not runtime acceptance claims.
+Public profile review: 26 November 2026. `src/data/repository-profiles.json` lists all eight public repositories and their canonical destinations; the homepage and About page render that same directory. Owning sources reviewed: ORQEVIA `ced0853b9bd903ea6b2b82bde8a7aca7de73abcb`, VELYQUA `017393cd79f98ab9b9b5194643991b033389acf2`, its website `446b07420ba53ef9a65b6e132f1c4ea14e0005f7`, and THE PORTAL `b463131ba587a55e78b54923f9c4904224893af3`. These are source references, not private runtime acceptance claims.
 
 Run `npm run lint`, `npm run check:server`, `npm run test:authority` and `npm run build` before release. The build generates all public sitemap routes and adds published article URLs when the content service is reachable; a failed content request produces an explicit static-route fallback. Browser acceptance and a deployment receipt remain separate checks from a successful local build.
 
@@ -126,4 +130,4 @@ Copyright © 2026 Andrew Lam. All rights reserved.
 
 ## Status and evidence
 
-> Portfolio status: [STATUS.md](https://github.com/AndrewLamSingapore/orqevia/blob/main/STATUS.md) is the sole portfolio status reference. Each product owns its source, configuration, contracts and domain records. The [operational manifest](https://github.com/AndrewLamSingapore/orqevia/blob/main/governance/operational-manifest.json) provides dated ORQEVIA component and observation references; it does not establish deployment status.
+> Current ORQEVIA source: [ORQEVIA-CURRENT-STATE.md](https://github.com/AndrewLamSingapore/orqevia/blob/main/ORQEVIA-CURRENT-STATE.md), reached through the portfolio pointer [STATUS.md](https://github.com/AndrewLamSingapore/orqevia/blob/main/STATUS.md). Each product owns its source, configuration, contracts and domain records. The [operational manifest](https://github.com/AndrewLamSingapore/orqevia/blob/main/governance/operational-manifest.json) is a dated historical reference. Source, CI, deployment and runtime acceptance are separate evidence.

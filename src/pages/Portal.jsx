@@ -33,17 +33,28 @@ export default function Portal() {
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-[.8fr_1.2fr] gap-10 lg:gap-16 items-end">
           <div>
-            <div className="eyebrow">Discovery · Connections · Evidence</div>
+            <div className="eyebrow">Open evolutionary discovery intelligence</div>
             <h1 className="mt-5 text-[clamp(3.2rem,7vw,6.5rem)] leading-[.86] font-black tracking-[-.065em] text-white">THE<br /><span className="text-gradient">PORTAL.</span></h1>
           </div>
           <div className="max-w-xl lg:pb-2">
-            <p className="text-lg sm:text-xl leading-relaxed text-slate-300">A living knowledge graph for turning encounters, evidence and unfinished questions into connected intelligence.</p>
+            <p className="text-lg sm:text-xl leading-relaxed text-slate-300">From ideas to cumulative discovery. Explore a question alone, develop it with others, and inspect how evidence shapes the next hypothesis.</p>
+            <p className="mt-4 text-base leading-relaxed text-slate-400">Encounter · Connect · Experiment · Evolve. A working research prototype with guided discovery, collective discussion rooms and an open intelligence Observatory.</p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a href={portalUrl} target="_blank" rel="noreferrer" className="premium-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Enter the live Portal <ExternalLink className="w-4 h-4" /></a>
               <a href="#evidence-lab" className="ghost-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full font-semibold">Discover Evidence Lab <ArrowRight className="w-4 h-4" /></a>
             </div>
           </div>
         </div>
+
+        <section className="mt-14 grid md:grid-cols-3 gap-4" aria-label="Explore the current Portal">
+          {[
+            ['Discover solo', 'Enter a question and follow seven stages, from encounter and connection through challenge, experiment and revision.', portalUrl],
+            ['Discover Together', 'Explore public rooms and persistent, consent-based discussion. Facilitator scaffolding helps participants identify sources, questions and assumptions.', `${portalUrl}discover-together`],
+            ['Open Intelligence Observatory', 'Inspect living-engine runs, hypothesis ancestry, evidence records, retrieval benchmarks and current availability.', `${portalUrl}observatory`],
+          ].map(([title, text, href]) => <article key={title} className="system-card rounded-3xl p-7"><h2 className="text-xl font-black text-white">{title}</h2><p className="mt-4 text-base leading-relaxed text-slate-400">{text}</p><a className="mt-6 inline-block text-base font-semibold text-emerald-300" href={href} target="_blank" rel="noreferrer">Explore {title}</a></article>)}
+        </section>
+        <p className="mt-6 max-w-4xl text-base leading-relaxed text-slate-400">Guidance may be deterministic or use an optional model mode. Engine runs depend on configured budgets. Persistent rooms, model generations and internal benchmark results do not establish scientific superiority or independently validated multi-user collaboration.</p>
+        <p className="mt-4"><a className="text-base font-semibold text-emerald-300" href="https://github.com/AndrewLamSingapore/the-portal" target="_blank" rel="noreferrer">Inspect THE PORTAL source</a></p>
 
         <section id="evidence-lab" className="portal-evidence-feature" aria-labelledby="evidence-lab-title">
           <div className="portal-evidence-orbit" aria-hidden="true"><span /><span /><span /></div>
@@ -66,7 +77,7 @@ export default function Portal() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.08] px-5 sm:px-7 py-4">
             <div className="flex items-center gap-3">
               <Network className="w-5 h-5 text-emerald-300" />
-              <div><div className="text-sm font-bold text-white">Living Knowledge Graph</div><div className="text-sm tracking-[.14em] uppercase text-slate-500">Interactive preview</div></div>
+              <div><div className="text-sm font-bold text-white">Connections worth exploring</div><div className="text-sm tracking-[.14em] uppercase text-slate-500">Illustrative graph · Explore the live graph in The Portal</div></div>
             </div>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />

@@ -2,7 +2,7 @@
 export const projects = [
   {
     id: 'velyqua', name: 'VELYQUA', category: 'Flagship project · Intelligence for living water',
-    description: 'Develop an aquatic monitoring and decision-support product, starting with manual water tests, observations and care history. The next phase connects applied AI, cloud engineering and customer validation.',
+    description: 'Explore the cinematic product site and working aquarium app: manual water tests, observations, care history and private account sync. The research direction connects aquatic observations, environmental change and care outcomes.',
     status: 'Working software prototype', boundary: 'AI-assisted monitoring, physical sensor performance, early-warning outcomes and commercial demand remain development and validation goals.',
     path: '/velyqua', href: 'https://velyqua.vercel.app/', external: true, linkLabel: 'Open VELYQUA',
   },
@@ -14,8 +14,8 @@ export const projects = [
   },
   {
     id: 'portal', name: 'The Portal', category: 'Unexpected connections',
-    description: 'Explore imagined futures and connections between artifacts, ideas and possible experiments.',
-    status: 'Working prototype', boundary: 'Generated hypotheses remain separate from established evidence.',
+    description: 'Turn an idea into a guided discovery, develop a question in a collective discussion room, and inspect hypothesis histories, hybrid retrieval and living-engine runs in the open Observatory.',
+    status: 'Working research prototype', boundary: 'Generated hypotheses and internal benchmarks do not establish scientific discovery or independently validated collaboration.',
     path: '/portal', href: 'https://the-portal-ten.vercel.app/', external: true, linkLabel: 'Open The Portal',
   },
   {

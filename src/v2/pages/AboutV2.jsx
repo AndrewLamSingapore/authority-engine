@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import TalkSection from '../components/TalkSection';
 import ProfessionalDirection from '../components/ProfessionalDirection';
+import RepositoryDirectory from '../components/RepositoryDirectory';
 import { about, credentials } from '../data/content';
 
 export default function AboutV2() {
@@ -108,6 +109,7 @@ export default function AboutV2() {
         </div>
       </section>
 
+      <RepositoryDirectory />
       <TalkSection />
     </>
   );
